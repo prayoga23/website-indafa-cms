@@ -1,0 +1,66 @@
+/* Gaya Utama Navbar */
+.custom-navbar {
+    background-color: transparent !important; /* Supaya transparan menyatu dengan background hero */
+    border-bottom: 2px solid #cca43b; /* Garis emas tipis di bawah navbar */
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: absolute; /* Mengambang di atas background gambar hero */
+    width: 100%;
+    z-index: 1050;
+}
+
+/* Teks Logo / Brand */
+.brand-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0b5345; /* Hijau tua khas kampus */
+    letter-spacing: 1px;
+    border-left: 2px solid #0b5345;
+    padding-left: 10px;
+}
+
+/* Styling Link Menu */
+.navbar-nav .nav-link-custom {
+    color: #2e7d32 !important; /* Warna default hijau menu */
+    font-size: 0.95rem;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    transition: color 0.3s ease;
+}
+
+/* Warna Emas untuk Menu Aktif / Beranda */
+.navbar-nav .nav-link-custom.active,
+.navbar-nav .nav-link-custom:hover {
+    color: #cca43b !important; /* Warna emas jingga sesuai gambar */
+}
+
+/* Responsif untuk HP / Mobile */
+@media (max-width: 991.98px) {
+    .custom-navbar {
+        background-color: rgba(
+            255,
+            255,
+            255,
+            0.95
+        ) !important; /* Beri background putih semi-transparan di HP agar menu terbaca */
+        position: relative;
+    }
+
+    .navbar-collapse {
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 10px;
+    }
+
+    .navbar-nav .nav-link-custom {
+        color: #333333 !important;
+        padding: 10px 0 !important;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .navbar-nav .nav-link-custom.active {
+        color: #cca43b !important;
+    }
+}

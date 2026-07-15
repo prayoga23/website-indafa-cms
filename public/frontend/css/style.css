@@ -1,0 +1,386 @@
+/* ========================================================
+   1. LUXURY MINIMALIST NAVBAR (PREMIUM GOLD & PATTERN EDITION)
+======================================================== */
+.campus-navbar {
+    /* Latar Belakang Gradasi Putih-Abu Mewah */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.96) 0%,
+        rgba(245, 247, 248, 0.93) 50%,
+        rgba(238, 240, 242, 0.96) 100%
+    ) !important;
+
+    /* Motif Pola Garis Geometris Halus (Subtle Grid Emas 3%) */
+    background-image: linear-gradient(
+            rgba(224, 177, 60, 0.03) 1px,
+            transparent 1px
+        ),
+        linear-gradient(90deg, rgba(224, 177, 60, 0.03) 1px, transparent 1px) !important;
+    background-size: 20px 20px !important;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 12px 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 9999;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid rgba(224, 177, 60, 0.1);
+}
+
+/* Efek Garis Emas Melengkung Kebawah Halus di Bawah Navbar */
+.campus-navbar::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        transparent 5%,
+        #e0b13c 25%,
+        #b88d21 50%,
+        #e0b13c 75%,
+        transparent 95%
+    );
+    box-shadow: 0 4px 15px rgba(224, 177, 60, 0.25);
+    opacity: 0.9;
+}
+
+/* Ukuran Logo Kampus */
+.campus-navbar .brand-logo {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Teks Alternatif Pengganti Logo */
+.brand-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+.brand-title {
+    font-weight: 700;
+    color: #0a6666;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+.brand-subtitle {
+    font-size: 11px;
+    color: #b88d21;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* Navigasi Menu Tengah */
+.campus-navbar .nav-link {
+    color: #0a6666 !important;
+    font-weight: 600;
+    font-size: 13.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 10px 14px !important;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.campus-navbar .nav-link:hover,
+.campus-navbar .nav-link.active {
+    color: #b88d21 !important;
+}
+
+/* Indikator Kotak Emas di Atas Menu Beranda Aktif (Sesuai Gambar) */
+.campus-navbar .nav-link.active::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35px;
+    height: 4px;
+    background: linear-gradient(90deg, #e0b13c, #b88d21);
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 8px rgba(224, 177, 60, 0.4);
+}
+
+/* Dropdown Menu */
+.campus-navbar .dropdown-menu {
+    border: 1px solid rgba(224, 177, 60, 0.2);
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+}
+.campus-navbar .dropdown-item {
+    color: #0a6666;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+.campus-navbar .dropdown-item:hover {
+    background: rgba(10, 102, 102, 0.05);
+    color: #b88d21 !important;
+}
+
+/* Desain Tombol Menu Sisi Kanan */
+.btn-luxury {
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Tombol Hubungi Kami (Kuning Emas Berkilau) */
+.btn-hubungi {
+    background: linear-gradient(135deg, #e0b13c 0%, #b88d21 100%);
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(184, 141, 33, 0.35);
+}
+.btn-hubungi:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(184, 141, 33, 0.5);
+    filter: brightness(1.05);
+}
+
+/* Tombol PMB Online (Hijau Tua Kontras) */
+.btn-pmb-luxury {
+    background: #0a6666;
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(10, 102, 102, 0.2);
+}
+.btn-pmb-luxury:hover {
+    background: #085454;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(10, 102, 102, 0.35);
+}
+
+/* ========================================================
+   2. LUXURY HERO BANNER SECTION (STUDENT BACKGROUND)
+======================================================== */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+    margin-top: 0;
+}
+
+.hero-slide {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding-top: 80px; /* Jarak aman agar tidak tertutup navbar fixed */
+}
+
+/* Efek Gradasi Latar Belakang Abu-abu Terang Elegan */
+.hero-overlay-luxury {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        rgba(217, 218, 219, 0.95) 30%,
+        rgba(255, 255, 255, 0.6) 70%,
+        rgba(255, 255, 255, 0.2) 100__
+    );
+    z-index: 1;
+}
+
+/* Pola Titik Vektor Halus di Background Banner */
+.luxury-bg-lines {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+        rgba(184, 141, 33, 0.08) 1px,
+        transparent 1px
+    );
+    background-size: 24px 24px;
+    z-index: 2;
+    opacity: 0.7;
+}
+
+/* Komponen Badge Mini Kampus di Atas Judul */
+.banner-badge {
+    background: rgba(10, 102, 102, 0.06);
+    border-left: 4px solid #b88d21;
+    padding: 8px 16px;
+    border-radius: 0 8px 8px 0;
+    display: inline-block;
+}
+.badge-text {
+    display: flex;
+    flex-direction: column;
+}
+.badge-title {
+    font-size: 11px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.badge-main {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0a6666;
+}
+.badge-sub {
+    font-size: 10px;
+    color: #b88d21;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* Judul Utama Konten Banner */
+.hero-title-luxury {
+    color: #111111;
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.15;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+/* Subtitle Periode / Tahun Akademik */
+.hero-subtitle-luxury {
+    color: #0a6666;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Teks Deskripsi Singkat */
+.hero-description-luxury {
+    color: #444444;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 550px;
+    margin-bottom: 35px;
+}
+
+/* Tombol Premium Daftar Sekarang di Dalam Banner */
+.btn-banner-luxury {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 38px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff !important;
+    text-decoration: none;
+    background: linear-gradient(135deg, #e0b13c 0%, #b88d21 100%);
+    border-radius: 50px;
+    box-shadow: 0 6px 20px rgba(184, 141, 33, 0.4);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.btn-banner-luxury:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(184, 141, 33, 0.55);
+    filter: brightness(1.08);
+}
+
+/* Kustomisasi Titik Navigasi (Carousel Indicators) */
+.luxury-indicators button {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    background-color: #0a6666 !important;
+    border: 2px solid transparent !important;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    margin: 0 5px !important;
+}
+.luxury-indicators .active {
+    width: 28px !important;
+    border-radius: 10px !important;
+    background-color: #b88d21 !important;
+    opacity: 1;
+}
+
+/* Panah Navigasi Kiri Kanan */
+.luxury-control {
+    width: 4%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.hero-section:hover .luxury-control {
+    opacity: 0.6;
+}
+.luxury-control:hover {
+    opacity: 1 !important;
+}
+
+/* ========================================================
+   3. RESPONSIVE MOBILE ADJUSTMENTS (BREAKPOINTS)
+======================================================== */
+@media (max-width: 991.98px) {
+    /* Penyesuaian Desain Navbar di Mobile */
+    .campus-navbar {
+        background: #ffffff !important; /* Kembali putih polos di mobile agar bersih */
+        background-image: none !important;
+    }
+    .campus-navbar::after {
+        display: none; /* Hilangkan efek garis emas melengkung di layar kecil */
+    }
+    .campus-navbar .navbar-collapse {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-top: 15px;
+        border: 1px solid rgba(224, 177, 60, 0.15);
+    }
+    .campus-navbar .nav-link {
+        padding: 10px 5px !important;
+    }
+    .campus-navbar .nav-link.active::before {
+        display: none;
+    }
+    .campus-navbar .collapse .d-flex {
+        margin-top: 15px;
+        flex-direction: column;
+        width: 100%;
+    }
+    .btn-luxury {
+        width: 100%;
+    }
+
+    /* Penyesuaian Komponen Hero Banner di Mobile */
+    .hero-slide {
+        height: auto;
+        min-height: 550px;
+        padding-top: 120px;
+        padding-bottom: 60px;
+        background-position: center;
+    }
+    .hero-overlay-luxury {
+        background: linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.85) 100%
+        );
+    }
+    .hero-title-luxury {
+        font-size: 34px;
+    }
+    .hero-subtitle-luxury {
+        font-size: 20px;
+    }
+    .hero-description-luxury {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,176 @@
+/* ==========================================================================
+   1. GAYA UTAMA NAVBAR (Kondisi saat di posisi paling atas / belum di-scroll)
+   ========================================================================== */
+.custom-navbar {
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.05
+    ) !important; /* Transparan tipis di awal */
+    backdrop-filter: blur(8px); /* Efek blur kaca pada background */
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 2px solid #cca43b; /* Garis bawah emas tipis */
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    position: fixed; /* Tetap melayang di atas page */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1050;
+    /* Efek transisi yang mulus saat berganti status scroll */
+    transition: background-color 0.4s ease-in-out, padding 0.4s ease-in-out,
+        box-shadow 0.4s ease-in-out, backdrop-filter 0.4s ease-in-out;
+}
+
+/* Memastikan susunan konten di dalam navbar selalu sejajar vertikal secara presisi */
+.custom-navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Ukuran logo kampus agar ideal dan tidak memakan tinggi container */
+.logo-campus {
+    height: 45px !important;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Gaya Teks Logo HKI */
+.brand-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff; /* Menggunakan putih agar kontras di latar hijau banner */
+    letter-spacing: 1px;
+    border-left: 2px solid #cca43b; /* Garis vertikal pembatas warna emas */
+    padding-left: 10px;
+    margin-bottom: 0;
+    line-height: 1;
+}
+
+/* Styling Menu Utama Navigasi (Laptop / Desktop) */
+.navbar-nav .nav-link-custom {
+    color: #ffffff !important; /* Warna putih agar kontras di awal */
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s ease;
+}
+
+/* Warna Emas untuk Menu Aktif / Hover */
+.navbar-nav .nav-link-custom.active,
+.navbar-nav .nav-link-custom:hover {
+    color: #cca43b !important; /* Emas jingga sesuai gambar mockup */
+}
+
+/* ==========================================================================
+   2. EFEK SETELAH DI-SCROLL (Berubah Hijau Semi-Transparan + Efek Blur)
+   ========================================================================== */
+.custom-navbar.scrolled {
+    background-color: rgba(
+        11,
+        83,
+        69,
+        0.85
+    ) !important; /* Hijau khas kampus dengan opasitas 85% */
+    backdrop-filter: blur(15px); /* Efek blur dipertebal saat di-scroll */
+    -webkit-backdrop-filter: blur(15px);
+    padding-top: 8px !important; /* Lebih ramping (slim) saat di-scroll */
+    padding-bottom: 8px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Efek bayangan bayang di bawah navbar */
+}
+
+/* Menjaga konsistensi teks & menu saat status di-scroll */
+.custom-navbar.scrolled .brand-title {
+    color: #ffffff !important;
+}
+
+.custom-navbar.scrolled .navbar-nav .nav-link-custom {
+    color: #ffffff !important;
+}
+
+.custom-navbar.scrolled .navbar-nav .nav-link-custom.active,
+.custom-navbar.scrolled .navbar-nav .nav-link-custom:hover {
+    color: #cca43b !important;
+}
+
+/* ==========================================================================
+   3. RESPONSIF UNTUK HP / MOBILE
+   ========================================================================== */
+@media (max-width: 991.98px) {
+    .custom-navbar {
+        background-color: #0b5345 !important; /* Di HP langsung hijau solid solid agar menu terbaca aman */
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        backdrop-filter: none;
+    }
+
+    /* Box menu dropdown saat tombol hamburger di klik di HP */
+    .navbar-collapse {
+        background-color: #0b5345;
+        border: 1px solid #cca43b;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        margin-top: 12px;
+    }
+
+    /* Item link di mobile */
+    .navbar-nav .nav-link-custom {
+        color: #ffffff !important;
+        padding: 12px 5px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        justify-content: space-between;
+    }
+
+    .navbar-nav .nav-link-custom.active {
+        color: #cca43b !important;
+    }
+
+    /* Mengatur sub-menu dropdown bawaan Bootstrap di mobile */
+    .dropdown-menu {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+        border: none !important;
+        padding-left: 15px;
+    }
+
+    .dropdown-item {
+        color: #ffffff !important;
+        padding: 8px 0;
+    }
+
+    .dropdown-item:hover {
+        background-color: transparent !important;
+        color: #cca43b !important;
+    }
+}
+
+.footer-campus {
+    background: linear-gradient(135deg, #0b666a, #084c4f);
+}
+
+.footer-campus h4,
+.footer-campus h5 {
+    color: #ffffff;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #ffc107;
+    padding-left: 5px;
+}

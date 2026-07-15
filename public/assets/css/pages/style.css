@@ -1,0 +1,302 @@
+/* ============================================================
+   SHARED PAGE STYLES (untuk semua halaman non-beranda)
+============================================================ */
+
+/* Hero Banner Generic */
+.page-hero {
+    background: linear-gradient(rgba(11, 83, 69, 0.85), rgba(0, 0, 0, 0.75)),
+                url('/assets/img/carousel-3.jpg') no-repeat center center;
+    background-size: cover;
+    height: 40vh;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+}
+.page-hero .text-gold {
+    color: #cca43b !important;
+}
+.page-hero-divider {
+    width: 80px;
+    height: 4px;
+    background-color: #cca43b;
+    margin-top: 15px;
+    border-radius: 2px;
+}
+
+/* Color Utilities */
+.text-dark-green {
+    color: #0b5345 !important;
+}
+.text-gold-style {
+    color: #cca43b !important;
+}
+.bg-premium-light {
+    background-color: #f7f8fa;
+}
+.bg-green-light {
+    background-color: rgba(11, 83, 69, 0.08);
+}
+.bg-gold-light {
+    background-color: rgba(204, 164, 59, 0.1);
+}
+
+/* Section Header */
+.page-section-eyebrow {
+    display: inline-block;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-size: 0.7rem;
+    color: #b88d21;
+    margin-bottom: 0.35rem;
+}
+.page-section-title {
+    font-weight: 800;
+    color: #0a6666;
+    font-size: clamp(1.4rem, 1rem + 1.8vw, 2.1rem);
+    line-height: 1.25;
+    margin-bottom: 0;
+}
+.page-section-divider {
+    width: 44px;
+    height: 3px;
+    background: #b88d21;
+    border-radius: 2px;
+}
+
+/* Info Card */
+.info-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid #eef1f5;
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 2rem rgba(10, 102, 102, 0.1);
+}
+
+/* Icon Circle */
+.icon-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+.icon-circle-primary {
+    background: rgba(10, 102, 102, 0.1);
+    color: #0a6666;
+}
+.icon-circle-gold {
+    background: rgba(184, 141, 33, 0.1);
+    color: #b88d21;
+}
+
+/* Team/Leader Card */
+.leader-card {
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.07);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.leader-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 1rem 2rem rgba(10, 102, 102, 0.1);
+}
+.leader-card-img {
+    height: 220px;
+    overflow: hidden;
+}
+.leader-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.leader-card:hover .leader-card-img img {
+    transform: scale(1.06);
+}
+.leader-card-body {
+    padding: 1.25rem;
+}
+.leader-card-body h5 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0a6666;
+    margin-bottom: 0.25rem;
+}
+.leader-card-body p {
+    font-size: 0.8rem;
+    color: #868e96;
+    margin-bottom: 0;
+}
+
+/* Timeline Step */
+.step-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+}
+.step-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0a6666, #043d3d);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+.step-content h5 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0a6666;
+    margin-bottom: 0.35rem;
+}
+.step-content p {
+    font-size: 0.88rem;
+    color: #6c757d;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* Gallery Grid */
+.page-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+.page-gallery-item {
+    position: relative;
+    border-radius: 0.85rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+.page-gallery-item img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    transition: transform 0.55s ease;
+}
+.page-gallery-item:hover img {
+    transform: scale(1.08);
+}
+.page-gallery-item .gallery-hover {
+    position: absolute;
+    inset: 0;
+    background: rgba(4, 61, 61, 0.6);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+.page-gallery-item:hover .gallery-hover {
+    opacity: 1;
+}
+.page-gallery-item .gallery-hover i {
+    color: #fff;
+    font-size: 2rem;
+}
+
+/* Achievement Card */
+.achievement-card {
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.07);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.achievement-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 1.2rem 2.5rem rgba(0, 0, 0, 0.11);
+}
+.achievement-thumb {
+    height: 200px;
+    overflow: hidden;
+}
+.achievement-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s ease;
+}
+.achievement-card:hover .achievement-thumb img {
+    transform: scale(1.07);
+}
+.achievement-body {
+    padding: 1.25rem;
+    flex: 1;
+}
+.achievement-body h5 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0a6666;
+    margin-bottom: 0.35rem;
+}
+.achievement-body p {
+    font-size: 0.82rem;
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+/* Button Styles */
+.btn-dark-green {
+    background-color: #0b5345;
+    border-color: #0b5345;
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.btn-dark-green:hover {
+    background-color: #0a6666;
+    border-color: #0a6666;
+    color: #fff;
+    transform: translateY(-2px);
+}
+.btn-outline-dark-green {
+    color: #0b5345;
+    border-color: #0b5345;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.btn-outline-dark-green:hover {
+    background-color: #0b5345;
+    color: #fff;
+    transform: translateY(-2px);
+}
+.bg-gold {
+    background-color: #b88d21 !important;
+}
+
+/* Responsive */
+@media (max-width: 767.98px) {
+    .page-hero {
+        height: 30vh;
+        min-height: 220px;
+    }
+    .page-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .page-gallery-item img {
+        height: 180px;
+    }
+    .leader-card-img {
+        height: 180px;
+    }
+}
