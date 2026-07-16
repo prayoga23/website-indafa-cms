@@ -73,4 +73,34 @@ class WebsiteSettingController extends Controller
             ->route('admin.website-settings.index')
             ->with('success', 'Website setting berhasil diperbarui');
     }
+
+    /**
+     * Tampilkan halaman setting beranda
+     */
+    public function homepageIndex()
+    {
+        $setting = WebsiteSetting::firstOrCreate(
+            ['id' => 1],
+            [
+                'site_name' => 'Nama Kampus',
+            ]
+        );
+
+        return view('admin.website-settings.homepage', compact('setting'));
+    }
+
+    /**
+     * Update data setting beranda
+     */
+    public function homepageUpdate(WebsiteSettingRequest $request)
+    {
+        $setting = WebsiteSetting::firstOrCreate(['id' => 1]);
+        $data = $request->validated();
+
+        $setting->update($data);
+
+        return redirect()
+            ->route('admin.homepage-settings.index')
+            ->with('success', 'Pengaturan beranda berhasil diperbarui');
+    }
 }

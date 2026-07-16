@@ -592,7 +592,7 @@
                 <h2 class="section-title mb-1">Prestasi Mahasiswa</h2>
                 <div class="section-divider mt-2"></div>
             </div>
-            <a href="#" class="btn btn-outline-brand rounded-pill px-4 reveal">
+            <a href="{{ route('akademik.prestasi') }}" class="btn btn-outline-brand rounded-pill px-4 reveal">
                 Semua Prestasi &nbsp;<i class="bi bi-arrow-right"></i>
             </a>
         </div>
@@ -676,7 +676,7 @@
                 <h2 class="section-title mb-1">Galeri Kampus</h2>
                 <div class="section-divider mt-2"></div>
             </div>
-            <a href="#" class="btn btn-outline-brand rounded-pill px-4 reveal">
+            <a href="{{ route('akademik.gallery-indafa') }}" class="btn btn-outline-brand rounded-pill px-4 reveal">
                 Lihat Semua &nbsp;<i class="bi bi-arrow-right"></i>
             </a>
         </div>
@@ -740,16 +740,15 @@
     <div class="container">
         <div class="cta-pmb-content reveal">
             <span class="cta-pmb-eyebrow">Penerimaan Mahasiswa Baru</span>
-            <h2>Bergabunglah Bersama<br>Institut Agama Islam Darul Falah</h2>
+            <h2>{!! nl2br(e($setting->cta_pmb_title ?? 'Bergabunglah Bersama Institut Agama Islam Darul Falah')) !!}</h2>
             <p>
-                Wujudkan masa depan terbaik Anda. Daftarkan diri di INDAFA Bondowoso
-                dan jadilah bagian dari generasi unggul yang berlandaskan ilmu dan iman.
+                {{ $setting->cta_pmb_text ?? 'Wujudkan masa depan terbaik Anda. Daftarkan diri di INDAFA Bondowoso dan jadilah bagian dari generasi unggul yang berlandaskan ilmu dan iman.' }}
             </p>
             <div class="cta-pmb-buttons">
-                <a href="#" class="btn-cta-gold">
+                <a href="{{ $setting->cta_pmb_link_register ?? '#' }}" class="btn-cta-gold">
                     <i class="bi bi-pencil-square"></i> Daftar Sekarang
                 </a>
-                <a href="#" class="btn-cta-outline">
+                <a href="{{ $setting->cta_pmb_link_info ?? '#' }}" class="btn-cta-outline">
                     <i class="bi bi-info-circle"></i> Informasi PMB
                 </a>
             </div>

@@ -48,8 +48,8 @@
 
                 <li class="nav-header">KONTEN</li>
 
-                <li class="nav-item has-treeview {{ request()->routeIs('admin.sambutan.*', 'admin.news.*', 'admin.agenda.*', 'admin.statistic.*') || request()->is('admin/pages/edit-by-slug/prestasi') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->routeIs('admin.sambutan.*', 'admin.news.*', 'admin.agenda.*', 'admin.statistic.*') || request()->is('admin/pages/edit-by-slug/prestasi') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->routeIs('admin.sambutan.*', 'admin.news.*', 'admin.agenda.*', 'admin.statistic.*', 'admin.homepage-settings.*') || request()->is('admin/pages/edit-by-slug/prestasi') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.sambutan.*', 'admin.news.*', 'admin.agenda.*', 'admin.statistic.*', 'admin.homepage-settings.*') || request()->is('admin/pages/edit-by-slug/prestasi') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
                             Beranda
@@ -85,6 +85,12 @@
                             <a href="{{ route('admin.pages.edit-by-slug', 'prestasi') }}" class="nav-link {{ request()->is('admin/pages/edit-by-slug/prestasi') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Prestasi Mahasiswa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.homepage-settings.index') }}" class="nav-link {{ request()->routeIs('admin.homepage-settings.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pengaturan Beranda</p>
                             </a>
                         </li>
                     </ul>

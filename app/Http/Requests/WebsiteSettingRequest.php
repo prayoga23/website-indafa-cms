@@ -56,6 +56,11 @@ class WebsiteSettingRequest extends FormRequest
             'meta_description' => 'nullable',
 
             'meta_keywords' => 'nullable',
+
+            'cta_pmb_title' => 'nullable|max:255',
+            'cta_pmb_text' => 'nullable',
+            'cta_pmb_link_register' => 'nullable|max:255',
+            'cta_pmb_link_info' => 'nullable|max:255',
         ];
     }
 }

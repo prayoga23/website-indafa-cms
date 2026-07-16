@@ -36,5 +36,9 @@ class WebsiteSetting extends Model
         'meta_description',
         'meta_keywords',
 
+        'cta_pmb_title',
+        'cta_pmb_text',
+        'cta_pmb_link_register',
+        'cta_pmb_link_info'
     ];
 }

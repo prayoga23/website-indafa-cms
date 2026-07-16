@@ -302,6 +302,8 @@ Route::prefix('admin')
         Route::resource('banners',AdminBannerController::class);
         Route::get('website-settings',[WebsiteSettingController::class,'index'])->name('website-settings.index');
         Route::put('website-settings',[WebsiteSettingController::class,'update'])->name('website-settings.update');
+        Route::get('homepage-settings',[WebsiteSettingController::class,'homepageIndex'])->name('homepage-settings.index');
+        Route::put('homepage-settings',[WebsiteSettingController::class,'homepageUpdate'])->name('homepage-settings.update');
         /*
         |--------------------------------------------------------------------------
         | Beranda/Sambutan
