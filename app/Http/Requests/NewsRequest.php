@@ -27,7 +27,7 @@ class NewsRequest extends FormRequest
 
         'title' => 'required|max:255',
 
-        'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
 
         'content' => 'required',
 

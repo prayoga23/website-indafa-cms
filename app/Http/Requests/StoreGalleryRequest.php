@@ -31,7 +31,7 @@ class StoreGalleryRequest extends FormRequest
 
         'description' => 'nullable',
 
-        'cover_image' => 'nullable|image',
+        'cover_image' => 'nullable|image|max:10240',
 
         'status' => 'required'
 

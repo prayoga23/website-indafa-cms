@@ -23,6 +23,7 @@
             <thead>
                 <tr>
                     <th>Logo</th>
+                    
                     <th>Nama Fakultas</th>
                     <th>Dekan</th>
                     <th width="180">Aksi</th>
@@ -35,8 +36,8 @@
 
                 <tr>
 
-                    <td width="80">
-
+                <td width="80">
+                
                         @if($faculty->logo)
                             <img src="{{ asset('storage/'.$faculty->logo) }}"
                                  width="60">

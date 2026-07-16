@@ -25,8 +25,8 @@ class BannerRequest extends FormRequest
             'description' => 'nullable',
 
             'image' => $bannerId
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:4096',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240'
+                : 'required|image|mimes:jpg,jpeg,png,webp|max:10240',
 
             'button_text' => 'nullable|max:100',
 

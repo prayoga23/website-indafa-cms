@@ -21,9 +21,9 @@ class WebsiteSettingRequest extends FormRequest
 
             'description' => 'nullable',
 
-            'logo' => 'nullable|image|max:4096',
+            'logo' => 'nullable|image|max:10240',
 
-            'favicon' => 'nullable|image|max:2048',
+            'favicon' => 'nullable|image|max:5120',
 
             'address' => 'nullable',
 

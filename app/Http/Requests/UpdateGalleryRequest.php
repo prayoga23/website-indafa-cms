@@ -11,7 +11,7 @@ class UpdateGalleryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class UpdateGalleryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'faculty_id' => 'nullable|exists:faculties,id',
+            'study_program_id' => 'nullable|exists:study_programs,id',
+            'title' => 'required|max:255',
+            'description' => 'nullable',
+            'cover_image' => 'nullable|image|max:10240',
+            'status' => 'required'
         ];
     }
 }

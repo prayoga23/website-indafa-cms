@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Faculty;
 
 class FacultySubWebController extends Controller
 {
     private function getFacultyData($faculty)
     {
+        $slug = $faculty === 'syariah' ? 'fakultas-ilmu-syariah' : 'fakultas-tarbiyah';
+        $dbFaculty = Faculty::where('slug', $slug)->first();
+
         if ($faculty === 'syariah') {
             return [
                 'id' => 'syariah',
-                'name' => 'Fakultas Syariah',
-                'dean' => 'Dr. H. Abu Bakar, M.H.I.',
-                'dean_image' => 'assets/img/user.png',
+                'name' => $dbFaculty ? $dbFaculty->name : 'Fakultas Syariah',
+                'dean' => $dbFaculty ? ($dbFaculty->dean ?? 'Dr. H. Abu Bakar, M.H.I.') : 'Dr. H. Abu Bakar, M.H.I.',
+                'dean_image' => ($dbFaculty && $dbFaculty->logo) ? 'storage/' . $dbFaculty->logo : 'assets/img/user.png',
                 'short_name' => 'FSYAR',
                 'color' => '#8c1d1d', // Dark red for Syariah
                 'bg_gradient' => 'linear-gradient(135deg, #8c1d1d, #4a1010)',
@@ -22,7 +25,7 @@ class FacultySubWebController extends Controller
                     ['name' => 'Hukum Keluarga Islam (S1)', 'slug' => 'hki', 'desc' => 'Mencetak sarjana hukum Islam yang ahli di bidang hukum perkawinan, waris, dan peradilan agama.'],
                     ['name' => 'Hukum Ekonomi Syariah (S1)', 'slug' => 'hes', 'desc' => 'Menghasilkan praktisi dan konsultan hukum bisnis syariah, perbankan syariah, dan lembaga keuangan.']
                 ],
-                'sejarah' => 'Fakultas Syariah didirikan dengan komitmen untuk mencetak sarjana hukum Islam yang profesional, berintegritas tinggi, dan mampu merespon dinamika sosial-keagamaan di masyarakat. Melalui kurikulum yang integratif antara kajian klasik (kitab kuning) dan hukum positif, Fakultas Syariah terus melangkah maju menjadi pusat unggulan kajian hukum Islam.',
+                'sejarah' => $dbFaculty ? ($dbFaculty->description ?? 'Fakultas Syariah didirikan dengan komitmen untuk mencetak sarjana hukum Islam yang profesional, berintegritas tinggi...') : 'Fakultas Syariah didirikan dengan komitmen untuk mencetak sarjana hukum Islam yang profesional, berintegritas tinggi...',
                 'visi' => 'Menjadi Fakultas Syariah yang unggul, kompetitif, dan bereputasi nasional dalam pengembangan ilmu syariah dan hukum Islam kontemporer yang berlandaskan nilai-nilai keislaman pada tahun 2030.',
                 'misi' => [
                     'Menyelenggarakan pendidikan dan pengajaran di bidang syariah dan hukum Islam yang integratif.',
@@ -34,9 +37,9 @@ class FacultySubWebController extends Controller
         } else {
             return [
                 'id' => 'ebit',
-                'name' => 'Fakultas Ekonomi Bisnis Islam & Tarbiyah',
-                'dean' => 'Dr. Hj. Siti Rahmah, M.E.I.',
-                'dean_image' => 'assets/img/user.png',
+                'name' => $dbFaculty ? $dbFaculty->name : 'Fakultas Ekonomi Bisnis Islam & Tarbiyah',
+                'dean' => $dbFaculty ? ($dbFaculty->dean ?? 'Dr. Hj. Siti Rahmah, M.E.I.') : 'Dr. Hj. Siti Rahmah, M.E.I.',
+                'dean_image' => ($dbFaculty && $dbFaculty->logo) ? 'storage/' . $dbFaculty->logo : 'assets/img/user.png',
                 'short_name' => 'FEBIT',
                 'color' => '#1d5a8c', // Deep blue for FEBIT
                 'bg_gradient' => 'linear-gradient(135deg, #1d5a8c, #103454)',
@@ -44,7 +47,7 @@ class FacultySubWebController extends Controller
                     ['name' => 'Ekonomi Syariah (S1)', 'slug' => 'ekos', 'desc' => 'Membentuk ekonom muda muslim yang andal, berjiwa wirausaha, dan menguasai prinsip-prinsip syariah.'],
                     ['name' => 'Pendidikan Agama Islam (S1)', 'slug' => 'pai', 'desc' => 'Menghasilkan tenaga pendidik agama Islam yang profesional, kreatif, dan berkarakter mulia.']
                 ],
-                'sejarah' => 'Fakultas Ekonomi Bisnis Islam & Tarbiyah (FEBIT) didirikan untuk menyatukan dua pilar kekuatan umat, yaitu pilar ekonomi berbasis syariah dan pilar pendidikan Islam. Penggabungan strategis ini bertujuan melahirkan lulusan yang tidak hanya cerdas secara intelektual di bidang masing-masing tetapi juga dibekali integritas moral dan profesionalisme tinggi.',
+                'sejarah' => $dbFaculty ? ($dbFaculty->description ?? 'Fakultas Ekonomi Bisnis Islam & Tarbiyah (FEBIT) didirikan untuk menyatukan dua pilar kekuatan umat...') : 'Fakultas Ekonomi Bisnis Islam & Tarbiyah (FEBIT) didirikan untuk menyatukan dua pilar kekuatan umat...',
                 'visi' => 'Menjadi Fakultas Ekonomi Bisnis Islam & Tarbiyah terkemuka di Jawa Timur dalam mengintegrasikan ilmu ekonomi syariah dan kependidikan Islam pada tahun 2030.',
                 'misi' => [
                     'Menyelenggarakan pendidikan ekonomi syariah dan tarbiyah yang relevan dengan perkembangan zaman.',

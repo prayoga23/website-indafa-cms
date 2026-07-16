@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Page;
 use App\Http\Controllers\Controller;
 
 class UnitController extends Controller
@@ -11,7 +12,8 @@ class UnitController extends Controller
      */
     public function lpm()
     {
-        return view('frontend.unit.lpm');
+        $page = Page::where('slug', 'lpm')->where('status', 'publish')->first();
+        return view('frontend.unit.lpm', compact('page'));
     }
 
     /**
@@ -19,7 +21,8 @@ class UnitController extends Controller
      */
     public function lp2m()
     {
-        return view('frontend.unit.lp2m');
+        $page = Page::where('slug', 'lp2m')->where('status', 'publish')->first();
+        return view('frontend.unit.lp2m', compact('page'));
     }
 
     /**
@@ -27,6 +30,7 @@ class UnitController extends Controller
      */
     public function ormawa()
     {
-        return view('frontend.unit.ormawa');
+        $page = Page::where('slug', 'ormawa')->where('status', 'publish')->first();
+        return view('frontend.unit.ormawa', compact('page'));
     }
 }

@@ -16,6 +16,7 @@ use App\Models\AcademicProcedureStep;
 use App\Models\CourseSchedule;
 use App\Models\ExamSchedule;
 use App\Models\ThesisDefenseSchedule;
+use App\Models\Page;
 
 class AkademikController extends Controller
 {
@@ -86,7 +87,8 @@ class AkademikController extends Controller
      */
     public function filosofiLogo()
     {
-        return view('frontend.akademik.filosofi-logo');
+        $page = Page::where('slug', 'filosofi-logo')->where('status', 'publish')->first();
+        return view('frontend.akademik.filosofi-logo', compact('page'));
     }
 
     /**
@@ -94,7 +96,8 @@ class AkademikController extends Controller
      */
     public function penelitian()
     {
-        return view('frontend.akademik.penelitian');
+        $page = Page::where('slug', 'penelitian')->where('status', 'publish')->first();
+        return view('frontend.akademik.penelitian', compact('page'));
     }
 
     /**
@@ -102,7 +105,8 @@ class AkademikController extends Controller
      */
     public function pmb()
     {
-        return view('frontend.akademik.pmb');
+        $page = Page::where('slug', 'pmb')->where('status', 'publish')->first();
+        return view('frontend.akademik.pmb', compact('page'));
     }
 
     /**
@@ -110,7 +114,8 @@ class AkademikController extends Controller
      */
     public function prestasi()
     {
-        return view('frontend.akademik.prestasi');
+        $page = Page::where('slug', 'prestasi')->where('status', 'publish')->first();
+        return view('frontend.akademik.prestasi', compact('page'));
     }
 
     /**
@@ -118,6 +123,7 @@ class AkademikController extends Controller
      */
     public function galleryIndafa()
     {
-        return view('frontend.akademik.gallery-indafa');
+        $page = Page::where('slug', 'gallery-indafa')->where('status', 'publish')->first();
+        return view('frontend.akademik.gallery-indafa', compact('page'));
     }
 }

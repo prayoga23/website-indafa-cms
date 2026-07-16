@@ -38,10 +38,18 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('admin.pages.index') }}"
+                       class="nav-link {{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file-alt"></i>
+                        <p>Halaman (Pages)</p>
+                    </a>
+                </li>
+
                 <li class="nav-header">KONTEN</li>
 
-                <li class="nav-item has-treeview {{ request()->routeIs('admin.sambutan.*', 'admin.news.*', 'admin.agenda.*', 'admin.statistic.*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->routeIs('admin.sambutan.*', 'admin.news.*', 'admin.agenda.*', 'admin.statistic.*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->routeIs('admin.sambutan.*', 'admin.news.*', 'admin.agenda.*', 'admin.statistic.*') || request()->is('admin/pages/edit-by-slug/prestasi') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.sambutan.*', 'admin.news.*', 'admin.agenda.*', 'admin.statistic.*') || request()->is('admin/pages/edit-by-slug/prestasi') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
                             Beranda
@@ -73,11 +81,17 @@
                                 <p>Statistik</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pages.edit-by-slug', 'prestasi') }}" class="nav-link {{ request()->is('admin/pages/edit-by-slug/prestasi') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Prestasi Mahasiswa</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview {{ request()->routeIs('admin.history.*', 'admin.vision.*', 'admin.structure.*', 'admin.lecturers.*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->routeIs('admin.history.*', 'admin.vision.*', 'admin.structure.*', 'admin.lecturers.*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->routeIs('admin.history.*', 'admin.vision.*', 'admin.structure.*', 'admin.lecturers.*') || request()->is('admin/pages/edit-by-slug/filosofi-logo') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.history.*', 'admin.vision.*', 'admin.structure.*', 'admin.lecturers.*') || request()->is('admin/pages/edit-by-slug/filosofi-logo') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-graduate"></i>
                         <p>
                             Profil
@@ -109,11 +123,47 @@
                                 <p>Profil Dosen</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pages.edit-by-slug', 'filosofi-logo') }}" class="nav-link {{ request()->is('admin/pages/edit-by-slug/filosofi-logo') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Filosofi Logo</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview {{ request()->routeIs('admin.curriculum.*', 'admin.cpl.*', 'admin.calendar.*', 'admin.guide.*', 'admin.schedule.*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->routeIs('admin.curriculum.*', 'admin.cpl.*', 'admin.calendar.*', 'admin.guide.*', 'admin.schedule.*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('admin/pages/edit-by-slug/lpm') || request()->is('admin/pages/edit-by-slug/lp2m') || request()->is('admin/pages/edit-by-slug/ormawa') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('admin/pages/edit-by-slug/lpm') || request()->is('admin/pages/edit-by-slug/lp2m') || request()->is('admin/pages/edit-by-slug/ormawa') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>
+                            Unit & Lembaga
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pages.edit-by-slug', 'lpm') }}" class="nav-link {{ request()->is('admin/pages/edit-by-slug/lpm') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>LPM</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pages.edit-by-slug', 'lp2m') }}" class="nav-link {{ request()->is('admin/pages/edit-by-slug/lp2m') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>LP2M</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pages.edit-by-slug', 'ormawa') }}" class="nav-link {{ request()->is('admin/pages/edit-by-slug/ormawa') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>ORMAWA</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{ request()->routeIs('admin.curriculum.*', 'admin.cpl.*', 'admin.calendar.*', 'admin.guide.*', 'admin.schedule.*') || request()->is('admin/pages/edit-by-slug/pmb') || request()->is('admin/pages/edit-by-slug/penelitian') || request()->is('admin/pages/edit-by-slug/gallery-indafa') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.curriculum.*', 'admin.cpl.*', 'admin.calendar.*', 'admin.guide.*', 'admin.schedule.*') || request()->is('admin/pages/edit-by-slug/pmb') || request()->is('admin/pages/edit-by-slug/penelitian') || request()->is('admin/pages/edit-by-slug/gallery-indafa') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book-reader"></i>
                         <p>
                             Akademik
@@ -149,6 +199,24 @@
                             <a href="{{ route('admin.schedule.index') }}" class="nav-link {{ request()->routeIs('admin.schedule.*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Jadwal Kuliah</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pages.edit-by-slug', 'pmb') }}" class="nav-link {{ request()->is('admin/pages/edit-by-slug/pmb') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pendaftaran PMB</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pages.edit-by-slug', 'penelitian') }}" class="nav-link {{ request()->is('admin/pages/edit-by-slug/penelitian') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Penelitian & Pengabdian</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pages.edit-by-slug', 'gallery-indafa') }}" class="nav-link {{ request()->is('admin/pages/edit-by-slug/gallery-indafa') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Gallery INDAFA</p>
                             </a>
                         </li>
                     </ul>

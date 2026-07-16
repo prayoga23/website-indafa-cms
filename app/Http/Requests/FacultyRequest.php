@@ -16,7 +16,7 @@ class FacultyRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'dean' => 'nullable|max:255',
-            'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
             'description' => 'nullable'
         ];
     }

@@ -6,6 +6,10 @@
 
     <title>@yield('title','INDAFA Bondowoso')</title>
 
+    @if(isset($setting) && $setting->logo)
+        <link rel="shortcut icon" href="{{ asset('storage/'.$setting->logo) }}" type="image/x-icon">
+    @endif
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link class="nav-style" rel="stylesheet" href="{{ asset('assets/css/style.css') }}">

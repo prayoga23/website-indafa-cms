@@ -3,10 +3,11 @@
 @section('title', 'Penelitian & Pengabdian | INDAFA Bondowoso')
 
 @section('content')
-<section class="page-hero">
+<!-- Hero Section -->
+<section class="page-hero" style="background: linear-gradient(rgba(11, 83, 69, 0.85), rgba(0, 0, 0, 0.75)), url('{{ (isset($page) && $page->featured_image) ? asset('storage/' . $page->featured_image) : asset('assets/img/carousel-3.jpg') }}') no-repeat center center; background-size: cover;">
     <div class="container text-center text-white mt-5">
         <h5 class="text-gold text-uppercase fw-semibold tracking-wider">Akademik</h5>
-        <h1 class="display-4 fw-bold text-uppercase">Penelitian & Pengabdian</h1>
+        <h1 class="display-4 fw-bold text-uppercase">{{ isset($page) ? $page->title : 'Penelitian & Pengabdian' }}</h1>
         <div class="page-hero-divider mx-auto"></div>
     </div>
 </section>
@@ -18,9 +19,15 @@
                 <span class="page-section-eyebrow">Dharma Riset</span>
                 <h2 class="page-section-title mb-2">Penelitian Dosen & Mahasiswa</h2>
                 <div class="page-section-divider mb-4"></div>
-                <p class="text-secondary" style="line-height:1.8; text-align:justify;">
-                    Sebagai salah satu pilar Tri Dharma Perguruan Tinggi, INDAFA terus berupaya mendorong iklim riset yang dinamis, solutif, dan inovatif di kalangan dosen maupun mahasiswa. Fokus riset diarahkan pada pengembangan integrasi keilmuan Islam, hukum keluarga, ekonomi bisnis syariah, serta pendidikan Islam berbasis kemasyarakatan.
-                </p>
+                @if(isset($page) && trim(strip_tags($page->content)) != '')
+                    <div class="text-secondary" style="line-height:1.8; text-align:justify;">
+                        {!! $page->content !!}
+                    </div>
+                @else
+                    <p class="text-secondary" style="line-height:1.8; text-align:justify;">
+                        Sebagai salah satu pilar Tri Dharma Perguruan Tinggi, INDAFA terus berupaya mendorong iklim riset yang dinamis, solutif, dan inovatif di kalangan dosen maupun mahasiswa. Fokus riset diarahkan pada pengembangan integrasi keilmuan Islam, hukum keluarga, ekonomi bisnis syariah, serta pendidikan Islam berbasis kemasyarakatan.
+                    </p>
+                @endif
             </div>
             <div class="col-lg-6">
                 <div class="rounded-4 overflow-hidden shadow-sm">

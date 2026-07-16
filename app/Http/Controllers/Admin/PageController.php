@@ -130,4 +130,31 @@ class PageController extends Controller
             ->route('admin.pages.index')
             ->with('success', 'Halaman berhasil dihapus');
     }
+
+    public function editBySlug($slug)
+    {
+        $page = Page::where('slug', $slug)->first();
+        if (!$page) {
+            $titles = [
+                'lpm' => 'Lembaga Penjaminan Mutu (LPM)',
+                'lp2m' => 'Lembaga Penelitian dan Pengabdian kepada Masyarakat (LP2M)',
+                'ormawa' => 'Organisasi Mahasiswa (ORMAWA)',
+                'filosofi-logo' => 'Filosofi Logo',
+                'penelitian' => 'Penelitian & Pengabdian',
+                'pmb' => 'Penerimaan Mahasiswa Baru (PMB)',
+                'prestasi' => 'Prestasi Mahasiswa',
+                'gallery-indafa' => 'Gallery INDAFA'
+            ];
+
+            $title = $titles[$slug] ?? ucfirst(str_replace('-', ' ', $slug));
+            $page = Page::create([
+                'title' => $title,
+                'slug' => $slug,
+                'content' => '<p>Konten halaman ' . $title . ' sedang dalam perbaikan.</p>',
+                'status' => 'publish'
+            ]);
+        }
+
+        return $this->edit($page);
+    }
 }

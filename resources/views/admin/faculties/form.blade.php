@@ -21,10 +21,11 @@
 
     <div class="form-group">
         <label>Logo</label>
-
+        
         <input type="file"
                name="logo"
                class="form-control">
+        <p style="color: red;">Harus Foto Berbentuk Logo. Selain Gambar Logo Tidak Diperbolehkan</p>
     </div>
 
     @isset($faculty)

@@ -192,9 +192,6 @@ Route::post('/kontak', [\App\Http\Controllers\Frontend\HubungiKamiController::cl
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
-Route::get('/fakultas', [FrontendFacultyController::class, 'index'])
-    ->name('faculties.index');
-
 Route::get('/fakultas/{slug}', [FrontendFacultyController::class, 'show'])
     ->name('faculties.show');
 
@@ -301,6 +298,7 @@ Route::prefix('admin')
         Route::post('galleries/{gallery}/photos',[GalleryPhotoController::class, 'store'])->name('galleries.photos.store');
         Route::delete('gallery-photos/{galleryPhoto}',[GalleryPhotoController::class, 'destroy'])->name('gallery-photos.destroy');
         Route::resource('pages',AdminPageController::class);
+        Route::get('pages/edit-by-slug/{slug}', [AdminPageController::class, 'editBySlug'])->name('pages.edit-by-slug');
         Route::resource('banners',AdminBannerController::class);
         Route::get('website-settings',[WebsiteSettingController::class,'index'])->name('website-settings.index');
         Route::put('website-settings',[WebsiteSettingController::class,'update'])->name('website-settings.update');

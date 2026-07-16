@@ -3,10 +3,11 @@
 @section('title', 'Filosofi Logo | INDAFA Bondowoso')
 
 @section('content')
-<section class="page-hero">
+<!-- Hero Section -->
+<section class="page-hero" style="background: linear-gradient(rgba(11, 83, 69, 0.85), rgba(0, 0, 0, 0.75)), url('{{ (isset($page) && $page->featured_image) ? asset('storage/' . $page->featured_image) : asset('assets/img/carousel-3.jpg') }}') no-repeat center center; background-size: cover;">
     <div class="container text-center text-white mt-5">
         <h5 class="text-gold text-uppercase fw-semibold tracking-wider">Akademik</h5>
-        <h1 class="display-4 fw-bold text-uppercase">Filosofi Logo</h1>
+        <h1 class="display-4 fw-bold text-uppercase">{{ isset($page) ? $page->title : 'Filosofi Logo' }}</h1>
         <div class="page-hero-divider mx-auto"></div>
     </div>
 </section>
@@ -23,9 +24,15 @@
                 <span class="page-section-eyebrow">Identitas Utama</span>
                 <h2 class="page-section-title mb-2">Makna Lambang INDAFA</h2>
                 <div class="page-section-divider mb-4"></div>
-                <p class="text-secondary" style="line-height:1.8; text-align:justify;">
-                    Lambang Institut Agama Islam Darul Falah (INDAFA) Bondowoso melambangkan komitmen luhur lembaga dalam mewujudkan integrasi ilmu pengetahuan, keluhuran akhlak, dan pengabdian tanpa batas bagi umat. Setiap elemen dalam logo ini dirancang dengan penuh makna filosofis keislaman dan keilmuan.
-                </p>
+                @if(isset($page) && trim(strip_tags($page->content)) != '')
+                    <div class="text-secondary" style="line-height:1.8; text-align:justify;">
+                        {!! $page->content !!}
+                    </div>
+                @else
+                    <p class="text-secondary" style="line-height:1.8; text-align:justify;">
+                        Lambang Institut Agama Islam Darul Falah (INDAFA) Bondowoso melambangkan komitmen luhur lembaga dalam mewujudkan integrasi ilmu pengetahuan, keluhuran akhlak, dan pengabdian tanpa batas bagi umat. Setiap elemen dalam logo ini dirancang dengan penuh makna filosofis keislaman dan keilmuan.
+                    </p>
+                @endif
             </div>
         </div>
 

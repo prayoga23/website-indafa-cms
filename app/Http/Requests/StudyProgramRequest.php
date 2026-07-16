@@ -24,7 +24,7 @@ class StudyProgramRequest extends FormRequest
 
             'head_of_program' => 'nullable|max:255',
 
-            'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
 
             'vision' => 'nullable',
 

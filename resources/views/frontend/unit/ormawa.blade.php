@@ -4,10 +4,10 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="page-hero">
+<section class="page-hero" style="background: linear-gradient(rgba(11, 83, 69, 0.85), rgba(0, 0, 0, 0.75)), url('{{ (isset($page) && $page->featured_image) ? asset('storage/' . $page->featured_image) : asset('assets/img/carousel-3.jpg') }}') no-repeat center center; background-size: cover;">
     <div class="container text-center text-white mt-5">
         <h5 class="text-gold text-uppercase fw-semibold tracking-wider">Unit & Lembaga</h5>
-        <h1 class="display-4 fw-bold text-uppercase">Organisasi Mahasiswa</h1>
+        <h1 class="display-4 fw-bold text-uppercase">{{ isset($page) ? $page->title : 'Organisasi Mahasiswa' }}</h1>
         <div class="page-hero-divider mx-auto"></div>
     </div>
 </section>
@@ -21,12 +21,18 @@
                 <span class="page-section-eyebrow">Tentang ORMAWA</span>
                 <h2 class="page-section-title mb-2">Wadah Kreativitas & Kepemimpinan</h2>
                 <div class="page-section-divider mb-3"></div>
-                <p class="text-secondary" style="line-height:1.8;">
-                    Organisasi Mahasiswa (ORMAWA) merupakan wadah bagi mahasiswa INDAFA untuk
-                    mengembangkan potensi diri, kreativitas, dan jiwa kepemimpinan. Melalui berbagai
-                    organisasi dan Unit Kegiatan Mahasiswa (UKM), mahasiswa diarahkan untuk menjadi
-                    pribadi yang aktif, inovatif, dan berkontribusi bagi masyarakat.
-                </p>
+                @if(isset($page) && trim(strip_tags($page->content)) != '')
+                    <div class="text-secondary" style="line-height:1.8;">
+                        {!! $page->content !!}
+                    </div>
+                @else
+                    <p class="text-secondary" style="line-height:1.8;">
+                        Organisasi Mahasiswa (ORMAWA) merupakan wadah bagi mahasiswa INDAFA untuk
+                        mengembangkan potensi diri, kreativitas, dan jiwa kepemimpinan. Melalui berbagai
+                        organisasi dan Unit Kegiatan Mahasiswa (UKM), mahasiswa diarahkan untuk menjadi
+                        pribadi yang aktif, inovatif, dan berkontribusi bagi masyarakat.
+                    </p>
+                @endif
             </div>
             <div class="col-lg-6">
                 <div class="rounded-4 overflow-hidden shadow-sm">

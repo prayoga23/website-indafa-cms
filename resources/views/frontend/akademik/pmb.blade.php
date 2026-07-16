@@ -3,10 +3,11 @@
 @section('title', 'Penerimaan Mahasiswa Baru (PMB) | INDAFA Bondowoso')
 
 @section('content')
-<section class="page-hero">
+<!-- Hero Section -->
+<section class="page-hero" style="background: linear-gradient(rgba(11, 83, 69, 0.85), rgba(0, 0, 0, 0.75)), url('{{ (isset($page) && $page->featured_image) ? asset('storage/' . $page->featured_image) : asset('assets/img/carousel-3.jpg') }}') no-repeat center center; background-size: cover;">
     <div class="container text-center text-white mt-5">
         <h5 class="text-gold text-uppercase fw-semibold tracking-wider">PMB</h5>
-        <h1 class="display-4 fw-bold text-uppercase">Penerimaan Mahasiswa Baru</h1>
+        <h1 class="display-4 fw-bold text-uppercase">{{ isset($page) ? $page->title : 'Penerimaan Mahasiswa Baru' }}</h1>
         <div class="page-hero-divider mx-auto"></div>
     </div>
 </section>
@@ -19,9 +20,15 @@
                 <span class="page-section-eyebrow">Mari Bergabung</span>
                 <h2 class="page-section-title mb-2">Mengapa Kuliah di INDAFA?</h2>
                 <div class="page-section-divider mb-4"></div>
-                <p class="text-secondary" style="line-height:1.8; text-align:justify;">
-                    INDAFA Bondowoso berkomitmen melahirkan intelektual muslim yang unggul, profesional, berdaya saing global, dan berjiwa wirausaha berlandaskan akhlakul karimah. Kami menyediakan ekosistem perkuliahan berkualitas dengan fasilitas lengkap, dosen kompeten, dan program beasiswa bervariasi.
-                </p>
+                @if(isset($page) && trim(strip_tags($page->content)) != '')
+                    <div class="text-secondary" style="line-height:1.8; text-align:justify;">
+                        {!! $page->content !!}
+                    </div>
+                @else
+                    <p class="text-secondary" style="line-height:1.8; text-align:justify;">
+                        INDAFA Bondowoso berkomitmen melahirkan intelektual muslim yang unggul, profesional, berdaya saing global, dan berjiwa wirausaha berlandaskan akhlakul karimah. Kami menyediakan ekosistem perkuliahan berkualitas dengan fasilitas lengkap, dosen kompeten, dan program beasiswa bervariasi.
+                    </p>
+                @endif
                 <div class="d-flex gap-3 mt-4">
                     <a href="#" class="btn btn-dark-green px-4 py-2.5 rounded-pill"><i class="bi bi-pencil-square me-2"></i> Daftar Online</a>
                     <a href="#" class="btn btn-outline-dark-green px-4 py-2.5 rounded-pill"><i class="bi bi-download me-2"></i> Unduh Brosur</a>

@@ -36,7 +36,7 @@ class StorePageRequest extends FormRequest
             'required',
 
         'featured_image' =>
-            'nullable|image',
+            'nullable|image|max:10240',
 
         'status' =>
             'required'
