@@ -592,7 +592,7 @@
                 <h2 class="section-title mb-1">Prestasi Mahasiswa</h2>
                 <div class="section-divider mt-2"></div>
             </div>
-            <a href="{{ route('akademik.prestasi') }}" class="btn btn-outline-brand rounded-pill px-4 reveal">
+            <a href="{{ route('frontend.akademik.prestasi') }}" class="btn btn-outline-brand rounded-pill px-4 reveal">
                 Semua Prestasi &nbsp;<i class="bi bi-arrow-right"></i>
             </a>
         </div>
@@ -676,7 +676,7 @@
                 <h2 class="section-title mb-1">Galeri Kampus</h2>
                 <div class="section-divider mt-2"></div>
             </div>
-            <a href="{{ route('akademik.gallery-indafa') }}" class="btn btn-outline-brand rounded-pill px-4 reveal">
+            <a href="{{ route('frontend.akademik.gallery-indafa') }}" class="btn btn-outline-brand rounded-pill px-4 reveal">
                 Lihat Semua &nbsp;<i class="bi bi-arrow-right"></i>
             </a>
         </div>
