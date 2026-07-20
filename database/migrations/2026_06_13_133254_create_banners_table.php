@@ -15,7 +15,10 @@ return new class extends Migration
 
     $table->id();
 
-    $table->string('title');
+    $table->foreignId('faculty_id')->nullable()->constrained('faculties')->nullOnDelete();
+    $table->foreignId('program_studi_id')->nullable()->constrained('study_programs')->nullOnDelete();
+
+    $table->string('title')->nullable();
     $table->string('subtitle')->nullable();
 
     $table->text('description')->nullable();

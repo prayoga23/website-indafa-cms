@@ -29,8 +29,12 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
         View::composer('*', function ($view) {
+            if (app()->runningInConsole()) {
+                return;
+            }
+
             // 1. Ambil data setting global
-            $setting = WebsiteSetting::first();
+            $setting = WebsiteSetting::first() ?? new WebsiteSetting();
 
             // 2. Ambil data menu default untuk dropdown
             $facultiesMenu = Faculty::orderBy('name')->get();

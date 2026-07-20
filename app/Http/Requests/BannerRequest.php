@@ -18,7 +18,7 @@ class BannerRequest extends FormRequest
         return [
             'faculty_id' => 'nullable|exists:faculties,id',
             'program_studi_id' => 'nullable|exists:study_programs,id',
-            'title' => 'max:255',
+            'title' => 'nullable|max:255',
 
             'subtitle' => 'nullable|max:255',
 

@@ -29,7 +29,7 @@
 
                 @foreach($faculties as $f)
                     <option value="{{ $f->id }}"
-                        {{ old('faculty_id', $news->faculty_id ?? '') == $f->id ? 'selected' : '' }}>
+                        {{ old('faculty_id', $banner->faculty_id ?? '') == $f->id ? 'selected' : '' }}>
                         {{ $f->name }}
                     </option>
                 @endforeach
@@ -43,7 +43,7 @@
 
                 @foreach($studyPrograms as $s)
                     <option value="{{ $s->id }}"
-                        {{ old('program_studi_id', $news->program_studi_id ?? '') == $s->id ? 'selected' : '' }}>
+                        {{ old('program_studi_id', $banner->program_studi_id ?? '') == $s->id ? 'selected' : '' }}>
                         {{ $s->name }}
                     </option>
                 @endforeach
@@ -53,7 +53,7 @@
     </div>
 
                 <div class="form-group">
-                    <label>Judul Banner <span class="text-danger">*</span></label>
+                    <label>Judul Banner</label>
 
                     <input type="text"
                            name="title"
