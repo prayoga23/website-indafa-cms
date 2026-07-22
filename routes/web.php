@@ -47,6 +47,8 @@ use App\Http\Controllers\Frontend\NewsController as FrontendNewsController;
 use App\Http\Controllers\Frontend\UnitController;
 use App\Http\Controllers\Frontend\FacultySubWebController;
 use App\Http\Controllers\Frontend\ProdiSubWebController;
+use App\Http\Controllers\Frontend\LpmSubWebController;
+use App\Http\Controllers\Frontend\Lp2mSubWebController;
 
 
 
@@ -109,11 +111,34 @@ Route::prefix('prodi-{prodi}')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| UNIT & LEMBAGA
+| UNIT & LEMBAGA (LPM & LP2M SUB-WEBSITE ROUTES)
 |--------------------------------------------------------------------------
 */
-Route::get('/unit/lpm', [UnitController::class, 'lpm'])->name('frontend.unit.lpm');
-Route::get('/unit/lp2m', [UnitController::class, 'lp2m'])->name('frontend.unit.lp2m');
+// LPM Sub-Web Routes
+Route::prefix('lpm')->group(function () {
+    Route::get('/', [LpmSubWebController::class, 'index'])->name('frontend.lpm.index');
+    Route::get('/profil/{page?}', [LpmSubWebController::class, 'profil'])->name('frontend.lpm.profil');
+    Route::get('/pengawasan/{page?}', [LpmSubWebController::class, 'pengawasan'])->name('frontend.lpm.pengawasan');
+    Route::get('/penjaminan/{page?}', [LpmSubWebController::class, 'penjaminan'])->name('frontend.lpm.penjaminan');
+    Route::get('/pengumuman', [LpmSubWebController::class, 'pengumuman'])->name('frontend.lpm.pengumuman');
+    Route::get('/berita', [LpmSubWebController::class, 'berita'])->name('frontend.lpm.berita');
+    Route::get('/kontak', [LpmSubWebController::class, 'kontak'])->name('frontend.lpm.kontak');
+});
+
+// LP2M Sub-Web Routes
+Route::prefix('lp2m')->group(function () {
+    Route::get('/', [Lp2mSubWebController::class, 'index'])->name('frontend.lp2m.index');
+    Route::get('/profil/{page?}', [Lp2mSubWebController::class, 'profil'])->name('frontend.lp2m.profil');
+    Route::get('/riset/{page?}', [Lp2mSubWebController::class, 'riset'])->name('frontend.lp2m.riset');
+    Route::get('/pusat/{page?}', [Lp2mSubWebController::class, 'pusat'])->name('frontend.lp2m.pusat');
+    Route::get('/layanan/{page?}', [Lp2mSubWebController::class, 'layanan'])->name('frontend.lp2m.layanan');
+    Route::get('/survei/{page?}', [Lp2mSubWebController::class, 'survei'])->name('frontend.lp2m.survei');
+    Route::get('/kontak', [Lp2mSubWebController::class, 'kontak'])->name('frontend.lp2m.kontak');
+});
+
+// Legacy unit routes for backward compatibility
+Route::get('/unit/lpm', function() { return redirect()->route('frontend.lpm.index'); })->name('frontend.unit.lpm');
+Route::get('/unit/lp2m', function() { return redirect()->route('frontend.lp2m.index'); })->name('frontend.unit.lp2m');
 Route::get('/unit/ormawa', [UnitController::class, 'ormawa'])->name('frontend.unit.ormawa');
 
 /*

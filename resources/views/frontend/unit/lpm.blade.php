@@ -4,11 +4,12 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="page-hero" style="background: linear-gradient(rgba(11, 83, 69, 0.85), rgba(0, 0, 0, 0.75)), url('{{ (isset($page) && $page->featured_image) ? asset('storage/' . $page->featured_image) : asset('assets/img/carousel-3.jpg') }}') no-repeat center center; background-size: cover;">
-    <div class="container text-center text-white mt-5">
-        <h5 class="text-gold text-uppercase fw-semibold tracking-wider">Unit & Lembaga</h5>
-        <h1 class="display-4 fw-bold text-uppercase">{{ isset($page) ? $page->title : 'Lembaga Penjaminan Mutu' }}</h1>
-        <div class="page-hero-divider mx-auto"></div>
+<section class="page-hero" style="background: linear-gradient(rgba(11, 83, 69, 0.92), rgba(0, 0, 0, 0.88)), url('{{ asset('storage/banners/Q8Fe55EmaxIEh2wLTOBa08cqk2Vsy8ljDEdB0a5i.png') }}') no-repeat center center; background-size: cover; padding-top: 150px; padding-bottom: 70px;">
+    <div class="container text-center text-white">
+
+        <h5 class="text-gold text-uppercase fw-bold" style="font-size:1.1rem; color: #ffc107 !important;">Lembaga Penjaminan Mutu</h5>
+        <div class="page-hero-divider mx-auto" style="width: 80px; height: 4px; background-color: #ffc107; border-radius: 2px;"></div>
+        <h1 class="display-4 fw-bold text-uppercase mb-3">{{ isset($page) ? $page->title : 'Lembaga Penjaminan Mutu' }}</h1>
     </div>
 </section>
 
@@ -152,7 +153,7 @@
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="leader-card">
                     <div class="leader-card-img">
-                        <img src="{{ asset('assets/img/user.png') }}" alt="Ketua LPM">
+                        <img src="{{ asset('storage/lecturers/3EjN4NWfMRn1AN2wWVV53chufmz3j88IDpHMBeSb.png') }}" alt="Ketua LPM">
                     </div>
                     <div class="leader-card-body">
                         <h5>Dr. H. Ahmad Syafii, M.Pd.I</h5>

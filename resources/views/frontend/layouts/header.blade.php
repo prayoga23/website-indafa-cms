@@ -2,6 +2,8 @@
     $currentUri = request()->path();
     $isFacultySubWeb = str_starts_with($currentUri, 'fakultas-');
     $isProdiSubWeb = str_starts_with($currentUri, 'prodi-');
+    $isLpmSubWeb = str_starts_with($currentUri, 'lpm');
+    $isLp2mSubWeb = str_starts_with($currentUri, 'lp2m');
 
     // Detect faculty ID
     $facultyId = null;
@@ -34,6 +36,20 @@
                     <img src="{{ asset('storage/'.$setting->logo) }}" alt="Logo" class="logo-campus" style="height: 50px; width: auto;">
                     <div class="ms-2 brand-text-divider">
                         <span class="brand-title">PRODI {{ strtoupper($prodiId) }}</span>
+                    </div>
+                </a>
+            @elseif($isLpmSubWeb)
+                <a class="navbar-brand d-flex align-items-center" href="{{ route('frontend.lpm.index') }}">
+                    <img src="{{ asset('storage/'.$setting->logo) }}" alt="Logo LPM" class="logo-campus" style="height: 50px; width: auto;">
+                    <div class="ms-2 brand-text-divider">
+                        <span class="brand-title">LPM INDAFA</span>
+                    </div>
+                </a>
+            @elseif($isLp2mSubWeb)
+                <a class="navbar-brand d-flex align-items-center" href="{{ route('frontend.lp2m.index') }}">
+                    <img src="{{ asset('storage/'.$setting->logo) }}" alt="Logo LP2M" class="logo-campus" style="height: 50px; width: auto;">
+                    <div class="ms-2 brand-text-divider">
+                        <span class="brand-title">LP2M INDAFA</span>
                     </div>
                 </a>
             @else
@@ -193,7 +209,214 @@
 
 
                     {{-- ==========================================
-                         CASE C: NAVBAR UTAMA (INDAFA)
+                         CASE C: NAVBAR SUB-WEBSITE LPM
+                         ========================================== --}}
+                    @elseif($isLpmSubWeb)
+                        {{-- BERANDA --}}
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom {{ request()->routeIs('frontend.lpm.index') ? 'active' : '' }}"
+                               href="{{ route('frontend.lpm.index') }}">Beranda</a>
+                        </li>
+
+                        {{-- PROFIL --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-custom dropdown-toggle {{ request()->routeIs('frontend.lpm.profil') ? 'active' : '' }}"
+                               href="#" id="lpmProfilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Profil
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="lpmProfilDropdown">
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.profil', 'sejarah') }}">Sejarah</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.profil', 'visi-misi') }}">Visi & Misi</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.profil', 'struktur-organisasi') }}">Struktur Organisasi</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.profil', 'sdm') }}">Sumber Daya Manusia</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.profil', 'tupoksi') }}">Tugas Pokok & Fungsi</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.profil', 'rkat') }}">RKAT LPM</a></li>
+                            </ul>
+                        </li>
+
+                        {{-- BIDANG PENGAWASAN --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-custom dropdown-toggle {{ request()->routeIs('frontend.lpm.pengawasan') ? 'active' : '' }}"
+                               href="#" id="lpmPengawasanDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Bidang Pengawasan
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="lpmPengawasanDropdown">
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.pengawasan', 'pedoman') }}">Pedoman Institut</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.pengawasan', 'kalender') }}">Kalender Akademik</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.pengawasan', 'kontrak-kinerja') }}">Kontrak Kinerja</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.pengawasan', 'monev-kinerja') }}">Monev Kinerja</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.pengawasan', 'audit-kinerja') }}">Laporan Audit Kinerja</a></li>
+                            </ul>
+                        </li>
+
+                        {{-- BIDANG PENJAMINAN --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-custom dropdown-toggle {{ request()->routeIs('frontend.lpm.penjaminan') ? 'active' : '' }}"
+                               href="#" id="lpmPenjaminanDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Bidang Penjaminan
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="lpmPenjaminanDropdown">
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'kebijakan-mutu') }}">Kebijakan Mutu</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'spmi') }}">Sistem Penjaminan Mutu Internal</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'ami') }}">Audit Mutu Internal</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'peraturan-akreditasi') }}">Peraturan Akreditasi</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'data-akreditasi') }}">Data Akreditasi</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'laporan-kepuasan') }}">Laporan Kepuasan Monev GJM & GKM</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'kalender-mutu') }}">Kalender Mutu</a></li>
+                            </ul>
+                        </li>
+
+                        {{-- PENGUMUMAN --}}
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom {{ request()->routeIs('frontend.lpm.pengumuman') ? 'active' : '' }}"
+                               href="{{ route('frontend.lpm.pengumuman') }}">Pengumuman</a>
+                        </li>
+
+                        {{-- BERITA --}}
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom {{ request()->routeIs('frontend.lpm.berita') ? 'active' : '' }}"
+                               href="{{ route('frontend.lpm.berita') }}">Berita</a>
+                        </li>
+
+                        {{-- KONTAK --}}
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom {{ request()->routeIs('frontend.lpm.kontak') ? 'active' : '' }}"
+                               href="{{ route('frontend.lpm.kontak') }}">Kontak</a>
+                        </li>
+
+
+                    {{-- ==========================================
+                         CASE D: NAVBAR SUB-WEBSITE LP2M
+                         ========================================== --}}
+                    @elseif($isLp2mSubWeb)
+                        {{-- BERANDA --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-custom dropdown-toggle {{ request()->routeIs('frontend.lp2m.index') ? 'active' : '' }}"
+                               href="{{ route('frontend.lp2m.index') }}" id="lp2mBerandaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Beranda
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="lp2mBerandaDropdown">
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.index') }}">Beranda LP2M</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.index') }}#pengumuman">Pengumuman</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.index') }}#berita">Berita</a></li>
+                            </ul>
+                        </li>
+
+                        {{-- PROFIL --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-custom dropdown-toggle {{ request()->routeIs('frontend.lp2m.profil') ? 'active' : '' }}"
+                               href="#" id="lp2mProfilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Profil
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="lp2mProfilDropdown">
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.profil', 'sejarah') }}">Sejarah LP2M</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.profil', 'visi-misi') }}">Visi, Misi, dan Tujuan</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.profil', 'tupoksi') }}">Tugas Pokok dan Fungsi</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.profil', 'dokumen-resmi') }}">Dokumen Resmi</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.profil', 'struktur-organisasi') }}">Struktur Organisasi</a></li>
+                            </ul>
+                        </li>
+
+                        {{-- RISET --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-custom dropdown-toggle {{ request()->routeIs('frontend.lp2m.riset') ? 'active' : '' }}"
+                               href="#" id="lp2mRisetDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Riset
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="lp2mRisetDropdown">
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Jurnal</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#profil">Profil Jurnal</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#rekap">Rekap Jurnal</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#jrce">JRCE</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#egalita">EGALITA</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#ejournal">E-Journal</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'penelitian') }}">Penelitian (Litapdimas)</a></li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Pengabdian Litapdimas</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'pengabdian') }}#simapel">Simapel</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'pengabdian') }}#sipemas">Sipemas</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'pengabdian') }}#kerjasama">Kerjasama Antar Instansi</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">HKI</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'hki') }}#hakcipta">Layanan Pengajuan Hak Cipta</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'hki') }}#rekaphki">Rekap HKI</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'rekap-penelitian') }}">Rekapitulasi Penelitian</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'rekap-pengabdian') }}">Rekapitulasi Pengabdian</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'sdgs') }}">Relevansi Penelitian & PKM dengan SDGs</a></li>
+                            </ul>
+                        </li>
+
+                        {{-- PUSAT --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-custom dropdown-toggle {{ request()->routeIs('frontend.lp2m.pusat') ? 'active' : '' }}"
+                               href="#" id="lp2mPusatDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Pusat
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="lp2mPusatDropdown">
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'penelitian') }}">Pusat Penelitian</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'pengabdian') }}">Pusat Pengabdian Masyarakat</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'publikasi') }}">Pusat Publikasi Ilmiah</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'p2km') }}">Pusat Pelayanan Kesehatan Masyarakat (P2KM)</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'p3sr') }}">Pusat Pengelola & Pengembangan Sistem Remunerasi (P3SR)</a></li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Pusat Studi</a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'psga') }}">Pusat Studi Gender dan Anak</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'psmasb') }}">Pusat Studi Moderasi Agama dan Sosial Budaya</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'psis') }}">Pusat Studi Islam dan Sains</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'psk') }}">Pusat Studi Kerjasama</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        {{-- LAYANAN --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-custom dropdown-toggle {{ request()->routeIs('frontend.lp2m.layanan') ? 'active' : '' }}"
+                               href="#" id="lp2mLayananDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Layanan
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="lp2mLayananDropdown">
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.layanan', 'sop') }}">SOP</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.layanan', 'motto-maklumat') }}">Motto dan Maklumat Pelayanan</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.layanan', 'panduan-pedoman') }}">Panduan dan Pedoman</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.layanan', 'surat-online') }}">Layanan Pembuatan Surat Online</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.layanan', 'notulensi-rapat') }}">Hasil Notulensi Rapat/Meeting LP2M</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.layanan', 'dokumen-kerjasama') }}">Dokumen Kerjasama Kumpulan SK</a></li>
+                            </ul>
+                        </li>
+
+                        {{-- SURVEI --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-custom dropdown-toggle {{ request()->routeIs('frontend.lp2m.survei') ? 'active' : '' }}"
+                               href="#" id="lp2mSurveiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Survei
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="lp2mSurveiDropdown">
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.survei', 'indeks-kepuasan') }}">Indeks Kepuasan Pelanggan</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.survei', 'kolaborasi') }}">Survei Penelitian & PKM Kolaborasi</a></li>
+                            </ul>
+                        </li>
+
+                        {{-- KONTAK --}}
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom {{ request()->routeIs('frontend.lp2m.kontak') ? 'active' : '' }}"
+                               href="{{ route('frontend.lp2m.kontak') }}">Kontak</a>
+                        </li>
+
+
+                    {{-- ==========================================
+                         CASE E: NAVBAR UTAMA (INDAFA)
                          ========================================== --}}
                     @else
                         {{-- BERANDA --}}
@@ -237,8 +460,8 @@
                                 Unit & Lembaga
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="unitDropdown">
-                                <li><a class="dropdown-item" href="{{ route('frontend.unit.lpm') }}">LPM</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.unit.lp2m') }}">LP2M</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.index') }}">LPM</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.index') }}">LP2M</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.unit.ormawa') }}">ORMAWA</a></li>
                             </ul>
                         </li>
