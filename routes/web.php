@@ -417,6 +417,17 @@ Route::prefix('admin')
 
         // Route::resource('users', UserController::class);
         // Route::resource('roles', RoleController::class);
-    });
+// Helper Route Pembersih Cache & Storage Link Hosting
+Route::get('/clear-cache', function () {
+    \Illuminate\Support\Facades\Artisan::call('view:clear');
+    \Illuminate\Support\Facades\Artisan::call('cache:clear');
+    \Illuminate\Support\Facades\Artisan::call('config:clear');
+    \Illuminate\Support\Facades\Artisan::call('route:clear');
+    try {
+        \Illuminate\Support\Facades\Artisan::call('storage:link');
+    } catch (\Exception $e) {}
+    
+    return 'Cache Laravel & Storage Link berhasil dibersihkan! Silakan muat ulang halaman website Anda.';
+});
 
 require __DIR__.'/auth.php';
