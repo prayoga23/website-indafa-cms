@@ -9,8 +9,8 @@
         --pro-gradient: {{ $data['bg_gradient'] }};
     }
     .pro-hero {
-        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)),
-                    url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop') no-repeat center center;
+        background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)),
+                    url('{{ asset('storage/banners/otoYXSrIydgSL8DpfylH0mSQJD7CGa5MsaMOuPpK.png') }}') no-repeat center center;
         background-size: cover;
         height: 60vh;
         min-height: 400px;

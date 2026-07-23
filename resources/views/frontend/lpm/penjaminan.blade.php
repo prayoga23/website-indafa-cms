@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="page-hero" style="background: linear-gradient(rgba(11, 83, 69, 0.92), rgba(0, 0, 0, 0.88)), url('{{ asset('storage/banners/Q8Fe55EmaxIEh2wLTOBa08cqk2Vsy8ljDEdB0a5i.png') }}') no-repeat center center; background-size: cover; padding-top: 150px; padding-bottom: 70px;">
+<section class="page-hero" style="background: linear-gradient(rgba(11, 83, 69, 0.92), rgba(0, 0, 0, 0.88)), url('{{ asset('storage/banners/otoYXSrIydgSL8DpfylH0mSQJD7CGa5MsaMOuPpK.png') }}') no-repeat center center; background-size: cover; padding-top: 150px; padding-bottom: 70px;">
     <div class="container text-center text-white">
 
         <h5 class="text-gold text-uppercase fw-bold" style="font-size:1.1rem; color: #ffc107 !important;">Lembaga Penjaminan Mutu</h5>
@@ -20,7 +20,7 @@
             <!-- Sidebar Navigation -->
             <div class="col-lg-3">
                 <div class="card border-0 shadow-sm rounded-4 sticky-top" style="top: 100px; z-index: 10;">
-                    <div class="card-header bg-dark-green text-white fw-bold py-3 rounded-top-4">
+                    <div class="card-header bg-dark-green text-white fw-bold py-3 rounded-top-4" style="background-color: #0b5345 !important; color: #ffffff !important;">
                         <i class="bi bi-award me-2"></i> Bidang Penjaminan
                     </div>
                     <div class="list-group list-group-flush rounded-bottom-4">
@@ -186,26 +186,122 @@
                         </div>
 
                     @elseif($page === 'laporan-kepuasan')
-                        <h3 class="fw-bold text-dark-green mb-3">Laporan Kepuasan Monev GJM & GKM</h3>
+                        <h3 class="fw-bold text-dark-green mb-3">Laporan Kepuasan Stakeholder</h3>
                         <div class="page-section-divider mb-4"></div>
                         <p class="text-secondary" style="line-height:1.8;">
-                            Gugus Jaminan Mutu (GJM) fakultas dan Gugus Kendali Mutu (GKM) prodi secara aktif menyelenggarakan survei kepuasan mahasiswa, dosen, tenaga kependidikan, serta pengurus mitra/alumni.
+                            Lembaga Penjaminan Mutu (LPM) secara berkala melaksanakan pengukuran survei kepuasan terhadap seluruh pemangku kepentingan (*stakeholder*) meliputi Mahasiswa, Dosen, Tenaga Kependidikan, serta Mitra Kerja / Pengguna Lulusan.
                         </p>
-                        <div class="row g-3 mt-3">
+
+                        <div class="row g-3 my-4">
                             <div class="col-md-6">
-                                <div class="p-3 border rounded-3 bg-light">
-                                    <h6 class="fw-bold text-dark mb-1">Kepuasan Mahasiswa Terhadap PBM</h6>
-                                    <div class="progress my-2" style="height:20px;">
-                                        <div class="progress-bar bg-success" style="width: 91%">91% Sangat Puas</div>
+                                <div class="p-3 border rounded-4 bg-light">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="fw-bold text-dark small">Kepuasan Mahasiswa (PBM & Layanan)</span>
+                                        <span class="badge bg-success">91% Sangat Puas</span>
+                                    </div>
+                                    <div class="progress" style="height:12px;">
+                                        <div class="progress-bar bg-success" style="width: 91%"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="p-3 border rounded-3 bg-light">
-                                    <h6 class="fw-bold text-dark mb-1">Kepuasan Layanan Sarpras & Digital</h6>
-                                    <div class="progress my-2" style="height:20px;">
-                                        <div class="progress-bar bg-warning text-dark" style="width: 87%">87% Puas</div>
+                                <div class="p-3 border rounded-4 bg-light">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="fw-bold text-dark small">Kepuasan Dosen & Tenaga Kependidikan</span>
+                                        <span class="badge bg-success">92% Sangat Puas</span>
                                     </div>
+                                    <div class="progress" style="height:12px;">
+                                        <div class="progress-bar bg-success" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 border rounded-4 bg-light">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="fw-bold text-dark small">Kepuasan Layanan Sarpras & Digital</span>
+                                        <span class="badge bg-warning text-dark">88% Puas</span>
+                                    </div>
+                                    <div class="progress" style="height:12px;">
+                                        <div class="progress-bar bg-warning" style="width: 88%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 border rounded-4 bg-light">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="fw-bold text-dark small">Kepuasan Pengguna Lulusan / Mitra</span>
+                                        <span class="badge bg-success">90% Sangat Puas</span>
+                                    </div>
+                                    <div class="progress" style="height:12px;">
+                                        <div class="progress-bar bg-success" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h6 class="fw-bold text-dark mb-3"><i class="bi bi-file-earmark-pdf me-2 text-danger"></i>Dokumen Laporan Kepuasan:</h6>
+                        <div class="list-group rounded-4">
+                            <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-1">Laporan Hasil Survei Kepuasan Stakeholder TA 2024/2025</h6>
+                                    <p class="small text-muted mb-0">Laporan Rekapitulasi Survei Kepuasan Institusi</p>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-success rounded-pill px-3"><i class="bi bi-download me-1"></i>Unduh PDF</a>
+                            </div>
+                        </div>
+
+                    @elseif($page === 'monev-gjm-gkm')
+                        <h3 class="fw-bold text-dark-green mb-3">Monev GJM & GKM</h3>
+                        <div class="page-section-divider mb-4"></div>
+                        <p class="text-secondary" style="line-height:1.8;">
+                            Monitoring dan Evaluasi (Monev) diselenggarakan secara terstruktur oleh <strong>Gugus Jaminan Mutu (GJM)</strong> di tingkat Fakultas dan <strong>Gugus Kendali Mutu (GKM)</strong> di tingkat Program Studi untuk menjamin ketercapaian standar mutu akademik & non-akademik.
+                        </p>
+
+                        {{-- GJM FAKULTAS --}}
+                        <div class="card border-0 bg-light rounded-4 p-4 mb-4 mt-4">
+                            <h5 class="fw-bold text-dark-green mb-3"><i class="bi bi-building me-2"></i>1. Laporan Monev GJM (Fakultas)</h5>
+                            <div class="list-group rounded-3">
+                                <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h6 class="fw-bold text-dark mb-1">Laporan Monev GJM Fakultas Syariah</h6>
+                                        <p class="small text-muted mb-0">Evaluasi Tata Kelola & Layanan Fakultas</p>
+                                    </div>
+                                    <a href="#" class="btn btn-sm btn-outline-success rounded-pill px-3"><i class="bi bi-download me-1"></i>Unduh PDF</a>
+                                </div>
+                                <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h6 class="fw-bold text-dark mb-1">Laporan Monev GJM Fakultas Ekonomi Bisnis Islam & Tarbiyah (FEBIT)</h6>
+                                        <p class="small text-muted mb-0">Evaluasi Tata Kelola & Layanan Fakultas</p>
+                                    </div>
+                                    <a href="#" class="btn btn-sm btn-outline-success rounded-pill px-3"><i class="bi bi-download me-1"></i>Unduh PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- GKM PRODI --}}
+                        <div class="card border-0 bg-light rounded-4 p-4">
+                            <h5 class="fw-bold text-dark-green mb-3"><i class="bi bi-mortarboard me-2"></i>2. Laporan Monev GKM (Program Studi)</h5>
+                            <div class="list-group rounded-3">
+                                <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h6 class="fw-bold text-dark mb-1">Laporan Monev GKM Prodi Hukum Keluarga Islam (HKI)</h6>
+                                        <p class="small text-muted mb-0">Evaluasi PBM & Pembimbingan Akademik/Skripsi</p>
+                                    </div>
+                                    <a href="#" class="btn btn-sm btn-outline-success rounded-pill px-3"><i class="bi bi-download me-1"></i>Unduh PDF</a>
+                                </div>
+                                <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h6 class="fw-bold text-dark mb-1">Laporan Monev GKM Prodi Hukum Ekonomi Syariah (HES)</h6>
+                                        <p class="small text-muted mb-0">Evaluasi PBM & Pembimbingan Akademik/Skripsi</p>
+                                    </div>
+                                    <a href="#" class="btn btn-sm btn-outline-success rounded-pill px-3"><i class="bi bi-download me-1"></i>Unduh PDF</a>
+                                </div>
+                                <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h6 class="fw-bold text-dark mb-1">Laporan Monev GKM Prodi Manajemen Bisnis Syariah (MBS)</h6>
+                                        <p class="small text-muted mb-0">Evaluasi PBM & Pembimbingan Akademik/Skripsi</p>
+                                    </div>
+                                    <a href="#" class="btn btn-sm btn-outline-success rounded-pill px-3"><i class="bi bi-download me-1"></i>Unduh PDF</a>
                                 </div>
                             </div>
                         </div>

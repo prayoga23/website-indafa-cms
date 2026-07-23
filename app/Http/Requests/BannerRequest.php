@@ -25,12 +25,12 @@ class BannerRequest extends FormRequest
             'description' => 'nullable',
 
             'image' => $bannerId
-                ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240'
-                : 'required|image|mimes:jpg,jpeg,png,webp|max:10240',
+                ? 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:20480'
+                : 'required|image|mimes:jpg,jpeg,png,webp,svg|max:20480',
 
             'button_text' => 'nullable|max:100',
 
-            'button_link' => 'nullable|url',
+            'button_link' => 'nullable|string',
 
             'status' => 'required|in:draft,publish',
 
@@ -41,6 +41,16 @@ class BannerRequest extends FormRequest
             'start_date' => 'nullable|date',
 
             'end_date' => 'nullable|date|after_or_equal:start_date',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'image.uploaded' => 'Ukuran file gambar terlalu besar untuk diunggah (maksimal 20 MB). Mohon gunakan gambar dengan ukuran di bawah 20 MB atau kompres foto terlebih dahulu.',
+            'image.max' => 'Ukuran file gambar tidak boleh lebih dari 20 MB.',
+            'image.image' => 'File yang diunggah harus berupa file gambar.',
+            'image.mimes' => 'Format gambar yang diperbolehkan hanya JPG, JPEG, PNG, WEBP, atau SVG.',
         ];
     }
 }

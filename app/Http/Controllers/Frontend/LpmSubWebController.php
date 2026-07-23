@@ -70,13 +70,18 @@ class LpmSubWebController extends Controller
      */
     public function penjaminan($page = 'kebijakan-mutu')
     {
+        if ($page === 'laporan-kepuasan-gjm' || $page === 'laporan-kepuasan-gkm') {
+            $page = 'monev-gjm-gkm';
+        }
+
         $validPages = [
             'kebijakan-mutu' => 'Kebijakan Mutu',
             'spmi' => 'Sistem Penjaminan Mutu Internal (SPMI)',
             'ami' => 'Audit Mutu Internal (AMI)',
             'peraturan-akreditasi' => 'Peraturan Akreditasi',
             'data-akreditasi' => 'Data Akreditasi',
-            'laporan-kepuasan' => 'Laporan Kepuasan Monev GJM & GKM',
+            'laporan-kepuasan' => 'Laporan Kepuasan',
+            'monev-gjm-gkm' => 'Monev GJM & GKM',
             'kalender-mutu' => 'Kalender Mutu',
         ];
 

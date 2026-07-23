@@ -314,7 +314,7 @@
             @endforeach
         @else
             <div class="carousel-item active">
-                <div class="prodi-hero-item" style="background-image: url('{{ asset('frontend/images/default-hero.jpg') }}');">
+                <div class="prodi-hero-item" style="background-image: url('{{ asset('storage/banners/otoYXSrIydgSL8DpfylH0mSQJD7CGa5MsaMOuPpK.png') }}');">
                     <div class="container position-relative text-white" style="z-index: 2;">
                         <div class="row">
                             <div class="col-lg-8 text-center text-md-start">

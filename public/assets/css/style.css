@@ -174,3 +174,14 @@
     color: #ffc107;
     padding-left: 5px;
 }
+
+/* Utility Classes for Dark Green Theme */
+.bg-dark-green {
+    background-color: #0b5345 !important;
+    color: #ffffff !important;
+}
+
+.text-dark-green {
+    color: #0b5345 !important;
+}
+

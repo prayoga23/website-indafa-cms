@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="page-hero" style="background: linear-gradient(rgba(11, 83, 69, 0.92), rgba(0, 0, 0, 0.88)), url('{{ asset('storage/banners/Q8Fe55EmaxIEh2wLTOBa08cqk2Vsy8ljDEdB0a5i.png') }}') no-repeat center center; background-size: cover; padding-top: 150px; padding-bottom: 70px;">
+<section class="page-hero" style="background: linear-gradient(rgba(11, 83, 69, 0.92), rgba(0, 0, 0, 0.88)), url('{{ asset('storage/banners/otoYXSrIydgSL8DpfylH0mSQJD7CGa5MsaMOuPpK.png') }}') no-repeat center center; background-size: cover; padding-top: 150px; padding-bottom: 70px;">
     <div class="container text-center text-white">
 
         <h5 class="text-gold text-uppercase fw-bold" style="font-size:1.1rem; color: #ffc107 !important;">Lembaga Penjaminan Mutu</h5>
@@ -20,7 +20,7 @@
             <!-- Sidebar Navigation -->
             <div class="col-lg-3">
                 <div class="card border-0 shadow-sm rounded-4 sticky-top" style="top: 100px; z-index: 10;">
-                    <div class="card-header bg-dark-green text-white fw-bold py-3 rounded-top-4">
+                    <div class="card-header bg-dark-green text-white fw-bold py-3 rounded-top-4" style="background-color: #0b5345 !important; color: #ffffff !important;">
                         <i class="bi bi-shield-check me-2"></i> Bidang Pengawasan
                     </div>
                     <div class="list-group list-group-flush rounded-bottom-4">

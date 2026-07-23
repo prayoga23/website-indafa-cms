@@ -292,7 +292,8 @@
                                 <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'ami') }}">Audit Mutu Internal</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'peraturan-akreditasi') }}">Peraturan Akreditasi</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'data-akreditasi') }}">Data Akreditasi</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'laporan-kepuasan') }}">Laporan Kepuasan Monev GJM & GKM</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'laporan-kepuasan') }}">Laporan Kepuasan</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'monev-gjm-gkm') }}">Monev GJM & GKM</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lpm.penjaminan', 'kalender-mutu') }}">Kalender Mutu</a></li>
                             </ul>
                         </li>
