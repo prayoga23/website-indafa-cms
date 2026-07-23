@@ -113,7 +113,8 @@ class ProdiSubWebController extends Controller
     public function index($prodi)
     {
         $data = $this->getProdiData($prodi);
-        return view('frontend.prodi.beranda', compact('data'));
+        $news = \App\Models\News::where('status', 'publish')->latest()->take(3)->get();
+        return view('frontend.prodi.beranda', compact('data', 'news'));
     }
 
     public function sejarah($prodi)
