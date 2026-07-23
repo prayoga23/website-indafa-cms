@@ -132,74 +132,219 @@
    0. GAYA HERO BANNER (CAROUSEL HEADER)
    ========================================================================== */
 .carousel-header {
-    height: 100vh; /* Memenuhi satu layar penuh desktop */
-    min-height: 550px;
+    height: 100vh;
+    min-height: 100vh;
+    width: 100%;
     position: relative;
     overflow: hidden;
-    background-color: #000000;
+    background-color: #0B5345; /* emerald-deep dari coba.html */
 }
 
-/* Mengatur Gambar di Dalam Carousel */
+/* Mengatur Gambar di Dalam Carousel persis seperti coba.html */
 .carousel-header .carousel-item {
     height: 100vh;
-    min-height: 550px;
+    min-height: 100vh;
+    position: relative;
+    background-color: #0B5345;
 }
 
 .carousel-header .carousel-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Gambar otomatis memotong proporsional tanpa gepeng */
+    object-fit: cover;
     object-position: center;
+    opacity: 0.35;
+    mix-blend-mode: overlay;
+    z-index: 1;
 }
 
-/* Lapisan Gelap (Overlay) di Atas Gambar Dihilangkan */
+/* Lapisan Overlay coba.html */
 .carousel-header .carousel-item::before {
     content: "";
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0B5345;
+    opacity: 0.65;
+    mix-blend-mode: multiply;
+    z-index: 2;
+    display: block;
 }
 
-/* Penyesuaian Posisi Teks Caption */
+/* Khusus Halaman Prodi (Misal: prodi-hki): Banner Gambar Terang Asli Tanpa Overlay Hijau */
+.prodi-carousel-header,
+.prodi-carousel-header .carousel-item {
+    background-color: transparent !important;
+}
+
+.prodi-carousel-header .carousel-item img {
+    opacity: 1 !important;
+    mix-blend-mode: normal !important;
+    filter: none !important;
+}
+
+.prodi-carousel-header .carousel-item::before {
+    display: none !important;
+}
+
+/* Penyesuaian Posisi Teks Caption (Persis coba.html) */
 .carousel-header .carousel-caption {
     position: absolute;
-    top: 50%;
-    bottom: auto;
+    top: 52%;
     left: 50%;
-    transform: translate(
-        -25%,
-        -50%
-    ); /* Menengahkan teks secara vertikal & horizontal */
-    z-index: 2;
+    transform: translate(-50%, -50%);
+    z-index: 10;
     text-align: center;
-    width: 80%;
-    max-width: 800px;
+    width: 90%;
+    max-width: 900px;
+    padding: 0;
+    margin: 0;
 }
 
-/* Animasi & Styling Komponen Teks Banner */
-.carousel-header .carousel-caption h5 {
-    font-size: 1.1rem;
-    letter-spacing: 2px;
+/* Badge Emas Elem coba.html */
+.hero-badge-gold {
+    display: inline-block;
+    background-color: #FFC107; /* academic-gold */
+    color: #2D3436; /* slate-text */
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
-    color: #cca43b !important; /* Subtitle diberi sentuhan warna emas */
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.08em;
+    padding: 6px 18px;
+    border-radius: 50px;
+    margin-bottom: 1.75rem;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-.carousel-header .carousel-caption h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.8);
+/* Heading Coba.html */
+.hero-title-coba {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: clamp(2.2rem, 4.8vw, 3.5rem);
+    font-weight: 700;
+    color: #FFFFFF; /* text-surface-white */
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-.carousel-header .carousel-caption p {
+.hero-title-coba .text-mint {
+    color: #a2d0c3 !important; /* text-tertiary-fixed-dim dari coba.html */
+}
+
+/* Paragraph Coba.html */
+.hero-desc-coba {
+    font-family: 'Inter', sans-serif;
     font-size: 1.1rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto 30px auto;
-    line-height: 1.6;
-    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);
+    color: #e1e3e4; /* text-surface-variant dari coba.html */
+    max-width: 680px;
+    margin: 0 auto 2.25rem auto;
+    line-height: 1.65;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Tombol Aksus coba.html */
+.hero-btn-white {
+    background-color: #ffffff !important;
+    color: #0B5345 !important;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 14px 34px !important;
+    border-radius: 6px;
+    border: none !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-btn-white:hover {
+    background-color: #f3f4f5 !important;
+    color: #053b3b !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-btn-outline {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 12px 32px !important;
+    border-radius: 6px;
+    transition: all 0.3s ease !important;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.hero-btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+    transform: translateY(-2px);
+}
+
+/* Animasi Indikator Panah Ke Bawah (Scroll Down Arrow) */
+.scroll-down-arrow {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    color: #ffffff;
+    font-size: 1.4rem;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: bounceDown 2.2s infinite ease-in-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-down-arrow:hover {
+    color: #FFC107;
+    background: rgba(255, 255, 255, 0.28);
+    border-color: #FFC107;
+    transform: translateX(-50%) scale(1.12);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes bounceDown {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(12px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(6px);
+    }
 }
 
 /* Styling Tombol Kustom Emas (btn-gold) */
@@ -276,7 +421,8 @@
 
     .carousel-header .carousel-caption {
         width: 90%;
-        transform: translate(-50%, -45%); /* Penyesuaian titik tengah di HP */
+        top: 60%;
+        transform: translate(-50%, -40%);
     }
 
     .carousel-header .carousel-caption h5 {
@@ -310,70 +456,92 @@
 }
 
 /* ============================================================
-   1. SAMBUTAN KETUA PRODI
+   1. SAMBUTAN REKTOR (BENTO & GLASSMORPHISM STYLE DARI COBA.HTML)
 ============================================================ */
-.sambutan-section {
-    background: #fff;
-    padding: 5.5rem 0 5rem;
+.sambutan-bento-section {
+    position: relative;
+    background-color: #f8f9fa;
+    padding: 5.5rem 0;
+    overflow: hidden;
 }
 
-.sambutan-img-wrap {
-    position: relative;
-}
-.sambutan-img-wrap::before {
-    content: "";
+.sambutan-bg-glow {
     position: absolute;
-    top: -16px;
-    right: -16px;
-    width: 75%;
-    height: 75%;
-    border: 3px solid var(--color-accent);
-    border-radius: 1.25rem;
+    top: 10%;
+    right: 5%;
+    width: 320px;
+    height: 320px;
+    background: rgba(147, 211, 193, 0.25);
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
     z-index: 0;
 }
-.sambutan-img-wrap::after {
-    content: "";
-    position: absolute;
-    bottom: -16px;
-    left: -16px;
-    width: 50%;
-    height: 50%;
-    background: rgba(10, 102, 102, 0.07);
-    border-radius: 1.25rem;
-    z-index: 0;
-}
-.sambutan-img-wrap img {
+
+/* Photo Card Bento */
+.sambutan-photo-card {
     position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(11, 83, 69, 0.12);
+    border: 1px solid rgba(225, 232, 231, 0.6);
+    background-color: #e1e3e4;
     z-index: 1;
+}
+
+.sambutan-photo-card img {
     width: 100%;
-    max-height: 460px;
+    height: 100%;
     object-fit: cover;
     object-position: top center;
-    border-radius: 1.25rem;
-    box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.13);
+    transition: transform 0.5s ease;
 }
-.sambutan-name-card {
+
+.sambutan-photo-card:hover img {
+    transform: scale(1.03);
+}
+
+/* Eyebrow Line */
+.eyebrow-line {
+    width: 32px;
+    height: 2px;
+    background-color: #0B5345;
+    display: inline-block;
+}
+
+/* Glassmorphism Quote Card */
+.glass-card-bento {
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(225, 232, 231, 0.8) !important;
+    box-shadow: 0px 10px 35px rgba(11, 83, 69, 0.07) !important;
+    border-radius: 20px !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-mark-bg {
     position: absolute;
-    bottom: -1.25rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    background: #fff;
-    border-left: 4px solid var(--color-accent);
-    border-radius: 0.6rem;
-    padding: 0.7rem 1.35rem;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
-    white-space: nowrap;
-    text-align: left;
+    top: -15px;
+    left: 20px;
+    font-size: 7rem;
+    font-family: Georgia, serif;
+    color: #93d3c1;
+    opacity: 0.25;
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
 }
-.sambutan-quote-block {
-    border-left: 4px solid var(--color-accent);
-    padding: 0.85rem 1.25rem;
-    background: rgba(184, 141, 33, 0.05);
-    border-radius: 0 0.5rem 0.5rem 0;
-    margin: 1.5rem 0 1.75rem;
-    font-style: italic;
-    font-size: 1.05rem;
+
+.footer-gold-bar {
+    width: 36px;
+    height: 4px;
+    background-color: #FFC107;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
     line-height: 1.8;
     color: #3d4a57;
 }

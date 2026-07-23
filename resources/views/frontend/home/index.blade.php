@@ -8,126 +8,124 @@
      HERO BANNER (dari database)
 ════════════════════════════════════════════════ --}}
 <div class="container-fluid carousel-header px-0">
-    @if(isset($banners) && $banners->count())
-    <div id="carouselId"
-         class="carousel slide carousel-fade h-100"
-         data-bs-ride="carousel"
-         data-bs-interval="6000">
+    <div class="carousel-inner h-100">
+        <div class="carousel-item active">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt0aIrUV0ugCOgjvAhlbhhVvn5GJC3kUPkszqXJWslCYRNpw1VdX6QoqWlZ522AimObb10ifT-1NEWquq3kHTMdZVhTNUOGNp7hy3tfW08mdYCHrCVj3OKVgWDMJXZ4-mXdABaU2rHPRbZ6osBlANrbfiMNnjxLyoHQB0pUhiRGZ9zecq9cBteG99oUGQe8UZsNjcJLWZSBFRJBxJ1E_cZeVJAOJ7DzdHv6dc50wAEYyplZXz61Kg4qbxLuB-f8XRfTpfuwxJTzCo"
+                 alt="IAI Darul Falah Bondowoso"
+                 loading="eager">
+            <div class="carousel-caption">
+                <div class="px-2">
+                    <span class="hero-badge-gold">
+                        Institut Agama Islam Darul Falah (IAI) Darul Falah Bondowoso
+                    </span>
 
-        <div class="carousel-indicators">
-            @foreach($banners as $banner)
-            <button type="button"
-                    data-bs-target="#carouselId"
-                    data-bs-slide-to="{{ $loop->index }}"
-                    class="{{ $loop->first ? 'active' : '' }}"
-                    aria-current="{{ $loop->first ? 'true' : 'false' }}"
-                    aria-label="Slide {{ $loop->index + 1 }}">
-            </button>
-            @endforeach
-        </div>
+                    <h1 class="hero-title-coba">
+                        Selamat Datang di <br>
+                        <span class="text-mint">IAI Darul Falah Bondowoso</span>
+                    </h1>
 
-        <div class="carousel-inner h-100" role="listbox">
-            @foreach($banners as $banner)
-            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                <img src="{{ asset('storage/'.$banner->image) }}"
-                     alt="{{ $banner->title }}"
-                     loading="{{ $loop->first ? 'eager' : 'lazy' }}">
-                <div class="carousel-caption">
-                    <div class="px-2">
-                        @if($banner->subtitle)
-                            <h5 class="text-white fw-semibold">{{ $banner->subtitle }}</h5>
-                        @endif
-                        <h1 class="text-white">{{ $banner->title }}</h1>
-                        @if($banner->description)
-                            <p class="text-white">{{ $banner->description }}</p>
-                        @endif
-                        @if($banner->button_link)
-                        <div class="d-flex justify-content-center gap-3 flex-wrap">
-                            <a class="btn btn-gold rounded-pill shadow-sm px-4"
-                               href="{{ $banner->button_link }}">
-                                {{ $banner->button_text ?? 'Daftar Sekarang' }}
-                            </a>
-                        </div>
-                        @endif
+                    <p class="hero-desc-coba">
+                        Mencetak lulusan perguruan tinggi Islam yang profesional, berintegritas, dan mampu merespons tantangan zaman berlandaskan nilai-nilai kepesantrenan.
+                    </p>
+
+                    <div class="d-flex justify-content-center gap-3 flex-wrap align-items-center mt-3">
+                        <a class="hero-btn-white"
+                           href="#sambutan-rektor">
+                            Pelajari Lebih Lanjut
+                        </a>
+                        <a class="hero-btn-outline"
+                           href="{{ route('frontend.akademik.pmb') }}">
+                            Pendaftaran Mahasiswa Baru
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
-
-        <button class="carousel-control-prev" type="button"
-                data-bs-target="#carouselId" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Sebelumnya</span>
-        </button>
-        <button class="carousel-control-next" type="button"
-                data-bs-target="#carouselId" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Berikutnya</span>
-        </button>
     </div>
-    @endif
+
+    <!-- Animasi Panah Ke Bawah (Scroll Down Indicator) -->
+    <a href="#sambutan-rektor" class="scroll-down-arrow" aria-label="Scroll ke bawah">
+        <i class="bi bi-chevron-down"></i>
+    </a>
 </div>
 
 
 {{-- ═══════════════════════════════════════════════
-     1. SAMBUTAN KETUA PRODI (Dinamis - WelcomeMessage)
+     1. SAMBUTAN REKTOR (Bento Glassmorphism Layout dari coba.html)
 ════════════════════════════════════════════════ --}}
 @if(isset($sambutan))
-<section class="sambutan-section">
-    <div class="container">
+<section class="sambutan-bento-section py-5 py-lg-6 relative" id="sambutan-rektor">
+    <!-- Decorative background glow -->
+    <div class="sambutan-bg-glow"></div>
+    
+    <div class="container relative z-1">
         <div class="row align-items-center g-5">
 
-            {{-- Foto --}}
-            <div class="col-lg-5 col-10 col-sm-8 col-md-6 mx-auto mx-md-0 reveal-left">
-                <div class="sambutan-img-wrap text-center">
-                    <img src="{{ $sambutan->kaprodi_image ? asset('storage/' . $sambutan->kaprodi_image) : 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=480&h=460&fit=crop' }}"
-                         alt="{{ $sambutan->kaprodi_name }}"
+            {{-- Foto Rektor (Left Bento Card - coba.html photo layout) --}}
+            <div class="col-lg-5 col-12 reveal-left">
+                <div class="sambutan-photo-card">
+                    <img src="{{ $sambutan->kaprodi_image ? asset('storage/' . $sambutan->kaprodi_image) : 'https://lh3.googleusercontent.com/aida-public/AB6AXuB48YFxdgfnLW1Cp-pTW6gQlbdKxiBBDFhRbxiDwwFiYeIkcFZmZbLQwstDGEvL7DCR8lQ20PivVFFLFOicly08J44cTnoDTCgjkuG7weBNdR_-GqthPPSoE-UznG3ZVPVb_56lJJUGY-0O5QSKvNkzYa1BxXFnOFSdpheVgDKAVdbusWgGAxWQOaI4Vrm2n8YPIHzAU81cOnag5NmbRerCeCi_Gf65juBzLIHEnbM8y3bdKGsYiJFiyLoCRAt-pqJJgRnx_h2m3NM' }}"
+                         alt="{{ $sambutan->kaprodi_name ?? 'Rektor IAI Darul Falah' }}"
+                         class="img-fluid"
                          loading="lazy">
-                    <div class="sambutan-name-card">
-                        <p class="mb-0 fw-bold" style="font-size:.95rem;color:var(--color-primary);">
-                            {{ $sambutan->kaprodi_name }}
-                        </p>
-                        <p class="mb-0" style="font-size:.78rem;color:#868e96;">
-                            {{ $sambutan->kaprodi_title }}
-                        </p>
-                    </div>
                 </div>
             </div>
 
-            {{-- Teks --}}
+            {{-- Teks & Glassmorphism Card (Right) --}}
             <div class="col-lg-7 col-12 reveal-right">
-                <span class="section-eyebrow">Sambutan</span>
-                <h2 class="section-title">Quotes</h2>
-                <div class="section-divider mt-3 mb-4"></div>
+                <div class="d-inline-flex align-items-center gap-2 mb-2">
+                    <span class="eyebrow-line"></span>
+                    <span class="text-uppercase fw-bold" style="color: #0B5345; font-size: 0.8rem; letter-spacing: 1.5px;">Pesan Rektor</span>
+                </div>
+                
+                <h2 class="display-6 fw-bold mb-4" style="font-family: 'Playfair Display', Georgia, serif; color: #191c1d; line-height: 1.25;">
+                    Sambutan <br><span style="color: #0B5345;">Rektor IAI Darul Falah</span>
+                </h2>
 
-                @if($sambutan->quote)
-                <blockquote class="sambutan-quote-block">
-                    "{{ $sambutan->quote }}"
-                </blockquote>
-                @endif
+                <div class="glass-card-bento p-4 p-md-5 rounded-4 relative shadow-sm mb-4">
+                    <span class="quote-mark-bg">“</span>
+                    <blockquote class="relative z-1 mb-0">
+                        <p class="fst-italic fs-5 mb-3" style="font-family: 'Playfair Display', Georgia, serif; color: #2D3436; line-height: 1.7;">
+                            "{{ $sambutan->quote ?? 'Kami berkomitmen menghasilkan lulusan Institut Agama Islam Darul Falah (IAI) Darul Falah Bondowoso yang profesional, berakhlak mulia, menguasai keilmuan, serta adaptif terhadap perkembangan masyarakat.' }}"
+                        </p>
+                        
+                        @if($sambutan->welcome_text_1)
+                        <p class="text-secondary mb-3" style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.8;">
+                            {{ $sambutan->welcome_text_1 }}
+                        </p>
+                        @endif
 
-                @if($sambutan->welcome_text_1)
-                <p style="color:#4a5568;line-height:1.85;font-size:.93rem;margin-bottom:1rem;">
-                    {{ $sambutan->welcome_text_1 }}
-                </p>
-                @endif
+                        @if($sambutan->welcome_text_2)
+                        <p class="text-secondary mb-3" style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.8;">
+                            {{ $sambutan->welcome_text_2 }}
+                        </p>
+                        @endif
+                        
+                        <footer class="mt-4 pt-2 d-flex align-items-center gap-3">
+                            <div class="footer-gold-bar"></div>
+                            <div>
+                                <div class="fw-bold" style="color: #0B5345; font-size: 0.95rem; letter-spacing: 0.5px;">
+                                    {{ strtoupper($sambutan->kaprodi_name) }}
+                                </div>
+                                <div class="text-muted small mt-1" style="font-size: 0.82rem; font-weight: 500;">
+                                    {{ $sambutan->kaprodi_title ?? 'Rektor IAI Darul Falah Bondowoso' }}
+                                </div>
+                            </div>
+                        </footer>
+                    </blockquote>
+                </div>
 
-                @if($sambutan->welcome_text_2)
-                <p style="color:#4a5568;line-height:1.85;font-size:.93rem;margin-bottom:1.75rem;">
-                    {{ $sambutan->welcome_text_2 }}
-                </p>
-                @endif
-
-                <div class="d-flex gap-3 flex-wrap">
+                {{-- Action Buttons (Profil Lengkap & Hubungi Kami - Dipertahankan) --}}
+                <div class="d-flex gap-3 flex-wrap align-items-center">
                     @if($sambutan->profile_link)
-                    <a href="{{ $sambutan->profile_link }}" class="btn btn-brand rounded-pill px-4">
+                    <a href="{{ $sambutan->profile_link }}" class="btn btn-brand rounded-pill px-4 py-2 font-bold shadow-sm">
                         Profil Lengkap &nbsp;<i class="bi bi-arrow-right"></i>
                     </a>
                     @endif
 
                     @if($sambutan->contact_link)
-                    <a href="{{ $sambutan->contact_link }}" class="btn btn-outline-brand rounded-pill px-4">
+                    <a href="{{ $sambutan->contact_link }}" class="btn btn-outline-brand rounded-pill px-4 py-2 font-bold">
                         Hubungi Kami
                     </a>
                     @endif

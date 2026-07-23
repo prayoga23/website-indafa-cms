@@ -24,12 +24,35 @@
         transform: translateY(-2px);
         box-shadow: 0 8px 20px rgba(204, 164, 59, 0.4);
     }
+
+    .kaprodi-card-img-wrap {
+        position: relative;
+        aspect-ratio: 4 / 5;
+        max-height: 420px;
+        width: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 16px 36px rgba(11, 83, 69, 0.12);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        background-color: #f8f9fa;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .kaprodi-card-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        transition: transform 0.5s ease;
+    }
+    .kaprodi-card-img-wrap:hover img {
+        transform: scale(1.04);
+    }
 </style>
 
 {{-- ═══════════════════════════════════════════════
      1. HERO BANNER FULL SCREEN (seperti HOME)
 ════════════════════════════════════════════════ --}}
-<div class="container-fluid carousel-header px-0">
+<div class="container-fluid carousel-header prodi-carousel-header px-0">
     <div id="prodiCarousel" class="carousel slide carousel-fade h-100" data-bs-ride="carousel">
         <div class="carousel-inner h-100" role="listbox">
             <div class="carousel-item active">
@@ -49,24 +72,29 @@
     <div class="container py-4">
         <div class="row align-items-center g-5">
 
-            {{-- Foto Kaprodi --}}
+            {{-- Foto Kaprodi (Full Foto Rounded + Nama & Jabatan di Bawah) --}}
             <div class="col-lg-5 col-10 col-sm-8 col-md-6 mx-auto mx-md-0">
-                <div class="card border-0 shadow-lg rounded-4 overflow-hidden text-center p-4" style="border-top: 5px solid var(--pro-color) !important;">
-                    <img src="{{ asset('assets/img/user.png') }}"
-                         alt="{{ $data['head'] }}"
-                         class="rounded-circle mx-auto mb-3 img-thumbnail shadow-sm"
-                         style="width:170px; height:170px; object-fit:cover;">
-                    <h4 class="fw-bold mb-1" style="color:var(--pro-color)">{{ $data['head'] }}</h4>
-                    <p class="text-muted small mb-0 fw-semibold text-uppercase" style="letter-spacing:1px;">Ketua Program Studi {{ $data['name'] }}</p>
+                <div class="kaprodi-photo-card text-center">
+                    <div class="kaprodi-card-img-wrap mb-3">
+                        <img src="{{ asset('storage/lecturers/4aGdYumJLv1zF9gkf8FmB8eIrFFvVW5m276855wf.png') }}"
+                             alt="{{ $data['head'] }}"
+                             loading="lazy">
+                    </div>
+                    
+                    <div class="kaprodi-meta-info text-center pt-1">
+                        <h4 class="fw-bold mb-1" style="color:var(--pro-color); font-size: 1.3rem;">
+                            {{ $data['head'] }}
+                        </h4>
+                        <p class="text-muted small mb-0 fw-semibold text-uppercase" style="letter-spacing:1px; font-size: 0.8rem;">
+                            Ketua Program Studi {{ $data['name'] }}
+                        </p>
+                    </div>
                 </div>
             </div>
 
             {{-- Quotes & Sambutan --}}
             <div class="col-lg-7 col-12">
-                <span class="text-uppercase text-warning fw-bold small tracking-wider" style="letter-spacing:1.5px;">Sambutan Kaprodi</span>
-                <h2 class="fw-bold mb-3 text-dark display-6">Prakata Ketua Program Studi</h2>
-                <div class="mb-4" style="width:60px; height:4px; background:#cca43b; border-radius:2px;"></div>
-
+                <h2 class="fw-bold mb-3 text-dark display-6">Sambutan Ketua Program Studi</h2>
                 <blockquote class="p-4 rounded-4 bg-light border-start border-4 border-success text-secondary mb-4 fs-5 fst-italic shadow-sm" style="line-height:1.7;">
                     "Komitmen kami adalah mendidik dan mendampingi mahasiswa agar siap berkontribusi bagi nusa, bangsa, dan agama."
                 </blockquote>
