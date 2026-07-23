@@ -87,14 +87,12 @@
                     <span class="quote-mark-bg">“</span>
                     <blockquote class="relative z-1 mb-0">
                         <p class="fst-italic fs-5 mb-3" style="font-family: 'Playfair Display', Georgia, serif; color: #2D3436; line-height: 1.7;">
-                            "{{ $sambutan->quote ?? 'Kami berkomitmen menghasilkan lulusan Institut Agama Islam Darul Falah (IAI) Darul Falah Bondowoso yang profesional, berakhlak mulia, menguasai keilmuan, serta adaptif terhadap perkembangan masyarakat.' }}"
+                            "{{ $sambutan->quote ?? 'Kami berkomitmen menghasilkan lulusan Institut Agama Islam Darul Falah (IAI) Darul Falah Bondowoso yang profesional, berakhlak mulia, menguasai keilmuan integratif, serta adaptif terhadap perkembangan masyarakat dan zaman.' }}"
                         </p>
                         
-                        @if($sambutan->welcome_text_1)
                         <p class="text-secondary mb-3" style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.8;">
-                            {{ $sambutan->welcome_text_1 }}
+                            {{ $sambutan->welcome_text_1 ?? 'Selamat datang di Institut Agama Islam Darul Falah (IAI) Darul Falah Bondowoso. Kami berkomitmen menyelenggarakan pendidikan tinggi yang berkualitas melalui kurikulum integratif yang adaptif terhadap perkembangan ilmu pengetahuan, teknologi, dan sosial masyarakat, didukung oleh tenaga pengajar profesional serta sarana pembelajaran yang memadai.' }}
                         </p>
-                        @endif
 
                         @if($sambutan->welcome_text_2)
                         <p class="text-secondary mb-3" style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.8;">
