@@ -44,6 +44,7 @@ class FacultySubWebController extends Controller
                 'color' => '#1d5a8c', // Deep blue for FEBIT
                 'bg_gradient' => 'linear-gradient(135deg, #1d5a8c, #103454)',
                 'prodies' => [
+                    ['name' => 'Manajemen Bisnis Syariah (S1)', 'slug' => 'mbs', 'desc' => 'Mencetak manajer dan profesional bisnis yang menguasai tata kelola dan prinsip manajemen syariah.'],
                     ['name' => 'Ekonomi Syariah (S1)', 'slug' => 'ekos', 'desc' => 'Membentuk ekonom muda muslim yang andal, berjiwa wirausaha, dan menguasai prinsip-prinsip syariah.'],
                     ['name' => 'Pendidikan Agama Islam (S1)', 'slug' => 'pai', 'desc' => 'Menghasilkan tenaga pendidik agama Islam yang profesional, kreatif, dan berkarakter mulia.']
                 ],
@@ -106,7 +107,17 @@ class FacultySubWebController extends Controller
         }
 
         $data = $this->getFacultyData($faculty);
-        $title = $page === 'dokumen' ? 'Dokumen Akademik' : 'Sertifikat Akreditasi';
+        $titles = [
+            'dokumen' => 'Dokumen Akademik',
+            'persuratan' => 'Formulir Persuratan',
+            'turnitin' => 'Layanan Cek Turnitin',
+            'kkn' => 'Pendaftaran KKN',
+            'kalender' => 'Kalender Akademik',
+            'jadwal' => 'Jadwal Kuliah',
+            'kelulusan' => 'Alur Kelulusan',
+            'akreditasi' => 'Sertifikat Akreditasi'
+        ];
+        $title = $titles[$page] ?? 'Akademik';
         return view('frontend.fakultas.akademik', compact('data', 'page', 'title'));
     }
 

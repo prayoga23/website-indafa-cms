@@ -168,17 +168,10 @@
         align-items: center;
     }
 
-    /* PERUBAHAN: opacity overlay dari 0.95/0.45 → 0.72/0.28 supaya foto lebih terlihat */
+    /* Hapus overlay background gelap pada hero slideshow */
     .prodi-hero-item::before {
         content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: linear-gradient(
-            to right,
-            rgba(4, 61, 61, 0.72) 0%,
-            rgba(4, 61, 61, 0.28) 100%
-        );
-        z-index: 1;
+        display: none;
     }
 
     @media (max-width: 767.98px) {
@@ -186,13 +179,8 @@
             height: 60vh;
             min-height: 400px;
         }
-        /* Mobile: gradient dari bawah, lebih terang dari versi asli */
         .prodi-hero-item::before {
-            background: linear-gradient(
-                to top,
-                rgba(4, 61, 61, 0.82) 0%,
-                rgba(4, 61, 61, 0.35) 100%
-            );
+            display: none;
         }
     }
 

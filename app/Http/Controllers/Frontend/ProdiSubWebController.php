@@ -12,6 +12,7 @@ class ProdiSubWebController extends Controller
         $slugs = [
             'hki' => 'hukum-keluarga-islam',
             'hes' => 'hukum-ekonomi-syariah',
+            'mbs' => 'manajemen-bisnis-syariah',
             'ekos' => 'ekonomi-syariah',
             'pai' => 'pendidikan-agama'
         ];
@@ -20,6 +21,22 @@ class ProdiSubWebController extends Controller
         $dbProdi = StudyProgram::where('slug', $slug)->first();
 
         $prodies = [
+            'mbs' => [
+                'id' => 'mbs',
+                'name' => $dbProdi ? $dbProdi->name : 'Manajemen Bisnis Syariah (S1)',
+                'faculty_name' => $dbProdi && $dbProdi->faculty ? $dbProdi->faculty->name : 'Fakultas Ekonomi Bisnis Islam & Tarbiyah',
+                'faculty_url' => '/fakultas-ebit',
+                'head' => $dbProdi ? ($dbProdi->head_of_program ?? 'Ustadz Ahmad Fauzi, M.M.') : 'Ustadz Ahmad Fauzi, M.M.',
+                'color' => '#1d5a8c',
+                'bg_gradient' => 'linear-gradient(135deg, #1d5a8c, #103454)',
+                'sejarah' => $dbProdi ? ($dbProdi->description ?? 'Program Studi Manajemen Bisnis Syariah (S1) mencetak lulusan profesional di bidang tata kelola bisnis berbasis syariah.') : 'Program Studi Manajemen Bisnis Syariah (S1) mencetak lulusan profesional di bidang tata kelola bisnis berbasis syariah.',
+                'visi' => $dbProdi ? ($dbProdi->vision ?? 'Menjadi Program Studi Manajemen Bisnis Syariah unggulan di Jawa Timur.') : 'Menjadi Program Studi Manajemen Bisnis Syariah unggulan di Jawa Timur.',
+                'misi' => $dbProdi && $dbProdi->mission ? explode("\n", $dbProdi->mission) : [
+                    'Menyelenggarakan pendidikan manajemen bisnis berbasis tata kelola syariah.',
+                    'Pengembangan riset manajemen dan kewirausahaan Islam.',
+                    'Pengabdian masyarakat berbasis pendampingan bisnis dan industri halal.'
+                ]
+            ],
             'hki' => [
                 'id' => 'hki',
                 'name' => $dbProdi ? $dbProdi->name : 'Hukum Keluarga Islam (S1)',

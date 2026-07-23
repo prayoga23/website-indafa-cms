@@ -16,6 +16,7 @@
     if ($isProdiSubWeb) {
         if (str_starts_with($currentUri, 'prodi-hki')) $prodiId = 'hki';
         elseif (str_starts_with($currentUri, 'prodi-hes')) $prodiId = 'hes';
+        elseif (str_starts_with($currentUri, 'prodi-mbs')) $prodiId = 'mbs';
         elseif (str_starts_with($currentUri, 'prodi-ekos')) $prodiId = 'ekos';
         elseif (str_starts_with($currentUri, 'prodi-pai')) $prodiId = 'pai';
     }
@@ -106,6 +107,7 @@
                                     <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}">Hukum Keluarga Islam</a></li>
                                     <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}">Hukum Ekonomi Syariah</a></li>
                                 @else
+                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}">Manajemen Bisnis Syariah</a></li>
                                     <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}">Ekonomi Syariah</a></li>
                                     <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}">Pendidikan Agama Islam</a></li>
                                 @endif
@@ -118,8 +120,32 @@
                                 Akademik
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="akademikDropdown">
-                                <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'dokumen']) }}">Dokumen</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'akreditasi']) }}">Sertifikat Akreditasi</a></li>
+                                @if($facultyId === 'syariah')
+                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'dokumen']) }}">Dokumen</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'akreditasi']) }}">Sertifikat Akreditasi</a></li>
+                                @else
+                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'dokumen']) }}">Dokumen</a></li>
+                                    
+                                    {{-- PERSURATAN NESTED DROPDOWN --}}
+                                    <li class="dropdown-submenu">
+                                        <a class="dropdown-item dropdown-toggle" href="#">Persuratan</a>
+                                        <ul class="dropdown-menu dropdown-menu-dark">
+                                            <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'persuratan']) }}">Form Persuratan</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a class="dropdown-item dropdown-toggle" href="#">Layanan Digital</a>
+                                                <ul class="dropdown-menu dropdown-menu-dark">
+                                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'turnitin']) }}">Cek Turnitin</a></li>
+                                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'kkn']) }}">Pendaftaran KKN</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'kalender']) }}">Kalender Akademik</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'jadwal']) }}">Jadwal Kuliah</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'kelulusan']) }}">Alur Kelulusan</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'akreditasi']) }}">Sertifikat Akreditasi</a></li>
+                                @endif
                             </ul>
                         </li>
 
@@ -177,8 +203,13 @@
                                     <a class="dropdown-item dropdown-toggle" href="#">Persuratan</a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'persuratan']) }}">Form Persuratan</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'turnitin']) }}">Cek Turnitin</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'kkn']) }}">Pendaftaran KKN</a></li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" href="#">Layanan Digital</a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'turnitin']) }}">Cek Turnitin</a></li>
+                                                <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'kkn']) }}">Pendaftaran KKN</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
 
@@ -518,16 +549,47 @@
     .dropdown-submenu {
         position: relative;
     }
-    .dropdown-submenu .dropdown-menu {
-        top: 0;
-        left: 100%;
-        margin-top: -1px;
+    .dropdown-submenu > .dropdown-menu {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        float: none !important;
+        margin: 4px 0 4px 10px !important;
+        padding: 4px 0 4px 6px !important;
+        background-color: rgba(255, 255, 255, 0.07) !important;
+        border-left: 2px solid #cca43b !important;
+        border-top: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
+        border-radius: 4px !important;
+        box-shadow: none !important;
+        display: none;
     }
-    @media (max-width: 991.98px) {
-        .dropdown-submenu .dropdown-menu {
-            left: 0;
-            position: relative;
-            margin-left: 15px;
-        }
+    .dropdown-submenu:hover > .dropdown-menu,
+    .dropdown-submenu.show > .dropdown-menu,
+    .dropdown-submenu.open > .dropdown-menu {
+        display: block !important;
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.dropdown-submenu > .dropdown-toggle').forEach(function(element) {
+            element.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var parentLi = this.parentElement;
+                var submenu = this.nextElementSibling;
+                if (submenu && submenu.classList.contains('dropdown-menu')) {
+                    if (submenu.style.display === 'block') {
+                        submenu.style.display = 'none';
+                        parentLi.classList.remove('show', 'open');
+                    } else {
+                        submenu.style.display = 'block';
+                        parentLi.classList.add('show', 'open');
+                    }
+                }
+            });
+        });
+    });
+</script>

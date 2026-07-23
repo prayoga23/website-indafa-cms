@@ -152,23 +152,10 @@
     object-position: center;
 }
 
-/* Lapisan Gelap (Overlay) di Atas Gambar Supaya Teks Lebih Kontras */
+/* Lapisan Gelap (Overlay) di Atas Gambar Dihilangkan */
 .carousel-header .carousel-item::before {
     content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.6) 0%,
-        /* Agak gelap di atas untuk area navbar blur */ rgba(11, 83, 69, 0.3)
-            50%,
-        /* Sentuhan hijau transparan di tengah */ rgba(0, 0, 0, 0.7) 100%
-            /* Gelap di bawah */
-    );
-    z-index: 1;
+    display: none;
 }
 
 /* Penyesuaian Posisi Teks Caption */

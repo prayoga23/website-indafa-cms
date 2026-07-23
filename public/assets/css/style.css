@@ -3,13 +3,13 @@
    ========================================================================== */
 .custom-navbar {
     background-color: rgba(
-        255,
-        255,
-        255,
-        0.05
-    ) !important; /* Transparan tipis di awal */
-    backdrop-filter: blur(8px); /* Efek blur kaca pada background */
-    -webkit-backdrop-filter: blur(8px);
+        11,
+        83,
+        69,
+        0.92
+    ) !important; /* Background gelap (hijau khas kampus) agar header tetap terlihat jelas */
+    backdrop-filter: blur(12px); /* Efek blur kaca pada background */
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 2px solid #cca43b; /* Garis bawah emas tipis */
     padding-top: 12px !important;
     padding-bottom: 12px !important;
