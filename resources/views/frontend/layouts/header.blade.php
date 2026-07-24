@@ -104,12 +104,12 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="prodiDropdown">
                                 @if($facultyId === 'syariah')
-                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}">Hukum Keluarga Islam</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}">Hukum Ekonomi Syariah</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}">Hukum Keluarga Islam (HKI)</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}">Hukum Ekonomi Syariah (HES)</a></li>
                                 @else
-                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}">Manajemen Bisnis Syariah</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}">Ekonomi Syariah</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}">Pendidikan Agama Islam</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}">Manajemen Bisnis Syariah (MBS)</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}">Ekonomi Syariah (EKOS)</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}">Pendidikan Agama Islam (PAI)</a></li>
                                 @endif
                             </ul>
                         </li>
@@ -120,32 +120,33 @@
                                 Akademik
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="akademikDropdown">
-                                @if($facultyId === 'syariah')
-                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'dokumen']) }}">Dokumen</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'akreditasi']) }}">Sertifikat Akreditasi</a></li>
-                                @else
-                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'dokumen']) }}">Dokumen</a></li>
-                                    
-                                    {{-- PERSURATAN NESTED DROPDOWN --}}
-                                    <li class="dropdown-submenu">
-                                        <a class="dropdown-item dropdown-toggle" href="#">Persuratan</a>
-                                        <ul class="dropdown-menu dropdown-menu-dark">
-                                            <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'persuratan']) }}">Form Persuratan</a></li>
-                                            <li class="dropdown-submenu">
-                                                <a class="dropdown-item dropdown-toggle" href="#">Layanan Digital</a>
-                                                <ul class="dropdown-menu dropdown-menu-dark">
-                                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'turnitin']) }}">Cek Turnitin</a></li>
-                                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'kkn']) }}">Pendaftaran KKN</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'dokumen']) }}">Dokumen</a></li>
+                                
+                                {{-- PERSURATAN NESTED DROPDOWN --}}
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
+                                        <span>Persuratan</span>
+                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'persuratan']) }}">Form Persuratan</a></li>
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
+                                                <span>Layanan Digital</span>
+                                                <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'turnitin']) }}">Cek Turnitin</a></li>
+                                                <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'kkn']) }}">Pendaftaran KKN</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
 
-                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'kalender']) }}">Kalender Akademik</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'jadwal']) }}">Jadwal Kuliah</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'kelulusan']) }}">Alur Kelulusan</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'akreditasi']) }}">Sertifikat Akreditasi</a></li>
-                                @endif
+                                <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'kalender']) }}">Kalender Akademik</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'jadwal']) }}">Jadwal Kuliah</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'kelulusan']) }}">Alur Kelulusan</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'akreditasi']) }}">Sertifikat Akreditasi</a></li>
                             </ul>
                         </li>
 
@@ -187,6 +188,7 @@
                                 <li><a class="dropdown-item" href="{{ route('frontend.prodi.sejarah', $prodiId) }}">Sejarah</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.prodi.visi-misi', $prodiId) }}">Visi Misi & Tujuan</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.prodi.pimpinan', $prodiId) }}">Pimpinan</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.profil.profil-dosen') }}">Profil Dosen</a></li>
                             </ul>
                         </li>
 
@@ -200,11 +202,17 @@
                                 
                                 {{-- PERSURATAN NESTED DROPDOWN PATTERN --}}
                                 <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Persuratan</a>
+                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
+                                        <span>Persuratan</span>
+                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                    </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'persuratan']) }}">Form Persuratan</a></li>
                                         <li class="dropdown-submenu">
-                                            <a class="dropdown-item dropdown-toggle" href="#">Layanan Digital</a>
+                                            <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
+                                                <span>Layanan Digital</span>
+                                                <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                            </a>
                                             <ul class="dropdown-menu dropdown-menu-dark">
                                                 <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'turnitin']) }}">Cek Turnitin</a></li>
                                                 <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'kkn']) }}">Pendaftaran KKN</a></li>
@@ -357,7 +365,10 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="lp2mRisetDropdown">
                                 <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Jurnal</a>
+                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
+                                        <span>Jurnal</span>
+                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                    </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#profil">Profil Jurnal</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#rekap">Rekap Jurnal</a></li>
@@ -368,7 +379,10 @@
                                 </li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'penelitian') }}">Penelitian (Litapdimas)</a></li>
                                 <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Pengabdian Litapdimas</a>
+                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
+                                        <span>Pengabdian Litapdimas</span>
+                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                    </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'pengabdian') }}#simapel">Simapel</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'pengabdian') }}#sipemas">Sipemas</a></li>
@@ -376,7 +390,10 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">HKI</a>
+                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
+                                        <span>HKI</span>
+                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                    </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'hki') }}#hakcipta">Layanan Pengajuan Hak Cipta</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'hki') }}#rekaphki">Rekap HKI</a></li>
@@ -401,7 +418,10 @@
                                 <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'p2km') }}">Pusat Pelayanan Kesehatan Masyarakat (P2KM)</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'p3sr') }}">Pusat Pengelola & Pengembangan Sistem Remunerasi (P3SR)</a></li>
                                 <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Pusat Studi</a>
+                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
+                                        <span>Pusat Studi</span>
+                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                    </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'psga') }}">Pusat Studi Gender dan Anak</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'psmasb') }}">Pusat Studi Moderasi Agama dan Sosial Budaya</a></li>
@@ -471,16 +491,37 @@
                             </ul>
                         </li>
 
-                        {{-- FAKULTAS --}}
+                        {{-- FAKULTAS & PRODI NESTED DROPDOWN --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link nav-link-custom dropdown-toggle" href="#"
                                id="fakultasDropdown" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Fakultas
+                                Fakultas & Prodi
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="fakultasDropdown">
-                                <li><a class="dropdown-item" href="{{ route('frontend.fakultas.syariah') }}">Fakultas Syariah</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.fakultas.ebit') }}">Fakultas Ekonomi Bisnis Islam & Tarbiyah</a></li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="{{ route('frontend.fakultas.syariah') }}">
+                                        <span>Fakultas Syariah</span>
+                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.syariah') }}">Beranda Syariah</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}">Hukum Keluarga Islam (HKI)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}">Hukum Ekonomi Syariah (HES)</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="{{ route('frontend.fakultas.ebit') }}">
+                                        <span>FEBIT INDAFA</span>
+                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.ebit') }}">Beranda FEBIT</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}">Manajemen Bisnis Syariah (MBS)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}">Ekonomi Syariah (EKOS)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}">Pendidikan Agama Islam (PAI)</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
 
@@ -545,52 +586,266 @@
     </nav>
 </header>
 
-{{-- Additional CSS styles for nested dropdowns --}}
+{{-- Custom CSS styles for nested multi-level dropdown menus --}}
 <style>
+    /* Submenu container */
     .dropdown-submenu {
         position: relative;
     }
-    .dropdown-submenu > .dropdown-menu {
-        position: relative !important;
-        top: 0 !important;
-        left: 0 !important;
-        float: none !important;
-        margin: 4px 0 4px 10px !important;
-        padding: 4px 0 4px 6px !important;
-        background-color: rgba(255, 255, 255, 0.07) !important;
-        border-left: 2px solid #cca43b !important;
-        border-top: none !important;
-        border-right: none !important;
-        border-bottom: none !important;
-        border-radius: 4px !important;
-        box-shadow: none !important;
-        display: none;
+
+    /* Remove standard Bootstrap dropdown caret on submenus */
+    .dropdown-submenu > .dropdown-toggle::after {
+        display: none !important;
     }
-    .dropdown-submenu:hover > .dropdown-menu,
-    .dropdown-submenu.show > .dropdown-menu,
-    .dropdown-submenu.open > .dropdown-menu {
-        display: block !important;
+
+    /* Chevron arrow indicator styling */
+    .dropdown-submenu > .dropdown-toggle .submenu-arrow {
+        font-size: 0.75rem;
+        transition: transform 0.2s ease, color 0.2s ease;
+        opacity: 0.85;
+    }
+
+    /* Standard dropdown-menu styling enhancement */
+    .custom-navbar .dropdown-menu {
+        background-color: #0b5345 !important;
+        border: 1px solid rgba(204, 164, 59, 0.35) !important;
+        border-radius: 8px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+        padding: 8px 0 !important;
+        min-width: 230px;
+    }
+
+    /* Dropdown item link styling */
+    .custom-navbar .dropdown-item {
+        color: #ffffff !important;
+        font-size: 0.88rem;
+        font-weight: 500;
+        padding: 9px 18px !important;
+        transition: all 0.2s ease-in-out;
+        white-space: nowrap;
+    }
+
+    .custom-navbar .dropdown-item:hover,
+    .custom-navbar .dropdown-item:focus {
+        background-color: #cca43b !important;
+        color: #0b5345 !important;
+        font-weight: 600;
+    }
+
+    /* DESKTOP VIEW (min-width: 992px) */
+    @media (min-width: 992px) {
+        /* Top-level dropdown alignment for right-aligned navbar items (ms-auto) */
+        .custom-navbar .navbar-nav.ms-auto > .nav-item.dropdown > .dropdown-menu,
+        .custom-navbar .navbar-nav > .nav-item.dropdown > .dropdown-menu {
+            right: 0 !important;
+            left: auto !important;
+        }
+
+        /* Hover trigger for 1st level navbar dropdowns */
+        .custom-navbar .navbar-nav .nav-item.dropdown:hover > .dropdown-menu {
+            display: block !important;
+            margin-top: 0;
+            animation: navDropdownFade 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ALL Submenus 2nd & 3rd Level Flyout Positioning (Fly out to the LEFT) */
+        .dropdown-submenu > .dropdown-menu {
+            position: absolute !important;
+            top: 0 !important;
+            right: 100% !important;
+            left: auto !important;
+            float: none !important;
+            margin-top: -6px !important;
+            margin-right: 2px !important;
+            margin-left: 0 !important;
+            display: none !important;
+            min-width: 220px;
+            background-color: #074338 !important; /* Richer dark green for nested depth */
+            border: 1px solid rgba(204, 164, 59, 0.4) !important;
+            border-radius: 8px !important;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45) !important;
+            z-index: 1070 !important;
+        }
+
+        /* Flyout display on hover or open class */
+        .dropdown-submenu:hover > .dropdown-menu,
+        .dropdown-submenu.show > .dropdown-menu,
+        .dropdown-submenu.open > .dropdown-menu {
+            display: block !important;
+            animation: navSubmenuSlideInLeft 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Parent item active highlight when submenu is open */
+        .dropdown-submenu:hover > .dropdown-toggle,
+        .dropdown-submenu.show > .dropdown-toggle,
+        .dropdown-submenu.open > .dropdown-toggle {
+            background-color: #cca43b !important;
+            color: #0b5345 !important;
+            font-weight: 600;
+        }
+
+        .dropdown-submenu:hover > .dropdown-toggle .submenu-arrow,
+        .dropdown-submenu.show > .dropdown-toggle .submenu-arrow,
+        .dropdown-submenu.open > .dropdown-toggle .submenu-arrow {
+            color: #0b5345 !important;
+            transform: translateX(-4px);
+        }
+    }
+
+    /* MOBILE VIEW (max-width: 991.98px) */
+    @media (max-width: 991.98px) {
+        .dropdown-submenu > .dropdown-menu {
+            position: static !important;
+            top: auto !important;
+            left: auto !important;
+            float: none !important;
+            margin: 4px 0 6px 12px !important;
+            padding: 4px 0 4px 8px !important;
+            background-color: rgba(0, 0, 0, 0.25) !important;
+            border-left: 3px solid #cca43b !important;
+            border-top: none !important;
+            border-right: none !important;
+            border-bottom: none !important;
+            border-radius: 4px !important;
+            box-shadow: none !important;
+            display: none !important;
+        }
+
+        .dropdown-submenu.show > .dropdown-menu,
+        .dropdown-submenu.open > .dropdown-menu {
+            display: block !important;
+        }
+
+        .dropdown-submenu.show > .dropdown-toggle .submenu-arrow,
+        .dropdown-submenu.open > .dropdown-toggle .submenu-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    /* Animations */
+    @keyframes navDropdownFade {
+        from {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes navSubmenuSlideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(6px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.dropdown-submenu > .dropdown-toggle').forEach(function(element) {
-            element.addEventListener('click', function(e) {
+        // Function to detect if submenu exceeds right window boundary & flip direction to left
+        function checkDropdownOverflow(element) {
+            if (window.innerWidth < 992) return;
+
+            var submenu = element.querySelector(':scope > .dropdown-menu');
+            if (!submenu) return;
+
+            // Check if parent element is already flying left
+            var parentSubmenu = element.parentElement ? element.parentElement.closest('.dropdown-submenu') : null;
+            if (parentSubmenu && parentSubmenu.classList.contains('flyout-left')) {
+                element.classList.add('flyout-left');
+                return;
+            }
+
+            var wasHidden = false;
+            if (window.getComputedStyle(submenu).display === 'none') {
+                submenu.style.visibility = 'hidden';
+                submenu.style.display = 'block';
+                wasHidden = true;
+            }
+
+            var rect = submenu.getBoundingClientRect();
+            var windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+            if (rect.right > windowWidth - 15) {
+                element.classList.add('flyout-left');
+                if (element.classList.contains('nav-item')) {
+                    submenu.classList.add('dropdown-menu-end');
+                }
+            } else {
+                element.classList.remove('flyout-left');
+            }
+
+            if (wasHidden) {
+                submenu.style.display = '';
+                submenu.style.visibility = '';
+            }
+        }
+
+        // Attach hover overflow check for desktop
+        var allSubmenuLis = document.querySelectorAll('.dropdown-submenu, .navbar-nav .nav-item.dropdown');
+        allSubmenuLis.forEach(function(item) {
+            item.addEventListener('mouseenter', function() {
+                checkDropdownOverflow(this);
+            });
+        });
+
+        // Click handler for mobile & desktop fallback
+        var submenuToggles = document.querySelectorAll('.dropdown-submenu > .dropdown-toggle');
+        submenuToggles.forEach(function(toggle) {
+            toggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
+
                 var parentLi = this.parentElement;
                 var submenu = this.nextElementSibling;
-                if (submenu && submenu.classList.contains('dropdown-menu')) {
-                    if (submenu.style.display === 'block') {
-                        submenu.style.display = 'none';
-                        parentLi.classList.remove('show', 'open');
-                    } else {
-                        submenu.style.display = 'block';
-                        parentLi.classList.add('show', 'open');
+
+                checkDropdownOverflow(parentLi);
+
+                // Close sibling submenus at the same level
+                var siblingLis = parentLi.parentElement.querySelectorAll(':scope > .dropdown-submenu');
+                siblingLis.forEach(function(sib) {
+                    if (sib !== parentLi) {
+                        sib.classList.remove('show', 'open');
+                        var sibMenu = sib.querySelector(':scope > .dropdown-menu');
+                        if (sibMenu) sibMenu.style.display = '';
                     }
+                });
+
+                // Toggle active state
+                if (parentLi.classList.contains('show') || parentLi.classList.contains('open')) {
+                    parentLi.classList.remove('show', 'open');
+                    if (submenu) submenu.style.display = '';
+                } else {
+                    parentLi.classList.add('show', 'open');
+                    if (submenu) submenu.style.display = 'block';
                 }
             });
+        });
+
+        // Close submenus when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.custom-navbar')) {
+                document.querySelectorAll('.dropdown-submenu').forEach(function(item) {
+                    item.classList.remove('show', 'open');
+                    var sub = item.querySelector(':scope > .dropdown-menu');
+                    if (sub) sub.style.display = '';
+                });
+            }
+        });
+
+        // Re-check on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 992) {
+                document.querySelectorAll('.dropdown-submenu').forEach(function(item) {
+                    checkDropdownOverflow(item);
+                });
+            }
         });
     });
 </script>

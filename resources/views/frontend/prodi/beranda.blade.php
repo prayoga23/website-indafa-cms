@@ -70,7 +70,7 @@
 ════════════════════════════════════════════════ --}}
 <section class="py-5 bg-white" id="sambutan-kaprodi">
     <div class="container py-4">
-        <div class="row align-items-center g-5">
+        <div class="row align-items-start g-4 g-lg-5">
 
             {{-- Foto Kaprodi (Full Foto Rounded + Nama & Jabatan di Bawah) --}}
             <div class="col-lg-5 col-10 col-sm-8 col-md-6 mx-auto mx-md-0">
@@ -82,10 +82,10 @@
                     </div>
                     
                     <div class="kaprodi-meta-info text-center pt-1">
-                        <h4 class="fw-bold mb-1" style="color:var(--pro-color); font-size: 1.3rem;">
+                        <h4 class="fw-bold mb-1" style="color:var(--pro-color); font-size: 1.35rem;">
                             {{ $data['head'] }}
                         </h4>
-                        <p class="text-muted small mb-0 fw-semibold text-uppercase" style="letter-spacing:1px; font-size: 0.8rem;">
+                        <p class="text-muted small mb-0 fw-semibold text-uppercase" style="letter-spacing:1px; font-size: 0.82rem;">
                             Ketua Program Studi {{ $data['name'] }}
                         </p>
                     </div>
@@ -93,14 +93,19 @@
             </div>
 
             {{-- Quotes & Sambutan --}}
-            <div class="col-lg-7 col-12">
+            <div class="col-lg-7 col-12 pt-lg-1">
                 <h2 class="fw-bold mb-3 text-dark display-6">Sambutan Ketua Program Studi</h2>
-                <blockquote class="p-4 rounded-4 bg-light border-start border-4 border-success text-secondary mb-4 fs-5 fst-italic shadow-sm" style="line-height:1.7;">
-                    "Komitmen kami adalah mendidik dan mendampingi mahasiswa agar siap berkontribusi bagi nusa, bangsa, dan agama."
+                <div class="mb-4" style="width:70px; height:4px; background:var(--pro-color); border-radius:2px;"></div>
+
+                <blockquote class="p-4 rounded-4 bg-light border-start border-4 border-success text-dark mb-4 shadow-sm" style="line-height:1.8; font-size:1.12rem;">
+                    <i class="bi bi-quote fs-2 text-warning me-1 opacity-75" style="vertical-align: -0.15em;"></i>
+                    <span class="fst-italic fw-medium">
+                        "Komitmen utama kami adalah mendidik dan mendampingi mahasiswa agar menjadi sarjana yang unggul, berakhlakul karimah, serta siap berkontribusi nyata bagi nusa, bangsa, dan agama."
+                    </span>
                 </blockquote>
 
-                <p class="text-secondary" style="line-height:1.85; font-size:1rem; text-align:justify;">
-                    Selamat datang di {{ $data['name'] }} INDAFA Bondowoso. Kami berkomitmen untuk terus meningkatkan mutu pendidikan, keilmuan integratif, serta pengabdian masyarakat guna mencetak lulusan unggul yang berakhlakul karimah.
+                <p class="text-secondary mb-0" style="line-height:1.9; font-size:1.05rem; text-align:justify;">
+                    Selamat datang di {{ $data['name'] }} INDAFA Bondowoso. Kami berkomitmen untuk terus menyelenggarakan pendidikan berkualitas tinggi yang mengintegrasikan keilmuan hukum Islam, nilai-nilai kepesantrenan, dan hukum positif guna mencetak lulusan yang profesional, berdaya saing, dan berintegritas moral.
                 </p>
             </div>
 
