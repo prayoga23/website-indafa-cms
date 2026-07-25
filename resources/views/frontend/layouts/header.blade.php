@@ -29,7 +29,7 @@
                 <a class="navbar-brand d-flex align-items-center" href="{{ route('frontend.fakultas.index', $facultyId) }}">
                     <img src="{{ asset('storage/'.$setting->logo) }}" alt="Logo" class="logo-campus" style="height: 50px; width: auto;">
                     <div class="ms-2 brand-text-divider">
-                        <span class="brand-title">{{ $facultyId === 'syariah' ? 'FAKULTAS SYARIAH' : 'FEBIT INDAFA' }}</span>
+                        <span class="brand-title">{{ $facultyId === 'syariah' ? 'FAKULTAS ILMU SYARIAH' : 'FAKULTAS TARBIYAH' }}</span>
                     </div>
                 </a>
             @elseif($isProdiSubWeb)
@@ -104,12 +104,12 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="prodiDropdown">
                                 @if($facultyId === 'syariah')
-                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}">Hukum Keluarga Islam (HKI)</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}">Hukum Ekonomi Syariah (HES)</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}">Prodi Hukum Keluarga Islam (HKI)</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}">Prodi Hukum Ekonomi Syariah (HES)</a></li>
                                 @else
-                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}">Manajemen Bisnis Syariah (MBS)</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}">Ekonomi Syariah (EKOS)</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}">Pendidikan Agama Islam (PAI)</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}">Prodi Manajemen Bisnis Syariah (MBS)</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}">Prodi Ekonomi Syariah (EKOS)</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}">Prodi Pendidikan Agama Islam (PAI)</a></li>
                                 @endif
                             </ul>
                         </li>
@@ -501,25 +501,25 @@
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="fakultasDropdown">
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="{{ route('frontend.fakultas.syariah') }}">
-                                        <span>Fakultas Syariah</span>
+                                        <span>Fakultas Ilmu Syariah</span>
                                         <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.syariah') }}">Beranda Syariah</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}">Hukum Keluarga Islam (HKI)</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}">Hukum Ekonomi Syariah (HES)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.syariah') }}">Beranda Fakultas Ilmu Syariah</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}">Prodi Hukum Keluarga Islam (HKI)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}">Prodi Hukum Ekonomi Syariah (HES)</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="{{ route('frontend.fakultas.ebit') }}">
-                                        <span>FEBIT INDAFA</span>
+                                        <span>Fakultas Tarbiyah</span>
                                         <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.ebit') }}">Beranda FEBIT</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}">Manajemen Bisnis Syariah (MBS)</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}">Ekonomi Syariah (EKOS)</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}">Pendidikan Agama Islam (PAI)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.ebit') }}">Beranda Fakultas Tarbiyah</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}">Prodi Manajemen Bisnis Syariah (MBS)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}">Prodi Ekonomi Syariah (EKOS)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}">Prodi Pendidikan Agama Islam (PAI)</a></li>
                                     </ul>
                                 </li>
                             </ul>
