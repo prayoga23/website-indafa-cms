@@ -73,7 +73,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarMenu">
-                <ul class="navbar-nav ms-auto text-uppercase fw-semibold align-items-lg-center">
+                <ul class="navbar-nav ms-auto text-uppercase fw-semibold align-items-lg-center {{ $isProdiSubWeb ? 'prodi-navbar-nav' : '' }}">
 
                     {{-- ==========================================
                          CASE A: NAVBAR FAKULTAS
@@ -126,14 +126,14 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
                                         <span>Persuratan</span>
-                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                        <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'persuratan']) }}">Form Persuratan</a></li>
-                                        <li class="dropdown-submenu">
+                                        <li class="dropdown-submenu dropdown-submenu-down">
                                             <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
                                                 <span>Layanan Digital</span>
-                                                <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                                <i class="bi bi-chevron-down ms-2 submenu-arrow"></i>
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-dark">
                                                 <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'turnitin']) }}">Cek Turnitin</a></li>
@@ -204,14 +204,14 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
                                         <span>Persuratan</span>
-                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                        <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'persuratan']) }}">Form Persuratan</a></li>
-                                        <li class="dropdown-submenu">
+                                        <li class="dropdown-submenu dropdown-submenu-down">
                                             <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
                                                 <span>Layanan Digital</span>
-                                                <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                                <i class="bi bi-chevron-down ms-2 submenu-arrow"></i>
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-dark">
                                                 <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'turnitin']) }}">Cek Turnitin</a></li>
@@ -367,7 +367,7 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
                                         <span>Jurnal</span>
-                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                        <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#profil">Profil Jurnal</a></li>
@@ -381,7 +381,7 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
                                         <span>Pengabdian Litapdimas</span>
-                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                        <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'pengabdian') }}#simapel">Simapel</a></li>
@@ -392,7 +392,7 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
                                         <span>HKI</span>
-                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                        <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'hki') }}#hakcipta">Layanan Pengajuan Hak Cipta</a></li>
@@ -420,7 +420,7 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
                                         <span>Pusat Studi</span>
-                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                        <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'psga') }}">Pusat Studi Gender dan Anak</a></li>
@@ -502,7 +502,7 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="{{ route('frontend.fakultas.syariah') }}">
                                         <span>Fakultas Syariah</span>
-                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                        <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.fakultas.syariah') }}">Beranda Syariah</a></li>
@@ -513,7 +513,7 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="{{ route('frontend.fakultas.ebit') }}">
                                         <span>FEBIT INDAFA</span>
-                                        <i class="bi bi-chevron-left ms-2 submenu-arrow"></i>
+                                        <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.fakultas.ebit') }}">Beranda FEBIT</a></li>
@@ -634,9 +634,25 @@
 
     /* DESKTOP VIEW (min-width: 992px) */
     @media (min-width: 992px) {
-        /* Top-level dropdown alignment for right-aligned navbar items (ms-auto) */
-        .custom-navbar .navbar-nav.ms-auto > .nav-item.dropdown > .dropdown-menu,
+        /* Shift prodi navbar items to the left on desktop for ideal dropdown space */
+        .custom-navbar .navbar-nav.prodi-navbar-nav {
+            margin-right: 5rem !important;
+        }
+        @media (min-width: 1200px) {
+            .custom-navbar .navbar-nav.prodi-navbar-nav {
+                margin-right: 7rem !important;
+            }
+        }
+
+        /* Top-level dropdown alignment (opens to the right by default) */
         .custom-navbar .navbar-nav > .nav-item.dropdown > .dropdown-menu {
+            left: 0 !important;
+            right: auto !important;
+        }
+
+        /* Top-level dropdown alignment when flipped due to viewport boundary */
+        .custom-navbar .navbar-nav > .nav-item.dropdown > .dropdown-menu.dropdown-menu-end,
+        .custom-navbar .navbar-nav > .nav-item.dropdown.flyout-left > .dropdown-menu {
             right: 0 !important;
             left: auto !important;
         }
@@ -648,16 +664,16 @@
             animation: navDropdownFade 0.22s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* ALL Submenus 2nd & 3rd Level Flyout Positioning (Fly out to the LEFT) */
+        /* ALL Submenus 2nd & 3rd Level Flyout Positioning (Fly out to the RIGHT by default) */
         .dropdown-submenu > .dropdown-menu {
             position: absolute !important;
             top: 0 !important;
-            right: 100% !important;
-            left: auto !important;
+            left: 100% !important;
+            right: auto !important;
             float: none !important;
             margin-top: -6px !important;
-            margin-right: 2px !important;
-            margin-left: 0 !important;
+            margin-left: 2px !important;
+            margin-right: 0 !important;
             display: none !important;
             min-width: 220px;
             background-color: #074338 !important; /* Richer dark green for nested depth */
@@ -667,11 +683,25 @@
             z-index: 1070 !important;
         }
 
+        /* Flyout positioning when flipping left if screen edge is reached */
+        .dropdown-submenu.flyout-left > .dropdown-menu {
+            left: auto !important;
+            right: 100% !important;
+            margin-left: 0 !important;
+            margin-right: 2px !important;
+        }
+
         /* Flyout display on hover or open class */
         .dropdown-submenu:hover > .dropdown-menu,
         .dropdown-submenu.show > .dropdown-menu,
         .dropdown-submenu.open > .dropdown-menu {
             display: block !important;
+            animation: navSubmenuSlideInRight 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .dropdown-submenu.flyout-left:hover > .dropdown-menu,
+        .dropdown-submenu.flyout-left.show > .dropdown-menu,
+        .dropdown-submenu.flyout-left.open > .dropdown-menu {
             animation: navSubmenuSlideInLeft 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
 
@@ -688,6 +718,12 @@
         .dropdown-submenu.show > .dropdown-toggle .submenu-arrow,
         .dropdown-submenu.open > .dropdown-toggle .submenu-arrow {
             color: #0b5345 !important;
+            transform: translateX(4px);
+        }
+
+        .dropdown-submenu.flyout-left:hover > .dropdown-toggle .submenu-arrow,
+        .dropdown-submenu.flyout-left.show > .dropdown-toggle .submenu-arrow,
+        .dropdown-submenu.flyout-left.open > .dropdown-toggle .submenu-arrow {
             transform: translateX(-4px);
         }
     }
@@ -734,6 +770,56 @@
         }
     }
 
+    /* Downward Inline Submenu (e.g. Layanan Digital inside Persuratan) */
+    .dropdown-submenu-down > .dropdown-menu {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        float: none !important;
+        margin: 4px 8px 6px 12px !important;
+        padding: 4px 0 4px 8px !important;
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        border-left: 2px solid #cca43b !important;
+        border-top: none !important;
+        border-right: none !important;
+        border-bottom: none !important;
+        border-radius: 4px !important;
+        box-shadow: none !important;
+        display: none !important;
+        min-width: unset !important;
+        width: calc(100% - 16px) !important;
+    }
+
+    .dropdown-submenu-down:hover > .dropdown-menu,
+    .dropdown-submenu-down.show > .dropdown-menu,
+    .dropdown-submenu-down.open > .dropdown-menu {
+        display: block !important;
+        animation: navDropdownFade 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .dropdown-submenu-down > .dropdown-toggle .submenu-arrow {
+        transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .dropdown-submenu-down:hover > .dropdown-toggle .submenu-arrow,
+    .dropdown-submenu-down.show > .dropdown-toggle .submenu-arrow,
+    .dropdown-submenu-down.open > .dropdown-toggle .submenu-arrow {
+        color: #0b5345 !important;
+        transform: rotate(180deg) !important;
+    }
+
+    @keyframes navSubmenuSlideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(-6px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
     @keyframes navSubmenuSlideInLeft {
         from {
             opacity: 0;
@@ -751,6 +837,7 @@
         // Function to detect if submenu exceeds right window boundary & flip direction to left
         function checkDropdownOverflow(element) {
             if (window.innerWidth < 992) return;
+            if (element.classList.contains('dropdown-submenu-down')) return;
 
             var submenu = element.querySelector(':scope > .dropdown-menu');
             if (!submenu) return;

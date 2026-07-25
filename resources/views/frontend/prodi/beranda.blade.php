@@ -3,36 +3,307 @@
 @section('title', 'Program Studi ' . $data['name'] . ' - INDAFA Bondowoso')
 
 @section('content')
+
+{{-- =========================
+    THEME VARIABLES & UTILITY STYLES
+========================= --}}
 <style>
-    :root {
-        --pro-color: {{ $data['color'] }};
-        --pro-gradient: {{ $data['bg_gradient'] }};
+    :root{
+        --color-primary: {{ $data['color'] }};
+        --color-primary-dark: color-mix(in srgb, {{ $data['color'] }} 80%, #000);
+        --color-accent: #b88d21;
+        --color-accent-light: #e0b13c;
+
+        --bg-soft-teal:   #f0f7f7;
+        --bg-soft-gold:   #fdf8ef;
+        --bg-soft-slate:  #f4f6f8;
+        --bg-soft-white:  #ffffff;
     }
 
-    .btn-pro-gold {
-        background-color: #cca43b;
-        color: #111;
+    /* ===== Section spacing ===== */
+    .section-py{ padding-top: 5rem; padding-bottom: 5rem; }
+    @media (max-width: 767.98px){
+        .section-py{ padding-top: 2.75rem; padding-bottom: 2.75rem; }
+    }
+
+    .section-eyebrow{
         font-weight: 700;
-        border: none;
-        padding: 0.75rem 2.25rem;
-        border-radius: 50px;
-        transition: all 0.3s ease;
-    }
-    .btn-pro-gold:hover {
-        background-color: #e5b842;
-        color: #000;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(204, 164, 59, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: .78rem;
+        display: block;
+        margin-bottom: .5rem;
+        color: var(--color-accent);
     }
 
+    .section-title{
+        font-weight: 800;
+        color: var(--color-primary);
+        font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+        line-height: 1.25;
+    }
+
+    .section-divider{
+        width: 50px;
+        height: 3px;
+        margin: 1rem auto;
+        background: var(--color-accent);
+    }
+    .section-divider.align-start{ margin-left: 0; }
+
+    .section-lead{
+        color: #6c757d;
+        font-size: .95rem;
+    }
+
+    .section-header{
+        max-width: 640px;
+    }
+
+    /* ===== Cards & hover ===== */
+    .card-hover{
+        transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .card-hover:hover{
+        transform: translateY(-6px);
+        box-shadow: 0 1rem 2rem rgba(0,0,0,.08) !important;
+    }
+    @media (max-width: 767.98px){
+        .card-hover:hover{ transform: none; }
+        .card-hover:active{ transform: scale(.99); }
+    }
+
+    .text-zoom-wrap{ overflow: hidden; }
+    .text-zoom-wrap img{ transition: transform .4s ease; }
+    .text-zoom-wrap:hover img{ transform: scale(1.06); }
+
+    /* ===== Buttons ===== */
+    .btn-brand{
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        color: #fff;
+        font-weight: 600;
+        transition: filter .2s ease;
+    }
+    .btn-brand:hover{ filter: brightness(1.08); color: #fff; }
+
+    .btn-outline-brand{
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+        font-weight: 600;
+        background: transparent;
+        transition: background-color .2s ease, color .2s ease;
+    }
+    .btn-outline-brand:hover{ background-color: var(--color-primary); color: #fff; }
+
+    .btn-gold{
+        position: relative;
+        background: linear-gradient(135deg, #e0b13c 0%, #b88d21 50%, #946f14 100%);
+        background-size: 200% 200%;
+        border: none;
+        color: #ffffff !important;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        line-height: 1.4;
+        box-shadow: 0 8px 24px rgba(184, 141, 33, 0.35);
+        overflow: hidden;
+        z-index: 1;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+    }
+
+    .btn-gold-animated {
+        animation: btnPulseGlow 3s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-gold::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+        transition: left 0.65s ease;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .btn-gold:hover::before {
+        left: 100%;
+    }
+
+    .btn-gold:hover {
+        background-position: 100% 0%;
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 14px 32px rgba(184, 141, 33, 0.55), 0 0 15px rgba(224, 177, 60, 0.4);
+        color: #ffffff !important;
+    }
+
+    .btn-gold:active {
+        transform: translateY(-1px) scale(0.99);
+        box-shadow: 0 6px 18px rgba(184, 141, 33, 0.4);
+    }
+
+    .btn-icon-rocket {
+        display: inline-block;
+        transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        font-size: 1.15rem;
+    }
+
+    .btn-gold:hover .btn-icon-rocket {
+        transform: translate(5px, -5px) rotate(12deg) scale(1.15);
+    }
+
+    @keyframes btnPulseGlow {
+        0% {
+            box-shadow: 0 6px 20px rgba(184, 141, 33, 0.35);
+        }
+        50% {
+            box-shadow: 0 10px 28px rgba(224, 177, 60, 0.55), 0 0 18px rgba(224, 177, 60, 0.3);
+        }
+        100% {
+            box-shadow: 0 6px 20px rgba(184, 141, 33, 0.35);
+        }
+    }
+
+    @media (max-width: 575.98px){
+        .btn-stack-mobile{ width: 100%; }
+    }
+
+    /* ===== Badges ===== */
+    .badge-soft-gold{
+        background-color: rgba(184, 141, 33, .08);
+        color: var(--color-accent);
+        border: 1px solid rgba(184, 141, 33, .25);
+        font-weight: 600;
+    }
+    .badge-brand{
+        background-color: var(--color-primary);
+        color: #fff;
+        font-weight: 600;
+    }
+
+    /* ===== CTA sections ===== */
+    .cta-section{
+        background: {{ $data['bg_gradient'] }};
+    }
+
+    /* ===== Text clamp helpers ===== */
+    .line-clamp-2{
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .line-clamp-3{
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* ==============================================
+       HERO BANNER
+    =============================================== */
+    .prodi-carousel-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+    .prodi-hero-item {
+        height: 75vh;
+        min-height: 550px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    .prodi-hero-item::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 100%);
+        z-index: 1;
+    }
+    @media (max-width: 767.98px) {
+        .prodi-hero-item {
+            height: 60vh;
+            min-height: 400px;
+        }
+    }
+
+    /* ==============================================
+       SECTION BACKGROUNDS
+    =============================================== */
+    .section-profil {
+        background: var(--bg-soft-teal);
+        border-top: 3px solid rgba(184,141,33,.18);
+    }
+    .section-profil .profil-blob {
+        position: relative;
+    }
+    .section-profil .profil-blob::before {
+        content: '';
+        position: absolute;
+        top: -40px; left: -40px;
+        width: 220px; height: 220px;
+        background: radial-gradient(circle, rgba(10,102,102,.07) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .section-news {
+        background: linear-gradient(160deg, #f7fbfb 0%, var(--bg-soft-gold) 100%);
+        border-top: 1px solid rgba(10,102,102,.08);
+        border-bottom: 1px solid rgba(10,102,102,.08);
+    }
+
+    .section-dosen {
+        background: linear-gradient(180deg, #ffffff 0%, var(--bg-soft-teal) 100%);
+        border-top: 1px solid rgba(10,102,102,.1);
+    }
+
+    /* ===== News Card Specific ===== */
+    .news-card{
+        background: #fff;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 .25rem .75rem rgba(0,0,0,.06);
+        transition: transform .25s ease, box-shadow .25s ease;
+        height: 100%;
+    }
+    .news-card:hover{
+        transform: translateY(-6px);
+        box-shadow: 0 1rem 2rem rgba(0,0,0,.10);
+    }
+    .news-thumb{
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+    }
+    .news-thumb img{
+        width: 100%; height: 100%; object-fit: cover;
+        transition: transform .5s ease;
+    }
+    .news-card:hover .news-thumb img{ transform: scale(1.08); }
+    .news-body{ padding: 1.25rem; display: flex; flex-direction: column; flex: 1; }
+    .news-readmore{ margin-top: auto; display: inline-flex; align-items: center; gap: .4rem; font-size: .85rem; font-weight: 700; color: var(--color-primary); text-decoration: none; }
+
+    /* ===== Kaprodi Card ===== */
     .kaprodi-card-img-wrap {
         position: relative;
-        aspect-ratio: 4 / 5;
-        max-height: 420px;
+        aspect-ratio: 3 / 4.2;
+        max-height: 460px;
         width: 100%;
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 16px 36px rgba(11, 83, 69, 0.12);
+        box-shadow: 0 16px 36px rgba(0,0,0,.12);
         border: 1px solid rgba(0, 0, 0, 0.08);
         background-color: #f8f9fa;
         transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -49,189 +320,207 @@
     }
 </style>
 
-{{-- ═══════════════════════════════════════════════
-     1. HERO BANNER FULL SCREEN (seperti HOME)
-════════════════════════════════════════════════ --}}
-<div class="container-fluid carousel-header prodi-carousel-header px-0">
-    <div id="prodiCarousel" class="carousel slide carousel-fade h-100" data-bs-ride="carousel">
-        <div class="carousel-inner h-100" role="listbox">
-            <div class="carousel-item active">
-                <img src="{{ asset('storage/banners/otoYXSrIydgSL8DpfylH0mSQJD7CGa5MsaMOuPpK.png') }}"
-                     alt="{{ $data['name'] }}"
-                     loading="eager">
+{{-- =========================
+    HERO BANNER PRODI
+========================= --}}
+<div id="heroProdiCarousel" class="carousel slide prodi-carousel-container carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="5000">
+            <div class="prodi-hero-item" style="background-image: url('{{ asset('storage/banners/otoYXSrIydgSL8DpfylH0mSQJD7CGa5MsaMOuPpK.png') }}');">
+                <div class="container position-relative text-white" style="z-index: 2; padding-top: 4rem; padding-bottom: 4rem;">
+                    <div class="row">
+                        <div class="col-lg-8 text-center text-md-start">
+                            <span class="badge rounded-pill px-3 py-2 mb-3 d-inline-block fw-semibold" style="background: rgba(255,255,255,.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.3); letter-spacing: 1.5px; font-size: .75rem; text-transform: uppercase;">
+                                {{ $data['faculty_name'] ?? 'Program Studi' }}
+                            </span>
+                            <h1 class="display-4 fw-bold text-capitalize mb-3">
+                                {{ $data['name'] }}
+                            </h1>
+                            <p class="lead opacity-75 mb-4 fs-6">
+                                Membentuk lulusan yang unggul, berintegritas, dan siap berkontribusi nyata bagi bangsa dan agama.
+                            </p>
+                            <a href="{{ route('frontend.prodi.kontak', $data['id']) }}" class="btn btn-gold py-3 px-4 rounded-pill">
+                                Hubungi Kami &nbsp;<i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+{{-- =========================
+    SAMBUTAN KAPRODI & PROFIL PRODI
+========================= --}}
+<section class="section-py section-profil" id="tentang">
+    <div class="container">
+        <div class="row g-4 g-lg-5 align-items-start">
 
-{{-- ═══════════════════════════════════════════════
-     2. SAMBUTAN KETUA PROGRAM STUDI
-════════════════════════════════════════════════ --}}
-<section class="py-5 bg-white" id="sambutan-kaprodi">
-    <div class="container py-4">
-        <div class="row align-items-start g-4 g-lg-5">
-
-            {{-- Foto Kaprodi (Full Foto Rounded + Nama & Jabatan di Bawah) --}}
-            <div class="col-lg-5 col-10 col-sm-8 col-md-6 mx-auto mx-md-0">
-                <div class="kaprodi-photo-card text-center">
+            {{-- Foto Kaprodi --}}
+            <div class="col-lg-4 col-10 col-sm-8 col-md-5 mx-auto mx-lg-0">
+                <div class="text-center pt-lg-2">
                     <div class="kaprodi-card-img-wrap mb-3">
                         <img src="{{ asset('storage/lecturers/4aGdYumJLv1zF9gkf8FmB8eIrFFvVW5m276855wf.png') }}"
                              alt="{{ $data['head'] }}"
                              loading="lazy">
                     </div>
-                    
-                    <div class="kaprodi-meta-info text-center pt-1">
-                        <h4 class="fw-bold mb-1" style="color:var(--pro-color); font-size: 1.35rem;">
-                            {{ $data['head'] }}
-                        </h4>
-                        <p class="text-muted small mb-0 fw-semibold text-uppercase" style="letter-spacing:1px; font-size: 0.82rem;">
-                            Ketua Program Studi {{ $data['name'] }}
-                        </p>
-                    </div>
+                    <h5 class="fw-bold mb-1" style="color:var(--color-primary);">{{ $data['head'] }}</h5>
+                    <p class="text-muted small fw-semibold text-uppercase mb-0" style="letter-spacing:1px;">
+                        Ketua Program Studi
+                    </p>
                 </div>
             </div>
 
-            {{-- Quotes & Sambutan --}}
-            <div class="col-lg-7 col-12 pt-lg-1">
-                <h2 class="fw-bold mb-3 text-dark display-6">Sambutan Ketua Program Studi</h2>
-                <div class="mb-4" style="width:70px; height:4px; background:var(--pro-color); border-radius:2px;"></div>
+            {{-- Deskripsi & Visi Misi --}}
+            <div class="col-lg-8">
+                <span class="section-eyebrow">PROFIL PRODI</span>
+                <h2 class="section-title mb-2">Mengenal Prodi {{ Str::title(trim(str_replace(['(S1)', '(s1)', 'Prodi', 'prodi'], '', $data['name']))) }} (S1)</h2>
+                <div class="section-divider align-start"></div>
 
-                <blockquote class="p-4 rounded-4 bg-light border-start border-4 border-success text-dark mb-4 shadow-sm" style="line-height:1.8; font-size:1.12rem;">
-                    <i class="bi bi-quote fs-2 text-warning me-1 opacity-75" style="vertical-align: -0.15em;"></i>
-                    <span class="fst-italic fw-medium">
+                <blockquote class="p-4 rounded-4 bg-white border-start border-4 mb-4 shadow-sm" style="border-color: var(--color-primary) !important; line-height:1.8;">
+                    <i class="bi bi-quote fs-2 me-1 opacity-75" style="color: var(--color-accent); vertical-align: -0.15em;"></i>
+                    <span class="fst-italic fw-medium text-dark">
                         "Komitmen utama kami adalah mendidik dan mendampingi mahasiswa agar menjadi sarjana yang unggul, berakhlakul karimah, serta siap berkontribusi nyata bagi nusa, bangsa, dan agama."
                     </span>
                 </blockquote>
 
-                <p class="text-secondary mb-0" style="line-height:1.9; font-size:1.05rem; text-align:justify;">
-                    Selamat datang di {{ $data['name'] }} INDAFA Bondowoso. Kami berkomitmen untuk terus menyelenggarakan pendidikan berkualitas tinggi yang mengintegrasikan keilmuan hukum Islam, nilai-nilai kepesantrenan, dan hukum positif guna mencetak lulusan yang profesional, berdaya saing, dan berintegritas moral.
-                </p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-{{-- ═══════════════════════════════════════════════
-     3. PROFIL SINGKAT - MENGENAL PROGRAM STUDI
-     (Ditaruh setelah Ketua Program Studi)
-════════════════════════════════════════════════ --}}
-<section class="py-5 bg-light" id="tentang">
-    <div class="container py-3">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-12">
-                <span class="text-uppercase text-warning fw-bold small tracking-wider" style="letter-spacing:1.5px;">Profil Singkat</span>
-                <h2 class="fw-bold mb-3 display-6" style="color:var(--pro-color)">Mengenal Program Studi</h2>
-                <div class="mb-4" style="width:60px; height:4px; background:var(--pro-color); border-radius:2px;"></div>
-                
-                <p class="text-secondary fs-5 mb-5" style="line-height:1.85; text-align:justify;">
+                <p class="text-muted lh-lg mb-4" style="text-align: justify;">
                     {{ $data['sejarah'] }}
                 </p>
 
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-start gap-4 p-4 bg-white rounded-4 shadow-sm h-100">
-                            <div class="icon-circle p-3 rounded-circle text-white shadow" style="background:var(--pro-color); min-width:55px; height:55px; display:flex; align-items:center; justify-content:center;">
-                                <i class="bi bi-mortarboard-fill fs-4"></i>
-                            </div>
-                            <div>
-                                <h5 class="fw-bold mb-2" style="color:var(--pro-color)">Kurikulum Mutakhir</h5>
-                                <p class="small text-muted mb-0" style="line-height:1.6;">Integrasi keilmuan yang responsif terhadap tuntutan dunia kerja dan era digital.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-start gap-4 p-4 bg-white rounded-4 shadow-sm h-100">
-                            <div class="icon-circle p-3 rounded-circle text-white shadow" style="background:var(--pro-color); min-width:55px; height:55px; display:flex; align-items:center; justify-content:center;">
-                                <i class="bi bi-person-fill-check fs-4"></i>
-                            </div>
-                            <div>
-                                <h5 class="fw-bold mb-2" style="color:var(--pro-color)">Karier Cemerlang</h5>
-                                <p class="small text-muted mb-0" style="line-height:1.6;">Peluang kerja luas di sektor perbankan, peradilan, instansi pemerintah, dan lembaga pendidikan.</p>
-                            </div>
-                        </div>
-                    </div>
+                {{-- Visi Misi Card --}}
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white"
+                     style="border-top: 4px solid var(--color-accent) !important;">
+                    <h5 class="fw-bold text-dark mb-2"><i class="bi bi-eye-fill me-2 text-muted"></i> Visi</h5>
+                    <p class="text-muted mb-3">{{ $data['visi'] ?? 'Menjadi Program Studi Unggul dan Berdaya Saing.' }}</p>
+                    <hr class="my-3 opacity-50">
+                    <h5 class="fw-bold text-dark mb-2"><i class="bi bi-bullseye me-2 text-muted"></i> Misi</h5>
+                    <ul class="text-muted mb-0 ps-3" style="line-height: 1.8;">
+                        @if(is_array($data['misi']))
+                            @foreach($data['misi'] as $m)
+                                <li>{{ $m }}</li>
+                            @endforeach
+                        @else
+                            <li>{{ $data['misi'] }}</li>
+                        @endif
+                    </ul>
                 </div>
-
             </div>
         </div>
     </div>
 </section>
 
-
-{{-- ═══════════════════════════════════════════════
-     4. INFORMASI BERITA TERBARU
-════════════════════════════════════════════════ --}}
-<section class="py-5 bg-white">
-    <div class="container py-3">
-
-        <div class="d-flex align-items-end justify-content-between flex-wrap gap-3 mb-5">
-            <div>
-                <span class="text-uppercase text-warning fw-bold small tracking-wider" style="letter-spacing:1.5px;">Informasi</span>
-                <h2 class="fw-bold mb-1 text-dark display-6">Berita Terbaru</h2>
-                <div class="mt-2" style="width:60px; height:4px; background:#cca43b; border-radius:2px;"></div>
+{{-- =========================
+    BERITA & KEGIATAN TERBARU PRODI
+========================= --}}
+<section class="section-py section-news">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 mb-md-5 gap-3">
+            <div class="text-center text-md-start">
+                <span class="section-eyebrow">WARTA PRODI</span>
+                <h2 class="section-title">Berita &amp; Kegiatan Terbaru</h2>
+                <div class="section-divider align-start"></div>
+                <p class="section-lead">Ikuti perkembangan, capaian prestasi, serta agenda akademik di Program Studi {{ $data['name'] }}</p>
             </div>
-            <a href="{{ route('frontend.prodi.berita', $data['id']) }}" class="btn btn-outline-success rounded-pill px-4 font-semibold">
-                Semua Berita &nbsp;<i class="bi bi-arrow-right"></i>
+            <a href="{{ route('frontend.prodi.berita', $data['id']) }}" class="btn btn-outline-brand px-4 py-2 rounded-pill btn-stack-mobile flex-shrink-0">
+                Semua Berita <i class="bi bi-arrow-right ms-1"></i>
             </a>
         </div>
 
-        <div class="row g-4">
-            @if(isset($news) && count($news) > 0)
+        @if(isset($news) && count($news) > 0)
+            <div class="row g-3 g-md-4">
                 @foreach($news as $item)
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <img src="{{ asset('storage/' . $item->thumbnail) }}" class="card-img-top" style="height:210px; object-fit:cover;" alt="{{ $item->title }}">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <span class="text-muted small mb-2"><i class="bi bi-calendar3 me-1"></i>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}</span>
-                            <h5 class="card-title fw-bold mb-3"><a href="{{ url('berita/' . $item->slug) }}" class="text-dark text-decoration-none">{{ $item->title }}</a></h5>
-                            <p class="card-text text-secondary small mt-auto" style="line-height:1.6;">{{ Str::limit(strip_tags($item->content), 110) }}</p>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="news-card d-flex flex-column h-100">
+                            <div class="news-thumb text-zoom-wrap position-relative" style="height: 200px; overflow: hidden;">
+                                <span class="badge position-absolute top-0 start-0 m-3 badge-brand rounded-pill px-2 py-1 small" style="z-index:2;">Info Prodi</span>
+                                @if($item->thumbnail)
+                                    <img src="{{ asset('storage/'.$item->thumbnail) }}" alt="{{ $item->title }}" class="w-100 h-100 object-fit-cover">
+                                @else
+                                    <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-secondary bg-opacity-10 text-muted">
+                                        <i class="bi bi-image fs-2 text-muted"></i>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="news-body p-3 d-flex flex-column flex-grow-1">
+                                <span class="text-muted small mb-2 d-block">
+                                    <i class="bi bi-calendar3 me-1"></i> {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}
+                                </span>
+                                <h5 class="news-title line-clamp-2 fw-bold" style="font-size:1.05rem; color: var(--color-primary);">
+                                    {{ $item->title }}
+                                </h5>
+                                <p class="news-excerpt line-clamp-3 text-muted small lh-base">
+                                    {{ Str::limit(strip_tags($item->content), 100) }}
+                                </p>
+                                <a href="{{ url('berita/'.$item->slug) }}" class="news-readmore mt-auto text-decoration-none pt-2">
+                                    Baca Selengkapnya <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
-            @else
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="p-4 bg-light text-center" style="height:210px; display:flex; align-items:center; justify-content:center;">
-                            <i class="bi bi-newspaper fs-1 text-success opacity-50"></i>
-                        </div>
-                        <div class="card-body p-4 d-flex flex-column">
-                            <span class="text-muted small mb-2"><i class="bi bi-calendar3 me-1 text-success"></i>23 Juli 2026</span>
-                            <h5 class="card-title fw-bold mb-3"><a href="#" class="text-dark text-decoration-none">Kegiatan Perkuliahan dan Orientasi Akademik {{ $data['name'] }}</a></h5>
-                            <p class="card-text text-secondary small mt-auto" style="line-height:1.6;">Pelaksanaan kegiatan akademik prodi yang mengedepankan mutu dan keilmuan integratif...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="p-4 bg-light text-center" style="height:210px; display:flex; align-items:center; justify-content:center;">
-                            <i class="bi bi-award fs-1 text-warning opacity-75"></i>
-                        </div>
-                        <div class="card-body p-4 d-flex flex-column">
-                            <span class="text-muted small mb-2"><i class="bi bi-calendar3 me-1 text-warning"></i>20 Juli 2026</span>
-                            <h5 class="card-title fw-bold mb-3"><a href="#" class="text-dark text-decoration-none">Prestasi Mahasiswa {{ $data['name'] }} Tingkat Nasional</a></h5>
-                            <p class="card-text text-secondary small mt-auto" style="line-height:1.6;">Mahasiswa prodi berhasil meraih kejuaraan dalam kompetisi keilmuan nasional...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="p-4 bg-light text-center" style="height:210px; display:flex; align-items:center; justify-content:center;">
-                            <i class="bi bi-briefcase fs-1 text-primary opacity-50"></i>
-                        </div>
-                        <div class="card-body p-4 d-flex flex-column">
-                            <span class="text-muted small mb-2"><i class="bi bi-calendar3 me-1 text-primary"></i>15 Juli 2026</span>
-                            <h5 class="card-title fw-bold mb-3"><a href="#" class="text-dark text-decoration-none">Workshop dan Sertifikasi Keahlian Mahasiswa</a></h5>
-                            <p class="card-text text-secondary small mt-auto" style="line-height:1.6;">Pelatihan kompetensi siap kerja untuk membekali calon lulusan profesional...</p>
-                        </div>
-                    </div>
-                </div>
-            @endif
-        </div>
-
+            </div>
+        @else
+            <div class="text-center p-5 bg-white rounded-4 shadow-sm">
+                <i class="bi bi-newspaper display-4 text-muted"></i>
+                <p class="text-muted mt-3 mb-0">Belum ada berita terbaru untuk Program Studi ini.</p>
+            </div>
+        @endif
     </div>
 </section>
+
+{{-- =========================
+    DOSEN / TENAGA PENDIDIK PRODI
+========================= --}}
+<section class="section-py section-dosen">
+    <div class="container">
+        <div class="text-center mx-auto mb-4 mb-md-5 section-header">
+            <span class="section-eyebrow">STAF PENGAJAR</span>
+            <h2 class="section-title">Dosen Pembimbing &amp; Pengajar</h2>
+            <div class="section-divider"></div>
+            <p class="section-lead">Didukung oleh tenaga pendidik profesional, ahli di bidangnya, dan berkomitmen penuh bagi kesuksesan mahasiswa</p>
+        </div>
+
+        <div class="text-center p-4">
+            <p class="text-muted">Data dosen pengajar dapat dilihat di halaman pimpinan.</p>
+            <a href="{{ route('frontend.prodi.pimpinan', $data['id']) }}" class="btn btn-outline-brand rounded-pill px-4">
+                Lihat Pimpinan &amp; Dosen <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+{{-- =========================
+    CTA PMB FOOTER
+========================= --}}
+<section class="section-py text-white text-center position-relative overflow-hidden cta-section">
+    <div class="container position-relative" style="z-index: 2;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <span class="badge bg-white bg-opacity-10 text-uppercase px-3 py-2 rounded-pill small mb-3 border border-white border-opacity-20"
+                      style="letter-spacing: 2px; color: var(--color-accent-light);">
+                    Penerimaan Mahasiswa Baru {{ date('Y') }}
+                </span>
+                <h2 class="fw-bold mb-3 text-white" style="font-size: clamp(1.6rem, 1.1rem + 2vw, 2.75rem);">
+                    Mari Bergabung Bersama <br><span style="color: var(--color-accent-light);">{{ $data['name'] }}</span>
+                </h2>
+                <p class="lead mx-auto mb-4 fs-6 opacity-75 px-md-5">
+                    Rancang masa depan cemerlang dengan pendidikan berkualitas tinggi, nilai-nilai kepesantrenan, serta jaringan alumni yang luas.
+                </p>
+                <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3">
+                    <a href="#" class="btn btn-gold btn-gold-animated px-5 py-3 rounded-pill shadow btn-stack-mobile">
+                        <span>Daftar Online Sekarang</span>
+                        <i class="bi bi-rocket-takeoff-fill ms-2 btn-icon-rocket"></i>
+                    </a>
+                    <a href="{{ route('frontend.prodi.kontak', $data['id']) }}" class="btn btn-outline-light px-5 py-3 rounded-pill btn-stack-mobile d-inline-flex align-items-center justify-content-center">
+                        <span>Hubungi Kami</span>
+                        <i class="bi bi-chat-dots ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 @endsection
