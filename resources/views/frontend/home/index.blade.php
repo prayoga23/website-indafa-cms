@@ -10,7 +10,7 @@
 <div class="container-fluid carousel-header px-0">
     <div class="carousel-inner h-100">
         <div class="carousel-item active">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt0aIrUV0ugCOgjvAhlbhhVvn5GJC3kUPkszqXJWslCYRNpw1VdX6QoqWlZ522AimObb10ifT-1NEWquq3kHTMdZVhTNUOGNp7hy3tfW08mdYCHrCVj3OKVgWDMJXZ4-mXdABaU2rHPRbZ6osBlANrbfiMNnjxLyoHQB0pUhiRGZ9zecq9cBteG99oUGQe8UZsNjcJLWZSBFRJBxJ1E_cZeVJAOJ7DzdHv6dc50wAEYyplZXz61Kg4qbxLuB-f8XRfTpfuwxJTzCo"
+            <img src="{{ asset('storage/gallery/2.png') }}"
                  alt="IAI Darul Falah Bondowoso"
                  loading="eager">
             <div class="carousel-caption">
@@ -359,7 +359,7 @@
             <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
                 <div class="fakultas-card">
                     <div class="fakultas-card-img">
-                        <img src="{{ asset('assets/img/carousel-1.jpg') }}"
+                        <img src="{{ asset('storage/gallery/1.png') }}"
                              alt="Fakultas Syariah" loading="lazy">
                         <div class="fakultas-overlay"></div>
                         <span class="fakultas-prodi-count">
@@ -380,7 +380,7 @@
             <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
                 <div class="fakultas-card">
                     <div class="fakultas-card-img">
-                        <img src="{{ asset('assets/img/carousel-2.jpg') }}"
+                        <img src="{{ asset('storage/gallery/2.png') }}"
                              alt="Fakultas Ekonomi Bisnis Islam & Tarbiyah" loading="lazy">
                         <div class="fakultas-overlay"></div>
                         <span class="fakultas-prodi-count">
@@ -599,7 +599,7 @@
             <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
                 <div class="prestasi-card">
                     <div class="prestasi-thumb">
-                        <img src="{{ asset('assets/img/events-1.jpg') }}"
+                        <img src="{{ asset('storage/gallery/3.jpg') }}"
                              alt="Lomba Debat" loading="lazy">
                         <span class="prestasi-badge prestasi-badge-gold">
                             <i class="bi bi-trophy-fill"></i> Juara 1
@@ -619,7 +619,7 @@
             <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
                 <div class="prestasi-card">
                     <div class="prestasi-thumb">
-                        <img src="{{ asset('assets/img/events-2.jpg') }}"
+                        <img src="{{ asset('storage/gallery/4.png') }}"
                              alt="Paper Competition" loading="lazy">
                         <span class="prestasi-badge prestasi-badge-silver">
                             <i class="bi bi-trophy-fill"></i> Juara 2
@@ -639,7 +639,7 @@
             <div class="col-md-6 col-lg-4 reveal reveal-delay-3">
                 <div class="prestasi-card">
                     <div class="prestasi-thumb">
-                        <img src="{{ asset('assets/img/events-3.jpg') }}"
+                        <img src="{{ asset('storage/gallery/5. foto.jpeg') }}"
                              alt="MTQ Nasional" loading="lazy">
                         <span class="prestasi-badge prestasi-badge-bronze">
                             <i class="bi bi-trophy-fill"></i> Juara 3
@@ -680,7 +680,7 @@
         <div class="gallery-grid reveal">
 
             <div class="gallery-item gallery-tall">
-                <img src="{{ asset('assets/img/gallery-1.jpg') }}"
+                <img src="{{ asset('storage/gallery/6.jpeg') }}"
                      alt="Gedung Kampus" loading="lazy">
                 <div class="gallery-overlay">
                     <span class="gallery-label">Gedung Kampus INDAFA</span>
@@ -689,7 +689,7 @@
             </div>
 
             <div class="gallery-item">
-                <img src="{{ asset('assets/img/gallery-2.jpg') }}"
+                <img src="{{ asset('storage/gallery/11.jpg') }}"
                      alt="Kegiatan Akademik" loading="lazy">
                 <div class="gallery-overlay">
                     <span class="gallery-label">Kegiatan Akademik</span>
@@ -698,7 +698,7 @@
             </div>
 
             <div class="gallery-item">
-                <img src="{{ asset('assets/img/gallery-3.jpg') }}"
+                <img src="{{ asset('storage/gallery/8.jpg') }}"
                      alt="Wisuda" loading="lazy">
                 <div class="gallery-overlay">
                     <span class="gallery-label">Wisuda</span>
@@ -707,7 +707,7 @@
             </div>
 
             <div class="gallery-item">
-                <img src="{{ asset('assets/img/gallery-4.jpg') }}"
+                <img src="{{ asset('storage/gallery/9. foto.jpg') }}"
                      alt="Kegiatan Mahasiswa" loading="lazy">
                 <div class="gallery-overlay">
                     <span class="gallery-label">Kegiatan Mahasiswa</span>
@@ -716,7 +716,7 @@
             </div>
 
             <div class="gallery-item">
-                <img src="{{ asset('assets/img/gallery-5.jpg') }}"
+                <img src="{{ asset('storage/gallery/10.jpg') }}"
                      alt="Seminar" loading="lazy">
                 <div class="gallery-overlay">
                     <span class="gallery-label">Seminar Nasional</span>

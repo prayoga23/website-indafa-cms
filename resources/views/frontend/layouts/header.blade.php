@@ -33,7 +33,7 @@
                     </div>
                 </a>
             @elseif($isProdiSubWeb)
-                <a class="navbar-brand d-flex align-items-center" href="{{ route('frontend.prodi.index', $prodiId) }}">
+                <a class="navbar-brand d-flex align-items-center prodi-navbar-brand" href="{{ route('frontend.prodi.index', $prodiId) }}">
                     <img src="{{ asset('storage/'.$setting->logo) }}" alt="Logo" class="logo-campus" style="height: 50px; width: auto;">
                     <div class="ms-2 brand-text-divider">
                         <span class="brand-title">PRODI {{ strtoupper($prodiId) }}</span>
@@ -634,6 +634,10 @@
 
     /* DESKTOP VIEW (min-width: 992px) */
     @media (min-width: 992px) {
+        /* Geser logo & teks brand Prodi sedikit ke kanan */
+        .prodi-navbar-brand {
+            margin-left: 5rem !important;
+        }
         /* Shift prodi navbar items to the left on desktop for ideal dropdown space */
         .custom-navbar .navbar-nav.prodi-navbar-nav {
             margin-right: 5rem !important;

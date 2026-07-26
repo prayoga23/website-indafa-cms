@@ -215,25 +215,96 @@
         overflow: hidden;
     }
     .prodi-hero-item {
-        height: 75vh;
-        min-height: 550px;
+        height: 100vh;
+        min-height: 600px;
         background-size: cover;
         background-position: center;
         position: relative;
         display: flex;
         align-items: center;
+        justify-content: center;
     }
-    .prodi-hero-item::before {
-        content: '';
+    .prodi-hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #fff;
+        padding: 0 1.5rem;
+        animation: heroFadeIn 1s ease both;
+    }
+    .prodi-hero-content .hero-eyebrow {
+        font-size: .85rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--color-accent-light, #e0b13c);
+        display: block;
+        margin-bottom: .75rem;
+        opacity: .9;
+    }
+    .prodi-hero-content h1 {
+        font-size: clamp(2.2rem, 4vw + 1rem, 4.5rem);
+        font-weight: 900;
+        line-height: 1.1;
+        text-shadow: 0 4px 24px rgba(0,0,0,.45);
+        margin-bottom: 1.25rem;
+    }
+    .prodi-hero-content p {
+        font-size: clamp(1rem, 1.5vw + .5rem, 1.3rem);
+        opacity: .88;
+        max-width: 640px;
+        margin: 0 auto 2rem;
+        text-shadow: 0 2px 8px rgba(0,0,0,.35);
+    }
+    @keyframes heroFadeIn {
+        from { opacity: 0; transform: translateY(28px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- Scroll Down Arrow (sama seperti Home) --- */
+    .scroll-down-arrow {
         position: absolute;
-        inset: 0;
-        background: linear-gradient(to right, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 100%);
-        z-index: 1;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 20;
+        color: #ffffff;
+        font-size: 1.4rem;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        animation: bounceDown 2.2s infinite ease-in-out;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
+    .scroll-down-arrow:hover {
+        color: #FFC107;
+        background: rgba(255, 255, 255, 0.28);
+        border-color: #FFC107;
+        transform: translateX(-50%) scale(1.12);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    @keyframes bounceDown {
+        0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+        40%  { transform: translateX(-50%) translateY(12px); }
+        60%  { transform: translateX(-50%) translateY(6px); }
+    }
+
     @media (max-width: 767.98px) {
         .prodi-hero-item {
-            height: 60vh;
-            min-height: 400px;
+            height: 100svh;
+            min-height: 500px;
+        }
+        .prodi-hero-content h1 {
+            font-size: clamp(1.8rem, 8vw, 2.8rem);
         }
     }
 
@@ -326,29 +397,26 @@
 <div id="heroProdiCarousel" class="carousel slide prodi-carousel-container carousel-fade" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="5000">
-            <div class="prodi-hero-item" style="background-image: url('{{ asset('storage/banners/otoYXSrIydgSL8DpfylH0mSQJD7CGa5MsaMOuPpK.png') }}');">
-                <div class="container position-relative text-white" style="z-index: 2; padding-top: 4rem; padding-bottom: 4rem;">
-                    <div class="row">
-                        <div class="col-lg-8 text-center text-md-start">
-                            <span class="badge rounded-pill px-3 py-2 mb-3 d-inline-block fw-semibold" style="background: rgba(255,255,255,.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.3); letter-spacing: 1.5px; font-size: .75rem; text-transform: uppercase;">
-                                {{ $data['faculty_name'] ?? 'Program Studi' }}
-                            </span>
-                            <h1 class="display-4 fw-bold text-capitalize mb-3">
-                                {{ $data['name'] }}
-                            </h1>
-                            <p class="lead opacity-75 mb-4 fs-6">
-                                Membentuk lulusan yang unggul, berintegritas, dan siap berkontribusi nyata bagi bangsa dan agama.
-                            </p>
-                            <a href="{{ route('frontend.prodi.kontak', $data['id']) }}" class="btn btn-gold py-3 px-4 rounded-pill">
-                                Hubungi Kami &nbsp;<i class="bi bi-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="prodi-hero-item" style="background-image: url('{{ asset('storage/banners/otoYXSrIydgSL8DpfylH0mSQJD7CGa5MsaMOuPpK.png') }}");">
             </div>
         </div>
     </div>
+
+    {{-- Scroll-down arrow (same style as Home) --}}
+    <a class="scroll-down-arrow" href="#tentang" onclick="smoothTo(event, '#tentang')" aria-label="Scroll ke bawah">
+        <i class="bi bi-chevron-down"></i>
+    </a>
 </div>
+
+<script>
+    function smoothTo(e, selector) {
+        e.preventDefault();
+        var target = document.querySelector(selector);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+</script>
 
 {{-- =========================
     SAMBUTAN KAPRODI & PROFIL PRODI
@@ -388,24 +456,6 @@
                 <p class="text-muted lh-lg mb-4" style="text-align: justify;">
                     {{ $data['sejarah'] }}
                 </p>
-
-                {{-- Visi Misi Card --}}
-                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white"
-                     style="border-top: 4px solid var(--color-accent) !important;">
-                    <h5 class="fw-bold text-dark mb-2"><i class="bi bi-eye-fill me-2 text-muted"></i> Visi</h5>
-                    <p class="text-muted mb-3">{{ $data['visi'] ?? 'Menjadi Program Studi Unggul dan Berdaya Saing.' }}</p>
-                    <hr class="my-3 opacity-50">
-                    <h5 class="fw-bold text-dark mb-2"><i class="bi bi-bullseye me-2 text-muted"></i> Misi</h5>
-                    <ul class="text-muted mb-0 ps-3" style="line-height: 1.8;">
-                        @if(is_array($data['misi']))
-                            @foreach($data['misi'] as $m)
-                                <li>{{ $m }}</li>
-                            @endforeach
-                        @else
-                            <li>{{ $data['misi'] }}</li>
-                        @endif
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
