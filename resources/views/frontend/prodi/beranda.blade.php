@@ -559,7 +559,7 @@
                     Rancang masa depan cemerlang dengan pendidikan berkualitas tinggi, nilai-nilai kepesantrenan, serta jaringan alumni yang luas.
                 </p>
                 <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3">
-                    <a href="#" class="btn btn-gold btn-gold-animated px-5 py-3 rounded-pill shadow btn-stack-mobile">
+                    <a href="{{ route('frontend.akademik.pmb') }}" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-gold-animated px-5 py-3 rounded-pill shadow btn-stack-mobile">
                         <span>Daftar Online Sekarang</span>
                         <i class="bi bi-rocket-takeoff-fill ms-2 btn-icon-rocket"></i>
                     </a>

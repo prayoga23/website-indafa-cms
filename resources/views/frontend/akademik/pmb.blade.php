@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="page-hero" style="background: linear-gradient(rgba(11, 83, 69, 0.85), rgba(0, 0, 0, 0.75)), url('{{ (isset($page) && $page->featured_image) ? asset('storage/' . $page->featured_image) : asset('assets/img/carousel-3.jpg') }}') no-repeat center center; background-size: cover;">
+<section class="page-hero" style="background: linear-gradient(rgba(11, 83, 69, 0.85), rgba(0, 0, 0, 0.75)), url('{{ asset('storage/gallery/2.png') }}') no-repeat center center; background-size: cover;">
     <div class="container text-center text-white mt-5">
         <h5 class="text-gold text-uppercase fw-semibold tracking-wider">PMB</h5>
         <h1 class="display-4 fw-bold text-uppercase">{{ isset($page) ? $page->title : 'Penerimaan Mahasiswa Baru' }}</h1>
@@ -36,7 +36,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="rounded-4 overflow-hidden shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop" alt="Kuliah di INDAFA" class="w-100" style="height:320px; object-fit:cover;">
+                    <img src="{{ asset('storage/gallery/2.png') }}" alt="Kuliah di indafa" class="w-100" style="height:320px; object-fit:cover;">
                 </div>
             </div>
         </div>
