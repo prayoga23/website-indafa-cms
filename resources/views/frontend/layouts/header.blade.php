@@ -500,26 +500,26 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="fakultasDropdown">
                                 <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="{{ route('frontend.fakultas.syariah') }}">
+                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="{{ route('frontend.fakultas.syariah') }}" target="_blank" rel="noopener noreferrer">
                                         <span>Fakultas Ilmu Syariah</span>
                                         <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.syariah') }}">Beranda Fakultas Ilmu Syariah</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}">Prodi Hukum Keluarga Islam (HKI)</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}">Prodi Hukum Ekonomi Syariah (HES)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.syariah') }}" target="_blank" rel="noopener noreferrer">Beranda Fakultas Ilmu Syariah</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}" target="_blank" rel="noopener noreferrer">Prodi Hukum Keluarga Islam (HKI)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}" target="_blank" rel="noopener noreferrer">Prodi Hukum Ekonomi Syariah (HES)</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="{{ route('frontend.fakultas.ebit') }}">
+                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="{{ route('frontend.fakultas.ebit') }}" target="_blank" rel="noopener noreferrer">
                                         <span>Fakultas Tarbiyah</span>
                                         <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.ebit') }}">Beranda Fakultas Tarbiyah</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}">Prodi Manajemen Bisnis Syariah (MBS)</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}">Prodi Ekonomi Syariah (EKOS)</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}">Prodi Pendidikan Agama Islam (PAI)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.ebit') }}" target="_blank" rel="noopener noreferrer">Beranda Fakultas Tarbiyah</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}" target="_blank" rel="noopener noreferrer">Prodi Manajemen Bisnis Syariah (MBS)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}" target="_blank" rel="noopener noreferrer">Prodi Ekonomi Syariah (EKOS)</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}" target="_blank" rel="noopener noreferrer">Prodi Pendidikan Agama Islam (PAI)</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -533,9 +533,9 @@
                                 Unit & Lembaga
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="unitDropdown">
-                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.index') }}">LPM</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.index') }}">LP2M</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.unit.ormawa') }}">ORMAWA</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.index') }}" target="_blank" rel="noopener noreferrer">LPM</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.index') }}" target="_blank" rel="noopener noreferrer">LP2M</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.unit.ormawa') }}" target="_blank" rel="noopener noreferrer">ORMAWA</a></li>
                             </ul>
                         </li>
 
