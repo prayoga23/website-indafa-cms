@@ -199,11 +199,8 @@ Route::get('/galeri/video', [GaleriController::class, 'videoGallery'])->name('fr
 |--------------------------------------------------------------------------
 */
 
-Route::get('/frontend-kontak.', [\App\Http\Controllers\Frontend\HubungiKamiController::class, 'index'])->name('frontend.hubungi.index');
+Route::get('/kontak', [\App\Http\Controllers\Frontend\HubungiKamiController::class, 'index'])->name('frontend.kontak.index');
 Route::post('/kontak', [\App\Http\Controllers\Frontend\HubungiKamiController::class, 'storeMessage'])->name('frontend.kontak.store');
-    Route::get('/frontend.kontak.index', function () {
-        return view('frontend.kontak.index');
-    })->name('frontend.kontak.index');
 
 
 
@@ -223,7 +220,7 @@ Route::get('/fakultas/{slug}', [FrontendFacultyController::class, 'show'])
 Route::get('/program-studi/{slug}',[FrontendStudyProgramController::class, 'show'])->name('programs.show');
 // Route::get('/program-studi/{slug}',[FrontendStudyProgramController::class, 'show'])->name('programs.page.show');
 
-Route::get('/kontak', [ContactController::class, 'index'])->name('contact.index');
+// contact.index redirect ke frontend.kontak.index untuk backward compatibility
 
 Route::get('/pengumuman', [FrontendAnnouncementController::class, 'index'])->name('announcements.index');
 Route::get('/pengumuman/{slug}', [FrontendAnnouncementController::class, 'show'])->name('announcements.show');
@@ -317,7 +314,7 @@ Route::prefix('admin')
         Route::resource('study-programs',AdminStudyProgramController::class);
         Route::resource('lecturers', LecturerController::class);
         Route::resource('news', AdminNewsController::class);
-        Route::get('/admin/news/{id}', [AdminNewsController::class, 'show'])->name('admin.news.show');
+        // Route::get('/admin/news/{id}', [AdminNewsController::class, 'show'])->name('admin.news.show'); // Duplikat, sudah ada di resource
         Route::resource('announcements', AdminAnnouncementController::class);
         Route::resource('galleries', AdminGalleryController::class);
         Route::post('galleries/{gallery}/photos',[GalleryPhotoController::class, 'store'])->name('galleries.photos.store');

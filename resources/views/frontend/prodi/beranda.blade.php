@@ -442,9 +442,8 @@
 
             {{-- Deskripsi & Visi Misi --}}
             <div class="col-lg-8">
-                <span class="section-eyebrow">PROFIL PRODI</span>
-                <h2 class="section-title mb-2">Mengenal Prodi {{ Str::title(trim(str_replace(['(S1)', '(s1)', 'Prodi', 'prodi'], '', $data['name']))) }} (S1)</h2>
-                <div class="section-divider align-start"></div>
+                <h2 class="section-title mb-2">Ketua Program Studi</h2>
+               
 
                 <blockquote class="p-4 rounded-4 bg-white border-start border-4 mb-4 shadow-sm" style="border-color: var(--color-primary) !important; line-height:1.8;">
                     <i class="bi bi-quote fs-2 me-1 opacity-75" style="color: var(--color-accent); vertical-align: -0.15em;"></i>
@@ -468,11 +467,8 @@
     <div class="container">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 mb-md-5 gap-3">
             <div class="text-center text-md-start">
-                <span class="section-eyebrow">WARTA PRODI</span>
                 <h2 class="section-title">Berita &amp; Kegiatan Terbaru</h2>
-                <div class="section-divider align-start"></div>
-                <p class="section-lead">Ikuti perkembangan, capaian prestasi, serta agenda akademik di Program Studi {{ $data['name'] }}</p>
-            </div>
+                 </div>
             <a href="{{ route('frontend.prodi.berita', $data['id']) }}" class="btn btn-outline-brand px-4 py-2 rounded-pill btn-stack-mobile flex-shrink-0">
                 Semua Berita <i class="bi bi-arrow-right ms-1"></i>
             </a>
@@ -517,59 +513,6 @@
                 <p class="text-muted mt-3 mb-0">Belum ada berita terbaru untuk Program Studi ini.</p>
             </div>
         @endif
-    </div>
-</section>
-
-{{-- =========================
-    DOSEN / TENAGA PENDIDIK PRODI
-========================= --}}
-<section class="section-py section-dosen">
-    <div class="container">
-        <div class="text-center mx-auto mb-4 mb-md-5 section-header">
-            <span class="section-eyebrow">STAF PENGAJAR</span>
-            <h2 class="section-title">Dosen Pembimbing &amp; Pengajar</h2>
-            <div class="section-divider"></div>
-            <p class="section-lead">Didukung oleh tenaga pendidik profesional, ahli di bidangnya, dan berkomitmen penuh bagi kesuksesan mahasiswa</p>
-        </div>
-
-        <div class="text-center p-4">
-            <p class="text-muted">Data dosen pengajar dapat dilihat di halaman pimpinan.</p>
-            <a href="{{ route('frontend.prodi.pimpinan', $data['id']) }}" class="btn btn-outline-brand rounded-pill px-4">
-                Lihat Pimpinan &amp; Dosen <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-        </div>
-    </div>
-</section>
-
-{{-- =========================
-    CTA PMB FOOTER
-========================= --}}
-<section class="section-py text-white text-center position-relative overflow-hidden cta-section">
-    <div class="container position-relative" style="z-index: 2;">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <span class="badge bg-white bg-opacity-10 text-uppercase px-3 py-2 rounded-pill small mb-3 border border-white border-opacity-20"
-                      style="letter-spacing: 2px; color: var(--color-accent-light);">
-                    Penerimaan Mahasiswa Baru {{ date('Y') }}
-                </span>
-                <h2 class="fw-bold mb-3 text-white" style="font-size: clamp(1.6rem, 1.1rem + 2vw, 2.75rem);">
-                    Mari Bergabung Bersama <br><span style="color: var(--color-accent-light);">{{ $data['name'] }}</span>
-                </h2>
-                <p class="lead mx-auto mb-4 fs-6 opacity-75 px-md-5">
-                    Rancang masa depan cemerlang dengan pendidikan berkualitas tinggi, nilai-nilai kepesantrenan, serta jaringan alumni yang luas.
-                </p>
-                <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3">
-                    <a href="{{ route('frontend.akademik.pmb') }}" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-gold-animated px-5 py-3 rounded-pill shadow btn-stack-mobile">
-                        <span>Daftar Online Sekarang</span>
-                        <i class="bi bi-rocket-takeoff-fill ms-2 btn-icon-rocket"></i>
-                    </a>
-                    <a href="{{ route('frontend.prodi.kontak', $data['id']) }}" class="btn btn-outline-light px-5 py-3 rounded-pill btn-stack-mobile d-inline-flex align-items-center justify-content-center">
-                        <span>Hubungi Kami</span>
-                        <i class="bi bi-chat-dots ms-2"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 

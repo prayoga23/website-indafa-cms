@@ -382,9 +382,7 @@
         <div class="text-center mx-auto mb-4 mb-md-5 section-header">
             <span class="section-eyebrow">WARTA PRODI</span>
             <h2 class="section-title">Berita & Kegiatan Terbaru</h2>
-            <div class="section-divider"></div>
-            <p class="section-lead">Ikuti perkembangan, capaian prestasi, serta agenda akademik di Program Studi {{ $program->name }}</p>
-        </div>
+         
 
         @if($news && $news->count() > 0)
             <div class="row g-3 g-md-4">

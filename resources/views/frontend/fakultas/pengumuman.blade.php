@@ -29,7 +29,7 @@
                     </div>
                     <h5 class="fw-bold mb-2 text-dark-green">Pelaksanaan Ujian Skripsi Gelombang I Tahun Akademik 2026/2027</h5>
                     <p class="text-secondary small mb-3">Diberitahukan kepada seluruh mahasiswa semester akhir {{ $data['name'] }} bahwa pendaftaran ujian skripsi gelombang I telah dibuka...</p>
-                    <a href="#" class="btn btn-sm text-white" style="background-color: var(--fac-color); border-radius:50px;">Selengkapnya</a>
+                    <a href="#" class="btn btn-sm text-white px-3" style="background-color: var(--fac-color); border-radius:50px;"><i class="bi bi-download me-1"></i> Download Pengumuman Lengkap</a>
                 </div>
             </div>
 
@@ -42,7 +42,7 @@
                     </div>
                     <h5 class="fw-bold mb-2 text-dark-green">Jadwal Pengisian Kartu Rencana Studi (KRS) Semester Ganjil</h5>
                     <p class="text-secondary small mb-3">Pengisian KRS mahasiswa semester ganjil {{ $data['name'] }} akan dimulai secara daring melalui portal akademik SIAKAD...</p>
-                    <a href="#" class="btn btn-sm text-white" style="background-color: var(--fac-color); border-radius:50px;">Selengkapnya</a>
+                    <a href="#" class="btn btn-sm text-white px-3" style="background-color: var(--fac-color); border-radius:50px;"><i class="bi bi-download me-1"></i> Download Pengumuman Lengkap</a>
                 </div>
             </div>
         </div>
