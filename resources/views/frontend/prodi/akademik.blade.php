@@ -196,7 +196,6 @@
                             </a>
                         </div>
                     </div>
-</div>
 
                     {{-- Layanan Persuratan Tambahan --}}
                     <div class="row g-4">
@@ -227,7 +226,6 @@
                     </div>
                 </div>
             </div>
-</di> </div>
 
         {{-- 6. JADWAL --}}
         @elseif($page === 'jadwal')
