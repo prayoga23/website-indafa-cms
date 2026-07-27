@@ -45,6 +45,26 @@
                             <span class="text-secondary small">{{ $data['id'] }}@iaidafa.ac.id</span>
                         </div>
                     </div>
+
+                    <div class="contact-info-card d-flex align-items-start gap-3 bg-white p-3 rounded-4 shadow-sm" style="border-left:4px solid var(--fac-color);">
+                        <div class="contact-icon-box rounded-3 p-2.5 flex-shrink-0" style="background:rgba(0,0,0,0.05); color:var(--fac-color)">
+                            <i class="bi bi-whatsapp fs-5"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1" style="color:var(--fac-color)">WhatsApp Resmi</h6>
+                            <span class="text-secondary small">
+                                @if(isset($setting) && !empty($setting->whatsapp))
+                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $setting->whatsapp) }}" target="_blank" rel="noopener noreferrer" class="text-secondary text-decoration-none fw-semibold">
+                                        {{ $setting->whatsapp }}
+                                    </a>
+                                @elseif(isset($setting) && !empty($setting->phone))
+                                    {{ $setting->phone }}
+                                @else
+                                    +62 812-3456-7890
+                                @endif
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 

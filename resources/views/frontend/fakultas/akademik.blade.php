@@ -65,29 +65,49 @@
 
         {{-- 2. FORM PERSURATAN --}}
         @elseif($page === 'persuratan')
-            <div class="text-center mb-5">
-                <span class="page-section-eyebrow">Administrasi</span>
-                <h2 class="page-section-title text-uppercase" style="color:var(--fac-color)">Pengajuan Persuratan</h2>
-                <div class="page-section-divider mx-auto mt-2" style="background-color: var(--fac-color)"></div>
-            </div>
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <div class="info-card p-4 border-0 shadow-sm text-center bg-white rounded-4">
-                                <div class="icon-circle mx-auto mb-3" style="background:rgba(0,0,0,0.05); color:var(--fac-color)"><i class="bi bi-file-earmark-text fs-3"></i></div>
-                                <h5 class="fw-bold text-dark-green">Surat Keterangan Aktif Kuliah</h5>
-                                <p class="small text-muted mb-4">Pengajuan surat keterangan aktif berkuliah untuk keperluan beasiswa, BPJS, dll.</p>
-                                <a href="#" class="btn text-white w-100" style="background:var(--fac-color); border-radius:50px;">Ajukan Sekarang</a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-card p-4 border-0 shadow-sm text-center bg-white rounded-4">
-                                <div class="icon-circle mx-auto mb-3" style="background:rgba(0,0,0,0.05); color:var(--fac-color)"><i class="bi bi-file-earmark-medical fs-3"></i></div>
-                                <h5 class="fw-bold text-dark-green">Surat Izin Penelitian</h5>
-                                <p class="small text-muted mb-4">Form pengajuan surat izin untuk melakukan penelitian skripsi di instansi/lembaga.</p>
-                                <a href="#" class="btn text-white w-100" style="background:var(--fac-color); border-radius:50px;">Ajukan Sekarang</a>
-                            </div>
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid #e9ecef; background-color: #ffffff;">
+                                        <th scope="col" class="py-3 px-4 fw-bold text-dark" style="width: 80px;">No</th>
+                                        <th scope="col" class="py-3 fw-bold text-dark">Nama</th>
+                                        <th scope="col" class="py-3 px-4 text-end fw-bold text-dark" style="width: 160px; padding-right: 2.5rem !important;">keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="px-4 py-3 fw-normal text-secondary">1</td>
+                                        <td class="py-3 text-dark fw-medium">Form Pengajuan Surat Keterangan Aktif Kuliah</td>
+                                        <td class="text-end py-3 px-4" style="padding-right: 2.5rem !important;">
+                                            <a href="#" class="fw-bold text-decoration-underline" style="color: #c59b27;">Download</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 fw-normal text-secondary">2</td>
+                                        <td class="py-3 text-dark fw-medium">Form Pengajuan Surat Izin Penelitian / Observasi</td>
+                                        <td class="text-end py-3 px-4" style="padding-right: 2.5rem !important;">
+                                            <a href="#" class="fw-bold text-decoration-underline" style="color: #c59b27;">Download</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 fw-normal text-secondary">3</td>
+                                        <td class="py-3 text-dark fw-medium">Form Surat Bebas Tanggungan Perpustakaan & Laboratorium</td>
+                                        <td class="text-end py-3 px-4" style="padding-right: 2.5rem !important;">
+                                            <a href="#" class="fw-bold text-decoration-underline" style="color: #c59b27;">Download</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 fw-normal text-secondary">4</td>
+                                        <td class="py-3 text-dark fw-medium">Form Permohonan Cek Plagiasi / Similarity Turnitin</td>
+                                        <td class="text-end py-3 px-4" style="padding-right: 2.5rem !important;">
+                                            <a href="#" class="fw-bold text-decoration-underline" style="color: #c59b27;">Download</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -198,24 +218,33 @@
                         <table class="table table-hover align-middle mb-0">
                             <thead class="table-dark" style="background: var(--fac-color) !important;">
                                 <tr>
-                                    <th scope="col" class="py-3 px-4">Hari / Waktu</th>
-                                    <th scope="col" class="py-3">Mata Kuliah</th>
-                                    <th scope="col" class="py-3">Dosen</th>
-                                    <th scope="col" class="py-3">Ruang</th>
+                                    <th scope="col" class="py-3 px-4">Judul / Deskripsi Jadwal</th>
+                                    <th scope="col" class="py-3">Format</th>
+                                    <th scope="col" class="py-3 text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="py-3 px-4 fw-semibold text-dark-green">Senin / 08.00 - 09.40</td>
-                                    <td>Filsafat Hukum Islam</td>
-                                    <td>Drs. H. Mahrus, M.A.</td>
-                                    <td>Ruang A.12</td>
+                                    <td class="py-3 px-4 fw-semibold text-dark-green">
+                                        <i class="bi bi-file-earmark-pdf text-danger me-2 fs-5"></i>Jadwal Kuliah Semester Ganjil Tahun Ajaran 2026
+                                    </td>
+                                    <td><span class="badge bg-danger">PDF</span></td>
+                                    <td class="text-center">
+                                        <a href="#" class="btn btn-sm text-white px-3" style="background:var(--fac-color); border-radius:50px;">
+                                            <i class="bi bi-download me-1"></i> Download
+                                        </a>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td class="py-3 px-4 fw-semibold text-dark-green">Selasa / 10.00 - 11.40</td>
-                                    <td>Metodologi Penelitian Hukum</td>
-                                    <td>Dr. H. Abu Bakar, M.H.I.</td>
-                                    <td>Ruang B.04</td>
+                                    <td class="py-3 px-4 fw-semibold text-dark-green">
+                                        <i class="bi bi-file-earmark-pdf text-danger me-2 fs-5"></i>Jadwal Kuliah Semester Genap Tahun Ajaran 2026
+                                    </td>
+                                    <td><span class="badge bg-danger">PDF</span></td>
+                                    <td class="text-center">
+                                        <a href="#" class="btn btn-sm text-white px-3" style="background:var(--fac-color); border-radius:50px;">
+                                            <i class="bi bi-download me-1"></i> Download
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -233,18 +262,18 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="d-flex flex-column gap-4">
-                        <div class="step-card bg-white p-4 rounded-4 shadow-sm">
-                            <div class="step-number" style="background: var(--fac-color)">1</div>
+                        <div class="step-card bg-white p-4 rounded-4 shadow-sm d-flex align-items-start gap-3">
+                            <div class="step-number text-white flex-shrink-0" style="background-color: var(--fac-color); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.25rem;">1</div>
                             <div class="step-content">
-                                <h5>Penyelesaian Ujian Munaqasyah (Skripsi)</h5>
-                                <p>Mahasiswa wajib lulus sidang skripsi dengan revisi minimal yang telah disetujui para penguji.</p>
+                                <h5 class="fw-bold mb-1" style="color: var(--fac-color);">1. Penyelesaian Ujian Munaqasyah (Skripsi)</h5>
+                                <p class="text-secondary mb-0">Mahasiswa wajib lulus sidang skripsi dengan revisi minimal yang telah disetujui para penguji.</p>
                             </div>
                         </div>
-                        <div class="step-card bg-white p-4 rounded-4 shadow-sm">
-                            <div class="step-number" style="background: var(--fac-color)">2</div>
+                        <div class="step-card bg-white p-4 rounded-4 shadow-sm d-flex align-items-start gap-3">
+                            <div class="step-number text-white flex-shrink-0" style="background-color: var(--fac-color); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.25rem;">2</div>
                             <div class="step-content">
-                                <h5>Bebas Tanggungan Perpustakaan & Laboratorium</h5>
-                                <p>Menyerahkan form bebas pinjaman buku dari perpustakaan pusat dan fakultas.</p>
+                                <h5 class="fw-bold mb-1" style="color: var(--fac-color);">2. Bebas Tanggungan Perpustakaan & Laboratorium</h5>
+                                <p class="text-secondary mb-0">Menyerahkan form bebas pinjaman buku dari perpustakaan pusat dan fakultas.</p>
                             </div>
                         </div>
                     </div>
@@ -271,7 +300,7 @@
                                 <p class="text-muted mb-3 small">Terakreditasi BAN-PT</p>
                                 <span class="badge bg-gold px-4 py-2 text-uppercase fw-bold rounded-pill" style="font-size:0.9rem; background-color:#cca43b !important;">Baik Sekali</span>
                                 <div class="mt-4">
-                                    <a href="#" class="btn btn-fac text-white" style="background:var(--fac-color); border-radius:50px;"><i class="bi bi-eye"></i> Lihat Sertifikat</a>
+                                    <a href="#" class="btn btn-fac text-white px-3" style="background:var(--fac-color); border-radius:50px;"><i class="bi bi-download me-1"></i> Download PDF</a>
                                 </div>
                             </div>
                         </div>

@@ -13,17 +13,11 @@
     <div class="container text-center text-white mt-5">
         <h5 class="text-gold text-uppercase fw-semibold tracking-wider">Profil</h5>
         <h1 class="display-4 fw-bold text-uppercase">Pimpinan Program Studi</h1>
-        <div class="page-hero-divider mx-auto" style="background-color: var(--pro-color)"></div>
     </div>
 </section>
 
 <section class="py-5 bg-premium-light">
     <div class="container py-3">
-        <div class="text-center mb-5">
-            <span class="page-section-eyebrow">Struktur Organisasi</span>
-            <h2 class="page-section-title text-uppercase" style="color:var(--pro-color)">Pengelola Program Studi</h2>
-            <div class="page-section-divider mx-auto mt-2" style="background-color: var(--pro-color)"></div>
-        </div>
 
         <div class="row g-4 justify-content-center">
             <!-- Kaprodi -->

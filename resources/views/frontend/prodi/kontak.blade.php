@@ -11,9 +11,7 @@
 
 <section class="page-hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop') no-repeat center center; background-size: cover;">
     <div class="container text-center text-white mt-5">
-        <h5 class="text-gold text-uppercase fw-semibold tracking-wider">Sekretariat</h5>
-        <h1 class="display-4 fw-bold text-uppercase">Kontak Program Studi</h1>
-        <div class="page-hero-divider mx-auto" style="background-color: var(--pro-color)"></div>
+        <h1 class="display-4 fw-bold text-uppercase">Kontak</h1>
     </div>
 </section>
 
@@ -41,8 +39,28 @@
                             <i class="bi bi-envelope fs-5"></i>
                         </div>
                         <div>
-                            <h6 class="fw-bold mb-1" style="color:var(--pro-color)">Surel Resmi</h6>
+                            <h6 class="fw-bold mb-1" style="color:var(--pro-color)">Email Resmi</h6>
                             <span class="text-secondary small">{{ $data['id'] }}@iaidafa.ac.id</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card d-flex align-items-start gap-3 bg-white p-3 rounded-4 shadow-sm" style="border-left:4px solid var(--pro-color);">
+                        <div class="contact-icon-box rounded-3 p-2.5 flex-shrink-0" style="background:rgba(0,0,0,0.05); color:var(--pro-color)">
+                            <i class="bi bi-whatsapp fs-5"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1" style="color:var(--pro-color)">No. WhatsApp</h6>
+                            <span class="text-secondary small">
+                                @if(isset($setting) && !empty($setting->whatsapp))
+                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $setting->whatsapp) }}" target="_blank" rel="noopener noreferrer" class="text-secondary text-decoration-none fw-semibold">
+                                        {{ $setting->whatsapp }}
+                                    </a>
+                                @elseif(isset($setting) && !empty($setting->phone))
+                                    {{ $setting->phone }}
+                                @else
+                                    +62 821-3933-6236
+                                @endif
+                            </span>
                         </div>
                     </div>
                 </div>

@@ -13,7 +13,6 @@
     <div class="container text-center text-white mt-5">
         <h5 class="text-gold text-uppercase fw-semibold tracking-wider">Profil</h5>
         <h1 class="display-4 fw-bold text-uppercase">Sejarah Program Studi</h1>
-        <div class="page-hero-divider mx-auto" style="background-color: var(--pro-color)"></div>
     </div>
 </section>
 
@@ -21,9 +20,8 @@
     <div class="container py-3">
         <div class="row align-items-center g-5">
             <div class="col-lg-7">
-                <span class="page-section-eyebrow">Lintas Sejarah</span>
+              
                 <h2 class="page-section-title mb-2" style="color:var(--pro-color)">Perjalanan Kami</h2>
-                <div class="page-section-divider mb-4" style="background-color: var(--pro-color)"></div>
                 <p class="text-secondary" style="line-height:1.8; text-align:justify;">
                     {{ $data['sejarah'] }}
                 </p>

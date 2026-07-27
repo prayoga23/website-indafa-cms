@@ -5,19 +5,12 @@
 @section('content')
 <section class="dosen-hero d-flex align-items-center">
     <div class="container text-center text-white mt-5">
-        <h5 class="text-gold text-uppercase fw-semibold tracking-wider">Pakar & Akademisi</h5>
         <h1 class="display-4 fw-bold text-uppercase">Profil Dosen</h1>
-        <div class="dosen-divider mx-auto"></div>
     </div>
 </section>
 
 <section class="py-5 bg-premium-light">
     <div class="container py-4">
-        <div class="text-center max-w-md mx-auto mb-5">
-            <h2 class="fw-bold text-dark-green text-uppercase tracking-wide">Dewan Pengajar HKI</h2>
-            <p class="text-muted">Didukung oleh tenaga pendidik profesional, kompeten, dan berintegritas tinggi di bidangnya.</p>
-        </div>
-
         <div class="row g-4 justify-content-center">
             @if(isset($lecturers) && $lecturers->count() > 0)
                 @foreach($lecturers as $lecturer)

@@ -11,9 +11,7 @@
 
 <section class="page-hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop') no-repeat center center; background-size: cover;">
     <div class="container text-center text-white mt-5">
-        <h5 class="text-gold text-uppercase fw-semibold tracking-wider">Kabar Terkini</h5>
         <h1 class="display-4 fw-bold text-uppercase">Berita & Kegiatan</h1>
-        <div class="page-hero-divider mx-auto" style="background-color: var(--pro-color)"></div>
     </div>
 </section>
 

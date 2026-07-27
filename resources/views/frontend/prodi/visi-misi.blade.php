@@ -13,7 +13,6 @@
     <div class="container text-center text-white mt-5">
         <h5 class="text-gold text-uppercase fw-semibold tracking-wider">Profil</h5>
         <h1 class="display-4 fw-bold text-uppercase">Visi & Misi</h1>
-        <div class="page-hero-divider mx-auto" style="background-color: var(--pro-color)"></div>
     </div>
 </section>
 
@@ -22,9 +21,6 @@
         <div class="row g-4 mb-5">
             <div class="col-12">
                 <div class="info-card text-center p-5" style="border-top: 4px solid var(--pro-color)">
-                    <div class="icon-circle icon-circle-primary mx-auto mb-3" style="background:rgba(0,0,0,0.05); color:var(--pro-color)">
-                        <i class="bi bi-eye-fill fs-3"></i>
-                    </div>
                     <h3 class="fw-bold mb-3" style="color:var(--pro-color)">VISI PROGRAM STUDI</h3>
                     <p class="lead text-secondary mx-auto" style="max-width:800px; line-height:1.8;">
                         "{{ $data['visi'] }}"
@@ -37,9 +33,6 @@
             <div class="col-12">
                 <div class="info-card p-5" style="border-top: 4px solid var(--pro-color)">
                     <div class="d-flex align-items-center gap-3 mb-4 justify-content-center">
-                        <div class="icon-circle icon-circle-gold" style="background:rgba(0,0,0,0.05); color:var(--pro-color)">
-                            <i class="bi bi-bullseye fs-3"></i>
-                        </div>
                         <h3 class="fw-bold mb-0" style="color:var(--pro-color)">MISI PROGRAM STUDI</h3>
                     </div>
                     <div class="row justify-content-center">
