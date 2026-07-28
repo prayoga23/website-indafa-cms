@@ -103,6 +103,7 @@ Route::prefix('prodi-{prodi}')->group(function () {
     Route::get('/sejarah', [ProdiSubWebController::class, 'sejarah'])->name('frontend.prodi.sejarah');
     Route::get('/visi-misi', [ProdiSubWebController::class, 'visiMisi'])->name('frontend.prodi.visi-misi');
     Route::get('/pimpinan', [ProdiSubWebController::class, 'pimpinan'])->name('frontend.prodi.pimpinan');
+    Route::get('/dosen', [ProdiSubWebController::class, 'dosen'])->name('frontend.prodi.dosen');
     Route::get('/akademik/{page}', [ProdiSubWebController::class, 'akademik'])->name('frontend.prodi.akademik');
     Route::get('/pengumuman', [ProdiSubWebController::class, 'pengumuman'])->name('frontend.prodi.pengumuman');
     Route::get('/berita', [ProdiSubWebController::class, 'berita'])->name('frontend.prodi.berita');

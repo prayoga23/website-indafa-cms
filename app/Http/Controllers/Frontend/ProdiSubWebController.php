@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\StudyProgram;
+use App\Models\Lecturer;
 
 class ProdiSubWebController extends Controller
 {
@@ -154,6 +155,33 @@ class ProdiSubWebController extends Controller
     {
         $data = $this->getProdiData($prodi);
         return view('frontend.prodi.pimpinan', compact('data'));
+    }
+
+    public function dosen($prodi)
+    {
+        $data = $this->getProdiData($prodi);
+
+        $slugs = [
+            'hki' => 'hukum-keluarga-islam',
+            'hes' => 'hukum-ekonomi-syariah',
+            'mbs' => 'manajemen-bisnis-syariah',
+            'ekos' => 'ekonomi-syariah',
+            'pai' => 'pendidikan-agama'
+        ];
+
+        $slug = $slugs[$prodi] ?? $prodi;
+        $dbProdi = StudyProgram::where('slug', $slug)->first();
+
+        if ($dbProdi) {
+            $lecturers = Lecturer::where('study_program_id', $dbProdi->id)
+                                 ->where('is_active', 1)
+                                 ->orderBy('name', 'asc')
+                                 ->get();
+        } else {
+            $lecturers = collect();
+        }
+
+        return view('frontend.prodi.dosen', compact('data', 'lecturers'));
     }
 
     public function akademik($prodi, $page)

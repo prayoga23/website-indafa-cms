@@ -188,7 +188,7 @@
                                 <li><a class="dropdown-item" href="{{ route('frontend.prodi.sejarah', $prodiId) }}">Sejarah</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.prodi.visi-misi', $prodiId) }}">Visi Misi & Tujuan</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.prodi.pimpinan', $prodiId) }}">Pimpinan</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.profil.profil-dosen') }}">Profil Dosen</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.prodi.dosen', $prodiId) }}">Profil Dosen</a></li>
                             </ul>
                         </li>
 
