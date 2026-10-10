@@ -192,27 +192,6 @@
 
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{{ route('news.index') }}">
-                            Berita
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ route('announcements.index') }}">
-                            Pengumuman
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ route('gallery.index') }}">
-                            Galeri
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link"
                            href="{{ route('contact.index') }}">
                             Kontak
                         </a>
