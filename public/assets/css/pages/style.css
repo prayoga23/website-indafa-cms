@@ -2,15 +2,29 @@
    SHARED PAGE STYLES (untuk semua halaman non-beranda)
 ============================================================ */
 
-/* Hero Banner Generic */
-.page-hero {
+/* Hero Banner Generic (Disesuaikan agar judul halaman tidak tertutup header) */
+.page-hero,
+.berita-hero,
+.pengumuman-hero,
+.download-hero,
+.history-hero,
+.galeri-hero,
+.agenda-hero,
+.kontak-hero,
+.bg-breadcrumb,
+section[class*="-hero"] {
     background: linear-gradient(rgba(11, 83, 69, 0.85), rgba(0, 0, 0, 0.75)),
                 url('/assets/img/carousel-3.jpg') no-repeat center center;
     background-size: cover;
-    height: 40vh;
-    min-height: 300px;
-    display: flex;
-    align-items: center;
+    height: auto !important;
+    min-height: 340px !important;
+    padding-top: 160px !important; /* Ruang aman di bawah navbar fixed */
+    padding-bottom: 70px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
 }
 .page-hero .text-gold {
     color: #cca43b !important;
@@ -286,9 +300,20 @@
 
 /* Responsive */
 @media (max-width: 767.98px) {
-    .page-hero {
-        height: 30vh;
-        min-height: 220px;
+    .page-hero,
+    .berita-hero,
+    .pengumuman-hero,
+    .download-hero,
+    .history-hero,
+    .galeri-hero,
+    .agenda-hero,
+    .kontak-hero,
+    .bg-breadcrumb,
+    section[class*="-hero"] {
+        height: auto !important;
+        min-height: 260px !important;
+        padding-top: 125px !important;
+        padding-bottom: 45px !important;
     }
     .page-gallery-grid {
         grid-template-columns: repeat(2, 1fr);

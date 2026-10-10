@@ -603,6 +603,46 @@
 
 {{-- Custom CSS styles for nested multi-level dropdown menus --}}
 <style>
+    /* Pastikan semua hero banner & judul halaman tidak tertutup oleh header navbar fixed */
+    .page-hero,
+    .berita-hero,
+    .pengumuman-hero,
+    .download-hero,
+    .history-hero,
+    .galeri-hero,
+    .agenda-hero,
+    .kontak-hero,
+    .bg-breadcrumb,
+    section[class*="-hero"] {
+        height: auto !important;
+        min-height: 340px !important;
+        padding-top: 160px !important; /* Ruang aman di bawah navbar fixed (tinggi navbar ~85px) */
+        padding-bottom: 70px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        box-sizing: border-box !important;
+    }
+
+    @media (max-width: 991.98px) {
+        .page-hero,
+        .berita-hero,
+        .pengumuman-hero,
+        .download-hero,
+        .history-hero,
+        .galeri-hero,
+        .agenda-hero,
+        .kontak-hero,
+        .bg-breadcrumb,
+        section[class*="-hero"] {
+            height: auto !important;
+            min-height: 260px !important;
+            padding-top: 125px !important;
+            padding-bottom: 45px !important;
+        }
+    }
+
     /* Responsive navbar styling agar seluruh menu muat pas di layar desktop dan tidak terpotong */
     .custom-navbar .container-fluid {
         padding-left: clamp(14px, 2vw, 36px) !important;
