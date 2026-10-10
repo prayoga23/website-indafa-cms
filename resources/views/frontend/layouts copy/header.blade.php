@@ -145,16 +145,18 @@
 
                         <ul class="dropdown-menu">
 
-                            @foreach($facultiesMenu as $faculty)
-
-                                <li>
-                                    <a class="dropdown-item"
-                                       href="{{ route('faculties.show',$faculty->slug) }}">
-                                        {{ $faculty->name }}
-                                    </a>
-                                </li>
-
-                            @endforeach
+                            <li>
+                                <a class="dropdown-item"
+                                   href="{{ route('faculties.show', 'fakultas-ilmu-syariah') }}">
+                                    Fakultas Ilmu Syariah
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                   href="{{ route('faculties.show', 'fakultas-tarbiyah') }}">
+                                    Fakultas Tarbiyah
+                                </a>
+                            </li>
 
                         </ul>
 
