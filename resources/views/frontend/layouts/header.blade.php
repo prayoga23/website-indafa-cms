@@ -285,6 +285,8 @@
                                 <li><a class="dropdown-item" href="{{ route('frontend.lpm.pengawasan', 'kontrak-kinerja') }}">Kontrak Kinerja</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lpm.pengawasan', 'monev-kinerja') }}">Monev Kinerja</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lpm.pengawasan', 'audit-kinerja') }}">Laporan Audit Kinerja</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.pengawasan', 'rtm') }}">RTM (Rapat Tinjauan Tahunan)</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.lpm.pengawasan', 'rtl') }}">RTL (Rapat Tinjauan Manajemen)</a></li>
                             </ul>
                         </li>
 
@@ -373,7 +375,6 @@
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#profil">Profil Jurnal</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#rekap">Rekap Jurnal</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#jrce">JRCE</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#egalita">EGALITA</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.riset', 'jurnal') }}#ejournal">E-Journal</a></li>
                                     </ul>
                                 </li>
@@ -415,8 +416,6 @@
                                 <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'penelitian') }}">Pusat Penelitian</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'pengabdian') }}">Pusat Pengabdian Masyarakat</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'publikasi') }}">Pusat Publikasi Ilmiah</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'p2km') }}">Pusat Pelayanan Kesehatan Masyarakat (P2KM)</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'p3sr') }}">Pusat Pengelola & Pengembangan Sistem Remunerasi (P3SR)</a></li>
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
                                         <span>Pusat Studi</span>
@@ -505,7 +504,6 @@
                                         <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.syariah') }}" target="_blank" rel="noopener noreferrer">Beranda Fakultas Ilmu Syariah</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}" target="_blank" rel="noopener noreferrer">Prodi Hukum Keluarga Islam (HKI)</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}" target="_blank" rel="noopener noreferrer">Prodi Hukum Ekonomi Syariah (HES)</a></li>
                                     </ul>
@@ -516,7 +514,6 @@
                                         <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li><a class="dropdown-item" href="{{ route('frontend.fakultas.ebit') }}" target="_blank" rel="noopener noreferrer">Beranda Fakultas Tarbiyah</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}" target="_blank" rel="noopener noreferrer">Prodi Manajemen Bisnis Syariah (MBS)</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}" target="_blank" rel="noopener noreferrer">Prodi Ekonomi Syariah (EKOS)</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}" target="_blank" rel="noopener noreferrer">Prodi Pendidikan Agama Islam (PAI)</a></li>
@@ -535,7 +532,6 @@
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="unitDropdown">
                                 <li><a class="dropdown-item" href="{{ route('frontend.lpm.index') }}" target="_blank" rel="noopener noreferrer">LPM</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lp2m.index') }}" target="_blank" rel="noopener noreferrer">LP2M</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.unit.ormawa') }}" target="_blank" rel="noopener noreferrer">ORMAWA</a></li>
                             </ul>
                         </li>
 
@@ -550,9 +546,21 @@
                                 <li><a class="dropdown-item" href="{{ route('frontend.akademik.filosofi-logo') }}">Filosofi Logo</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.akademik.penelitian') }}">Penelitian & Pengabdian</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.akademik.pmb') }}">PMB</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.akademik.prestasi') }}">Prestasi Mahasiswa</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.akademik.gallery-indafa') }}">Gallery Indafa</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.akademik.kalender') }}">Kalender Akademik</a></li>
+                            </ul>
+                        </li>
+
+                        {{-- KEMAHASISWAAN --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-link-custom dropdown-toggle" href="#"
+                               id="kemahasiswaanDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Kemahasiswaan
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="kemahasiswaanDropdown">
+                                <li><a class="dropdown-item" href="{{ route('frontend.unit.ormawa') }}" target="_blank" rel="noopener noreferrer">ORMAWA</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.akademik.prestasi') }}">Prestasi Kemahasiswaan</a></li>
                             </ul>
                         </li>
 
@@ -890,6 +898,20 @@
         var submenuToggles = document.querySelectorAll('.dropdown-submenu > .dropdown-toggle');
         submenuToggles.forEach(function(toggle) {
             toggle.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                var hasValidHref = href && href !== '#' && href !== 'javascript:void(0);';
+
+                // Desktop: jika klik pada nama fakultas/menu ber-link, langsung arahkan ke beranda fakultas
+                if (window.innerWidth >= 992 && hasValidHref) {
+                    return;
+                }
+
+                // Mobile: jika klik pada teks (bukan panah chevron), langsung arahkan ke beranda fakultas
+                var isArrow = e.target.closest('.submenu-arrow');
+                if (window.innerWidth < 992 && !isArrow && hasValidHref) {
+                    return;
+                }
+
                 e.preventDefault();
                 e.stopPropagation();
 

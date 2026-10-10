@@ -44,7 +44,7 @@
                             </div>
                             <div>
                                 <h6 class="fw-bold text-dark mb-1">Riset & Jurnal</h6>
-                                <p class="small text-muted mb-0">Litapdimas, Jurnal JRCE, EGALITA, E-Journal & HKI.</p>
+                                <p class="small text-muted mb-0">Litapdimas, Jurnal JRCE, E-Journal & HKI.</p>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                             </div>
                             <div>
                                 <h6 class="fw-bold text-dark mb-1">Pusat Studi</h6>
-                                <p class="small text-muted mb-0">PSGA, Moderasi Agama, Islam & Sains, P2KM, P3SR.</p>
+                                <p class="small text-muted mb-0">PSGA, Moderasi Agama, Islam & Sains, Kerjasama.</p>
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                         <i class="bi bi-journal-bookmark fs-3"></i>
                     </div>
                     <h5 class="fw-bold text-dark-green">Rumah Jurnal INDAFA</h5>
-                    <p class="small text-secondary mb-3">Fasilitas penerbitan dan indeksasi karya ilmiah dosen dan peneliti (JRCE, EGALITA, dll).</p>
+                    <p class="small text-secondary mb-3">Fasilitas penerbitan dan indeksasi karya ilmiah dosen dan peneliti (JRCE, dll).</p>
                     <a href="{{ route('frontend.lp2m.riset', 'jurnal') }}" class="btn btn-sm btn-outline-success rounded-pill px-3">Lihat Jurnal</a>
                 </div>
             </div>

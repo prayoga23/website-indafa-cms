@@ -60,19 +60,7 @@
                             Menyelenggarakan workshop penulisan artikel ilmiah, fasilitasi pendampingan submit jurnal internasional Scopus/WoS, dan peningkatan peringkat SINTA jurnal institusi.
                         </p>
 
-                    @elseif($page === 'p2km')
-                        <h3 class="fw-bold text-dark-green mb-3">Pusat Pelayanan Kesehatan Masyarakat (P2KM)</h3>
-                        <div class="page-section-divider mb-4"></div>
-                        <p class="text-secondary" style="line-height:1.8;">
-                            P2KM menyelenggarakan program penyuluhan hidup sehat, pemeriksaan kesehatan gratis bagi santri dan warga sekitar, serta advokasi sanitasi lingkungan.
-                        </p>
 
-                    @elseif($page === 'p3sr')
-                        <h3 class="fw-bold text-dark-green mb-3">Pusat Pengelola & Pengembangan Sistem Remunerasi (P3SR)</h3>
-                        <div class="page-section-divider mb-4"></div>
-                        <p class="text-secondary" style="line-height:1.8;">
-                            P3SR merumuskan dan mengelola sistem pemberian insentif riset, insentif publikasi karya ilmiah, dan penghargaan pengabdian masyarakat bagi civitas akademika.
-                        </p>
 
                     @elseif($page === 'psga')
                         <h3 class="fw-bold text-dark-green mb-3">Pusat Studi Gender dan Anak (PSGA)</h3>
@@ -85,7 +73,7 @@
                             <ul class="text-secondary mb-0 small lh-lg">
                                 <li>Hukum Perkawinan & Kesejahteraan Keluarga Sakinah</li>
                                 <li>Pendampingan Pencegahan Kekerasan Pada Anak & Perempuan</li>
-                                <li>Penerbitan Jurnal EGALITA</li>
+                                <li>Penerbitan Publikasi & Buletin Ilmiah PSGA</li>
                             </ul>
                         </div>
 

@@ -174,6 +174,54 @@
                                 <a href="#" class="btn btn-sm btn-outline-success rounded-pill px-3"><i class="bi bi-file-earmark-pdf me-1"></i>Unduh Laporan</a>
                             </div>
                         </div>
+
+                    @elseif($page === 'rtm')
+                        <h3 class="fw-bold text-dark-green mb-3">RTM (Rapat Tinjauan Tahunan)</h3>
+                        <div class="page-section-divider mb-4"></div>
+                        <p class="text-secondary" style="line-height:1.8;">
+                            Rapat Tinjauan Tahunan (RTM) merupakan forum resmi evaluasi menyeluruh terhadap ketercapaian standar mutu, sasaran kinerja institusi, dan hasil tindak lanjut audit mutu internal di lingkungan INDAFA Bondowoso.
+                        </p>
+
+                        <div class="list-group rounded-4 mt-4">
+                            <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-1">Laporan RTM (Rapat Tinjauan Tahunan) Tahun Akademik 2025/2026</h6>
+                                    <p class="small text-muted mb-0">PDF - Diperbarui: Januari 2026</p>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-success rounded-pill px-3"><i class="bi bi-file-earmark-pdf me-1"></i>Unduh Dokumen</a>
+                            </div>
+                            <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-1">Laporan RTM (Rapat Tinjauan Tahunan) Tahun Akademik 2024/2025</h6>
+                                    <p class="small text-muted mb-0">PDF - Diperbarui: Juli 2025</p>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-success rounded-pill px-3"><i class="bi bi-file-earmark-pdf me-1"></i>Unduh Dokumen</a>
+                            </div>
+                        </div>
+
+                    @elseif($page === 'rtl')
+                        <h3 class="fw-bold text-dark-green mb-3">RTL (Rapat Tinjauan Manajemen)</h3>
+                        <div class="page-section-divider mb-4"></div>
+                        <p class="text-secondary" style="line-height:1.8;">
+                            Rapat Tinjauan Manajemen (RTL) diselenggarakan untuk meninjau efektivitas implementasi Sistem Penjaminan Mutu Internal (SPMI), mengidentifikasi peluang perbaikan berkelanjutan, dan menetapkan rencana tindak lanjut strategis.
+                        </p>
+
+                        <div class="list-group rounded-4 mt-4">
+                            <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-1">Dokumen RTL (Rapat Tinjauan Manajemen) Tahun Akademik 2025/2026</h6>
+                                    <p class="small text-muted mb-0">PDF - Diperbarui: Januari 2026</p>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-success rounded-pill px-3"><i class="bi bi-file-earmark-pdf me-1"></i>Unduh Dokumen</a>
+                            </div>
+                            <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-1">Dokumen RTL (Rapat Tinjauan Manajemen) Tahun Akademik 2024/2025</h6>
+                                    <p class="small text-muted mb-0">PDF - Diperbarui: Juli 2025</p>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-success rounded-pill px-3"><i class="bi bi-file-earmark-pdf me-1"></i>Unduh Dokumen</a>
+                            </div>
+                        </div>
                     @endif
 
                 </div>

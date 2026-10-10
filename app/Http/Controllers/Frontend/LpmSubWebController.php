@@ -55,6 +55,8 @@ class LpmSubWebController extends Controller
             'kontrak-kinerja' => 'Kontrak Kinerja',
             'monev-kinerja' => 'Monev Kinerja',
             'audit-kinerja' => 'Laporan Audit Kinerja',
+            'rtm' => 'RTM (Rapat Tinjauan Tahunan)',
+            'rtl' => 'RTL (Rapat Tinjauan Manajemen)',
         ];
 
         if (!array_key_exists($page, $validPages)) {

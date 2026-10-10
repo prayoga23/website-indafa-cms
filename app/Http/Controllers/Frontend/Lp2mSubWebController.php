@@ -75,8 +75,6 @@ class Lp2mSubWebController extends Controller
             'penelitian' => 'Pusat Penelitian',
             'pengabdian' => 'Pusat Pengabdian Masyarakat',
             'publikasi' => 'Pusat Publikasi Ilmiah',
-            'p2km' => 'Pusat Pelayanan Kesehatan Masyarakat (P2KM)',
-            'p3sr' => 'Pusat Pengelola dan Pengembangan Sistem Remunerasi (P3SR)',
             'psga' => 'Pusat Studi Gender dan Anak (PSGA)',
             'psmasb' => 'Pusat Studi Moderasi Agama dan Sosial Budaya',
             'psis' => 'Pusat Studi Islam dan Sains',

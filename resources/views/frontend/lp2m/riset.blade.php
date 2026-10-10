@@ -52,7 +52,7 @@
 
                         <!-- Daftar Jurnal -->
                         <div class="row g-4 mb-5" id="rekap">
-                            <div class="col-md-6" id="jrce">
+                            <div class="col-md-12" id="jrce">
                                 <div class="card h-100 border p-4 rounded-4 shadow-sm">
                                     <span class="badge bg-success w-auto ms-0 mb-2">SINTA 4</span>
                                     <h5 class="fw-bold text-dark-green">JRCE (Journal of Research in Islamic Education)</h5>
@@ -62,15 +62,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6" id="egalita">
-                                <div class="card h-100 border p-4 rounded-4 shadow-sm">
-                                    <span class="badge bg-warning text-dark w-auto ms-0 mb-2">SINTA 5</span>
-                                    <h5 class="fw-bold text-dark-green">EGALITA (Jurnal Studi Gender & Anak)</h5>
-                                    <p class="small text-muted mb-3">e-ISSN: 2715-XXXX | p-ISSN: 2715-YYYY</p>
-                                    <p class="small text-secondary mb-4">Fokus pada penelitian isu gender dalam perspektif hukum Islam, perlindungan anak, dan pemberdayaan keluarga.</p>
-                                    <a href="#" target="_blank" class="btn btn-sm btn-outline-warning text-dark rounded-pill w-100">Kunjungi E-Journal EGALITA <i class="bi bi-box-arrow-up-right ms-1"></i></a>
-                                </div>
-                            </div>
+
                         </div>
 
                         <div class="p-4 bg-light rounded-4 text-center" id="ejournal">
