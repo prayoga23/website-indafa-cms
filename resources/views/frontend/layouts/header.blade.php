@@ -569,21 +569,7 @@
                             </ul>
                         </li>
 
-                        {{-- PENGUMUMAN --}}
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-custom {{ request()->routeIs('frontend.informasi.pengumuman') ? 'active' : '' }}"
-                               href="{{ route('frontend.informasi.pengumuman') }}">
-                                Pengumuman
-                            </a>
-                        </li>
 
-                        {{-- BERITA --}}
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-custom {{ request()->routeIs('frontend.informasi.berita') ? 'active' : '' }}"
-                               href="{{ route('frontend.informasi.berita') }}">
-                                Berita
-                            </a>
-                        </li>
 
                         {{-- KONTAK --}}
                         <li class="nav-item">
