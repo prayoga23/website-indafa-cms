@@ -24,7 +24,7 @@
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-        <div class="container-fluid px-md-5">
+        <div class="container-fluid px-3 px-xl-4">
             @if($isFacultySubWeb)
                 <a class="navbar-brand d-flex align-items-center" href="{{ route('frontend.fakultas.index', $facultyId) }}">
                     <img src="{{ asset('storage/'.$setting->logo) }}" alt="Logo" class="logo-campus" style="height: 50px; width: auto;">
@@ -571,6 +571,22 @@
 
 
 
+                        {{-- PENGUMUMAN --}}
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom {{ request()->routeIs('frontend.informasi.pengumuman') ? 'active' : '' }}"
+                               href="{{ route('frontend.informasi.pengumuman') }}">
+                                Pengumuman
+                            </a>
+                        </li>
+
+                        {{-- BERITA --}}
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom {{ request()->routeIs('frontend.informasi.berita') ? 'active' : '' }}"
+                               href="{{ route('frontend.informasi.berita') }}">
+                                Berita
+                            </a>
+                        </li>
+
                         {{-- KONTAK --}}
                         <li class="nav-item">
                             <a class="nav-link nav-link-custom {{ request()->routeIs('frontend.kontak.index') ? 'active' : '' }}"
@@ -587,6 +603,57 @@
 
 {{-- Custom CSS styles for nested multi-level dropdown menus --}}
 <style>
+    /* Responsive navbar styling agar seluruh menu muat pas di layar desktop dan tidak terpotong */
+    .custom-navbar .container-fluid {
+        padding-left: clamp(14px, 2vw, 36px) !important;
+        padding-right: clamp(14px, 2vw, 36px) !important;
+    }
+
+    .custom-navbar .navbar-nav {
+        gap: 0 !important;
+    }
+
+    .custom-navbar .navbar-nav .nav-link-custom {
+        padding-left: clamp(6px, 0.75vw, 12px) !important;
+        padding-right: clamp(6px, 0.75vw, 12px) !important;
+        font-size: clamp(0.72rem, 0.82vw, 0.86rem) !important;
+        letter-spacing: 0.15px;
+        white-space: nowrap;
+    }
+
+    .custom-navbar .navbar-nav .nav-item.dropdown .dropdown-toggle::after {
+        margin-left: 0.22em;
+        vertical-align: 0.15em;
+    }
+
+    @media (min-width: 992px) and (max-width: 1200px) {
+        .custom-navbar .logo-campus {
+            height: 38px !important;
+        }
+        .custom-navbar .brand-title {
+            font-size: 1.05rem !important;
+        }
+        .custom-navbar .navbar-nav .nav-link-custom {
+            padding-left: 4px !important;
+            padding-right: 4px !important;
+            font-size: 0.7rem !important;
+        }
+    }
+
+    @media (min-width: 1201px) and (max-width: 1400px) {
+        .custom-navbar .logo-campus {
+            height: 44px !important;
+        }
+        .custom-navbar .brand-title {
+            font-size: 1.15rem !important;
+        }
+        .custom-navbar .navbar-nav .nav-link-custom {
+            padding-left: 7px !important;
+            padding-right: 7px !important;
+            font-size: 0.78rem !important;
+        }
+    }
+
     /* Submenu container */
     .dropdown-submenu {
         position: relative;
