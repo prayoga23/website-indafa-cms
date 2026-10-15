@@ -71,6 +71,7 @@ use Illuminate\Http\Request;
 Route::get('/sejarah-prodi', [ProfilController::class, 'sejarah'])->name('frontend.profil.sejarah');
 Route::get('/visi-misi', [ProfilController::class, 'visiMisi'])->name('frontend.profil.visi-misi');
 Route::get('/struktur-organisasi', [ProfilController::class, 'struktur'])->name('frontend.profil.struktur-organisasi');
+Route::get('/profil/filosofi-logo', [AkademikController::class, 'filosofiLogo'])->name('frontend.profil.filosofi-logo');
 Route::get('/profil-dosen', [ProfilController::class, 'dosen'])->name('frontend.profil.profil-dosen');
 
 /*

@@ -77,26 +77,6 @@
                             </ul>
                         </div>
 
-                    @elseif($page === 'psmasb')
-                        <h3 class="fw-bold text-dark-green mb-3">Pusat Studi Moderasi Agama dan Sosial Budaya</h3>
-                        <div class="page-section-divider mb-4"></div>
-                        <p class="text-secondary" style="line-height:1.8;">
-                            Mengembangkan kajian wawasan kebangsaan, moderasi beragama, dan penguatan toleransi antarumat beragama di kawasan Jawa Timur.
-                        </p>
-
-                    @elseif($page === 'psis')
-                        <h3 class="fw-bold text-dark-green mb-3">Pusat Studi Islam dan Sains</h3>
-                        <div class="page-section-divider mb-4"></div>
-                        <p class="text-secondary" style="line-height:1.8;">
-                            Mendorong integrasi dan interkoneksi keilmuan antara teks-teks Al-Qur'an/Hadis dengan penemuan ilmu pengetahuan modern dan teknologi digital.
-                        </p>
-
-                    @elseif($page === 'psk')
-                        <h3 class="fw-bold text-dark-green mb-3">Pusat Studi Kerjasama</h3>
-                        <div class="page-section-divider mb-4"></div>
-                        <p class="text-secondary" style="line-height:1.8;">
-                            Menginisiasi MoA, MoU, dan konsorsium riset bersama dengan universitas dalam dan luar negeri serta lembaga pemerintah dan industri.
-                        </p>
                     @endif
 
                 </div>

@@ -121,7 +121,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="akademikDropdown">
                                 <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'dokumen']) }}">Dokumen</a></li>
-                                
+
                                 {{-- PERSURATAN NESTED DROPDOWN --}}
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
@@ -137,7 +137,6 @@
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-dark">
                                                 <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'turnitin']) }}">Cek Turnitin</a></li>
-                                                <li><a class="dropdown-item" href="{{ route('frontend.fakultas.akademik', [$facultyId, 'kkn']) }}">Pendaftaran KKN</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -199,7 +198,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="akademikDropdown">
                                 <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'dokumen']) }}">Dokumen</a></li>
-                                
+
                                 {{-- PERSURATAN NESTED DROPDOWN PATTERN --}}
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between" href="#">
@@ -215,7 +214,6 @@
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-dark">
                                                 <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'turnitin']) }}">Cek Turnitin</a></li>
-                                                <li><a class="dropdown-item" href="{{ route('frontend.prodi.akademik', [$prodiId, 'kkn']) }}">Pendaftaran KKN</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -423,9 +421,6 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'psga') }}">Pusat Studi Gender dan Anak</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'psmasb') }}">Pusat Studi Moderasi Agama dan Sosial Budaya</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'psis') }}">Pusat Studi Islam dan Sains</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('frontend.lp2m.pusat', 'psk') }}">Pusat Studi Kerjasama</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -442,7 +437,6 @@
                                 <li><a class="dropdown-item" href="{{ route('frontend.lp2m.layanan', 'motto-maklumat') }}">Motto dan Maklumat Pelayanan</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lp2m.layanan', 'panduan-pedoman') }}">Panduan dan Pedoman</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lp2m.layanan', 'surat-online') }}">Layanan Pembuatan Surat Online</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.lp2m.layanan', 'notulensi-rapat') }}">Hasil Notulensi Rapat/Meeting LP2M</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.lp2m.layanan', 'dokumen-kerjasama') }}">Dokumen Kerjasama Kumpulan SK</a></li>
                             </ul>
                         </li>
@@ -487,6 +481,7 @@
                                 <li><a class="dropdown-item" href="{{ route('frontend.profil.sejarah') }}">Sejarah</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.profil.visi-misi') }}">Visi, Misi & Tujuan</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.profil.struktur-organisasi') }}">Struktur Organisasi</a></li>
+                                <li><a class="dropdown-item" href="{{ route('frontend.profil.filosofi-logo') }}">Filosofi Logo</a></li>
                             </ul>
                         </li>
 
@@ -548,7 +543,6 @@
                                 Akademik
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="akademikDropdown">
-                                <li><a class="dropdown-item" href="{{ route('frontend.akademik.filosofi-logo') }}">Filosofi Logo</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.akademik.penelitian') }}">Penelitian & Pengabdian</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.akademik.pmb') }}">PMB</a></li>
                                 <li><a class="dropdown-item" href="{{ route('frontend.akademik.gallery-indafa') }}">Gallery Indafa</a></li>

@@ -191,7 +191,6 @@ class ProdiSubWebController extends Controller
             'dokumen' => 'Dokumen Akademik',
             'persuratan' => 'Formulir Persuratan',
             'turnitin' => 'Layanan Cek Turnitin',
-            'kkn' => 'Pendaftaran KKN',
             'kalender' => 'Kalender Akademik',
             'jadwal' => 'Jadwal Kuliah',
             'kelulusan' => 'Alur Kelulusan',

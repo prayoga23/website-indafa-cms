@@ -144,33 +144,6 @@
                 </div>
             </div>
 
-        {{-- 4. KKN --}}
-        @elseif($page === 'kkn')
-            <div class="text-center mb-5">
-                <span class="page-section-eyebrow">Pengabdian</span>
-                <h2 class="page-section-title text-uppercase" style="color:var(--fac-color)">Pendaftaran KKN</h2>
-                <div class="page-section-divider mx-auto mt-2" style="background-color: var(--fac-color)"></div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="info-card p-5 border-0 shadow-sm bg-white rounded-4" style="border-top:4px solid var(--fac-color) !important;">
-                        <h4 class="fw-bold mb-3 text-center text-dark-green">Formulir Pendaftaran KKN Tematik</h4>
-                        <p class="text-center text-muted small mb-4">Pastikan Anda telah menempuh minimal 100 SKS untuk mendaftar Kuliah Kerja Nyata.</p>
-                        <form action="#" method="POST">
-                            <div class="mb-3">
-                                <label class="form-label small text-secondary">NIM Mahasiswa</label>
-                                <input type="text" class="form-control" placeholder="NIM Anda" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label small text-secondary">Total SKS yang Telah Ditempuh</label>
-                                <input type="number" class="form-control" placeholder="Contoh: 104" required>
-                            </div>
-                            <button type="submit" class="btn text-white w-100 py-2 fw-semibold" style="background:var(--fac-color); border-radius:50px;">Daftar KKN</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
         {{-- 5. KALENDER --}}
         @elseif($page === 'kalender')
             <div class="text-center mb-5">

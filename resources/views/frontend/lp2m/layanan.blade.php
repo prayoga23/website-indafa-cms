@@ -134,21 +134,6 @@
                             </div>
                         </form>
 
-                    @elseif($page === 'notulensi-rapat')
-                        <h3 class="fw-bold text-dark-green mb-3">Hasil Notulensi Rapat/Meeting LP2M</h3>
-                        <div class="page-section-divider mb-4"></div>
-                        <p class="text-secondary mb-4">Arsip dan rangkuman notulensi rapat koordinasi LP2M:</p>
-
-                        <div class="list-group rounded-4">
-                            <div class="list-group-item p-3 d-flex align-items-center justify-content-between">
-                                <div>
-                                    <h6 class="fw-bold text-dark mb-1">Notulensi Rapat Koordinasi Persiapan KKN Tematik 2026</h6>
-                                    <p class="small text-muted mb-0">Tanggal: 15 Januari 2026</p>
-                                </div>
-                                <a href="#" class="btn btn-sm btn-outline-success rounded-pill px-3">Lihat Notulensi</a>
-                            </div>
-                        </div>
-
                     @elseif($page === 'dokumen-kerjasama')
                         <h3 class="fw-bold text-dark-green mb-3">Dokumen Kerjasama Kumpulan SK</h3>
                         <div class="page-section-divider mb-4"></div>

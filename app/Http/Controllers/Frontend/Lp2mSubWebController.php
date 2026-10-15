@@ -76,9 +76,6 @@ class Lp2mSubWebController extends Controller
             'pengabdian' => 'Pusat Pengabdian Masyarakat',
             'publikasi' => 'Pusat Publikasi Ilmiah',
             'psga' => 'Pusat Studi Gender dan Anak (PSGA)',
-            'psmasb' => 'Pusat Studi Moderasi Agama dan Sosial Budaya',
-            'psis' => 'Pusat Studi Islam dan Sains',
-            'psk' => 'Pusat Studi Kerjasama',
         ];
 
         if (!array_key_exists($page, $validPages)) {
@@ -99,7 +96,6 @@ class Lp2mSubWebController extends Controller
             'motto-maklumat' => 'Motto & Maklumat Pelayanan',
             'panduan-pedoman' => 'Panduan & Pedoman',
             'surat-online' => 'Layanan Pembuatan Surat Online',
-            'notulensi-rapat' => 'Hasil Notulensi Rapat/Meeting LP2M',
             'dokumen-kerjasama' => 'Dokumen Kerjasama Kumpulan SK',
         ];
 

@@ -118,8 +118,8 @@
                     <div class="icon-circle icon-circle-gold mx-auto mb-3">
                         <i class="bi bi-diagram-2 fs-3"></i>
                     </div>
-                    <h5 class="fw-bold text-dark-green">Pusat Studi Tematik</h5>
-                    <p class="small text-secondary mb-3">Pusat Studi Gender & Anak, Moderasi Agama & Sosbud, Islam & Sains, serta Pusat Kerjasama.</p>
+                    <h5 class="fw-bold text-dark-green">Pusat Studi Gender & Anak</h5>
+                    <p class="small text-secondary mb-3">Pusat Studi Gender dan Anak (PSGA) berfokus pada kesetaraan gender dan perlindungan anak.</p>
                     <a href="{{ route('frontend.lp2m.pusat', 'psga') }}" class="btn btn-sm btn-outline-warning text-dark rounded-pill px-3">Pusat Studi</a>
                 </div>
             </div>
