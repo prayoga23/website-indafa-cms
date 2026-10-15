@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
             $setting = WebsiteSetting::first();
 
             // 2. Ambil data menu default untuk dropdown
-            $facultiesMenu = Faculty::orderBy('name')->get();
+            $facultiesMenu = Faculty::with('studyPrograms')->orderBy('name')->get();
             $programsMenu = StudyProgram::orderBy('name')->get();
 
             // 3. Deteksi Context (Fakultas / Prodi) dari Route atau Query String (?prodi=...)

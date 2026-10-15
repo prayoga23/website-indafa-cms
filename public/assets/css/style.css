@@ -174,3 +174,152 @@
     color: #ffc107;
     padding-left: 5px;
 }
+
+/* ==========================================================================
+   4. DROPDOWN SUBMENU (FAKULTAS & PRODI / MULTI-LEVEL DROPDOWN)
+   ========================================================================== */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-toggle::after {
+    display: none !important;
+}
+
+.dropdown-submenu > .dropdown-toggle .submenu-arrow {
+    font-size: 0.75rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+    opacity: 0.85;
+}
+
+/* Custom Navbar Dropdown Styling */
+.custom-navbar .dropdown-menu {
+    background-color: #0b5345 !important;
+    border: 1px solid rgba(204, 164, 59, 0.35) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+    padding: 8px 0 !important;
+    min-width: 230px;
+}
+
+.custom-navbar .dropdown-item {
+    color: #ffffff !important;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 9px 18px !important;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
+}
+
+.custom-navbar .dropdown-item:hover,
+.custom-navbar .dropdown-item:focus {
+    background-color: #cca43b !important;
+    color: #0b5345 !important;
+    font-weight: 600;
+}
+
+/* Desktop Dropdown & Flyout Submenu */
+@media (min-width: 992px) {
+    .custom-navbar .navbar-nav > .nav-item.dropdown > .dropdown-menu {
+        left: 0 !important;
+        right: auto !important;
+    }
+
+    .custom-navbar .navbar-nav .nav-item.dropdown:hover > .dropdown-menu {
+        display: block !important;
+        margin-top: 0;
+        animation: navDropdownFade 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .dropdown-submenu > .dropdown-menu {
+        position: absolute !important;
+        top: 0 !important;
+        left: 100% !important;
+        right: auto !important;
+        float: none !important;
+        margin-top: -6px !important;
+        margin-left: 2px !important;
+        display: none !important;
+        min-width: 220px;
+        background-color: #074338 !important;
+        border: 1px solid rgba(204, 164, 59, 0.4) !important;
+        border-radius: 8px !important;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45) !important;
+        z-index: 1070 !important;
+    }
+
+    .dropdown-submenu:hover > .dropdown-menu,
+    .dropdown-submenu.show > .dropdown-menu,
+    .dropdown-submenu.open > .dropdown-menu {
+        display: block !important;
+        animation: navSubmenuSlideInRight 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .dropdown-submenu:hover > .dropdown-toggle,
+    .dropdown-submenu.show > .dropdown-toggle,
+    .dropdown-submenu.open > .dropdown-toggle {
+        background-color: #cca43b !important;
+        color: #0b5345 !important;
+        font-weight: 600;
+    }
+
+    .dropdown-submenu:hover > .dropdown-toggle .submenu-arrow,
+    .dropdown-submenu.show > .dropdown-toggle .submenu-arrow,
+    .dropdown-submenu.open > .dropdown-toggle .submenu-arrow {
+        color: #0b5345 !important;
+        transform: translateX(4px);
+    }
+}
+
+/* Mobile Dropdown Submenu */
+@media (max-width: 991.98px) {
+    .dropdown-submenu > .dropdown-menu {
+        position: static !important;
+        float: none !important;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.25) !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding-left: 15px !important;
+        margin-top: 4px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .dropdown-submenu.show > .dropdown-menu,
+    .dropdown-submenu.open > .dropdown-menu {
+        display: block !important;
+    }
+
+    .dropdown-submenu > .dropdown-toggle .submenu-arrow {
+        padding: 4px 8px;
+        font-size: 0.9rem;
+    }
+
+    .dropdown-submenu.show > .dropdown-toggle .submenu-arrow,
+    .dropdown-submenu.open > .dropdown-toggle .submenu-arrow {
+        transform: rotate(90deg);
+        color: #cca43b !important;
+    }
+}
+
+@keyframes navDropdownFade {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes navSubmenuSlideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
