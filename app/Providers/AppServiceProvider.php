@@ -25,7 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (app()->environment('production')) {
             URL::forceScheme('https');
+        }
         View::composer('*', function ($view) {
             // 1. Ambil data setting global
             $setting = WebsiteSetting::first();
