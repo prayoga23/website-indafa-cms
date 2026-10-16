@@ -490,7 +490,7 @@
                             <a class="nav-link nav-link-custom dropdown-toggle" href="#"
                                id="fakultasDropdown" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Fakultas
+                                Fakultas & Prodi
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="fakultasDropdown">
                                 {{-- 1. FAKULTAS ILMU SYARI'AH --}}
@@ -503,12 +503,12 @@
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li>
                                             <a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}">
-                                                Program Studi Hukum Keluarga Islam
+                                                Prodi Hukum Keluarga Islam (HKI)
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}">
-                                                Program Studi Hukum Ekonomi Syariah (S1)
+                                                Prodi Hukum Ekonomi Syariah (HES)
                                             </a>
                                         </li>
                                     </ul>
@@ -524,17 +524,17 @@
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li>
                                             <a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}">
-                                                Program Studi Manajemen Bisnis Syariah
+                                                Prodi Manajemen Bisnis Syariah (MBS)
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}">
-                                                Program Studi Ekonomi Syariah
+                                                Prodi Ekonomi Syariah (EKO)
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}">
-                                                Program Studi Pendidikan Agama Islam
+                                                Prodi Pendidikan Agama Islam (PAI)
                                             </a>
                                         </li>
                                     </ul>
