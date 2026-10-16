@@ -1,9 +1,25 @@
 @extends('layouts_admin.admin')
 
+@section('title', 'Manajemen Jadwal Akademik')
+@section('page-title', 'Jadwal Kuliah & Ujian')
+
 @section('content')
-<div class="container-fluid px-4">
-    <h1 class="mt-4">Manajemen Jadwal Akademik</h1>
-    <p class="text-muted">Kelola penjadwalan Kuliah harian, Ujian Tengah/Akhir Semester, serta Seminar & Sidang Tugas Akhir.</p>
+
+<div class="admin-form-card">
+
+    <div class="admin-form-header">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div>
+                <h4><i class="fas fa-calendar-alt text-warning"></i> Manajemen Jadwal Akademik Terpadu</h4>
+                <p>Kelola penjadwalan Kuliah harian, Ujian Tengah/Akhir Semester, serta Seminar & Sidang Tugas Akhir.</p>
+            </div>
+            <span class="badge bg-white text-emerald-800 text-xs px-3 py-2 rounded-full font-bold shadow-sm">
+                <i class="fas fa-check-circle text-emerald-600"></i> Jadwal Akademik
+            </span>
+        </div>
+    </div>
+
+    <div class="p-3 p-md-4">
 
     {{-- Notifikasi Sukses --}}
     @if(session('success'))
@@ -275,6 +291,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 

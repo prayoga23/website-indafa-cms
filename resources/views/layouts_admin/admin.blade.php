@@ -24,10 +24,265 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('template-dashboard/assets/css/material-dashboard.min.css?v=3.2.0') }}" rel="stylesheet" />
 
+    <!-- Tailwind CSS (with preflight disabled to maintain Material Dashboard / Bootstrap compatibility) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: {
+                preflight: false,
+            },
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            500: '#10b981',
+                            600: '#0b5345',
+                            700: '#07352c',
+                            gold: '#cca43b',
+                            'gold-light': '#fdf8ec'
+                        }
+                    },
+                    borderRadius: {
+                        'xl': '0.75rem',
+                        '2xl': '1rem',
+                        '3xl': '1.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
             color: #344767;
+        }
+
+        /* Modern Form & Input System (Jakub Skills UX Principles: Visual Hierarchy, Optical Alignment, Concentric Radii) */
+        .admin-form-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        .admin-form-header {
+            padding: 1.25rem 1.75rem;
+            background: linear-gradient(135deg, #0b5345 0%, #134e4a 100%);
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .admin-form-header h4, .admin-form-header h3 {
+            color: #ffffff !important;
+            margin: 0;
+            font-weight: 700;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .admin-form-header p {
+            margin: 0.25rem 0 0 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8125rem;
+        }
+
+        .form-section-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.875rem;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.25rem;
+            transition: border-color 0.2s ease;
+        }
+        .form-section-card:hover {
+            border-color: #cbd5e1;
+        }
+        .form-section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.65rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .form-section-icon {
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            background: #e6f4ea;
+            color: #0b5345;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+        .form-section-title {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0;
+        }
+        .form-section-desc {
+            font-size: 0.775rem;
+            color: #64748b;
+            margin: 0.15rem 0 0 0;
+        }
+
+        .form-label-custom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 0.4rem;
+        }
+        .badge-req {
+            background-color: #fee2e2;
+            color: #dc2626;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            letter-spacing: 0.3px;
+        }
+        .badge-opt {
+            background-color: #f1f5f9;
+            color: #64748b;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-control-custom, .form-select-custom {
+            width: 100%;
+            background-color: #ffffff !important;
+            border: 1.5px solid #cbd5e1 !important;
+            border-radius: 0.625rem !important;
+            padding: 0.625rem 0.95rem !important;
+            font-size: 0.875rem !important;
+            color: #1e293b !important;
+            transition: all 0.2s ease-in-out !important;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04) !important;
+        }
+        .form-control-custom:focus, .form-select-custom:focus {
+            background-color: #ffffff !important;
+            border-color: #0b5345 !important;
+            box-shadow: 0 0 0 3.5px rgba(11, 83, 69, 0.15) !important;
+            outline: none !important;
+        }
+        .form-control-custom::placeholder {
+            color: #94a3b8 !important;
+            font-size: 0.8125rem !important;
+        }
+
+        .form-hint {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 0.35rem;
+            line-height: 1.35;
+        }
+        .form-hint i {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        /* Modern Interactive File Dropzone */
+        .file-dropzone-wrapper {
+            position: relative;
+            background: #ffffff;
+            border: 2px dashed #cbd5e1;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .file-dropzone-wrapper:hover, .file-dropzone-wrapper.dragover {
+            border-color: #0b5345;
+            background: #f0fdf4;
+        }
+        .file-dropzone-wrapper input[type="file"] {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 5;
+        }
+        .file-dropzone-icon {
+            font-size: 2rem;
+            color: #0b5345;
+            margin-bottom: 0.35rem;
+        }
+        .file-preview-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.85rem;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.625rem;
+            padding: 0.5rem 0.75rem;
+            margin-top: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .file-preview-thumb {
+            width: 56px;
+            height: 56px;
+            object-fit: cover;
+            border-radius: 0.4rem;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+        }
+
+        /* Brand Action Buttons */
+        .btn-brand-primary {
+            background: linear-gradient(135deg, #0b5345 0%, #134e4a 100%) !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 0.625rem !important;
+            padding: 0.65rem 1.35rem !important;
+            font-weight: 600 !important;
+            font-size: 0.875rem !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 0.45rem !important;
+            box-shadow: 0 4px 12px rgba(11, 83, 69, 0.25) !important;
+            transition: all 0.2s ease !important;
+        }
+        .btn-brand-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(11, 83, 69, 0.35) !important;
+            color: #ffffff !important;
+        }
+        .btn-secondary-custom {
+            background: #f1f5f9 !important;
+            color: #475569 !important;
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 0.625rem !important;
+            padding: 0.65rem 1.35rem !important;
+            font-weight: 600 !important;
+            font-size: 0.875rem !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 0.45rem !important;
+            transition: all 0.2s ease !important;
+        }
+        .btn-secondary-custom:hover {
+            background: #e2e8f0 !important;
+            color: #1e293b !important;
         }
 
         /* Form styling compatibility */
@@ -231,7 +486,60 @@
     <script src="{{ asset('template-dashboard/assets/js/plugins/chartjs.min.js') }}"></script>
     <script src="{{ asset('template-dashboard/assets/js/material-dashboard.min.js?v=3.2.0') }}"></script>
 
+    <script>
+        // Global Dropzone & Image Preview Helper
+        document.addEventListener('DOMContentLoaded', function () {
+            // Dropzone drag-and-drop visuals
+            document.querySelectorAll('.file-dropzone-wrapper').forEach(function (wrapper) {
+                const input = wrapper.querySelector('input[type="file"]');
+                if (!input) return;
+
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    wrapper.addEventListener(eventName, (e) => {
+                        e.preventDefault();
+                        wrapper.classList.add('dragover');
+                    }, false);
+                });
+
+                ['dragleave', 'drop'].forEach(eventName => {
+                    wrapper.addEventListener(eventName, (e) => {
+                        e.preventDefault();
+                        wrapper.classList.remove('dragover');
+                    }, false);
+                });
+
+                // Live preview upon selecting a file
+                input.addEventListener('change', function () {
+                    const file = this.files[0];
+                    const previewId = this.getAttribute('data-preview');
+                    const targetEl = previewId ? document.getElementById(previewId) : wrapper.parentElement.querySelector('.live-preview-box');
+
+                    if (file && targetEl) {
+                        if (file.type.startsWith('image/')) {
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                targetEl.innerHTML = `
+                                    <div class="file-preview-card">
+                                        <img src="${e.target.result}" class="file-preview-thumb" alt="Preview">
+                                        <div class="text-start">
+                                            <div class="text-xs font-semibold text-slate-800 text-truncate" style="max-width: 180px;">${file.name}</div>
+                                            <div class="text-xxs text-emerald-600 font-bold">${(file.size / 1024).toFixed(1)} KB &bull; Siap diupload</div>
+                                        </div>
+                                    </div>
+                                `;
+                                targetEl.style.display = 'block';
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
     @stack('js')
+    @stack('scripts')
 
 </body>
 </html>
+

@@ -1,11 +1,23 @@
 @extends('layouts_admin.admin')
 
-@section('title','Tambah Berita')
-@section('page-title','Tambah Berita')
+@section('title', 'Tambah Berita Baru')
+@section('page-title', 'Tambah Berita')
 
 @section('content')
 
-<div class="card card-primary">
+<div class="admin-form-card">
+
+    <div class="admin-form-header">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div>
+                <h4><i class="fas fa-plus-circle text-warning"></i> Tambah Berita Baru</h4>
+                <p>Isi formulir di bawah ini secara lengkap untuk menerbitkan berita kampus.</p>
+            </div>
+            <a href="{{ route('admin.news.index') }}" class="btn-secondary-custom btn-sm">
+                <i class="fas fa-arrow-left"></i> Kembali ke Daftar
+            </a>
+        </div>
+    </div>
 
     <form action="{{ route('admin.news.store') }}"
           method="POST"
@@ -15,17 +27,18 @@
 
         @include('admin.news.form')
 
-        <div class="card-footer">
-
-            <button class="btn btn-success">
-                <i class="fas fa-save"></i> Simpan
-            </button>
-
-            <a href="{{ route('admin.news.index') }}"
-               class="btn btn-secondary">
-                Kembali
-            </a>
-
+        <div class="p-3 p-md-4 bg-slate-50 border-t border-slate-200 d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <span class="text-xs text-slate-500">
+                <i class="fas fa-info-circle text-emerald-600"></i> Pastikan field bertanda <span class="badge-req">* Wajib Diisi</span> telah diisi dengan benar.
+            </span>
+            <div class="d-flex align-items-center gap-2">
+                <a href="{{ route('admin.news.index') }}" class="btn-secondary-custom">
+                    <i class="fas fa-times"></i> Batal
+                </a>
+                <button type="submit" class="btn-brand-primary">
+                    <i class="fas fa-save"></i> Simpan Berita
+                </button>
+            </div>
         </div>
 
     </form>
@@ -44,7 +57,6 @@ class MyUploadAdapter {
     upload() {
         return this.loader.file
             .then(file => new Promise((resolve, reject) => {
-
                 const formData = new FormData();
                 formData.append('upload', file);
 
@@ -64,7 +76,6 @@ class MyUploadAdapter {
                 .catch(error => {
                     reject(error);
                 });
-
             }));
     }
 

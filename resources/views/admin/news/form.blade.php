@@ -1,81 +1,195 @@
-<div class="card-body">
+<div class="p-3 p-md-4">
 
-    <div class="row">
-
-        <div class="col-md-6">
-            <label>Fakultas</label>
-            <select name="faculty_id" class="form-control">
-                <option value="">Umum</option>
-
-                @foreach($faculties as $f)
-                    <option value="{{ $f->id }}"
-                        {{ old('faculty_id', $news->faculty_id ?? '') == $f->id ? 'selected' : '' }}>
-                        {{ $f->name }}
-                    </option>
-                @endforeach
-            </select>
+    {{-- SECTION 1: KLASIFIKASI & TARGET --}}
+    <div class="form-section-card">
+        <div class="form-section-header">
+            <div class="form-section-icon">
+                <i class="fas fa-sitemap"></i>
+            </div>
+            <div>
+                <h5 class="form-section-title">Klasifikasi & Penempatan Berita</h5>
+                <p class="form-section-desc">Tentukan apakah berita ditujukan untuk tingkat Institut atau spesifik Fakultas / Prodi.</p>
+            </div>
         </div>
 
-        <div class="col-md-6">
-            <label>Program Studi</label>
-            <select name="study_program_id" class="form-control">
-                <option value="">Umum</option>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label-custom">
+                    <span>Fakultas Terkait</span>
+                    <span class="badge-opt">Opsional</span>
+                </label>
+                <select name="faculty_id" class="form-select-custom">
+                    <option value="">-- Umum / Seluruh Kampus --</option>
+                    @foreach($faculties as $f)
+                        <option value="{{ $f->id }}"
+                            {{ old('faculty_id', $news->faculty_id ?? '') == $f->id ? 'selected' : '' }}>
+                            {{ $f->name }}
+                        </option>
+                    @endforeach
+                </select>
+                <div class="form-hint">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Pilih jika berita ini milik fakultas tertentu.</span>
+                </div>
+            </div>
 
-                @foreach($studyPrograms as $s)
-                    <option value="{{ $s->id }}"
-                        {{ old('study_program_id', $news->study_program_id ?? '') == $s->id ? 'selected' : '' }}>
-                        {{ $s->name }}
-                    </option>
-                @endforeach
-            </select>
+            <div class="col-md-6">
+                <label class="form-label-custom">
+                    <span>Program Studi Terkait</span>
+                    <span class="badge-opt">Opsional</span>
+                </label>
+                <select name="study_program_id" class="form-select-custom">
+                    <option value="">-- Umum / Semua Prodi --</option>
+                    @foreach($studyPrograms as $s)
+                        <option value="{{ $s->id }}"
+                            {{ old('study_program_id', $news->study_program_id ?? '') == $s->id ? 'selected' : '' }}>
+                            {{ $s->name }}
+                        </option>
+                    @endforeach
+                </select>
+                <div class="form-hint">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Pilih jika berita berkaitan khusus dengan prodi.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- SECTION 2: INFORMASI UTAMA & KONTEN --}}
+    <div class="form-section-card">
+        <div class="form-section-header">
+            <div class="form-section-icon">
+                <i class="fas fa-newspaper"></i>
+            </div>
+            <div>
+                <h5 class="form-section-title">Konten Utama Berita</h5>
+                <p class="form-section-desc">Masukkan judul dan artikel lengkap berita secara jelas dan terstruktur.</p>
+            </div>
         </div>
 
+        <div class="mb-4">
+            <label class="form-label-custom">
+                <span>Judul Berita</span>
+                <span class="badge-req">* Wajib Diisi</span>
+            </label>
+            <input type="text"
+                   name="title"
+                   class="form-control-custom @error('title') border-rose-500 @enderror"
+                   value="{{ old('title', $news->title ?? '') }}"
+                   placeholder="Contoh: Rektor IAI Darul Falah Buka Kuliah Perdana Semester Genap"
+                   required>
+            <div class="form-hint">
+                <i class="fas fa-pen"></i>
+                <span>Gunakan judul yang informatif, lugas, dan menarik perhatian pembaca.</span>
+            </div>
+            @error('title')
+                <div class="text-xs text-rose-600 mt-1 font-semibold">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div>
+            <label class="form-label-custom">
+                <span>Isi Konten Berita</span>
+                <span class="badge-req">* Wajib Diisi</span>
+            </label>
+            <textarea name="content"
+                      id="editor"
+                      class="form-control-custom"
+                      rows="12"
+                      placeholder="Tuliskan isi berita di sini...">{{ old('content', $news->content ?? '') }}</textarea>
+            <div class="form-hint mt-2">
+                <i class="fas fa-keyboard"></i>
+                <span>Anda dapat memformat teks tebal, miring, list, serta menyematkan foto lewat toolbar editor.</span>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group mt-2">
-        <label>Judul Berita</label>
-        <input type="text"
-               name="title"
-               class="form-control"
-               value="{{ old('title', $news->title ?? '') }}"
-               required>
+    {{-- SECTION 3: THUMBNAIL & MEDIA --}}
+    <div class="form-section-card">
+        <div class="form-section-header">
+            <div class="form-section-icon">
+                <i class="fas fa-image"></i>
+            </div>
+            <div>
+                <h5 class="form-section-title">Thumbnail / Gambar Utama</h5>
+                <p class="form-section-desc">Gambar yang akan tampil sebagai sampul berita di beranda dan media sosial.</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center g-3">
+            <div class="col-lg-8">
+                <div class="file-dropzone-wrapper">
+                    <input type="file"
+                           name="thumbnail"
+                           accept="image/*"
+                           data-preview="thumbnail-preview-box">
+                    <div class="file-dropzone-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="text-sm font-semibold text-slate-700">
+                        Klik untuk memilih gambar atau seret file ke area ini
+                    </div>
+                    <div class="text-xs text-slate-500 mt-1">
+                        Format didukung: <strong>JPG, PNG, WEBP</strong> &bull; Maksimal <strong>2 MB</strong> (Rasio 16:9 disarankan)
+                    </div>
+                </div>
+
+                {{-- Live Preview Box for Selected Image --}}
+                <div id="thumbnail-preview-box" class="live-preview-box" style="display: none;"></div>
+            </div>
+
+            <div class="col-lg-4">
+                @if(isset($news) && $news->thumbnail)
+                    <div class="p-3 bg-white rounded-xl border border-slate-200 text-center">
+                        <span class="text-xxs font-bold uppercase tracking-wider text-slate-500 d-block mb-2">Gambar Saat Ini</span>
+                        <img src="{{ asset('storage/'.$news->thumbnail) }}"
+                             alt="Thumbnail Saat Ini"
+                             class="rounded-lg shadow-sm border border-slate-200 w-100"
+                             style="max-height: 140px; object-fit: cover;">
+                        <span class="text-xxs text-slate-400 d-block mt-2">Pilih gambar baru jika ingin mengganti</span>
+                    </div>
+                @else
+                    <div class="p-3 bg-white rounded-xl border border-dashed border-slate-200 text-center text-slate-400">
+                        <i class="far fa-image fa-2x mb-2 d-block opacity-40"></i>
+                        <span class="text-xs">Belum ada thumbnail</span>
+                    </div>
+                @endif
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label>Thumbnail</label>
-        <input type="file" name="thumbnail" class="form-control">
-    </div>
+    {{-- SECTION 4: STATUS PUBLIKASI --}}
+    <div class="form-section-card mb-0">
+        <div class="form-section-header">
+            <div class="form-section-icon">
+                <i class="fas fa-toggle-on"></i>
+            </div>
+            <div>
+                <h5 class="form-section-title">Status Publikasi</h5>
+                <p class="form-section-desc">Pilih status ketersediaan berita bagi pengunjung website umum.</p>
+            </div>
+        </div>
 
-    @isset($news)
-        @if($news->thumbnail)
-            <img src="{{ asset('storage/'.$news->thumbnail) }}"
-                 width="120"
-                 class="mb-2">
-        @endif
-    @endisset
-
-    <div class="form-group mt-2">
-        <label>Konten</label>
-        <textarea name="content"
-                  id="editor"
-                  class="form-control"
-                  rows="10">{{ old('content', $news->content ?? '') }}</textarea>
-    </div>
-
-    <div class="form-group">
-        <label>Status</label>
-
-        <select name="status" class="form-control">
-            <option value="draft"
-                {{ old('status', $news->status ?? '') == 'draft' ? 'selected' : '' }}>
-                Draft
-            </option>
-
-            <option value="publish"
-                {{ old('status', $news->status ?? '') == 'publish' ? 'selected' : '' }}>
-                Publish
-            </option>
-        </select>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label-custom">
+                    <span>Status Berita</span>
+                    <span class="badge-req">* Wajib Diisi</span>
+                </label>
+                <select name="status" class="form-select-custom">
+                    <option value="publish" {{ old('status', $news->status ?? 'publish') == 'publish' ? 'selected' : '' }}>
+                        🟢 Publish (Langsung tampil di website publik)
+                    </option>
+                    <option value="draft" {{ old('status', $news->status ?? '') == 'draft' ? 'selected' : '' }}>
+                        🟡 Draft (Hanya tersimpan di panel admin)
+                    </option>
+                </select>
+                <div class="form-hint">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Pilih "Draft" jika Anda masih ingin mengedit isi berita sebelum dibaca publik.</span>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

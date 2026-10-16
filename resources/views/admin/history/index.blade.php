@@ -1,162 +1,243 @@
 @extends('layouts_admin.admin')
 
-@section('title', 'Kelola Sejarah Prodi')
+@section('title', 'Kelola Sejarah Kampus & Milestone')
+@section('page-title', 'Sejarah & Milestone')
 
 @section('content')
-<div class="container-fluid px-4">
-    <div class="d-flex justify-content-between align-items-center my-4 border-bottom pb-3">
-        <div>
-            <h1 class="h3 mb-1 text-gray-800 fw-bold">Manajemen Profil</h1>
-            <p class="text-muted mb-0 small">Kelola data latar belakang dan garis waktu (milestone) sejarah Program Studi.</p>
+
+<div class="admin-form-card">
+
+    <div class="admin-form-header">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div>
+                <h4><i class="fas fa-history text-warning"></i> Manajemen Sejarah & Garis Waktu (Milestone)</h4>
+                <p>Dokumentasikan latar belakang pendirian dan lintasan peristiwa bersejarah program studi / institut.</p>
+            </div>
+            <span class="badge bg-white text-emerald-800 text-xs px-3 py-2 rounded-full font-bold shadow-sm">
+                <i class="fas fa-check-circle text-emerald-600"></i> Profil Sejarah
+            </span>
         </div>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0 bg-light p-2 rounded-3 border">
-                <li class="breadcrumb-item"><a href="#" class="text-decoration-none"><i class="fas fa-tachometer-alt me-1"></i>Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Sejarah</li>
-            </ol>
-        </nav>
     </div>
 
-    <div class="row">
-        {{-- SECTION GIRI KIRI: FORM LATAR BELAKANG --}}
-        <div class="col-lg-6 mb-4">
-            <div class="card border-0 shadow-sm rounded-3">
-                <div class="card-header bg-transparent border-bottom py-3 d-flex align-items-center">
-                    <div class="icon-shape bg-primary-soft text-primary rounded-circle me-2 d-inline-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background-color: rgba(13, 110, 253, 0.1);">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h5 class="card-title mb-0 fw-bold text-dark">Latar Belakang Pendirian</h5>
-                </div>
-                <div class="card-body p-4">
-                    @if(session('success'))
-                        <div class="alert alert-success d-flex align-items-center border-0 shadow-sm py-2" role="alert">
-                            <i class="fas fa-check-circle me-2"></i>
-                            <div>{{ session('success') }}</div>
+    <div class="p-3 p-md-4">
+
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show text-white text-xs mb-4" role="alert">
+                <i class="fas fa-check-circle me-1"></i> {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('success_timeline'))
+            <div class="alert alert-success alert-dismissible fade show text-white text-xs mb-4" role="alert">
+                <i class="fas fa-check-circle me-1"></i> {{ session('success_timeline') }}
+            </div>
+        @endif
+
+        <div class="row g-4">
+
+            {{-- KOLOM KIRI: FORM LATAR BELAKANG --}}
+            <div class="col-lg-6">
+                <div class="form-section-card h-100">
+                    <div class="form-section-header">
+                        <div class="form-section-icon">
+                            <i class="fas fa-file-alt"></i>
                         </div>
-                    @endif
+                        <div>
+                            <h5 class="form-section-title">Latar Belakang Pendirian</h5>
+                            <p class="form-section-desc">Uraikan sejarah awal pembentukan, tokoh pendiri, dan dinamika awal.</p>
+                        </div>
+                    </div>
 
                     <form action="{{ route('admin.history.info.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+
                         <div class="mb-3">
-                            <label class="form-label fw-semibold text-secondary small">Judul Konten</label>
-                            <input type="text" name="title" class="form-control form-control-lg fs-6" value="{{ old('title', $info->title ?? 'Latar Belakang Pendirian') }}" required>
+                            <label class="form-label-custom">
+                                <span>Judul Narasi Sejarah</span>
+                                <span class="badge-req">* Wajib Diisi</span>
+                            </label>
+                            <input type="text"
+                                   name="title"
+                                   class="form-control-custom"
+                                   value="{{ old('title', $info->title ?? 'Latar Belakang Pendirian') }}"
+                                   placeholder="Contoh: Sejarah Berdirinya IAI Darul Falah"
+                                   required>
                         </div>
+
                         <div class="mb-3">
-                            <label class="form-label fw-semibold text-secondary small">Paragraf 1</label>
-                            <textarea name="text_1" class="form-control" rows="4" placeholder="Tulis paragraf pertama di sini..." required>{{ old('text_1', $info->text_1 ?? '') }}</textarea>
+                            <label class="form-label-custom">
+                                <span>Paragraf 1 (Awal Mula)</span>
+                                <span class="badge-req">* Wajib Diisi</span>
+                            </label>
+                            <textarea name="text_1"
+                                      class="form-control-custom"
+                                      rows="4"
+                                      placeholder="Tuliskan paragraf pembuka sejarah pendirian..."
+                                      required>{{ old('text_1', $info->text_1 ?? '') }}</textarea>
                         </div>
+
                         <div class="mb-3">
-                            <label class="form-label fw-semibold text-secondary small">Paragraf 2 (Opsional)</label>
-                            <textarea name="text_2" class="form-control" rows="4" placeholder="Tulis paragraf kedua jika ada...">{{ old('text_2', $info->text_2 ?? '') }}</textarea>
+                            <label class="form-label-custom">
+                                <span>Paragraf 2 (Kelanjutan Sejarah)</span>
+                                <span class="badge-opt">Opsional</span>
+                            </label>
+                            <textarea name="text_2"
+                                      class="form-control-custom"
+                                      rows="4"
+                                      placeholder="Tuliskan kelanjutan perkembangan lembaga...">{{ old('text_2', $info->text_2 ?? '') }}</textarea>
                         </div>
+
                         <div class="mb-4">
-                            <label class="form-label fw-semibold text-secondary small">Gambar Terkait</label>
-                            <input type="file" name="image" class="form-control">
+                            <label class="form-label-custom">
+                                <span>Foto Dokumentasi Sejarah</span>
+                                <span class="badge-opt">Opsional</span>
+                            </label>
+                            <div class="file-dropzone-wrapper">
+                                <input type="file"
+                                       name="image"
+                                       accept="image/*"
+                                       data-preview="history-image-preview">
+                                <div class="file-dropzone-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <div class="text-sm font-semibold text-slate-700">
+                                    Pilih foto dokumentasi sejarah
+                                </div>
+                                <div class="text-xs text-slate-500 mt-1">
+                                    Format: <strong>JPG, PNG, WEBP</strong> &bull; Maks. 2MB
+                                </div>
+                            </div>
+
+                            <div id="history-image-preview" class="live-preview-box" style="display: none;"></div>
+
                             @if($info && $info->image)
-                                <div class="mt-3 p-2 border rounded bg-light d-inline-block text-center">
-                                    <p class="mb-1 small text-muted fw-bold">Pratinjau Saat Ini:</p>
-                                    <img src="{{ asset('storage/' . $info->image) }}" class="img-thumbnail" style="max-height: 120px; object-fit: cover;">
+                                <div class="mt-3 p-2 bg-white rounded-xl border border-slate-200 text-center">
+                                    <span class="text-xxs font-bold uppercase tracking-wider text-slate-500 d-block mb-1">Foto Saat Ini</span>
+                                    <img src="{{ asset('storage/' . $info->image) }}"
+                                         class="rounded-lg shadow-sm"
+                                         style="max-height: 120px; object-fit: cover;">
                                 </div>
                             @endif
                         </div>
-                        <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold shadow-sm"><i class="fas fa-save me-2"></i>Perbarui Latar Belakang</button>
+
+                        <button type="submit" class="btn-brand-primary w-100 justify-content-center py-2.5">
+                            <i class="fas fa-save"></i> Perbarui Latar Belakang
+                        </button>
                     </form>
                 </div>
             </div>
-        </div>
 
-        {{-- SECTION KANAN: FORM & LIST MILESTONE TIMELINE --}}
-        <div class="col-lg-6 mb-4">
-            <div class="card border-0 shadow-sm rounded-3 mb-4">
-                <div class="card-header bg-transparent border-bottom py-3 d-flex align-items-center">
-                    <div class="icon-shape bg-success-soft text-success rounded-circle me-2 d-inline-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background-color: rgba(25, 135, 84, 0.1);">
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <h5 class="card-title mb-0 fw-bold text-dark">Tambah Milestone / Perkembangan</h5>
-                </div>
-                <div class="card-body p-4">
-                    @if(session('success_timeline'))
-                        <div class="alert alert-success d-flex align-items-center border-0 shadow-sm py-2" role="alert">
-                            <i class="fas fa-check-circle me-2"></i>
-                            <div>{{ session('success_timeline') }}</div>
+            {{-- KOLOM KANAN: MILESTONE TIMELINE --}}
+            <div class="col-lg-6">
+
+                {{-- FORM TAMBAH MILESTONE --}}
+                <div class="form-section-card mb-4">
+                    <div class="form-section-header">
+                        <div class="form-section-icon">
+                            <i class="fas fa-plus"></i>
                         </div>
-                    @endif
+                        <div>
+                            <h5 class="form-section-title">Tambah Milestone / Peristiwa Penting</h5>
+                            <p class="form-section-desc">Tambahkan tonggak sejarah penting berdasarkan urutan tahun.</p>
+                        </div>
+                    </div>
 
                     <form action="{{ route('admin.history.timeline.store') }}" method="POST">
                         @csrf
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <label class="form-label fw-semibold text-secondary small">Tahun</label>
-                                <input type="number" name="year" class="form-control" placeholder="Contoh: 2026" required>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label-custom">
+                                    <span>Tahun Peristiwa</span>
+                                    <span class="badge-req">* Wajib</span>
+                                </label>
+                                <input type="number"
+                                       name="year"
+                                       class="form-control-custom"
+                                       placeholder="2026"
+                                       required>
                             </div>
-                            <div class="col-md-8 mb-3">
-                                <label class="form-label fw-semibold text-secondary small">Judul Peristiwa</label>
-                                <input type="text" name="title" class="form-control" placeholder="Contoh: Izin Operasional" required>
+                            <div class="col-md-8">
+                                <label class="form-label-custom">
+                                    <span>Judul Peristiwa</span>
+                                    <span class="badge-req">* Wajib</span>
+                                </label>
+                                <input type="text"
+                                       name="title"
+                                       class="form-control-custom"
+                                       placeholder="Contoh: Penerbitan SK Pendirian"
+                                       required>
                             </div>
                         </div>
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold text-secondary small">Deskripsi Singkat</label>
-                            <textarea name="description" class="form-control" rows="2" placeholder="Tulis rincian singkat peristiwa..." required></textarea>
+
+                        <div class="mb-3">
+                            <label class="form-label-custom">
+                                <span>Deskripsi Singkat Peristiwa</span>
+                                <span class="badge-req">* Wajib Diisi</span>
+                            </label>
+                            <textarea name="description"
+                                      class="form-control-custom"
+                                      rows="2"
+                                      placeholder="Uraikan intisari peristiwa bersejarah ini..."
+                                      required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success w-100 py-2 fw-semibold shadow-sm"><i class="fas fa-plus-circle me-2"></i>Tambah ke Garis Waktu</button>
+
+                        <button type="submit" class="btn-brand-primary w-100 justify-content-center py-2">
+                            <i class="fas fa-plus-circle"></i> Tambah ke Garis Waktu
+                        </button>
                     </form>
                 </div>
-            </div>
 
-            <div class="card border-0 shadow-sm rounded-3">
-                <div class="card-header bg-transparent border-bottom py-3 d-flex align-items-center">
-                    <div class="icon-shape bg-dark-soft text-dark rounded-circle me-2 d-inline-flex align-items-center justify-content-center" style="width: 35px; height: 35px; background-color: rgba(33, 37, 41, 0.1);">
-                        <i class="fas fa-clock"></i>
+                {{-- LIST MILESTONE --}}
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <div class="p-3 bg-slate-50 border-b border-slate-200 d-flex align-items-center justify-content-between">
+                        <span class="font-bold text-sm text-slate-800 d-flex align-items-center gap-2">
+                            <i class="fas fa-clock text-emerald-600"></i> Garis Waktu Sejarah Saat Ini
+                        </span>
+                        <span class="badge bg-emerald-100 text-emerald-800 text-xxs font-bold">{{ count($timelines) }} Tonggak</span>
                     </div>
-                    <h5 class="card-title mb-0 fw-bold text-dark">Urutan Garis Waktu Saat Ini</h5>
-                </div>
-                <div class="card-body p-0">
+
                     <div class="table-responsive">
-                        <table class="table table-hover mb-0 align-middle">
-                            <thead class="table-light text-secondary small fw-bold text-uppercase border-bottom">
+                        <table class="table mb-0 align-middle">
+                            <thead class="bg-slate-50 text-xxs text-slate-500 uppercase">
                                 <tr>
-                                    <th class="ps-4" width="15%">Tahun</th>
+                                    <th class="ps-3 text-center" width="18%">Tahun</th>
                                     <th width="35%">Judul</th>
-                                    <th width="40%">Deskripsi</th>
-                                    <th class="text-center pe-4" width="10%">Aksi</th>
+                                    <th width="35%">Uraian</th>
+                                    <th class="text-center" width="12%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($timelines as $time)
-                                <tr class="border-bottom">
-                                    <td class="ps-4 fw-bold text-success fs-5">{{ $time->year }}</td>
-                                    <td>
-                                        <span class="fw-semibold text-dark">{{ $time->title }}</span>
-                                    </td>
-                                    <td>
-                                        <p class="mb-0 text-muted small" style="line-height: 1.4;">{{ Str::limit($time->description, 60) }}</p>
-                                    </td>
-                                    <td class="text-center pe-4">
-                                        <form action="{{ route('admin.history.timeline.destroy', $time->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus milestone ini?')">
+                                <tr>
+                                    <td class="ps-3 text-center font-bold text-emerald-700 fs-6">{{ $time->year }}</td>
+                                    <td class="font-semibold text-slate-800 text-xs">{{ $time->title }}</td>
+                                    <td class="text-xs text-slate-500">{{ Str::limit($time->description, 50) }}</td>
+                                    <td class="text-center">
+                                        <form action="{{ route('admin.history.timeline.destroy', $time->id) }}" method="POST" onsubmit="return confirm('Hapus milestone ini?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-light text-danger rounded-circle p-2 border shadow-sm transition-all" title="Hapus Milestone" style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;">
-                                                <i class="fas fa-trash-alt small"></i>
+                                            <button type="submit" class="btn btn-link text-rose-600 p-1 mb-0" title="Hapus Milestone">
+                                                <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>
                                     </td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="4" class="text-center text-muted py-5">
-                                        <div class="py-3">
-                                            <i class="fas fa-folder-open fa-3x text-light mb-3"></i>
-                                            <p class="mb-0 fw-medium text-secondary">Garis waktu masih kosong.</p>
-                                        </div>
-                                    </td>
+                                    <td colspan="4" class="text-center text-slate-400 py-4 text-xs">Belum ada garis waktu tersimpan.</td>
                                 </tr>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
+
 @endsection

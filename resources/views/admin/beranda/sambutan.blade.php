@@ -1,131 +1,245 @@
-@extends('layouts_admin.admin') {{-- Sesuaikan dengan master layout admin kamu --}}
+@extends('layouts_admin.admin')
 
-@section('title', 'Kelola Sambutan Ketua Prodi')
+@section('title', 'Kelola Sambutan Pimpinan')
+@section('page-title', 'Sambutan Pimpinan')
 
 @section('content')
-<div class="container-fluid px-4">
-    <h1 class="mt-4">Sambutan Ketua Prodi</h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        <li class="breadcrumb-item active">Sambutan</li>
-    </ol>
 
-    {{-- Notifikasi Sukses --}}
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="admin-form-card">
+
+    <div class="admin-form-header">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div>
+                <h4><i class="fas fa-comment-dots text-warning"></i> Kelola Sambutan Pimpinan / Kaprodi</h4>
+                <p>Perbarui profil pimpinan, kutipan motivasi, dan teks sambutan pengantar pada halaman beranda.</p>
+            </div>
+            <span class="badge bg-white text-emerald-800 text-xs px-3 py-2 rounded-full font-bold shadow-sm">
+                <i class="fas fa-check-circle text-emerald-600"></i> Konten Beranda
+            </span>
         </div>
-    @endif
+    </div>
 
-    <div class="card mb-4 shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <i class="fas fa-edit me-1"></i> Form Edit Sambutan
-        </div>
-        <div class="card-body">
-            <form action="{{ route('admin.sambutan.update') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
+    <div class="p-3 p-md-4">
 
-                <div class="row">
-                    {{-- Nama Kaprodi --}}
-                    <div class="col-md-6 mb-3">
-                        <label for="kaprodi_name" class="form-label fw-semibold">Nama Ketua Prodi <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('kaprodi_name') is-invalid @enderror"
-                               id="kaprodi_name" name="kaprodi_name" value="{{ old('kaprodi_name', $welcome->kaprodi_name ?? '') }}" required>
+        {{-- Notifikasi Sukses --}}
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show text-white text-xs mb-4" role="alert">
+                <i class="fas fa-check-circle me-1"></i> {{ session('success') }}
+            </div>
+        @endif
+
+        <form action="{{ route('admin.sambutan.update') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
+            {{-- SECTION 1: PROFIL PIMPINAN --}}
+            <div class="form-section-card">
+                <div class="form-section-header">
+                    <div class="form-section-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div>
+                        <h5 class="form-section-title">Profil Pimpinan / Ketua Prodi</h5>
+                        <p class="form-section-desc">Identitas pejabat yang memberikan sambutan.</p>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label-custom">
+                            <span>Nama Lengkap Beserta Gelar</span>
+                            <span class="badge-req">* Wajib Diisi</span>
+                        </label>
+                        <input type="text"
+                               class="form-control-custom @error('kaprodi_name') border-rose-500 @enderror"
+                               id="kaprodi_name"
+                               name="kaprodi_name"
+                               value="{{ old('kaprodi_name', $welcome->kaprodi_name ?? '') }}"
+                               placeholder="Contoh: Dr. H. M. Ridwan, M.Ag"
+                               required>
                         @error('kaprodi_name')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="text-xs text-rose-600 mt-1 font-semibold">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    {{-- Jabatan / Gelar --}}
-                    <div class="col-md-6 mb-3">
-                        <label for="kaprodi_title" class="form-label fw-semibold">Jabatan / Gelar <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('kaprodi_title') is-invalid @enderror"
-                               id="kaprodi_title" name="kaprodi_title" value="{{ old('kaprodi_title', $welcome->kaprodi_title ?? 'Ketua Program Studi') }}" required>
+                    <div class="col-md-6">
+                        <label class="form-label-custom">
+                            <span>Jabatan / Gelar Struktural</span>
+                            <span class="badge-req">* Wajib Diisi</span>
+                        </label>
+                        <input type="text"
+                               class="form-control-custom @error('kaprodi_title') border-rose-500 @enderror"
+                               id="kaprodi_title"
+                               name="kaprodi_title"
+                               value="{{ old('kaprodi_title', $welcome->kaprodi_title ?? 'Ketua Program Studi') }}"
+                               placeholder="Contoh: Ketua Program Studi / Dekan"
+                               required>
                         @error('kaprodi_title')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="text-xs text-rose-600 mt-1 font-semibold">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
 
-                <div class="row">
-                    {{-- Foto Kaprodi --}}
-                    <div class="col-md-4 mb-3">
-                        <label for="kaprodi_image" class="form-label fw-semibold">Foto Kaprodi</label>
-                        <input type="file" class="form-control @error('kaprodi_image') is-invalid @enderror" id="kaprodi_image" name="kaprodi_image">
-                        <small class="text-muted">Format: JPG, PNG, WEBP. Maks: 2MB</small>
-                        @error('kaprodi_image')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                <div class="row align-items-center g-3">
+                    <div class="col-lg-8">
+                        <label class="form-label-custom">
+                            <span>Pas Foto Formal Pimpinan</span>
+                            <span class="badge-opt">Opsional</span>
+                        </label>
+                        <div class="file-dropzone-wrapper">
+                            <input type="file"
+                                   name="kaprodi_image"
+                                   accept="image/*"
+                                   data-preview="sambutan-photo-preview">
+                            <div class="file-dropzone-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <div class="text-sm font-semibold text-slate-700">
+                                Pilih foto formal pimpinan
+                            </div>
+                            <div class="text-xs text-slate-500 mt-1">
+                                Format: <strong>JPG, PNG, WEBP</strong> &bull; Maks. 2MB
+                            </div>
+                        </div>
 
-                        {{-- Preview Foto Saat Ini --}}
+                        <div id="sambutan-photo-preview" class="live-preview-box" style="display: none;"></div>
+                    </div>
+
+                    <div class="col-lg-4">
                         @if($welcome && $welcome->kaprodi_image)
-                            <div class="mt-3">
-                                <p class="mb-1 text-muted">Foto Saat Ini:</p>
-                                <img src="{{ asset('storage/' . $welcome->kaprodi_image) }}" alt="Foto Kaprodi" class="img-thumbnail" style="max-height: 150px;">
+                            <div class="p-3 bg-white rounded-xl border border-slate-200 text-center">
+                                <span class="text-xxs font-bold uppercase tracking-wider text-slate-500 d-block mb-2">Foto Saat Ini</span>
+                                <img src="{{ asset('storage/' . $welcome->kaprodi_image) }}"
+                                     alt="Foto Pimpinan"
+                                     class="rounded-xl shadow-sm border border-slate-200"
+                                     style="max-height: 110px; width: 90px; object-fit: cover; margin: 0 auto; display: block;">
+                                <span class="text-xxs text-slate-400 d-block mt-2">Pilih file baru bila ingin memperbarui</span>
+                            </div>
+                        @else
+                            <div class="p-3 bg-white rounded-xl border border-dashed border-slate-200 text-center text-slate-400">
+                                <i class="fas fa-user-circle fa-2x mb-2 d-block opacity-40"></i>
+                                <span class="text-xs">Belum ada foto terunggah</span>
                             </div>
                         @endif
                     </div>
+                </div>
+            </div>
 
-                    {{-- Quote Singkat --}}
-                    <div class="col-md-8 mb-3">
-                        <label for="quote" class="form-label fw-semibold">Quote Utama (Teks Pendek di Blok) <span class="text-danger">*</span></label>
-                        <textarea class="form-control @error('quote') is-invalid @enderror" id="quote" name="quote" rows="4" required>{{ old('quote', $welcome->quote ?? '') }}</textarea>
-                        @error('quote')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+            {{-- SECTION 2: KUTIPAN & TEKS SAMBUTAN --}}
+            <div class="form-section-card">
+                <div class="form-section-header">
+                    <div class="form-section-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <div>
+                        <h5 class="form-section-title">Kutipan Utama & Narasi Sambutan</h5>
+                        <p class="form-section-desc">Pesan inspiratif yang menjadi sorotan utama di halaman depan.</p>
                     </div>
                 </div>
 
-                {{-- Teks Sambutan Paragraf 1 --}}
                 <div class="mb-3">
-                    <label for="welcome_text_1" class="form-label fw-semibold">Isi Sambutan (Paragraf 1) <span class="text-danger">*</span></label>
-                    <textarea class="form-control @error('welcome_text_1') is-invalid @enderror" id="welcome_text_1" name="welcome_text_1" rows="4" required>{{ old('welcome_text_1', $welcome->welcome_text_1 ?? '') }}</textarea>
+                    <label class="form-label-custom">
+                        <span>Kutipan Utama (Highlighted Quote)</span>
+                        <span class="badge-req">* Wajib Diisi</span>
+                    </label>
+                    <textarea class="form-control-custom @error('quote') border-rose-500 @enderror"
+                              id="quote"
+                              name="quote"
+                              rows="3"
+                              placeholder="Kutipan ringkas inspiratif dari pimpinan..."
+                              required>{{ old('quote', $welcome->quote ?? '') }}</textarea>
+                    <div class="form-hint">
+                        <i class="fas fa-quote-right"></i>
+                        <span>Tampil dengan tipografi besar dan kutipan beraksen emas di beranda.</span>
+                    </div>
+                    @error('quote')
+                        <div class="text-xs text-rose-600 mt-1 font-semibold">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label-custom">
+                        <span>Isi Sambutan (Paragraf 1)</span>
+                        <span class="badge-req">* Wajib Diisi</span>
+                    </label>
+                    <textarea class="form-control-custom @error('welcome_text_1') border-rose-500 @enderror"
+                              id="welcome_text_1"
+                              name="welcome_text_1"
+                              rows="4"
+                              placeholder="Tuliskan paragraf pembuka sambutan..."
+                              required>{{ old('welcome_text_1', $welcome->welcome_text_1 ?? '') }}</textarea>
                     @error('welcome_text_1')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="text-xs text-rose-600 mt-1 font-semibold">{{ $message }}</div>
                     @enderror
                 </div>
 
-                {{-- Teks Sambutan Paragraf 2 --}}
-                <div class="mb-3">
-                    <label for="welcome_text_2" class="form-label fw-semibold">Isi Sambutan (Paragraf 2 - Opsional)</label>
-                    <textarea class="form-control @error('welcome_text_2') is-invalid @enderror" id="welcome_text_2" name="welcome_text_2" rows="4">{{ old('welcome_text_2', $welcome->welcome_text_2 ?? '') }}</textarea>
-                    @error('welcome_text_2')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <div>
+                    <label class="form-label-custom">
+                        <span>Isi Sambutan (Paragraf 2)</span>
+                        <span class="badge-opt">Opsional</span>
+                    </label>
+                    <textarea class="form-control-custom @error('welcome_text_2') border-rose-500 @enderror"
+                              id="welcome_text_2"
+                              name="welcome_text_2"
+                              rows="4"
+                              placeholder="Tuliskan kelanjutan atau penutup sambutan...">{{ old('welcome_text_2', $welcome->welcome_text_2 ?? '') }}</textarea>
                 </div>
+            </div>
 
-                <div class="row">
-                    {{-- Link Profil --}}
-                    <div class="col-md-6 mb-3">
-                        <label for="profile_link" class="form-label fw-semibold">Link Profil Lengkap</label>
-                        <input type="text" class="form-control @error('profile_link') is-invalid @enderror"
-                               id="profile_link" name="profile_link" value="{{ old('profile_link', $welcome->profile_link ?? '#') }}">
-                        @error('profile_link')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+            {{-- SECTION 3: TAUTAN AKSI --}}
+            <div class="form-section-card mb-4">
+                <div class="form-section-header">
+                    <div class="form-section-icon">
+                        <i class="fas fa-link"></i>
                     </div>
-
-                    {{-- Link Kontak --}}
-                    <div class="col-md-6 mb-3">
-                        <label for="contact_link" class="form-label fw-semibold">Link Hubungi Kami</label>
-                        <input type="text" class="form-control @error('contact_link') is-invalid @enderror"
-                               id="contact_link" name="contact_link" value="{{ old('contact_link', $welcome->contact_link ?? '#') }}">
-                        @error('contact_link')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                    <div>
+                        <h5 class="form-section-title">Tautan Tombol Navigasi</h5>
+                        <p class="form-section-desc">URL tombol pendukung di bawah teks sambutan.</p>
                     </div>
                 </div>
 
-                <hr>
-                <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary px-4 shadow-sm">
-                        <i class="fas fa-save me-1"></i> Simpan Perubahan
-                    </button>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label-custom">
+                            <span>Link Profil Lengkap</span>
+                            <span class="badge-opt">Opsional</span>
+                        </label>
+                        <input type="text"
+                               class="form-control-custom"
+                               id="profile_link"
+                               name="profile_link"
+                               value="{{ old('profile_link', $welcome->profile_link ?? '#') }}"
+                               placeholder="Contoh: /profil/visi-misi atau /tentang">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label-custom">
+                            <span>Link Hubungi Kami</span>
+                            <span class="badge-opt">Opsional</span>
+                        </label>
+                        <input type="text"
+                               class="form-control-custom"
+                               id="contact_link"
+                               name="contact_link"
+                               value="{{ old('contact_link', $welcome->contact_link ?? '#') }}"
+                               placeholder="Contoh: /kontak atau https://wa.me/...">
+                    </div>
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <span class="text-xs text-slate-500">
+                    <i class="fas fa-info-circle text-emerald-600"></i> Perubahan sambutan pimpinan akan langsung tayang pada blok sambutan beranda.
+                </span>
+                <button type="submit" class="btn-brand-primary">
+                    <i class="fas fa-save"></i> Simpan Sambutan Pimpinan
+                </button>
+            </div>
+
+        </form>
+
     </div>
+
 </div>
+
 @endsection

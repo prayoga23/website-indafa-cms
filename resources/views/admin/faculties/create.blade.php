@@ -1,11 +1,23 @@
 @extends('layouts_admin.admin')
 
-@section('title', 'Tambah Fakultas')
+@section('title', 'Tambah Fakultas Baru')
 @section('page-title', 'Tambah Fakultas')
 
 @section('content')
 
-<div class="card">
+<div class="admin-form-card">
+
+    <div class="admin-form-header">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div>
+                <h4><i class="fas fa-university text-warning"></i> Tambah Fakultas Baru</h4>
+                <p>Daftarkan fakultas baru ke dalam struktur akademik Institut Agama Islam Darul Falah.</p>
+            </div>
+            <a href="{{ route('admin.faculties.index') }}" class="btn-secondary-custom btn-sm">
+                <i class="fas fa-arrow-left"></i> Kembali ke Daftar
+            </a>
+        </div>
+    </div>
 
     <form action="{{ route('admin.faculties.store') }}"
           method="POST"
@@ -15,17 +27,18 @@
 
         @include('admin.faculties.form')
 
-        <div class="card-footer">
-
-            <button class="btn btn-success">
-                Simpan
-            </button>
-
-            <a href="{{ route('admin.faculties.index') }}"
-               class="btn btn-secondary">
-                Kembali
-            </a>
-
+        <div class="p-3 p-md-4 bg-slate-50 border-t border-slate-200 d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <span class="text-xs text-slate-500">
+                <i class="fas fa-info-circle text-emerald-600"></i> Pastikan field bertanda <span class="badge-req">* Wajib Diisi</span> telah diisi dengan benar.
+            </span>
+            <div class="d-flex align-items-center gap-2">
+                <a href="{{ route('admin.faculties.index') }}" class="btn-secondary-custom">
+                    <i class="fas fa-times"></i> Batal
+                </a>
+                <button type="submit" class="btn-brand-primary">
+                    <i class="fas fa-save"></i> Simpan Fakultas
+                </button>
+            </div>
         </div>
 
     </form>
