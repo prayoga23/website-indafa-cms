@@ -493,32 +493,52 @@
                                 Fakultas
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="fakultasDropdown">
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('frontend.fakultas.syariah') }}" target="_blank" rel="noopener noreferrer">
-                                        Fakultas Ilmu Syariah
+                                {{-- 1. FAKULTAS ILMU SYARI'AH --}}
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between"
+                                       href="{{ route('frontend.fakultas.syariah') }}">
+                                        <span>FAKULTAS ILMU SYARI'AH</span>
+                                        <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}">
+                                                Program Studi Hukum Keluarga Islam
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}">
+                                                Program Studi Hukum Ekonomi Syariah (S1)
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('frontend.fakultas.ebit') }}" target="_blank" rel="noopener noreferrer">
-                                        Fakultas Tarbiyah
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
 
-                        {{-- PROGRAM STUDI --}}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link nav-link-custom dropdown-toggle" href="#"
-                               id="prodiDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                Program Studi
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="prodiDropdown">
-                                <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hki') }}" target="_blank" rel="noopener noreferrer">Prodi Hukum Keluarga Islam (HKI)</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'hes') }}" target="_blank" rel="noopener noreferrer">Prodi Hukum Ekonomi Syariah (HES)</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}" target="_blank" rel="noopener noreferrer">Prodi Manajemen Bisnis Syariah (MBS)</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}" target="_blank" rel="noopener noreferrer">Prodi Ekonomi Syariah (EKOS)</a></li>
-                                <li><a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}" target="_blank" rel="noopener noreferrer">Prodi Pendidikan Agama Islam (PAI)</a></li>
+                                {{-- 2. FAKULTAS TARBIYAH --}}
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between"
+                                       href="{{ route('frontend.fakultas.ebit') }}">
+                                        <span>FAKULTAS TARBIYAH</span>
+                                        <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('frontend.prodi.index', 'mbs') }}">
+                                                Program Studi Manajemen Bisnis Syariah
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('frontend.prodi.index', 'ekos') }}">
+                                                Program Studi Ekonomi Syariah
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('frontend.prodi.index', 'pai') }}">
+                                                Program Studi Pendidikan Agama Islam
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
 
