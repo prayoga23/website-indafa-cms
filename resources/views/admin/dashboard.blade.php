@@ -124,10 +124,10 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-2 ps-3 d-flex align-items-center justify-content-between">
-                <span class="text-xs text-secondary font-weight-bold d-flex align-items-center">
+                <a href="#tabel-aspirasi" class="text-xs text-secondary font-weight-bold d-flex align-items-center">
                     <span class="text-danger font-weight-bolder me-1">Kotak Aspirasi</span>
-                    <i class="material-symbols-rounded text-xs">inbox</i>
-                </span>
+                    <i class="material-symbols-rounded text-xs">arrow_forward</i>
+                </a>
                 <span class="badge bg-light text-dark text-xxs border">Total Masuk</span>
             </div>
         </div>
@@ -205,7 +205,7 @@
 <div class="row g-3">
     {{-- TABEL PESAN MASUK --}}
     <div class="col-lg-8">
-        <div class="card border-0 shadow-sm">
+        <div class="card border-0 shadow-sm" id="tabel-aspirasi">
             <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                 <div>
                     <h6 class="mb-0 font-weight-bolder text-dark">Aspirasi & Pesan Terbaru</h6>

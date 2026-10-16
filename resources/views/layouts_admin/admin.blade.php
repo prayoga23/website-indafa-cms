@@ -24,12 +24,13 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('template-dashboard/assets/css/material-dashboard.min.css?v=3.2.0') }}" rel="stylesheet" />
 
-    <!-- Tailwind CSS (with preflight disabled to maintain Material Dashboard / Bootstrap compatibility) -->
+    <!-- Tailwind CSS (with preflight and visibility disabled to maintain Material Dashboard / Bootstrap compatibility) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             corePlugins: {
                 preflight: false,
+                visibility: false,
             },
             theme: {
                 extend: {
@@ -325,63 +326,212 @@
             background-color: #f8f9fa;
         }
 
-        /* Sidenav custom refinements */
+        /* ══════════════════════════════════════════════════
+           CRITICAL FIX: Tailwind CSS vs Bootstrap / Material Collapse
+           ══════════════════════════════════════════════════ */
+        .collapse {
+            visibility: visible !important;
+        }
+        .collapse:not(.show) {
+            display: none !important;
+        }
+        .collapse.show {
+            display: block !important;
+            visibility: visible !important;
+        }
+        .collapsing {
+            visibility: visible !important;
+        }
+        .navbar-collapse {
+            visibility: visible !important;
+        }
+        @media (min-width: 992px) {
+            .navbar-expand-lg .navbar-collapse {
+                display: flex !important;
+                visibility: visible !important;
+            }
+        }
+        @media (min-width: 1200px) {
+            .navbar-vertical.navbar-expand-xs .navbar-collapse {
+                display: block !important;
+                visibility: visible !important;
+            }
+        }
+        #sidenav-collapse-main {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            height: calc(100vh - 215px) !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+        }
+
+        /* ══════════════════════════════════════════════════
+           MODERN SIDENAV & OPTICAL ICON ALIGNMENT SYSTEM
+           ══════════════════════════════════════════════════ */
         .sidenav {
             z-index: 1040;
             transition: all 0.25s ease;
+            border: 1px solid #e2e8f0;
+            background-color: #ffffff !important;
         }
+        
+        .sidenav-header {
+            padding: 0.5rem 0.25rem;
+        }
+
+        /* Nav Header / Section Dividers */
+        .sidenav .nav-header {
+            font-size: 0.6875rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.08em !important;
+            text-transform: uppercase !important;
+            color: #94a3b8 !important;
+            padding: 1.15rem 1rem 0.4rem 1rem !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .sidenav .nav-header::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        /* Main Menu Links */
         .sidenav .navbar-nav .nav-link {
-            font-size: 0.875rem;
-            font-weight: 500;
-            padding: 0.65rem 1rem;
-            border-radius: 0.5rem;
-            margin: 0.1rem 0;
-            color: #344767;
-            transition: all 0.2s ease;
+            display: flex !important;
+            align-items: center !important;
+            font-size: 0.845rem !important;
+            font-weight: 500 !important;
+            padding: 0.5rem 0.75rem !important;
+            border-radius: 0.625rem !important;
+            margin: 0.15rem 0.65rem !important;
+            color: #334155 !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            position: relative;
         }
         .sidenav .navbar-nav .nav-link:hover {
-            background-color: rgba(0, 0, 0, 0.04);
-            color: #111827;
+            background-color: #f8fafc !important;
+            color: #0b5345 !important;
+            transform: translateX(2px);
         }
-        .sidenav .navbar-nav .nav-link.active {
-            background: linear-gradient(195deg, #42424a 0%, #191919 100%) !important;
-            color: #fff !important;
-            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(64, 64, 64, 0.4) !important;
+
+        /* Standardized Icon Box (Optical Alignment & Centering) */
+        .sidenav .nav-icon {
+            width: 32px !important;
+            height: 32px !important;
+            min-width: 32px !important;
+            border-radius: 0.5rem !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin-right: 0.65rem !important;
+            background-color: #f1f5f9;
+            color: #64748b;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
         }
-        .sidenav .navbar-nav .nav-link.active i {
-            color: #fff !important;
+        .sidenav .nav-icon i {
+            font-size: 1.2rem !important;
+            line-height: 1 !important;
+            transition: transform 0.2s ease;
         }
-        .sidenav .collapse .nav-link {
-            font-size: 0.8125rem;
-            padding: 0.45rem 0.85rem;
-            border-radius: 0.375rem;
-            margin: 0.1rem 0;
-            color: #67748e;
+        .sidenav .nav-link:hover .nav-icon {
+            background-color: #e6f4ea;
+            color: #0b5345;
+            transform: scale(1.05);
         }
-        .sidenav .collapse .nav-link:hover {
-            color: #191919;
-            background-color: rgba(0, 0, 0, 0.03);
+
+        /* Active Main Link */
+        .sidenav .navbar-nav > .nav-item > .nav-link.active {
+            background: linear-gradient(135deg, #0b5345 0%, #134e4a 100%) !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 14px rgba(11, 83, 69, 0.28) !important;
+            font-weight: 600 !important;
         }
-        .sidenav .collapse .nav-link.active-sub {
-            background-color: rgba(46, 125, 50, 0.12);
-            color: #2e7d32 !important;
-            font-weight: 700;
+        .sidenav .navbar-nav > .nav-item > .nav-link.active .nav-icon {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: #ffffff !important;
+            box-shadow: none;
         }
+        .sidenav .navbar-nav > .nav-item > .nav-link.active .nav-link-text {
+            color: #ffffff !important;
+        }
+
+        /* Active Dropdown Parent */
+        .sidenav .nav-link.active-parent {
+            background-color: #f0fdf4 !important;
+            color: #0b5345 !important;
+            font-weight: 600 !important;
+        }
+        .sidenav .nav-link.active-parent .nav-icon {
+            background-color: #0b5345 !important;
+            color: #ffffff !important;
+        }
+
+        /* Sidenav Arrow Animation */
         .sidenav-arrow {
-            transition: transform 0.25s ease;
-            font-size: 1.15rem;
-            line-height: 1;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            font-size: 1.25rem !important;
+            color: #94a3b8;
+            margin-left: auto !important;
+            flex-shrink: 0;
         }
         .nav-link[aria-expanded="true"] .sidenav-arrow {
             transform: rotate(180deg);
+            color: #0b5345;
         }
-        .nav-header {
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            color: #8392ab;
-            padding: 1rem 1rem 0.35rem 1rem;
+
+        /* Sub-menu / Child Navigation Styling */
+        .sidenav .sub-menu-nav {
+            margin-left: 1.35rem !important;
+            padding-left: 0.65rem !important;
+            border-left: 2px solid #e2e8f0;
+            margin-top: 0.25rem;
+            margin-bottom: 0.4rem;
+            list-style: none;
+        }
+        .sidenav .sub-menu-nav .nav-link {
+            display: flex !important;
+            align-items: center !important;
+            padding: 0.38rem 0.65rem !important;
+            border-radius: 0.5rem !important;
+            margin: 0.1rem 0 !important;
+            color: #64748b !important;
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+        }
+        .sidenav .sub-menu-nav .nav-link:hover {
+            color: #0b5345 !important;
+            background-color: #f0fdf4 !important;
+            padding-left: 0.8rem !important;
+        }
+        .sidenav .sub-dot {
+            width: 6px;
+            height: 6px;
+            min-width: 6px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+            margin-right: 0.6rem;
+            transition: all 0.2s ease;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        .sidenav .sub-menu-nav .nav-link:hover .sub-dot {
+            background-color: #0b5345;
+            transform: scale(1.3);
+        }
+        .sidenav .sub-menu-nav .nav-link.active-sub {
+            background-color: #ecfdf5 !important;
+            color: #065f46 !important;
+            font-weight: 700 !important;
+        }
+        .sidenav .sub-menu-nav .nav-link.active-sub .sub-dot {
+            background-color: #10b981 !important;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+            transform: scale(1.2);
         }
 
         /* Buttons & Badges */
@@ -401,11 +551,17 @@
 
         /* Sidenav Scrollbar */
         #sidenav-collapse-main::-webkit-scrollbar {
-            width: 5px;
+            width: 4px;
+        }
+        #sidenav-collapse-main::-webkit-scrollbar-track {
+            background: transparent;
         }
         #sidenav-collapse-main::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0.15);
-            border-radius: 4px;
+            background-color: #e2e8f0;
+            border-radius: 9999px;
+        }
+        #sidenav-collapse-main::-webkit-scrollbar-thumb:hover {
+            background-color: #cbd5e1;
         }
     </style>
 
