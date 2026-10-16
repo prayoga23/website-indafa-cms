@@ -596,6 +596,55 @@
             font-weight: 600;
         }
 
+        /* ══════════════════════════════════════════════════
+           HIGH-CONTRAST BADGES FOR ADMIN TABLES (Scope & Status)
+           ══════════════════════════════════════════════════ */
+        .badge.badge-secondary,
+        .badge.bg-secondary,
+        .badge.bg-light {
+            background-color: #f1f5f9 !important;
+            color: #1e293b !important;
+            border: 1px solid #cbd5e1 !important;
+        }
+        .badge.badge-success,
+        .badge.bg-success {
+            background-color: #d1fae5 !important;
+            color: #064e3b !important;
+            border: 1px solid #86efac !important;
+        }
+        .badge.badge-info,
+        .badge.bg-info {
+            background-color: #eff6ff !important;
+            color: #1e3a8a !important;
+            border: 1px solid #bfdbfe !important;
+        }
+        .badge.badge-warning,
+        .badge.bg-warning {
+            background-color: #fef3c7 !important;
+            color: #78350f !important;
+            border: 1px solid #fde68a !important;
+        }
+        .badge.badge-danger,
+        .badge.bg-danger {
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+            border: 1px solid #fecaca !important;
+        }
+
+        /* Responsive Table Refinements */
+        .table-responsive {
+            -webkit-overflow-scrolling: touch;
+        }
+        .table thead th {
+            letter-spacing: 0.05em;
+            font-size: 0.72rem !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+        }
+        .table tbody td {
+            vertical-align: middle;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
         /* Alert Styling */
         .alert {
             border-radius: 0.5rem;
