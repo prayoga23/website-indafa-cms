@@ -484,6 +484,59 @@
             color: #0b5345;
         }
 
+        /* Remove duplicate pseudo-element arrow from Material Dashboard / Bootstrap */
+        .navbar-vertical .navbar-nav .nav-link[data-bs-toggle="collapse"]::after,
+        .navbar-vertical .navbar-nav .nav-link[data-bs-toggle="collapse"]:after,
+        .sidenav .navbar-nav .nav-link::after,
+        .sidenav .navbar-nav .nav-link:after {
+            display: none !important;
+            content: none !important;
+        }
+
+        /* ══════════════════════════════════════════════════
+           DASHBOARD STAT CARD ICONS (OPTICAL CENTERING & ELEVATION)
+           ══════════════════════════════════════════════════ */
+        .card-header .icon-shape,
+        .stat-card-icon {
+            width: 48px !important;
+            height: 48px !important;
+            min-width: 48px !important;
+            border-radius: 0.75rem !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin-top: -14px !important; /* Floating upwards above card body */
+            position: relative !important;
+            box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.18) !important;
+        }
+
+        .card-header .icon-shape i,
+        .card-header .icon-shape .material-symbols-rounded,
+        .stat-card-icon i,
+        .stat-card-icon .material-symbols-rounded,
+        .icon-shape i,
+        .icon-shape .material-symbols-rounded,
+        .icon-md i,
+        .icon-sm i,
+        .icon-lg i {
+            top: 0 !important;
+            position: static !important;
+            transform: none !important;
+            line-height: 1 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .card-header .icon-shape i,
+        .card-header .icon-shape .material-symbols-rounded,
+        .stat-card-icon i,
+        .stat-card-icon .material-symbols-rounded {
+            font-size: 1.5rem !important;
+        }
+
         /* Sub-menu / Child Navigation Styling */
         .sidenav .sub-menu-nav {
             margin-left: 1.35rem !important;

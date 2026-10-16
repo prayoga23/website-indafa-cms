@@ -32,17 +32,17 @@
 {{-- ═══════════════════════════════════════════════
      ROW 1: 4 KARTU STATISTIK (MATERIAL DASHBOARD CARDS)
      ════════════════════════════════════════════════ --}}
-<div class="row g-3 mb-4">
+<div class="row g-3 mb-4 pt-2">
     {{-- FAKULTAS --}}
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-2">
-        <div class="card border-0 shadow-sm">
+        <div class="card border-0 shadow-sm" style="overflow: visible;">
             <div class="card-header p-2 ps-3">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <p class="text-xs mb-1 text-uppercase text-secondary font-weight-bolder">Total Fakultas</p>
                         <h4 class="mb-0 text-dark font-weight-bolder">{{ $countFaculty }}</h4>
                     </div>
-                    <div class="icon icon-md icon-shape bg-gradient-dark shadow-dark text-center border-radius-lg d-flex align-items-center justify-content-center">
+                    <div class="icon icon-md icon-shape bg-gradient-dark shadow-dark text-center border-radius-lg d-flex align-items-center justify-content-center stat-card-icon">
                         <i class="material-symbols-rounded opacity-10 text-white">account_balance</i>
                     </div>
                 </div>
@@ -60,14 +60,14 @@
 
     {{-- PRODI --}}
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-2">
-        <div class="card border-0 shadow-sm">
+        <div class="card border-0 shadow-sm" style="overflow: visible;">
             <div class="card-header p-2 ps-3">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <p class="text-xs mb-1 text-uppercase text-secondary font-weight-bolder">Program Studi</p>
                         <h4 class="mb-0 text-dark font-weight-bolder">{{ $countStudyProgram }}</h4>
                     </div>
-                    <div class="icon icon-md icon-shape bg-gradient-success shadow-success text-center border-radius-lg d-flex align-items-center justify-content-center">
+                    <div class="icon icon-md icon-shape bg-gradient-success shadow-success text-center border-radius-lg d-flex align-items-center justify-content-center stat-card-icon">
                         <i class="material-symbols-rounded opacity-10 text-white">school</i>
                     </div>
                 </div>
@@ -85,14 +85,14 @@
 
     {{-- DOSEN & STAF --}}
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-2">
-        <div class="card border-0 shadow-sm">
+        <div class="card border-0 shadow-sm" style="overflow: visible;">
             <div class="card-header p-2 ps-3">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <p class="text-xs mb-1 text-uppercase text-secondary font-weight-bolder">Dosen & Staf</p>
                         <h4 class="mb-0 text-dark font-weight-bolder">{{ $countLecturer }}</h4>
                     </div>
-                    <div class="icon icon-md icon-shape bg-gradient-info shadow-info text-center border-radius-lg d-flex align-items-center justify-content-center">
+                    <div class="icon icon-md icon-shape bg-gradient-info shadow-info text-center border-radius-lg d-flex align-items-center justify-content-center stat-card-icon">
                         <i class="material-symbols-rounded opacity-10 text-white">groups</i>
                     </div>
                 </div>
@@ -110,14 +110,14 @@
 
     {{-- KOTAK MASUK / ASPIRASI --}}
     <div class="col-xl-3 col-sm-6">
-        <div class="card border-0 shadow-sm">
+        <div class="card border-0 shadow-sm" style="overflow: visible;">
             <div class="card-header p-2 ps-3">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <p class="text-xs mb-1 text-uppercase text-secondary font-weight-bolder">Pesan & Aspirasi</p>
                         <h4 class="mb-0 text-dark font-weight-bolder">{{ $countMessage }}</h4>
                     </div>
-                    <div class="icon icon-md icon-shape bg-gradient-danger shadow-danger text-center border-radius-lg d-flex align-items-center justify-content-center">
+                    <div class="icon icon-md icon-shape bg-gradient-danger shadow-danger text-center border-radius-lg d-flex align-items-center justify-content-center stat-card-icon">
                         <i class="material-symbols-rounded opacity-10 text-white">mark_email_unread</i>
                     </div>
                 </div>
