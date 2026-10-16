@@ -4,42 +4,24 @@
 @section('page-title', 'Tambah Program Studi')
 
 @section('content')
-
-<div class="card card-primary">
-
-    <div class="card-header">
-        <h3 class="card-title">Form Tambah Program Studi</h3>
+<div class="card shadow-sm border-0">
+    <div class="card-header pb-0">
+        <h6 class="font-weight-bolder text-dark mb-0">Form Tambah Program Studi</h6>
     </div>
 
-    <form action="{{ route('admin.study-programs.store') }}"
-          method="POST"
-          enctype="multipart/form-data">
-
+    <form action="{{ route('admin.study-programs.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
         @include('admin.study-programs.form')
 
-        <div class="card-footer">
-
-            <button type="submit"
-                    class="btn btn-success">
-
-                <i class="fas fa-save"></i>
-                Simpan
-
+        <div class="card-footer pt-0 d-flex gap-2">
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-save me-1"></i> Simpan
             </button>
-
-            <a href="{{ route('admin.study-programs.index') }}"
-               class="btn btn-secondary">
-
+            <a href="{{ route('admin.study-programs.index') }}" class="btn btn-secondary">
                 Kembali
-
             </a>
-
         </div>
-
     </form>
-
 </div>
-
 @endsection
+

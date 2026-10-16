@@ -4,13 +4,8 @@
 @section('page-title', 'Tambah Banner')
 
 @section('content')
-
-<form action="{{ route('admin.banners.store') }}"
-      method="POST"
-      enctype="multipart/form-data">
-
+<form action="{{ route('admin.banners.store') }}" method="POST" enctype="multipart/form-data">
     @include('admin.banners._form')
-
 </form>
-
 @endsection
+

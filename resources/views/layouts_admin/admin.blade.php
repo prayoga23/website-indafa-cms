@@ -232,6 +232,6 @@
     <script src="{{ asset('template-dashboard/assets/js/material-dashboard.min.js?v=3.2.0') }}"></script>
 
     @stack('js')
-
+    @stack('scripts')
 </body>
 </html>

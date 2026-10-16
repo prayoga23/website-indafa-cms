@@ -4,16 +4,10 @@
 @section('page-title', 'Edit Banner')
 
 @section('content')
-
-<form action="{{ route('admin.banners.update', $banner->id) }}"
-      method="POST"
-      enctype="multipart/form-data">
-
+<form action="{{ route('admin.banners.update', $banner->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
-
     @include('admin.banners._form')
-
 </form>
-
 @endsection
+

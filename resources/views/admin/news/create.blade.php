@@ -1,90 +1,32 @@
 @extends('layouts_admin.admin')
 
-@section('title','Tambah Berita')
-@section('page-title','Tambah Berita')
+@section('title', 'Tambah Berita')
+@section('page-title', 'Tambah Berita')
 
 @section('content')
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card card-primary">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Form Tambah Berita</h5>
+                <a href="{{ route('admin.news.index') }}" class="btn btn-secondary btn-sm">
+                    <i class="fas fa-arrow-left mr-1"></i> Kembali
+                </a>
+            </div>
 
-<div class="card card-primary">
-
-    <form action="{{ route('admin.news.store') }}"
-          method="POST"
-          enctype="multipart/form-data">
-
-        @csrf
-
-        @include('admin.news.form')
-
-        <div class="card-footer">
-
-            <button class="btn btn-success">
-                <i class="fas fa-save"></i> Simpan
-            </button>
-
-            <a href="{{ route('admin.news.index') }}"
-               class="btn btn-secondary">
-                Kembali
-            </a>
-
+            <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="card-body">
+                    @include('admin.news.form')
+                </div>
+                <div class="card-footer bg-light d-flex justify-content-end gap-2">
+                    <a href="{{ route('admin.news.index') }}" class="btn btn-secondary mr-2">Batal</a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save mr-1"></i> Simpan Berita
+                    </button>
+                </div>
+            </form>
         </div>
-
-    </form>
-
+    </div>
 </div>
-
-@push('js')
-<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
-
-<script>
-class MyUploadAdapter {
-    constructor(loader) {
-        this.loader = loader;
-    }
-
-    upload() {
-        return this.loader.file
-            .then(file => new Promise((resolve, reject) => {
-
-                const formData = new FormData();
-                formData.append('upload', file);
-
-                fetch("{{ route('ckeditor.upload') }}", {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(result => {
-                    resolve({
-                        default: result.url
-                    });
-                })
-                .catch(error => {
-                    reject(error);
-                });
-
-            }));
-    }
-
-    abort() {}
-}
-
-function MyCustomUploadAdapterPlugin(editor) {
-    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-        return new MyUploadAdapter(loader);
-    };
-}
-
-ClassicEditor
-    .create(document.querySelector('#editor'), {
-        extraPlugins: [MyCustomUploadAdapterPlugin]
-    })
-    .catch(error => {
-        console.error(error);
-    });
-</script>
-@endpush
-
 @endsection
