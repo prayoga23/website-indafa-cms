@@ -15,7 +15,7 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <span class="badge bg-white text-dark mb-2 px-3 py-1 text-xxs font-weight-bolder text-uppercase">Admin Control Center</span>
-                    <h3 class="text-white font-weight-bolder mb-1">Selamat Datang, {{ auth()->user()->name ?? 'Administrator' }}! 👋</h3>
+                    <h3 class="text-white font-weight-bolder mb-1">Selamat Datang, {{ auth()->user()->name ?? 'Administrator' }}!</h3>
                     <p class="text-white opacity-8 text-sm mb-0">Kelola seluruh informasi kampus, fakultas, program studi, publikasi berita, dan aspirasi secara terpusat.</p>
                 </div>
                 <div class="col-md-4 text-md-end mt-3 mt-md-0">
