@@ -148,6 +148,24 @@ Route::get('/fakultas/{slug}', [FrontendFacultyController::class, 'show'])
 Route::get('/program-studi/{slug}',[FrontendStudyProgramController::class, 'show'])->name('programs.show');
 // Route::get('/program-studi/{slug}',[FrontendStudyProgramController::class, 'show'])->name('programs.page.show');
 
+// Route Alias untuk kesesuaian URL
+Route::get('/fakultas-syariah', fn() => redirect()->route('faculties.show', 'fakultas-ilmu-syariah'));
+Route::get('/fakultas-ebit', fn() => redirect()->route('faculties.show', 'fakultas-tarbiyah'));
+Route::get('/prodi-hki', fn() => redirect()->route('programs.show', 'hukum-keluarga-islam'));
+Route::get('/prodi-hes', fn() => redirect()->route('programs.show', 'hukum-ekonomi-syariah'));
+Route::get('/prodi-mbs', fn() => redirect()->route('programs.show', 'manajemen-bisnis-syariah'));
+Route::get('/prodi-ekos', fn() => redirect()->route('programs.show', 'ekonomi-syariah'));
+Route::get('/prodi-pai', fn() => redirect()->route('programs.show', 'pendidikan-agama-islam'));
+
+Route::get('/unit/ormawa', function() {
+    $page = \App\Models\Page::where('slug', 'ormawa')->first();
+    return $page ? redirect()->route('page.show', 'ormawa') : redirect()->route('home');
+});
+Route::get('/prestasi-mahasiswa', function() {
+    $page = \App\Models\Page::where('slug', 'prestasi-mahasiswa')->first();
+    return $page ? redirect()->route('page.show', 'prestasi-mahasiswa') : redirect()->route('home');
+});
+
 Route::get('/kontak', [ContactController::class, 'index'])->name('contact.index');
 
 Route::get('/pengumuman', [FrontendAnnouncementController::class, 'index'])->name('announcements.index');

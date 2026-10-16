@@ -25,6 +25,8 @@ class StudyProgramController extends Controller
  public function show($slug)
 {
     // 1. Ambil data prodi utama beserta relasi fakultas, dosen, dan galeri
+    $cleanSlug = str_replace('prodi-', '', strtolower($slug));
+
     $program = StudyProgram::query()
         ->with([
             'faculty',
@@ -32,7 +34,59 @@ class StudyProgramController extends Controller
             'galleries'
         ])
         ->where('slug', $slug)
-        ->firstOrFail();
+        ->orWhere('slug', 'prodi-' . $cleanSlug)
+        ->orWhere('slug', $cleanSlug)
+        ->first();
+
+    if (!$program) {
+        $aliasMap = [
+            'hki' => ['hukum-keluarga-islam', 'prodi-hki'],
+            'hes' => ['hukum-ekonomi-syariah', 'prodi-hes'],
+            'mbs' => ['manajemen-bisnis-syariah', 'prodi-mbs'],
+            'ekos' => ['ekonomi-syariah', 'prodi-ekos'],
+            'pai' => ['pendidikan-agama-islam', 'prodi-pai'],
+            'hukum-keluarga-islam' => ['prodi-hki', 'hki'],
+            'hukum-ekonomi-syariah' => ['prodi-hes', 'hes'],
+            'manajemen-bisnis-syariah' => ['prodi-mbs', 'mbs'],
+            'ekonomi-syariah' => ['prodi-ekos', 'ekos'],
+            'pendidikan-agama-islam' => ['prodi-pai', 'pai'],
+            'prodi-hki' => ['hukum-keluarga-islam', 'hki'],
+            'prodi-hes' => ['hukum-ekonomi-syariah', 'hes'],
+            'prodi-mbs' => ['manajemen-bisnis-syariah', 'mbs'],
+            'prodi-ekos' => ['ekonomi-syariah', 'ekos'],
+            'prodi-pai' => ['pendidikan-agama-islam', 'pai'],
+        ];
+
+        if (isset($aliasMap[$slug])) {
+            $program = StudyProgram::query()
+                ->with(['faculty', 'lecturers', 'galleries'])
+                ->whereIn('slug', $aliasMap[$slug])
+                ->first();
+        }
+    }
+
+    if (!$program) {
+        $program = StudyProgram::query()
+            ->with(['faculty', 'lecturers', 'galleries'])
+            ->where(function($q) use ($cleanSlug) {
+                if (str_contains($cleanSlug, 'hki') || str_contains($cleanSlug, 'keluarga')) {
+                    $q->where('name', 'like', '%Keluarga%')->orWhere('slug', 'like', '%hki%');
+                } elseif (str_contains($cleanSlug, 'hes')) {
+                    $q->where('name', 'like', '%Hukum Ekonomi%')->orWhere('slug', 'like', '%hes%');
+                } elseif (str_contains($cleanSlug, 'mbs') || str_contains($cleanSlug, 'bisnis')) {
+                    $q->where('name', 'like', '%Bisnis%')->orWhere('slug', 'like', '%mbs%');
+                } elseif (str_contains($cleanSlug, 'ekos') || (str_contains($cleanSlug, 'ekonomi') && !str_contains($cleanSlug, 'hukum'))) {
+                    $q->where('name', 'like', '%Ekonomi Syariah%')->orWhere('slug', 'like', '%ekos%');
+                } elseif (str_contains($cleanSlug, 'pai') || str_contains($cleanSlug, 'pendidikan')) {
+                    $q->where('name', 'like', '%Pendidikan%')->orWhere('slug', 'like', '%pai%');
+                }
+            })
+            ->first();
+    }
+
+    if (!$program) {
+        abort(404);
+    }
 
     // 2. Ambil SEMUA banner khusus prodi ini, jika kosong ambil banner umum kampus
     $banners = Banner::where('program_studi_id', $program->id)->get();

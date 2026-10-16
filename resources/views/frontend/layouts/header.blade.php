@@ -52,113 +52,92 @@
                         </ul>
                     </li>
 
-                    {{-- 3. FAKULTAS & PRODI (Submenu Flyout) --}}
+                    {{-- 3. FAKULTAS (Menggabungkan Fakultas & Program Studi) --}}
                     <li class="nav-item dropdown">
-                        <a class="nav-link nav-link-custom dropdown-toggle" href="#" id="fakultasProdiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Fakultas & Prodi
+                        <a class="nav-link nav-link-custom dropdown-toggle" href="#" id="fakultasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Fakultas
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="fakultasProdiDropdown">
-                            @if(isset($facultiesMenu) && $facultiesMenu->count() > 0)
-                                @foreach($facultiesMenu as $faculty)
-                                    @php
-                                        $prodis = $faculty->studyPrograms ?? collect();
-                                        $slug = strtolower($faculty->slug ?? '');
-                                        $isSyariah = str_contains($slug, 'syariah') || str_contains(strtolower($faculty->name), 'syariah');
-                                        $isTarbiyah = str_contains($slug, 'tarbiyah') || str_contains(strtolower($faculty->name), 'tarbiyah') || str_contains($slug, 'ebit');
-                                    @endphp
-                                    <li class="dropdown-submenu">
-                                        <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between"
-                                           href="{{ route('faculties.show', $faculty->slug) }}">
-                                            <span>{{ $faculty->name }}</span>
-                                            <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-dark">
-                                            @if($prodis->count() > 0)
-                                                @foreach($prodis as $prodi)
-                                                    <li>
-                                                        <a class="dropdown-item" href="{{ route('programs.show', $prodi->slug) }}">
-                                                            {{ $prodi->name }}
-                                                        </a>
-                                                    </li>
-                                                @endforeach
-                                            @elseif($isSyariah)
-                                                <li>
-                                                    <a class="dropdown-item" href="{{ route('programs.show', 'hukum-keluarga-islam') }}">
-                                                        Prodi Hukum Keluarga Islam (HKI)
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="{{ route('programs.show', 'hukum-ekonomi-syariah') }}">
-                                                        Prodi Hukum Ekonomi Syariah (HES)
-                                                    </a>
-                                                </li>
-                                            @elseif($isTarbiyah)
-                                                <li>
-                                                    <a class="dropdown-item" href="{{ route('programs.show', 'manajemen-bisnis-syariah') }}">
-                                                        Prodi Manajemen Bisnis Syariah (MBS)
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="{{ route('programs.show', 'ekonomi-syariah') }}">
-                                                        Prodi Ekonomi Syariah (EKOS)
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="{{ route('programs.show', 'pendidikan-agama-islam') }}">
-                                                        Prodi Pendidikan Agama Islam (PAI)
-                                                    </a>
-                                                </li>
-                                            @endif
-                                        </ul>
-                                    </li>
-                                @endforeach
-                            @else
-                                {{-- Fallback Statis Sesuai Mockup Foto --}}
-                                <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between"
-                                       href="{{ route('faculties.show', 'fakultas-ilmu-syariah') }}">
-                                        <span>Fakultas Ilmu Syariah</span>
-                                        <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('programs.show', 'hukum-keluarga-islam') }}">
-                                                Prodi Hukum Keluarga Islam (HKI)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('programs.show', 'hukum-ekonomi-syariah') }}">
-                                                Prodi Hukum Ekonomi Syariah (HES)
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="fakultasDropdown">
+                            @php
+                                $allProdis = isset($programsMenu) ? $programsMenu : (\App\Models\StudyProgram::all() ?? collect());
 
-                                <li class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between"
-                                       href="{{ route('faculties.show', 'fakultas-tarbiyah') }}">
-                                        <span>Fakultas Tarbiyah</span>
-                                        <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('programs.show', 'manajemen-bisnis-syariah') }}">
-                                                Prodi Manajemen Bisnis Syariah (MBS)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('programs.show', 'ekonomi-syariah') }}">
-                                                Prodi Ekonomi Syariah (EKOS)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('programs.show', 'pendidikan-agama-islam') }}">
-                                                Prodi Pendidikan Agama Islam (PAI)
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            @endif
+                                $findProdiSlug = function($code, $fallbackSlug) use ($allProdis) {
+                                    $found = $allProdis->first(function($p) use ($code, $fallbackSlug) {
+                                        $slug = strtolower($p->slug ?? '');
+                                        $name = strtolower($p->name ?? '');
+                                        return str_contains($slug, $code) || str_contains($slug, $fallbackSlug) || str_contains($name, $code);
+                                    });
+                                    return $found ? $found->slug : $fallbackSlug;
+                                };
+
+                                $slugHki = $findProdiSlug('hki', 'hukum-keluarga-islam');
+                                $slugHes = $findProdiSlug('hes', 'hukum-ekonomi-syariah');
+                                $slugMbs = $findProdiSlug('mbs', 'manajemen-bisnis-syariah');
+                                $slugEkos = $findProdiSlug('ekos', 'ekonomi-syariah');
+                                $slugPai = $findProdiSlug('pai', 'pendidikan-agama-islam');
+
+                                $syariahFac = isset($facultiesMenu) ? $facultiesMenu->first(function($f) {
+                                    $s = strtolower($f->slug ?? '');
+                                    $n = strtolower($f->name ?? '');
+                                    return str_contains($s, 'syariah') || str_contains($n, 'syariah');
+                                }) : null;
+
+                                $tarbiyahFac = isset($facultiesMenu) ? $facultiesMenu->first(function($f) {
+                                    $s = strtolower($f->slug ?? '');
+                                    $n = strtolower($f->name ?? '');
+                                    return str_contains($s, 'tarbiyah') || str_contains($n, 'tarbiyah') || str_contains($s, 'ebit');
+                                }) : null;
+
+                                $slugSyariah = $syariahFac?->slug ?? 'fakultas-ilmu-syariah';
+                                $slugTarbiyah = $tarbiyahFac?->slug ?? 'fakultas-tarbiyah';
+                            @endphp
+
+                            {{-- Submenu 1: Fakultas Ilmu Syariah --}}
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between"
+                                   href="{{ route('faculties.show', $slugSyariah) }}">
+                                    <span>Fakultas Ilmu Syariah</span>
+                                    <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('programs.show', $slugHki) }}">
+                                            Prodi Hukum Keluarga Islam (HKI)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('programs.show', $slugHes) }}">
+                                            Prodi Hukum Ekonomi Syariah (HES)
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            {{-- Submenu 2: Fakultas Tarbiyah --}}
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between"
+                                   href="{{ route('faculties.show', $slugTarbiyah) }}">
+                                    <span>Fakultas Tarbiyah</span>
+                                    <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('programs.show', $slugMbs) }}">
+                                            Prodi Manajemen Bisnis Syariah (MBS)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('programs.show', $slugEkos) }}">
+                                            Prodi Ekonomi Syariah (EKOS)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('programs.show', $slugPai) }}">
+                                            Prodi Pendidikan Agama Islam (PAI)
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
 
@@ -184,6 +163,17 @@
                             <li><a class="dropdown-item" href="{{ route('frontend.akademik.kalender') }}">Kalender Akademik</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.akademik.panduan') }}">Panduan Akademik</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.akademik.jadwal') }}">Jadwal Kuliah</a></li>
+                        </ul>
+                    </li>
+
+                    {{-- 6. KEMAHASISWAAN --}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-link-custom dropdown-toggle" href="#" id="kemahasiswaanDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Kemahasiswaan
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="kemahasiswaanDropdown">
+                            <li><a class="dropdown-item" href="{{ url('/unit/ormawa') }}">ORMAWA</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/prestasi-mahasiswa') }}">Prestasi Kemahasiswaan</a></li>
                         </ul>
                     </li>
 
