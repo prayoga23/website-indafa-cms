@@ -19,14 +19,59 @@
     <div class="navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
 
-            {{-- DASHBOARD --}}
+            {{-- DASHBOARD COLLAPSE --}}
+            @php
+                $dashboardActive = request()->routeIs('admin.dashboard*');
+            @endphp
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
-                    <span class="nav-icon">
-                        <i class="material-symbols-rounded">dashboard</i>
-                    </span>
-                    <span class="nav-link-text">Dashboard</span>
+                <a class="nav-link justify-content-between {{ $dashboardActive ? 'active-parent' : '' }}"
+                   data-bs-toggle="collapse"
+                   href="#collapseDashboard"
+                   role="button"
+                   aria-expanded="{{ $dashboardActive ? 'true' : 'false' }}"
+                   aria-controls="collapseDashboard">
+                    <div class="d-flex align-items-center">
+                        <span class="nav-icon">
+                            <i class="material-symbols-rounded">dashboard</i>
+                        </span>
+                        <span class="nav-link-text">Dashboard Panel</span>
+                    </div>
+                    <i class="material-symbols-rounded sidenav-arrow">expand_more</i>
                 </a>
+                <div class="collapse {{ $dashboardActive ? 'show' : '' }}" id="collapseDashboard">
+                    <ul class="nav sub-menu-nav">
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.dashboard') && !request()->routeIs('admin.dashboard.*') ? 'active-sub' : '' }}" href="{{ route('admin.dashboard') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Dashboard Utama</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.dashboard.syariah') ? 'active-sub' : '' }}" href="{{ route('admin.dashboard.syariah') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Fakultas Syari'ah</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.dashboard.febit') ? 'active-sub' : '' }}" href="{{ route('admin.dashboard.febit') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Fakultas FEBIT</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.dashboard.lpm') ? 'active-sub' : '' }}" href="{{ route('admin.dashboard.lpm') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Dashboard LPM</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.dashboard.lp2m') ? 'active-sub' : '' }}" href="{{ route('admin.dashboard.lp2m') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Dashboard LP2M</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
 
             {{-- MASTER DATA --}}

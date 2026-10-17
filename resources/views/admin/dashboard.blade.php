@@ -7,6 +7,46 @@
 @section('content')
 
 {{-- ═══════════════════════════════════════════════
+     DASHBOARD SWITCHER TABS
+     ════════════════════════════════════════════════ --}}
+<div class="row mb-3">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm p-2 bg-white">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-gradient-dark text-white me-2 px-2.5 py-1.5 text-xxs font-weight-bold">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">tune</i>Pilih Dashboard
+                    </span>
+                    <span class="text-xs text-secondary font-weight-bold d-none d-md-inline">Navigasi Langsung Antar Panel:</span>
+                </div>
+                <div class="d-flex flex-wrap gap-1">
+                    <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-dark mb-0 py-1.5 px-3 text-xs font-weight-bold shadow-xs">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">space_dashboard</i>
+                        <span>Dashboard Utama</span>
+                    </a>
+                    <a href="{{ route('admin.dashboard.syariah') }}" class="btn btn-sm btn-outline-dark mb-0 py-1.5 px-3 text-xs font-weight-bold shadow-none" style="border-color: #8B0000; color: #8B0000;">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">balance</i>
+                        <span>Fakultas Syari'ah</span>
+                    </a>
+                    <a href="{{ route('admin.dashboard.febit') }}" class="btn btn-sm btn-outline-dark mb-0 py-1.5 px-3 text-xs font-weight-bold shadow-none" style="border-color: #0f2b48; color: #0f2b48;">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">trending_up</i>
+                        <span>Fakultas FEBIT</span>
+                    </a>
+                    <a href="{{ route('admin.dashboard.lpm') }}" class="btn btn-sm btn-outline-dark mb-0 py-1.5 px-3 text-xs font-weight-bold shadow-none" style="border-color: #059669; color: #059669;">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">verified</i>
+                        <span>LPM Mutu</span>
+                    </a>
+                    <a href="{{ route('admin.dashboard.lp2m') }}" class="btn btn-sm btn-outline-dark mb-0 py-1.5 px-3 text-xs font-weight-bold shadow-none" style="border-color: #4f46e5; color: #4f46e5;">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">biotech</i>
+                        <span>LP2M Riset</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- ═══════════════════════════════════════════════
      HEADER BANNER
      ════════════════════════════════════════════════ --}}
 <div class="row mb-2">
@@ -129,6 +169,109 @@
                     <i class="material-symbols-rounded text-xs">arrow_forward</i>
                 </a>
                 <span class="badge bg-light text-dark text-xxs border">Total Masuk</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- ═══════════════════════════════════════════════
+     DASHBOARD UNIT & FAKULTAS HUB
+     ════════════════════════════════════════════════ --}}
+<div class="row g-3 mb-4">
+    <div class="col-12">
+        <div class="d-flex align-items-center justify-content-between mb-1">
+            <h6 class="text-sm font-weight-bolder text-dark mb-0">
+                <i class="material-symbols-rounded text-sm me-1 text-primary align-middle">hub</i>
+                Pusat Kendali Fakultas & Lembaga Kampus
+            </h6>
+            <span class="text-xxs text-secondary">Akses dashboard khusus masing-masing unit operasional</span>
+        </div>
+    </div>
+
+    {{-- KARTU FAKULTAS SYARIAH --}}
+    <div class="col-lg-3 col-sm-6">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden" style="border-left: 4px solid #8B0000 !important;">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="badge text-xxs font-weight-bold px-2 py-1" style="background-color: rgba(139, 0, 0, 0.1); color: #8B0000;">FASYA</span>
+                    <span class="text-xxs text-secondary font-weight-bold">{{ $countSyariahProdi }} Prodi S1</span>
+                </div>
+                <h6 class="font-weight-bolder text-dark mb-1 text-sm">Fakultas Syari'ah</h6>
+                <p class="text-xs text-secondary mb-3">HKI & HES • {{ $countSyariahLecturer }} Pengajar • Laboratorium Falak & Konsultasi Syari'ah</p>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('admin.dashboard.syariah') }}" class="btn btn-sm text-white mb-0 flex-grow-1 text-xs py-1.5" style="background: linear-gradient(135deg, #8B0000 0%, #630000 100%);">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">dashboard</i>Kelola
+                    </a>
+                    <a href="{{ route('frontend.fakultas.syariah') }}" target="_blank" class="btn btn-outline-secondary btn-sm mb-0 px-2 py-1.5 text-xs shadow-none" title="Lihat Web Depan">
+                        <i class="material-symbols-rounded text-xs">open_in_new</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- KARTU FAKULTAS FEBIT --}}
+    <div class="col-lg-3 col-sm-6">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden" style="border-left: 4px solid #0f2b48 !important;">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="badge text-xxs font-weight-bold px-2 py-1" style="background-color: rgba(15, 43, 72, 0.1); color: #0f2b48;">FEBIT</span>
+                    <span class="text-xxs text-secondary font-weight-bold">{{ $countFebitProdi }} Prodi S1</span>
+                </div>
+                <h6 class="font-weight-bolder text-dark mb-1 text-sm">Fakultas FEBIT</h6>
+                <p class="text-xs text-secondary mb-3">MBS, EKOS & PAI • {{ $countFebitLecturer }} Pengajar • Mini Bank, Inkubator & Tax Center</p>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('admin.dashboard.febit') }}" class="btn btn-sm text-white mb-0 flex-grow-1 text-xs py-1.5" style="background: linear-gradient(135deg, #0f2b48 0%, #17385c 100%);">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">dashboard</i>Kelola
+                    </a>
+                    <a href="{{ route('frontend.fakultas.ebit') }}" target="_blank" class="btn btn-outline-secondary btn-sm mb-0 px-2 py-1.5 text-xs shadow-none" title="Lihat Web Depan">
+                        <i class="material-symbols-rounded text-xs">open_in_new</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- KARTU LEMBAGA PENJAMINAN MUTU (LPM) --}}
+    <div class="col-lg-3 col-sm-6">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden" style="border-left: 4px solid #059669 !important;">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="badge text-xxs font-weight-bold px-2 py-1" style="background-color: rgba(5, 150, 105, 0.1); color: #059669;">LPM</span>
+                    <span class="text-xxs text-secondary font-weight-bold">SPMI Aktif</span>
+                </div>
+                <h6 class="font-weight-bolder text-dark mb-1 text-sm">Lembaga Penjaminan Mutu</h6>
+                <p class="text-xs text-secondary mb-3">Siklus PPEPP • Audit Mutu Internal (AMI) • Standar Akreditasi Unggul</p>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('admin.dashboard.lpm') }}" class="btn btn-sm text-white mb-0 flex-grow-1 text-xs py-1.5" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">dashboard</i>Kelola
+                    </a>
+                    <a href="{{ route('frontend.lpm.index') }}" target="_blank" class="btn btn-outline-secondary btn-sm mb-0 px-2 py-1.5 text-xs shadow-none" title="Lihat Web Depan">
+                        <i class="material-symbols-rounded text-xs">open_in_new</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- KARTU LP2M --}}
+    <div class="col-lg-3 col-sm-6">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden" style="border-left: 4px solid #4f46e5 !important;">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="badge text-xxs font-weight-bold px-2 py-1" style="background-color: rgba(79, 70, 229, 0.1); color: #4f46e5;">LP2M</span>
+                    <span class="text-xxs text-secondary font-weight-bold">Riset & PkM</span>
+                </div>
+                <h6 class="font-weight-bolder text-dark mb-1 text-sm">Lembaga LP2M</h6>
+                <p class="text-xs text-secondary mb-3">Litapdimas • Jurnal Ilmiah OJS • KKN Tematik Desa Binaan • Sentra HKI</p>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('admin.dashboard.lp2m') }}" class="btn btn-sm text-white mb-0 flex-grow-1 text-xs py-1.5" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">dashboard</i>Kelola
+                    </a>
+                    <a href="{{ route('frontend.lp2m.index') }}" target="_blank" class="btn btn-outline-secondary btn-sm mb-0 px-2 py-1.5 text-xs shadow-none" title="Lihat Web Depan">
+                        <i class="material-symbols-rounded text-xs">open_in_new</i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

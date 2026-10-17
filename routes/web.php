@@ -305,6 +305,14 @@ Route::prefix('admin')
 
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('dashboard');
+        Route::get('/dashboard/syariah', [DashboardController::class, 'syariah'])
+            ->name('dashboard.syariah');
+        Route::get('/dashboard/febit', [DashboardController::class, 'febit'])
+            ->name('dashboard.febit');
+        Route::get('/dashboard/lpm', [DashboardController::class, 'lpm'])
+            ->name('dashboard.lpm');
+        Route::get('/dashboard/lp2m', [DashboardController::class, 'lp2m'])
+            ->name('dashboard.lp2m');
 
         /*
         |--------------------------------------------------------------------------

@@ -497,7 +497,7 @@
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between"
                                        href="{{ route('frontend.fakultas.syariah') }}">
-                                        <span>FAKULTAS ILMU SYARI'AH</span>
+                                        <span>FAKULTAS ILMU SYARI'AH (FASYA)</span>
                                         <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
