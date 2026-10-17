@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use App\Models\News;
+use App\Models\Agenda;
 use App\Models\Page;
 use Illuminate\Http\Request;
 
@@ -18,8 +19,9 @@ class LpmSubWebController extends Controller
         $page = Page::where('slug', 'lpm')->where('status', 'publish')->first();
         $announcements = Announcement::where('status', 'publish')->latest()->take(3)->get();
         $news = News::where('status', 'published')->latest()->take(3)->get();
+        $agendas = Agenda::latest()->take(3)->get();
 
-        return view('frontend.lpm.beranda', compact('page', 'announcements', 'news'));
+        return view('frontend.lpm.beranda', compact('page', 'announcements', 'news', 'agendas'));
     }
 
     /**

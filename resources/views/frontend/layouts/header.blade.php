@@ -29,7 +29,7 @@
                 <a class="navbar-brand d-flex align-items-center" href="{{ route('frontend.fakultas.index', $facultyId) }}">
                     <img src="{{ asset('storage/'.$setting->logo) }}" alt="Logo" class="logo-campus" style="height: 50px; width: auto;">
                     <div class="ms-2 brand-text-divider">
-                        <span class="brand-title">{{ $facultyId === 'syariah' ? 'FAKULTAS ILMU SYARIAH' : 'FAKULTAS TARBIYAH' }}</span>
+                        <span class="brand-title">{{ $facultyId === 'syariah' ? 'FAKULTAS ILMU SYARIAH (FASYA)' : 'FAKULTAS EKONOMI BISNIS DAN TARBIYAH (FEBIT)' }}</span>
                     </div>
                 </a>
             @elseif($isProdiSubWeb)
@@ -514,11 +514,11 @@
                                     </ul>
                                 </li>
 
-                                {{-- 2. FAKULTAS TARBIYAH --}}
+                                {{-- 2. FAKULTAS EKONOMI BISNIS DAN TARBIYAH (FEBIT) --}}
                                 <li class="dropdown-submenu">
                                     <a class="dropdown-item dropdown-toggle d-flex align-items-center justify-content-between"
                                        href="{{ route('frontend.fakultas.ebit') }}">
-                                        <span>FAKULTAS TARBIYAH</span>
+                                        <span>FAKULTAS EKONOMI BISNIS DAN TARBIYAH (FEBIT)</span>
                                         <i class="bi bi-chevron-right ms-2 submenu-arrow"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
