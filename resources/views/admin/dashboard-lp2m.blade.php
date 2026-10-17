@@ -53,7 +53,7 @@
     <div class="col-12">
         <div class="card p-4 text-white border-0 position-relative overflow-hidden mb-4" style="background: linear-gradient(135deg, #2e1065 0%, #4f46e5 50%, #4338ca 100%); box-shadow: 0 10px 30px rgba(79, 70, 229, 0.25);">
             <div class="row align-items-center">
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <div class="d-flex align-items-center mb-2">
                         <span class="badge bg-white text-dark px-3 py-1 text-xxs font-weight-bolder text-uppercase me-2">Control Center Riset</span>
                         <span class="badge px-3 py-1 text-xxs font-weight-bolder text-uppercase" style="background: rgba(255, 255, 255, 0.25); color: #fff;">
@@ -63,14 +63,18 @@
                     <h3 class="text-white font-weight-bolder mb-1">LP2M (Penelitian & Pengabdian Masyarakat)</h3>
                     <p class="text-white opacity-8 text-sm mb-0">Pengelolaan proposal hibah Litapdimas, pengelolaan rumah jurnal Open Journal System (OJS), pelaksanaan KKN Tematik, dan perolehan Hak Cipta / HKI Kemenkumham.</p>
                 </div>
-                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <div class="col-md-5 text-md-end mt-3 mt-md-0">
+                    <a href="{{ route('admin.portal.edit', 'lp2m') }}" class="btn btn-warning text-dark btn-sm mb-0 font-weight-bold shadow-sm d-inline-flex align-items-center me-2">
+                        <i class="material-symbols-rounded text-sm me-1">edit_document</i>
+                        <span>Edit Isi Web Portal</span>
+                    </a>
                     <a href="{{ route('frontend.lp2m.index') }}" target="_blank" class="btn btn-white text-dark btn-sm mb-0 font-weight-bold shadow-sm d-inline-flex align-items-center me-2">
                         <i class="material-symbols-rounded text-sm me-1 text-primary">open_in_new</i>
-                        <span>Lihat Web LP2M</span>
+                        <span>Lihat Web</span>
                     </a>
                     <a href="{{ route('admin.document.index') }}" class="btn btn-outline-light btn-sm mb-0 font-weight-bold d-inline-flex align-items-center">
                         <i class="material-symbols-rounded text-sm me-1">folder</i>
-                        <span>Dokumen Riset</span>
+                        <span>Dokumen</span>
                     </a>
                 </div>
             </div>

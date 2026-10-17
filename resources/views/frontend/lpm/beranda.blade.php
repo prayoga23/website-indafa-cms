@@ -306,10 +306,10 @@
                     <span>Portal Resmi Penjaminan Mutu Internal (LPM)</span>
                 </div>
                 <h1 class="text-white">
-                    Pusat Pengawasan Mutu &amp; Akreditasi Berkelanjutan
+                    {{ $pageData['title'] ?? 'Pusat Pengawasan Mutu & Akreditasi Berkelanjutan' }}
                 </h1>
                 <p class="lead">
-                    Mengawal siklus mutu Penetapan, Pelaksanaan, Evaluasi, Pengendalian, dan Peningkatan (PPEPP) untuk memastikan seluruh proses Tridharma Perguruan Tinggi memenuhi Standar Nasional Pendidikan Tinggi (SN-Dikti).
+                    {{ $pageData['tagline'] ?? 'Mengawal siklus mutu Penetapan, Pelaksanaan, Evaluasi, Pengendalian, dan Peningkatan (PPEPP) untuk memastikan seluruh proses Tridharma Perguruan Tinggi memenuhi Standar Nasional Pendidikan Tinggi (SN-Dikti).' }}
                 </p>
                 <div class="d-flex flex-wrap gap-3">
                     <a href="{{ route('frontend.lpm.penjaminan', 'spmi') }}" class="btn btn-lpm-gold">
@@ -354,8 +354,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-arrow-repeat"></i>
                 </div>
-                <div class="stat-dashboard-number">PPEPP</div>
-                <div class="stat-dashboard-label">Siklus Mutu Aktif</div>
+                <div class="stat-dashboard-number">{{ $pageData['stats']['val1'] ?? 'PPEPP' }}</div>
+                <div class="stat-dashboard-label">{{ $pageData['stats']['label1'] ?? 'Siklus Mutu Aktif' }}</div>
                 <p class="stat-dashboard-sub">5 Tahapan Pengendalian Berkelanjutan</p>
             </div>
         </div>
@@ -364,8 +364,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-patch-check-fill"></i>
                 </div>
-                <div class="stat-dashboard-number">100%</div>
-                <div class="stat-dashboard-label">Prodi Terakreditasi</div>
+                <div class="stat-dashboard-number">{{ $pageData['stats']['val2'] ?? '100%' }}</div>
+                <div class="stat-dashboard-label">{{ $pageData['stats']['label2'] ?? 'Prodi Terakreditasi' }}</div>
                 <p class="stat-dashboard-sub">Terverifikasi Resmi BAN-PT &amp; LAM</p>
             </div>
         </div>
@@ -374,8 +374,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-person-badge"></i>
                 </div>
-                <div class="stat-dashboard-number">18</div>
-                <div class="stat-dashboard-label">Auditor Internal</div>
+                <div class="stat-dashboard-number">{{ $pageData['stats']['val3'] ?? '18' }}</div>
+                <div class="stat-dashboard-label">{{ $pageData['stats']['label3'] ?? 'Auditor Internal' }}</div>
                 <p class="stat-dashboard-sub">Auditor AMI Bersertifikat Nasional</p>
             </div>
         </div>
@@ -384,8 +384,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-stars"></i>
                 </div>
-                <div class="stat-dashboard-number">4.62</div>
-                <div class="stat-dashboard-label">Indeks Kepuasan (EDOM)</div>
+                <div class="stat-dashboard-number">{{ $pageData['stats']['val4'] ?? '4.62' }}</div>
+                <div class="stat-dashboard-label">{{ $pageData['stats']['label4'] ?? 'Indeks Kepuasan (EDOM)' }}</div>
                 <p class="stat-dashboard-sub">Skala 5.00 Survei Mahasiswa &amp; Dosen</p>
             </div>
         </div>
@@ -464,16 +464,21 @@
         <div class="row g-4 align-items-center mb-5">
             <div class="col-lg-5">
                 <div class="stat-dashboard-card text-center p-4">
-                    <img src="{{ asset('storage/lecturers/3EjN4NWfMRn1AN2wWVV53chufmz3j88IDpHMBeSb.png') }}"
-                         alt="Ketua LPM"
+                    @php
+                        $leaderImg = !empty($pageData['leader_image']) && $pageData['leader_image'] !== 'assets/img/user.png'
+                            ? asset($pageData['leader_image'])
+                            : asset('storage/lecturers/3EjN4NWfMRn1AN2wWVV53chufmz3j88IDpHMBeSb.png');
+                    @endphp
+                    <img src="{{ $leaderImg }}"
+                         alt="{{ $pageData['leader_name'] ?? 'Ketua LPM' }}"
                          class="rounded-circle shadow-sm img-thumbnail mb-3"
                          style="width: 140px; height: 140px; object-fit: cover; border: 4px solid var(--lpm-gold);"
                          onerror="this.src='{{ asset('template-dashboard/assets/img/team-3.jpg') }}'">
-                    <h4 class="fw-bold mb-1" style="color: var(--lpm-primary);">Dr. H. Ahmad Syafii, M.Pd.I</h4>
-                    <p class="text-muted small mb-3">Ketua Lembaga Penjaminan Mutu (LPM)</p>
+                    <h4 class="fw-bold mb-1" style="color: var(--lpm-primary);">{{ $pageData['leader_name'] ?? 'Dr. H. Ahmad Syafii, M.Pd.I' }}</h4>
+                    <p class="text-muted small mb-3">{{ $pageData['leader_title'] ?? 'Ketua Lembaga Penjaminan Mutu (LPM)' }}</p>
                     <div class="p-3 rounded-3" style="background: var(--lpm-gold-soft); border-left: 3px solid var(--lpm-gold);">
                         <p class="small text-dark fst-italic mb-0">
-                            "Mutu bukanlah sebuah kebetulan, melainkan buah dari komitmen tinggi, kerja cerdas yang terukur, dan kedisiplinan eksekusi di setiap lini."
+                            "{{ $pageData['leader_message'] ?? 'Mutu bukanlah sebuah kebetulan, melainkan buah dari komitmen tinggi, kerja cerdas yang terukur, dan kedisiplinan eksekusi di setiap lini.' }}"
                         </p>
                     </div>
                 </div>
@@ -779,4 +784,24 @@
         </div>
     </div>
 </section>
+
+@if(!empty($pageData['content']))
+{{-- ==============================================
+     INFORMASI / KONTEN TAMBAHAN LPM (DARI CMS)
+=============================================== --}}
+<section class="py-5 bg-white border-top border-bottom">
+    <div class="container py-3">
+        <div class="text-center max-w-700 mx-auto mb-4">
+            <span class="section-eyebrow">Informasi Mutu Terkini</span>
+            <h2 class="section-heading">{{ $pageData['title'] ?? 'Pengumuman & Dokumen Lembaga' }}</h2>
+            <div class="section-divider center"></div>
+        </div>
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5">
+            <div class="rich-cms-content text-secondary" style="font-size: 1.05rem; line-height: 1.85;">
+                {!! $pageData['content'] !!}
+            </div>
+        </div>
+    </div>
+</section>
+@endif
 @endsection

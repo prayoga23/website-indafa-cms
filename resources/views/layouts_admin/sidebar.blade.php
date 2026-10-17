@@ -74,6 +74,56 @@
                 </div>
             </li>
 
+            {{-- KONTEN PORTAL (TANPA CODING) --}}
+            <li class="nav-header">Konten Portal (Tanpa Coding)</li>
+            @php
+                $portalActive = request()->routeIs('admin.portal.*');
+            @endphp
+            <li class="nav-item">
+                <a class="nav-link justify-content-between {{ $portalActive ? 'active-parent' : '' }}"
+                   data-bs-toggle="collapse"
+                   href="#collapsePortal"
+                   role="button"
+                   aria-expanded="{{ $portalActive ? 'true' : 'false' }}"
+                   aria-controls="collapsePortal">
+                    <div class="d-flex align-items-center">
+                        <span class="nav-icon">
+                            <i class="material-symbols-rounded">web</i>
+                        </span>
+                        <span class="nav-link-text">Edit Halaman Portal</span>
+                    </div>
+                    <i class="material-symbols-rounded sidenav-arrow">expand_more</i>
+                </a>
+                <div class="collapse {{ $portalActive ? 'show' : '' }}" id="collapsePortal">
+                    <ul class="nav sub-menu-nav">
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('admin/portal/syariah*') ? 'active-sub' : '' }}" href="{{ route('admin.portal.edit', 'syariah') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Fakultas Syari'ah</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('admin/portal/febit*') ? 'active-sub' : '' }}" href="{{ route('admin.portal.edit', 'febit') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Fakultas FEBIT</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('admin/portal/lpm*') ? 'active-sub' : '' }}" href="{{ route('admin.portal.edit', 'lpm') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Portal LPM</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('admin/portal/lp2m*') ? 'active-sub' : '' }}" href="{{ route('admin.portal.edit', 'lp2m') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Portal LP2M</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
             {{-- MASTER DATA --}}
             <li class="nav-header">Master Data</li>
 
@@ -225,7 +275,7 @@
 
             {{-- LEMBAGA & UNIT COLLAPSE --}}
             @php
-                $lembagaActive = request()->is('admin/pages/edit-by-slug/lpm') || request()->is('admin/pages/edit-by-slug/lp2m') || request()->is('admin/pages/edit-by-slug/ormawa');
+                $lembagaActive = request()->is('admin/pages/edit-by-slug/ormawa') || request()->is('admin/portal/lpm*') || request()->is('admin/portal/lp2m*') || request()->is('admin/pages/edit-by-slug/lpm') || request()->is('admin/pages/edit-by-slug/lp2m');
             @endphp
             <li class="nav-item">
                 <a class="nav-link justify-content-between {{ $lembagaActive ? 'active-parent' : '' }}"
@@ -245,13 +295,13 @@
                 <div class="collapse {{ $lembagaActive ? 'show' : '' }}" id="collapseLembaga">
                     <ul class="nav sub-menu-nav">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('admin/pages/edit-by-slug/lpm') ? 'active-sub' : '' }}" href="{{ route('admin.pages.edit-by-slug', 'lpm') }}">
+                            <a class="nav-link {{ (request()->is('admin/portal/lpm*') || request()->is('admin/pages/edit-by-slug/lpm')) ? 'active-sub' : '' }}" href="{{ route('admin.portal.edit', 'lpm') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">LPM</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('admin/pages/edit-by-slug/lp2m') ? 'active-sub' : '' }}" href="{{ route('admin.pages.edit-by-slug', 'lp2m') }}">
+                            <a class="nav-link {{ (request()->is('admin/portal/lp2m*') || request()->is('admin/pages/edit-by-slug/lp2m')) ? 'active-sub' : '' }}" href="{{ route('admin.portal.edit', 'lp2m') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">LP2M</span>
                             </a>

@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
 use App\Http\Controllers\Admin\VideoGalleryController;
 use App\Http\Controllers\Admin\AcademicDocumentController;
+use App\Http\Controllers\Admin\PortalSettingController;
 
 // Frontend Controllers
 use App\Http\Controllers\Frontend\HomeController;
@@ -313,6 +314,16 @@ Route::prefix('admin')
             ->name('dashboard.lpm');
         Route::get('/dashboard/lp2m', [DashboardController::class, 'lp2m'])
             ->name('dashboard.lp2m');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Konten Portal Fakultas & Lembaga
+        |--------------------------------------------------------------------------
+        */
+        Route::get('/portal/{portal}', [PortalSettingController::class, 'edit'])
+            ->name('portal.edit');
+        Route::put('/portal/{portal}', [PortalSettingController::class, 'update'])
+            ->name('portal.update');
 
         /*
         |--------------------------------------------------------------------------

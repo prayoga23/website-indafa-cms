@@ -295,10 +295,10 @@
                     <span>Portal Resmi Riset &amp; Pengabdian Masyarakat (LP2M)</span>
                 </div>
                 <h1 class="text-white">
-                    Pusat Hilirisasi Riset &amp; Pengabdian Berbasis Pesantren
+                    {{ $pageData['title'] ?? 'Pusat Hilirisasi Riset & Pengabdian Berbasis Pesantren' }}
                 </h1>
                 <p class="lead">
-                    Mengakselerasi publikasi ilmiah bereputasi, pengembangan sentra HKI, fasilitasi hibah Litapdimas Kemenag, serta pemberdayaan masyarakat desa berkelanjutan.
+                    {{ $pageData['tagline'] ?? 'Mengakselerasi publikasi ilmiah bereputasi, pengembangan sentra HKI, fasilitasi hibah Litapdimas Kemenag, serta pemberdayaan masyarakat desa berkelanjutan.' }}
                 </p>
                 <div class="d-flex flex-wrap gap-3">
                     <a href="{{ route('frontend.lp2m.riset', 'penelitian') }}" class="btn btn-lp2m-gold">
@@ -343,8 +343,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-journal-code"></i>
                 </div>
-                <div class="stat-dashboard-number">65+</div>
-                <div class="stat-dashboard-label">Judul Riset Ilmiah</div>
+                <div class="stat-dashboard-number">{{ $pageData['stats']['val1'] ?? '65+' }}</div>
+                <div class="stat-dashboard-label">{{ $pageData['stats']['label1'] ?? 'Judul Riset Ilmiah' }}</div>
                 <p class="stat-dashboard-sub">Litapdimas Kemenag &amp; Hibah Internal</p>
             </div>
         </div>
@@ -353,8 +353,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-book-half"></i>
                 </div>
-                <div class="stat-dashboard-number">4</div>
-                <div class="stat-dashboard-label">Jurnal OJS Aktif</div>
+                <div class="stat-dashboard-number">{{ $pageData['stats']['val2'] ?? '4' }}</div>
+                <div class="stat-dashboard-label">{{ $pageData['stats']['label2'] ?? 'Jurnal OJS Aktif' }}</div>
                 <p class="stat-dashboard-sub">Terindeks Nasional SINTA &amp; Moraref</p>
             </div>
         </div>
@@ -363,8 +363,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-patch-check-fill"></i>
                 </div>
-                <div class="stat-dashboard-number">42+</div>
-                <div class="stat-dashboard-label">Sertifikat HKI &amp; Paten</div>
+                <div class="stat-dashboard-number">{{ $pageData['stats']['val3'] ?? '42+' }}</div>
+                <div class="stat-dashboard-label">{{ $pageData['stats']['label3'] ?? 'Sertifikat HKI &amp; Paten' }}</div>
                 <p class="stat-dashboard-sub">Terdaftar Resmi di Ditjen KI Kemenkumham</p>
             </div>
         </div>
@@ -373,8 +373,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-geo-alt-fill"></i>
                 </div>
-                <div class="stat-dashboard-number">25+</div>
-                <div class="stat-dashboard-label">Desa Binaan KKN</div>
+                <div class="stat-dashboard-number">{{ $pageData['stats']['val4'] ?? '25+' }}</div>
+                <div class="stat-dashboard-label">{{ $pageData['stats']['label4'] ?? 'Desa Binaan KKN' }}</div>
                 <p class="stat-dashboard-sub">Pemberdayaan Posdaya Berbasis Pesantren</p>
             </div>
         </div>
@@ -389,16 +389,21 @@
         <div class="row g-4 align-items-center">
             <div class="col-lg-5">
                 <div class="stat-dashboard-card text-center p-4">
-                    <img src="{{ asset('storage/lecturers/3EjN4NWfMRn1AN2wWVV53chufmz3j88IDpHMBeSb.png') }}"
-                         alt="Ketua LP2M"
+                    @php
+                        $leaderImg = !empty($pageData['leader_image']) && $pageData['leader_image'] !== 'assets/img/user.png'
+                            ? asset($pageData['leader_image'])
+                            : asset('storage/lecturers/3EjN4NWfMRn1AN2wWVV53chufmz3j88IDpHMBeSb.png');
+                    @endphp
+                    <img src="{{ $leaderImg }}"
+                         alt="{{ $pageData['leader_name'] ?? 'Ketua LP2M' }}"
                          class="rounded-circle shadow-sm img-thumbnail mb-3"
                          style="width: 140px; height: 140px; object-fit: cover; border: 4px solid var(--lp2m-gold);"
                          onerror="this.src='{{ asset('template-dashboard/assets/img/team-3.jpg') }}'">
-                    <h4 class="fw-bold mb-1" style="color: var(--lp2m-primary);">Dr. Muhammad Ridwan, M.H.I</h4>
-                    <p class="text-muted small mb-3">Ketua LP2M IAI Darul Falah</p>
+                    <h4 class="fw-bold mb-1" style="color: var(--lp2m-primary);">{{ $pageData['leader_name'] ?? 'Dr. Muhammad Ridwan, M.H.I' }}</h4>
+                    <p class="text-muted small mb-3">{{ $pageData['leader_title'] ?? 'Ketua LP2M IAI Darul Falah' }}</p>
                     <div class="p-3 rounded-3" style="background: var(--lp2m-gold-soft); border-left: 3px solid var(--lp2m-gold);">
                         <p class="small text-dark fst-italic mb-0">
-                            "Riset yang bermakna adalah penelitian yang membumi, menjawab persoalan nyata masyarakat, serta mengantarkan kejayaan peradaban Islam dan iptek kontemporer."
+                            "{{ $pageData['leader_message'] ?? 'Riset yang bermakna adalah penelitian yang membumi, menjawab persoalan nyata masyarakat, serta mengantarkan kejayaan peradaban Islam dan iptek kontemporer.' }}"
                         </p>
                     </div>
                 </div>
@@ -699,4 +704,24 @@
         </div>
     </div>
 </section>
+
+@if(!empty($pageData['content']))
+{{-- ==============================================
+     INFORMASI / KONTEN TAMBAHAN LP2M (DARI CMS)
+=============================================== --}}
+<section class="py-5 bg-white border-top border-bottom">
+    <div class="container py-3">
+        <div class="text-center max-w-700 mx-auto mb-4">
+            <span class="section-eyebrow">Informasi Riset &amp; Pengabdian</span>
+            <h2 class="section-heading">{{ $pageData['title'] ?? 'Pengumuman & Program LP2M' }}</h2>
+            <div class="section-divider center"></div>
+        </div>
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5">
+            <div class="rich-cms-content text-secondary" style="font-size: 1.05rem; line-height: 1.85;">
+                {!! $pageData['content'] !!}
+            </div>
+        </div>
+    </div>
+</section>
+@endif
 @endsection

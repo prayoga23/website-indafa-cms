@@ -362,10 +362,10 @@
                     <span>Portal Resmi Fakultas Ilmu Syariah (FASYA)</span>
                 </div>
                 <h1 class="text-white">
-                    Pusat Keunggulan Hukum Islam &amp; Muamalah Kontemporer
+                    {{ $data['name'] ?? 'Pusat Keunggulan Hukum Islam & Muamalah Kontemporer' }}
                 </h1>
                 <p class="lead">
-                    Mengintegrasikan khazanah fikih Islam klasik, hukum nasional, dan praktik regulasi bisnis modern berlandaskan adab kepesantrenan untuk mencetak yuris andal berkelas nasional.
+                    {{ $data['hero_tagline'] ?? 'Mengintegrasikan khazanah fikih Islam klasik, hukum nasional, dan praktik regulasi bisnis modern berlandaskan adab kepesantrenan untuk mencetak yuris andal berkelas nasional.' }}
                 </p>
                 <div class="d-flex flex-wrap gap-3">
                     <a href="#prodi-section" class="btn btn-syariah-gold">
@@ -410,8 +410,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-mortarboard"></i>
                 </div>
-                <div class="stat-dashboard-number">2</div>
-                <div class="stat-dashboard-label">Program Studi Sarjana</div>
+                <div class="stat-dashboard-number">{{ $data['stats']['prodi'] ?? '2' }}</div>
+                <div class="stat-dashboard-label">{{ $data['stats_labels']['prodi'] ?? 'Program Studi Sarjana' }}</div>
                 <p class="stat-dashboard-sub">S1 HKI &amp; S1 Hukum Ekonomi Syariah</p>
             </div>
         </div>
@@ -420,8 +420,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-people-fill"></i>
                 </div>
-                <div class="stat-dashboard-number">28+</div>
-                <div class="stat-dashboard-label">Dosen &amp; Pakar Hukum</div>
+                <div class="stat-dashboard-number">{{ $data['stats']['dosen'] ?? '28+' }}</div>
+                <div class="stat-dashboard-label">{{ $data['stats_labels']['dosen'] ?? 'Dosen &amp; Pakar Hukum' }}</div>
                 <p class="stat-dashboard-sub">Magister, Doktor &amp; Praktisi Peradilan</p>
             </div>
         </div>
@@ -430,8 +430,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-patch-check-fill"></i>
                 </div>
-                <div class="stat-dashboard-number">Baik Sekali</div>
-                <div class="stat-dashboard-label">Akreditasi BAN-PT</div>
+                <div class="stat-dashboard-number">{{ $data['stats']['akreditasi'] ?? 'Baik Sekali' }}</div>
+                <div class="stat-dashboard-label">{{ $data['stats_labels']['akreditasi'] ?? 'Akreditasi BAN-PT' }}</div>
                 <p class="stat-dashboard-sub">Standar Mutu Nasional Terverifikasi</p>
             </div>
         </div>
@@ -440,8 +440,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-briefcase-fill"></i>
                 </div>
-                <div class="stat-dashboard-number">96%</div>
-                <div class="stat-dashboard-label">Serapan Lulusan</div>
+                <div class="stat-dashboard-number">{{ $data['stats']['serapan'] ?? '96%' }}</div>
+                <div class="stat-dashboard-label">{{ $data['stats_labels']['serapan'] ?? 'Serapan Lulusan' }}</div>
                 <p class="stat-dashboard-sub">Pengadilan, KUA, Bank Syariah &amp; Firma</p>
             </div>
         </div>
@@ -460,7 +460,12 @@
                     <div>
                         <div class="text-center mb-4">
                             <div class="position-relative d-inline-block">
-                                <img src="{{ asset('storage/lecturers/3EjN4NWfMRn1AN2wWVV53chufmz3j88IDpHMBeSb.png') }}"
+                                @php
+                                    $deanPhoto = !empty($data['dean_image']) && $data['dean_image'] !== 'assets/img/user.png'
+                                        ? asset($data['dean_image'])
+                                        : asset('storage/lecturers/3EjN4NWfMRn1AN2wWVV53chufmz3j88IDpHMBeSb.png');
+                                @endphp
+                                <img src="{{ $deanPhoto }}"
                                      alt="Dekan Fakultas Syariah"
                                      class="rounded-circle shadow-sm img-thumbnail"
                                      style="width: 150px; height: 150px; object-fit: cover; border: 4px solid var(--syariah-gold);"
@@ -470,11 +475,11 @@
                                 </span>
                             </div>
                             <h4 class="fw-bold mt-3 mb-1" style="color: var(--syariah-primary);">{{ $data['dean'] ?? 'Dr. H. Abu Bakar, M.H.I.' }}</h4>
-                            <p class="text-muted small mb-0 fw-semibold">Dekan Fakultas Ilmu Syariah (FASYA)</p>
+                            <p class="text-muted small mb-0 fw-semibold">{{ $data['dean_title'] ?? 'Dekan Fakultas Ilmu Syariah (FASYA)' }}</p>
                         </div>
                         <div class="dean-quote-badge mb-3">
                             <p class="mb-0 small">
-                                "Menegakkan hukum dengan keadilan dan ruh syariat menuntut kecakapan intelektual, ketajaman hati nurani, serta loyalitas penuh kepada kebenaran."
+                                "{{ $data['dean_message'] ?? 'Menegakkan hukum dengan keadilan dan ruh syariat menuntut kecakapan intelektual, ketajaman hati nurani, serta loyalitas penuh kepada kebenaran.' }}"
                             </p>
                         </div>
                         <p class="text-secondary small" style="line-height: 1.7; text-align: justify;">
@@ -872,4 +877,24 @@
         </div>
     </div>
 </section>
+
+@if(!empty($data['additional_content']))
+{{-- ==============================================
+     INFORMASI / KONTEN TAMBAHAN FAKULTAS (CMS)
+=============================================== --}}
+<section class="py-5 bg-white border-top border-bottom">
+    <div class="container py-3">
+        <div class="text-center max-w-700 mx-auto mb-4">
+            <span class="section-eyebrow">Informasi Terkini</span>
+            <h2 class="section-heading">{{ $data['name'] ?? 'Fakultas Ilmu Syariah' }}</h2>
+            <div class="section-divider center"></div>
+        </div>
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5">
+            <div class="rich-cms-content text-secondary" style="font-size: 1.05rem; line-height: 1.85;">
+                {!! $data['additional_content'] !!}
+            </div>
+        </div>
+    </div>
+</section>
+@endif
 @endsection

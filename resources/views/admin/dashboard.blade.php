@@ -198,12 +198,15 @@
                 </div>
                 <h6 class="font-weight-bolder text-dark mb-1 text-sm">Fakultas Syari'ah</h6>
                 <p class="text-xs text-secondary mb-3">HKI & HES • {{ $countSyariahLecturer }} Pengajar • Laboratorium Falak & Konsultasi Syari'ah</p>
-                <div class="d-flex gap-2">
-                    <a href="{{ route('admin.dashboard.syariah') }}" class="btn btn-sm text-white mb-0 flex-grow-1 text-xs py-1.5" style="background: linear-gradient(135deg, #8B0000 0%, #630000 100%);">
-                        <i class="material-symbols-rounded text-xs me-1 align-middle">dashboard</i>Kelola
+                <div class="d-flex gap-1">
+                    <a href="{{ route('admin.dashboard.syariah') }}" class="btn btn-sm text-white mb-0 flex-grow-1 text-xs py-1.5" style="background: linear-gradient(135deg, #8B0000 0%, #630000 100%);" title="Buka Dashboard Syariah">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">dashboard</i>Panel
+                    </a>
+                    <a href="{{ route('admin.portal.edit', 'syariah') }}" class="btn btn-warning text-dark btn-sm mb-0 px-2 py-1.5 text-xs font-weight-bold shadow-none" title="Edit Isi Halaman Web (Tanpa Coding)">
+                        <i class="material-symbols-rounded text-xs align-middle">edit_document</i>
                     </a>
                     <a href="{{ route('frontend.fakultas.syariah') }}" target="_blank" class="btn btn-outline-secondary btn-sm mb-0 px-2 py-1.5 text-xs shadow-none" title="Lihat Web Depan">
-                        <i class="material-symbols-rounded text-xs">open_in_new</i>
+                        <i class="material-symbols-rounded text-xs align-middle">open_in_new</i>
                     </a>
                 </div>
             </div>
@@ -220,12 +223,15 @@
                 </div>
                 <h6 class="font-weight-bolder text-dark mb-1 text-sm">Fakultas FEBIT</h6>
                 <p class="text-xs text-secondary mb-3">MBS, EKOS & PAI • {{ $countFebitLecturer }} Pengajar • Mini Bank, Inkubator & Tax Center</p>
-                <div class="d-flex gap-2">
-                    <a href="{{ route('admin.dashboard.febit') }}" class="btn btn-sm text-white mb-0 flex-grow-1 text-xs py-1.5" style="background: linear-gradient(135deg, #0f2b48 0%, #17385c 100%);">
-                        <i class="material-symbols-rounded text-xs me-1 align-middle">dashboard</i>Kelola
+                <div class="d-flex gap-1">
+                    <a href="{{ route('admin.dashboard.febit') }}" class="btn btn-sm text-white mb-0 flex-grow-1 text-xs py-1.5" style="background: linear-gradient(135deg, #0f2b48 0%, #17385c 100%);" title="Buka Dashboard FEBIT">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">dashboard</i>Panel
+                    </a>
+                    <a href="{{ route('admin.portal.edit', 'febit') }}" class="btn btn-warning text-dark btn-sm mb-0 px-2 py-1.5 text-xs font-weight-bold shadow-none" title="Edit Isi Halaman Web (Tanpa Coding)">
+                        <i class="material-symbols-rounded text-xs align-middle">edit_document</i>
                     </a>
                     <a href="{{ route('frontend.fakultas.ebit') }}" target="_blank" class="btn btn-outline-secondary btn-sm mb-0 px-2 py-1.5 text-xs shadow-none" title="Lihat Web Depan">
-                        <i class="material-symbols-rounded text-xs">open_in_new</i>
+                        <i class="material-symbols-rounded text-xs align-middle">open_in_new</i>
                     </a>
                 </div>
             </div>
@@ -242,12 +248,15 @@
                 </div>
                 <h6 class="font-weight-bolder text-dark mb-1 text-sm">Lembaga Penjaminan Mutu</h6>
                 <p class="text-xs text-secondary mb-3">Siklus PPEPP • Audit Mutu Internal (AMI) • Standar Akreditasi Unggul</p>
-                <div class="d-flex gap-2">
-                    <a href="{{ route('admin.dashboard.lpm') }}" class="btn btn-sm text-white mb-0 flex-grow-1 text-xs py-1.5" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
-                        <i class="material-symbols-rounded text-xs me-1 align-middle">dashboard</i>Kelola
+                <div class="d-flex gap-1">
+                    <a href="{{ route('admin.dashboard.lpm') }}" class="btn btn-sm text-white mb-0 flex-grow-1 text-xs py-1.5" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);" title="Buka Dashboard LPM">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">dashboard</i>Panel
+                    </a>
+                    <a href="{{ route('admin.portal.edit', 'lpm') }}" class="btn btn-warning text-dark btn-sm mb-0 px-2 py-1.5 text-xs font-weight-bold shadow-none" title="Edit Isi Halaman Web (Tanpa Coding)">
+                        <i class="material-symbols-rounded text-xs align-middle">edit_document</i>
                     </a>
                     <a href="{{ route('frontend.lpm.index') }}" target="_blank" class="btn btn-outline-secondary btn-sm mb-0 px-2 py-1.5 text-xs shadow-none" title="Lihat Web Depan">
-                        <i class="material-symbols-rounded text-xs">open_in_new</i>
+                        <i class="material-symbols-rounded text-xs align-middle">open_in_new</i>
                     </a>
                 </div>
             </div>
@@ -264,12 +273,15 @@
                 </div>
                 <h6 class="font-weight-bolder text-dark mb-1 text-sm">Lembaga LP2M</h6>
                 <p class="text-xs text-secondary mb-3">Litapdimas • Jurnal Ilmiah OJS • KKN Tematik Desa Binaan • Sentra HKI</p>
-                <div class="d-flex gap-2">
-                    <a href="{{ route('admin.dashboard.lp2m') }}" class="btn btn-sm text-white mb-0 flex-grow-1 text-xs py-1.5" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);">
-                        <i class="material-symbols-rounded text-xs me-1 align-middle">dashboard</i>Kelola
+                <div class="d-flex gap-1">
+                    <a href="{{ route('admin.dashboard.lp2m') }}" class="btn btn-sm text-white mb-0 flex-grow-1 text-xs py-1.5" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);" title="Buka Dashboard LP2M">
+                        <i class="material-symbols-rounded text-xs me-1 align-middle">dashboard</i>Panel
+                    </a>
+                    <a href="{{ route('admin.portal.edit', 'lp2m') }}" class="btn btn-warning text-dark btn-sm mb-0 px-2 py-1.5 text-xs font-weight-bold shadow-none" title="Edit Isi Halaman Web (Tanpa Coding)">
+                        <i class="material-symbols-rounded text-xs align-middle">edit_document</i>
                     </a>
                     <a href="{{ route('frontend.lp2m.index') }}" target="_blank" class="btn btn-outline-secondary btn-sm mb-0 px-2 py-1.5 text-xs shadow-none" title="Lihat Web Depan">
-                        <i class="material-symbols-rounded text-xs">open_in_new</i>
+                        <i class="material-symbols-rounded text-xs align-middle">open_in_new</i>
                     </a>
                 </div>
             </div>

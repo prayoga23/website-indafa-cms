@@ -53,7 +53,7 @@
     <div class="col-12">
         <div class="card p-4 text-white border-0 position-relative overflow-hidden mb-4" style="background: linear-gradient(135deg, #700000 0%, #8B0000 50%, #4a0000 100%); box-shadow: 0 10px 30px rgba(139, 0, 0, 0.25);">
             <div class="row align-items-center">
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <div class="d-flex align-items-center mb-2">
                         <span class="badge bg-white text-dark px-3 py-1 text-xxs font-weight-bolder text-uppercase me-2">Control Center Fakultas</span>
                         <span class="badge px-3 py-1 text-xxs font-weight-bolder text-uppercase" style="background: rgba(212, 175, 55, 0.3); color: #fff; border: 1px solid rgba(212, 175, 55, 0.6);">
@@ -63,14 +63,18 @@
                     <h3 class="text-white font-weight-bolder mb-1">Fakultas Ilmu Syari'ah (FASYA)</h3>
                     <p class="text-white opacity-8 text-sm mb-0">Panel kendali akademik hukum islam, program studi HKI & HES, data pengajar, sentra laboratorium peradilan, dan publikasi ilmiah.</p>
                 </div>
-                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <div class="col-md-5 text-md-end mt-3 mt-md-0">
+                    <a href="{{ route('admin.portal.edit', 'syariah') }}" class="btn btn-warning text-dark btn-sm mb-0 font-weight-bold shadow-sm d-inline-flex align-items-center me-2">
+                        <i class="material-symbols-rounded text-sm me-1">edit_document</i>
+                        <span>Edit Isi Web Portal</span>
+                    </a>
                     <a href="{{ route('frontend.fakultas.syariah') }}" target="_blank" class="btn btn-white text-dark btn-sm mb-0 font-weight-bold shadow-sm d-inline-flex align-items-center me-2">
                         <i class="material-symbols-rounded text-sm me-1 text-danger">open_in_new</i>
-                        <span>Lihat Web Syari'ah</span>
+                        <span>Lihat Web</span>
                     </a>
                     <a href="{{ route('admin.study-programs.index') }}" class="btn btn-outline-light btn-sm mb-0 font-weight-bold d-inline-flex align-items-center">
                         <i class="material-symbols-rounded text-sm me-1">tune</i>
-                        <span>Kelola Prodi</span>
+                        <span>Prodi</span>
                     </a>
                 </div>
             </div>

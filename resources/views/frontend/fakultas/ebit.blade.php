@@ -355,10 +355,10 @@
                     <span>Portal Resmi Fakultas Ekonomi Bisnis dan Tarbiyah (FEBIT)</span>
                 </div>
                 <h1 class="text-white">
-                    Sinergi Bisnis Syariah Modern &amp; Pendidik Karakter Bangsa
+                    {{ $data['name'] ?? 'Sinergi Bisnis Syariah Modern &amp; Pendidik Karakter Bangsa' }}
                 </h1>
                 <p class="lead">
-                    Mengintegrasikan kepemimpinan bisnis syariah, kecakapan analisis finansial, dan keunggulan pedagogi pendidikan Islam untuk melahirkan lulusan unggul berkarakter pesantren.
+                    {{ $data['hero_tagline'] ?? 'Mengintegrasikan kepemimpinan bisnis syariah, kecakapan analisis finansial, dan keunggulan pedagogi pendidikan Islam untuk melahirkan lulusan unggul berkarakter pesantren.' }}
                 </p>
                 <div class="d-flex flex-wrap gap-3">
                     <a href="#prodi-section" class="btn btn-febit-gold">
@@ -403,8 +403,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-mortarboard-fill"></i>
                 </div>
-                <div class="stat-dashboard-number">3</div>
-                <div class="stat-dashboard-label">Program Studi Sarjana</div>
+                <div class="stat-dashboard-number">{{ $data['stats']['prodi'] ?? '3' }}</div>
+                <div class="stat-dashboard-label">{{ $data['stats_labels']['prodi'] ?? 'Program Studi Sarjana' }}</div>
                 <p class="stat-dashboard-sub">S1 MBS, S1 EKOS &amp; S1 PAI</p>
             </div>
         </div>
@@ -413,8 +413,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-people-fill"></i>
                 </div>
-                <div class="stat-dashboard-number">35+</div>
-                <div class="stat-dashboard-label">Dosen Berpengalaman</div>
+                <div class="stat-dashboard-number">{{ $data['stats']['dosen'] ?? '35+' }}</div>
+                <div class="stat-dashboard-label">{{ $data['stats_labels']['dosen'] ?? 'Dosen Berpengalaman' }}</div>
                 <p class="stat-dashboard-sub">Praktisi Perbankan, Peneliti &amp; Pendidik</p>
             </div>
         </div>
@@ -423,8 +423,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-building-check"></i>
                 </div>
-                <div class="stat-dashboard-number">15+</div>
-                <div class="stat-dashboard-label">Mitra Industri &amp; Sekolah</div>
+                <div class="stat-dashboard-number">{{ $data['stats']['mitra'] ?? '15+' }}</div>
+                <div class="stat-dashboard-label">{{ $data['stats_labels']['mitra'] ?? 'Mitra Industri &amp; Sekolah' }}</div>
                 <p class="stat-dashboard-sub">Bank Syariah, BMT, Kemenag &amp; Madrasah</p>
             </div>
         </div>
@@ -433,8 +433,8 @@
                 <div class="stat-icon-wrapper">
                     <i class="bi bi-emoji-smile-fill"></i>
                 </div>
-                <div class="stat-dashboard-number">98%</div>
-                <div class="stat-dashboard-label">Kepuasan Mahasiswa</div>
+                <div class="stat-dashboard-number">{{ $data['stats']['kepuasan'] ?? '98%' }}</div>
+                <div class="stat-dashboard-label">{{ $data['stats_labels']['kepuasan'] ?? 'Kepuasan Mahasiswa' }}</div>
                 <p class="stat-dashboard-sub">Kurikulum Adaptif &amp; Magang Terarah</p>
             </div>
         </div>
@@ -453,7 +453,12 @@
                     <div>
                         <div class="text-center mb-4">
                             <div class="position-relative d-inline-block">
-                                <img src="{{ asset('storage/lecturers/4aGdYumJLv1zF9gkf8FmB8eIrFFvVW5m276855wf.png') }}"
+                                @php
+                                    $deanPhoto = !empty($data['dean_image']) && $data['dean_image'] !== 'assets/img/user.png'
+                                        ? asset($data['dean_image'])
+                                        : asset('storage/lecturers/4aGdYumJLv1zF9gkf8FmB8eIrFFvVW5m276855wf.png');
+                                @endphp
+                                <img src="{{ $deanPhoto }}"
                                      alt="Dekan FEBIT"
                                      class="rounded-circle shadow-sm img-thumbnail"
                                      style="width: 150px; height: 150px; object-fit: cover; border: 4px solid var(--febit-gold);"
@@ -463,11 +468,11 @@
                                 </span>
                             </div>
                             <h4 class="fw-bold mt-3 mb-1" style="color: var(--febit-primary);">{{ $data['dean'] ?? 'Dr. Hj. Siti Rahmah, M.E.I.' }}</h4>
-                            <p class="text-muted small mb-0 fw-semibold">Dekan Fakultas Ekonomi Bisnis dan Tarbiyah (FEBIT)</p>
+                            <p class="text-muted small mb-0 fw-semibold">{{ $data['dean_title'] ?? 'Dekan Fakultas Ekonomi Bisnis dan Tarbiyah (FEBIT)' }}</p>
                         </div>
                         <div class="dean-quote-badge mb-3">
                             <p class="mb-0 small">
-                                "Kekuatan peradaban Islam berdiri kokoh di atas dua tonggak: kemandirian ekonomi umat dan mutu pendidikan karakter yang mengakar pada nilai-nilai keislaman."
+                                "{{ $data['dean_message'] ?? 'Kekuatan peradaban Islam berdiri kokoh di atas dua tonggak: kemandirian ekonomi umat dan mutu pendidikan karakter yang mengakar pada nilai-nilai keislaman.' }}"
                             </p>
                         </div>
                         <p class="text-secondary small" style="line-height: 1.7; text-align: justify;">
@@ -865,4 +870,24 @@
         </div>
     </div>
 </section>
+
+@if(!empty($data['additional_content']))
+{{-- ==============================================
+     INFORMASI / KONTEN TAMBAHAN FAKULTAS (CMS)
+=============================================== --}}
+<section class="py-5 bg-white border-top border-bottom">
+    <div class="container py-3">
+        <div class="text-center max-w-700 mx-auto mb-4">
+            <span class="section-eyebrow">Informasi Terkini</span>
+            <h2 class="section-heading">{{ $data['name'] ?? 'Fakultas Ekonomi Bisnis dan Tarbiyah' }}</h2>
+            <div class="section-divider center"></div>
+        </div>
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5">
+            <div class="rich-cms-content text-secondary" style="font-size: 1.05rem; line-height: 1.85;">
+                {!! $data['additional_content'] !!}
+            </div>
+        </div>
+    </div>
+</section>
+@endif
 @endsection

@@ -9,31 +9,60 @@ use App\Models\News;
 use App\Models\Agenda;
 use App\Models\StudyProgram;
 use App\Models\Lecturer;
+use App\Models\Page;
 
 class FacultySubWebController extends Controller
 {
     private function getFacultyData($faculty)
     {
         $slug = $faculty === 'syariah' ? 'fakultas-ilmu-syariah' : 'fakultas-tarbiyah';
+        $pageSlug = $faculty === 'syariah' ? 'fakultas-syariah' : 'fakultas-ebit';
+
         $dbFaculty = Faculty::where('slug', $slug)->first();
+        $page = Page::where('slug', $pageSlug)->first();
+
+        $stored = [];
+        if ($page && !empty($page->excerpt)) {
+            $decoded = json_decode($page->excerpt, true);
+            if (is_array($decoded)) {
+                $stored = $decoded;
+            }
+        }
 
         if ($faculty === 'syariah') {
+            $mission = !empty($stored['mission'])
+                ? (is_array($stored['mission']) ? $stored['mission'] : array_filter(array_map('trim', explode("\n", $stored['mission']))))
+                : [
+                    'Menyelenggarakan pendidikan dan pengajaran di bidang syariah dan hukum Islam yang integratif berbasis nilai kepesantrenan.',
+                    'Melaksanakan penelitian ilmiah guna memecahkan masalah hukum keluarga kontemporer dan regulasi ekonomi syariah.',
+                    'Melaksanakan pengabdian kepada masyarakat melalui penyuluhan hukum, bimbingan keluarga sakinah, dan advokasi keagamaan.',
+                    'Membangun tata kelola fakultas yang akuntabel, transparan, profesional, dan berorientasi mutu berkelanjutan.'
+                ];
+
             return [
                 'id' => 'syariah',
-                'name' => 'Fakultas Ilmu Syariah (FASYA)',
-                'dean' => $dbFaculty ? ($dbFaculty->dean ?? 'Dr. H. Abu Bakar, M.H.I.') : 'Dr. H. Abu Bakar, M.H.I.',
-                'dean_title' => 'Dekan Fakultas Ilmu Syariah',
-                'dean_image' => ($dbFaculty && $dbFaculty->logo) ? 'storage/' . $dbFaculty->logo : 'assets/img/user.png',
+                'name' => ($page && $page->title) ? $page->title : 'Fakultas Ilmu Syariah (FASYA)',
+                'dean' => $stored['leader_name'] ?? ($dbFaculty->dean ?? 'Dr. H. Abu Bakar, M.H.I.'),
+                'dean_title' => $stored['leader_title'] ?? 'Dekan Fakultas Ilmu Syariah',
+                'dean_image' => !empty($stored['leader_image']) ? 'storage/' . $stored['leader_image'] : (($dbFaculty && $dbFaculty->logo) ? 'storage/' . $dbFaculty->logo : 'assets/img/user.png'),
+                'dean_message' => $stored['leader_message'] ?? 'Selamat datang di Portal Resmi Fakultas Ilmu Syariah IAI Darul Falah. Kami berkomitmen menyelenggarakan pendidikan hukum Islam berkualitas, menggabungkan kajian turats kitab kuning dengan hukum positif kontemporer.',
                 'short_name' => 'FASYA',
-                'color' => '#8c1d1d', // Deep Islamic maroon for Syariah
-                'color_secondary' => '#c28b26', // Gold accent
+                'color' => '#8c1d1d',
+                'color_secondary' => '#c28b26',
                 'bg_gradient' => 'linear-gradient(135deg, #781717 0%, #4a0d0d 100%)',
-                'hero_tagline' => 'Mencetak Praktisi Hukum Islam, Hakim Peradilan Agama, dan Pakar Regulasi Bisnis Syariah Berintegritas.',
+                'hero_tagline' => $stored['tagline'] ?? 'Mencetak Praktisi Hukum Islam, Hakim Peradilan Agama, dan Pakar Regulasi Bisnis Syariah Berintegritas.',
+                'hero_banner' => ($page && $page->featured_image) ? 'storage/' . $page->featured_image : null,
                 'stats' => [
-                    'prodi' => '2',
-                    'dosen' => '28+',
-                    'akreditasi' => 'Baik Sekali',
-                    'serapan' => '96%'
+                    'prodi' => $stored['stats']['val1'] ?? '2',
+                    'dosen' => $stored['stats']['val2'] ?? '28+',
+                    'akreditasi' => $stored['stats']['val3'] ?? 'Baik Sekali',
+                    'serapan' => $stored['stats']['val4'] ?? '96%'
+                ],
+                'stats_labels' => [
+                    'prodi' => $stored['stats']['label1'] ?? 'Program Studi S1',
+                    'dosen' => $stored['stats']['label2'] ?? 'Dosen Pengajar',
+                    'akreditasi' => $stored['stats']['label3'] ?? 'Akreditasi',
+                    'serapan' => $stored['stats']['label4'] ?? 'Serapan Kerja'
                 ],
                 'prodies' => [
                     [
@@ -55,32 +84,48 @@ class FacultySubWebController extends Controller
                         'prospek' => 'Legal Officer Perbankan Syariah, Dewan Pengawas Syariah (DPS), Notaris Muamalah, Arbiter Basyarnas.'
                     ]
                 ],
-                'sejarah' => $dbFaculty ? ($dbFaculty->description ?? 'Fakultas Ilmu Syariah (FASYA) IAI Darul Falah didirikan dengan komitmen teguh untuk melahirkan cendekiawan dan praktisi hukum Islam yang profesional, berintegritas tinggi, serta responsif terhadap dinamika keumatan dan regulasi modern.') : 'Fakultas Ilmu Syariah (FASYA) IAI Darul Falah didirikan dengan komitmen teguh untuk melahirkan cendekiawan dan praktisi hukum Islam yang profesional, berintegritas tinggi, serta responsif terhadap dinamika keumatan dan regulasi modern.',
-                'visi' => 'Menjadi Fakultas Syariah yang unggul, kompetitif, dan bereputasi nasional dalam pengembangan keilmuan syariah dan hukum Islam kontemporer yang berlandaskan nilai-nilai kepesantrenan pada tahun 2030.',
-                'misi' => [
-                    'Menyelenggarakan pendidikan dan pengajaran di bidang syariah dan hukum Islam yang integratif berbasis nilai kepesantrenan.',
-                    'Melaksanakan penelitian ilmiah guna memecahkan masalah hukum keluarga kontemporer dan regulasi ekonomi syariah.',
-                    'Melaksanakan pengabdian kepada masyarakat melalui penyuluhan hukum, bimbingan keluarga sakinah, dan advokasi keagamaan.',
-                    'Membangun tata kelola fakultas yang akuntabel, transparan, profesional, dan berorientasi mutu berkelanjutan.'
-                ]
+                'sejarah' => $stored['description'] ?? ($dbFaculty->description ?? 'Fakultas Ilmu Syariah (FASYA) IAI Darul Falah didirikan dengan komitmen teguh untuk melahirkan cendekiawan dan praktisi hukum Islam yang profesional, berintegritas tinggi, serta responsif terhadap dinamika keumatan dan regulasi modern.'),
+                'visi' => $stored['vision'] ?? 'Menjadi Fakultas Syariah yang unggul, kompetitif, dan bereputasi nasional dalam pengembangan keilmuan syariah dan hukum Islam kontemporer yang berlandaskan nilai-nilai kepesantrenan pada tahun 2030.',
+                'misi' => $mission,
+                'phone' => $stored['phone'] ?? null,
+                'email' => $stored['email'] ?? null,
+                'address' => $stored['address'] ?? null,
+                'additional_content' => $page ? $page->content : null
             ];
         } else {
+            $mission = !empty($stored['mission'])
+                ? (is_array($stored['mission']) ? $stored['mission'] : array_filter(array_map('trim', explode("\n", $stored['mission']))))
+                : [
+                    'Menyelenggarakan pendidikan ekonomi syariah dan pedagogi Islam yang adaptif terhadap revolusi industri dan teknologi.',
+                    'Mengembangkan riset inovatif di bidang bisnis Islam, keuangan syariah, dan metode pembelajaran pendidikan agama.',
+                    'Menerapkan iptek berbasis nilai Islam untuk pemberdayaan ekonomi masyarakat dan peningkatan mutu pendidikan madrasah.',
+                    'Menjalin kemitraan strategis dengan industri keuangan syariah, instansi pemerintah, dan lembaga pendidikan nasional.'
+                ];
+
             return [
                 'id' => 'ebit',
-                'name' => 'Fakultas Ekonomi Bisnis dan Tarbiyah (FEBIT)',
-                'dean' => $dbFaculty ? ($dbFaculty->dean ?? 'Dr. Hj. Siti Rahmah, M.E.I.') : 'Dr. Hj. Siti Rahmah, M.E.I.',
-                'dean_title' => 'Dekan Fakultas Ekonomi Bisnis dan Tarbiyah',
-                'dean_image' => ($dbFaculty && $dbFaculty->logo) ? 'storage/' . $dbFaculty->logo : 'assets/img/user.png',
+                'name' => ($page && $page->title) ? $page->title : 'Fakultas Ekonomi Bisnis dan Tarbiyah (FEBIT)',
+                'dean' => $stored['leader_name'] ?? ($dbFaculty->dean ?? 'Dr. Hj. Siti Rahmah, M.E.I.'),
+                'dean_title' => $stored['leader_title'] ?? 'Dekan Fakultas Ekonomi Bisnis dan Tarbiyah',
+                'dean_image' => !empty($stored['leader_image']) ? 'storage/' . $stored['leader_image'] : (($dbFaculty && $dbFaculty->logo) ? 'storage/' . $dbFaculty->logo : 'assets/img/user.png'),
+                'dean_message' => $stored['leader_message'] ?? 'Selamat datang di Fakultas Ekonomi Bisnis dan Tarbiyah (FEBIT). Kami mengintegrasikan profesionalitas perbankan dan bisnis syariah dengan kompetensi pedagogik kependidikan Islam.',
                 'short_name' => 'FEBIT',
-                'color' => '#103454', // Deep oceanic navy for FEBIT
-                'color_secondary' => '#c28b26', // Gold accent
+                'color' => '#103454',
+                'color_secondary' => '#c28b26',
                 'bg_gradient' => 'linear-gradient(135deg, #0e2a44 0%, #06192a 100%)',
-                'hero_tagline' => 'Integrasi Keunggulan Bisnis Syariah, Manajemen Modern, dan Pedagogi Pendidikan Islam Berkualitas.',
+                'hero_tagline' => $stored['tagline'] ?? 'Integrasi Keunggulan Bisnis Syariah, Manajemen Modern, dan Pedagogi Pendidikan Islam Berkualitas.',
+                'hero_banner' => ($page && $page->featured_image) ? 'storage/' . $page->featured_image : null,
                 'stats' => [
-                    'prodi' => '3',
-                    'dosen' => '35+',
-                    'mitra' => '15+',
-                    'kepuasan' => '98%'
+                    'prodi' => $stored['stats']['val1'] ?? '3',
+                    'dosen' => $stored['stats']['val2'] ?? '35+',
+                    'mitra' => $stored['stats']['val3'] ?? '15+',
+                    'kepuasan' => $stored['stats']['val4'] ?? '98%'
+                ],
+                'stats_labels' => [
+                    'prodi' => $stored['stats']['label1'] ?? 'Program Studi S1',
+                    'dosen' => $stored['stats']['label2'] ?? 'Dosen Pengajar',
+                    'mitra' => $stored['stats']['label3'] ?? 'Mitra Kerjasama',
+                    'kepuasan' => $stored['stats']['label4'] ?? 'Tingkat Kepuasan'
                 ],
                 'prodies' => [
                     [
@@ -111,14 +156,13 @@ class FacultySubWebController extends Controller
                         'prospek' => 'Guru PAI di Sekolah/Madrasah, Pengembang Kurikulum PAI, Edupreneur Islam, Pendidik di Pesantren Modern.'
                     ]
                 ],
-                'sejarah' => $dbFaculty ? ($dbFaculty->description ?? 'Fakultas Ekonomi Bisnis dan Tarbiyah (FEBIT) didirikan untuk menyatukan dua pilar kekuatan peradaban Islam: kemandirian ekonomi umat dan penguatan pendidikan karakter generasi muda.') : 'Fakultas Ekonomi Bisnis dan Tarbiyah (FEBIT) didirikan untuk menyatukan dua pilar kekuatan peradaban Islam: kemandirian ekonomi umat dan penguatan pendidikan karakter generasi muda.',
-                'visi' => 'Menjadi Fakultas Ekonomi Bisnis dan Tarbiyah terkemuka yang unggul dalam integrasi ilmu bisnis syariah dan kependidikan Islam berkarakter kepesantrenan pada tahun 2030.',
-                'misi' => [
-                    'Menyelenggarakan pendidikan ekonomi syariah dan pedagogi Islam yang adaptif terhadap revolusi industri dan teknologi.',
-                    'Mengembangkan riset inovatif di bidang bisnis Islam, keuangan syariah, dan metode pembelajaran pendidikan agama.',
-                    'Menerapkan iptek berbasis nilai Islam untuk pemberdayaan ekonomi masyarakat dan peningkatan mutu pendidikan madrasah.',
-                    'Menjalin kemitraan strategis dengan industri keuangan syariah, instansi pemerintah, dan lembaga pendidikan nasional.'
-                ]
+                'sejarah' => $stored['description'] ?? ($dbFaculty->description ?? 'Fakultas Ekonomi Bisnis dan Tarbiyah (FEBIT) didirikan untuk menyatukan dua pilar kekuatan peradaban Islam: kemandirian ekonomi umat dan penguatan pendidikan karakter generasi muda.'),
+                'visi' => $stored['vision'] ?? 'Menjadi Fakultas Ekonomi Bisnis dan Tarbiyah terkemuka yang unggul dalam integrasi ilmu bisnis syariah dan kependidikan Islam berkarakter kepesantrenan pada tahun 2030.',
+                'misi' => $mission,
+                'phone' => $stored['phone'] ?? null,
+                'email' => $stored['email'] ?? null,
+                'address' => $stored['address'] ?? null,
+                'additional_content' => $page ? $page->content : null
             ];
         }
     }
@@ -130,17 +174,20 @@ class FacultySubWebController extends Controller
         }
 
         $data = $this->getFacultyData($faculty);
+        $pageSlug = $faculty === 'syariah' ? 'fakultas-syariah' : 'fakultas-ebit';
+        $page = Page::where('slug', $pageSlug)->first();
+
         $announcements = Announcement::where('status', 'publish')->latest()->take(3)->get();
         $news = News::where('status', 'published')->latest()->take(3)->get();
         $agendas = Agenda::latest()->take(3)->get();
 
         if ($faculty === 'syariah') {
-            return view('frontend.fakultas.syariah', compact('data', 'announcements', 'news', 'agendas'));
+            return view('frontend.fakultas.syariah', compact('data', 'page', 'announcements', 'news', 'agendas'));
         } elseif ($faculty === 'ebit') {
-            return view('frontend.fakultas.ebit', compact('data', 'announcements', 'news', 'agendas'));
+            return view('frontend.fakultas.ebit', compact('data', 'page', 'announcements', 'news', 'agendas'));
         }
 
-        return view('frontend.fakultas.beranda', compact('data', 'announcements', 'news', 'agendas'));
+        return view('frontend.fakultas.beranda', compact('data', 'page', 'announcements', 'news', 'agendas'));
     }
 
     public function sejarah($faculty)
