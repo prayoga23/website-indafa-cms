@@ -394,10 +394,41 @@
 {{-- =========================
     HERO BANNER PRODI
 ========================= --}}
+@php
+    $heroBg = !empty($data['hero_image'])
+        ? (\Illuminate\Support\Str::startsWith($data['hero_image'], ['http://', 'https://']) ? $data['hero_image'] : asset('storage/' . $data['hero_image']))
+        : asset('storage/banners/otoYXSrIydgSL8DpfylH0mSQJD7CGa5MsaMOuPpK.png');
+
+    $headPhoto = !empty($data['head_photo'])
+        ? (\Illuminate\Support\Str::startsWith($data['head_photo'], ['http://', 'https://']) ? $data['head_photo'] : asset('storage/' . $data['head_photo']))
+        : asset('storage/lecturers/4aGdYumJLv1zF9gkf8FmB8eIrFFvVW5m276855wf.png');
+@endphp
+
 <div id="heroProdiCarousel" class="carousel slide prodi-carousel-container carousel-fade" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="5000">
-            <div class="prodi-hero-item" style="background-image: url('{{ asset('storage/banners/otoYXSrIydgSL8DpfylH0mSQJD7CGa5MsaMOuPpK.png') }}");">
+            <div class="prodi-hero-item" style="background-image: url('{{ $heroBg }}');">
+                <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg, rgba(10, 25, 47, 0.65) 0%, rgba(10, 25, 47, 0.88) 100%); z-index: 1;"></div>
+                <div class="container position-relative" style="z-index: 2;">
+                    <div class="prodi-hero-content">
+                        <span class="hero-eyebrow">
+                            <i class="bi bi-mortarboard-fill me-1"></i> {{ $data['faculty_name'] }} &bull; Jenjang {{ $data['degree'] ?? 'S1' }} &bull; Akreditasi {{ $data['accreditation'] ?? 'Baik' }}
+                        </span>
+                        <h1>{{ $data['name'] }}</h1>
+                        <p>{{ $data['tagline'] ?? $data['head_quote'] }}</p>
+                        <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap pt-2">
+                            <a href="#tentang" onclick="smoothTo(event, '#tentang')" class="btn btn-gold btn-gold-animated px-4 py-2.5 rounded-pill">
+                                <span>Profil Program Studi</span> <i class="bi bi-arrow-down-circle ms-2 btn-icon-rocket"></i>
+                            </a>
+                            <a href="{{ route('frontend.prodi.visi-misi', $data['id']) }}" class="btn btn-outline-light px-4 py-2.5 rounded-pill fw-semibold">
+                                <i class="bi bi-bullseye me-1"></i> Visi &amp; Misi
+                            </a>
+                            <a href="{{ route('frontend.prodi.dosen', $data['id']) }}" class="btn btn-outline-light px-4 py-2.5 rounded-pill fw-semibold">
+                                <i class="bi bi-people-fill me-1"></i> Dosen Pengajar
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -429,36 +460,64 @@
             <div class="col-lg-4 col-10 col-sm-8 col-md-5 mx-auto mx-lg-0">
                 <div class="text-center pt-lg-2">
                     <div class="kaprodi-card-img-wrap mb-3">
-                        <img src="{{ asset('storage/lecturers/4aGdYumJLv1zF9gkf8FmB8eIrFFvVW5m276855wf.png') }}"
+                        <img src="{{ $headPhoto }}"
                              alt="{{ $data['head'] }}"
-                             loading="lazy">
+                             loading="lazy"
+                             onerror="this.src='{{ asset('assets/img/user.png') }}'">
                     </div>
                     <h5 class="fw-bold mb-1" style="color:var(--color-primary);">{{ $data['head'] }}</h5>
                     <p class="text-muted small fw-semibold text-uppercase mb-0" style="letter-spacing:1px;">
-                        Ketua Program Studi
+                        {{ $data['head_title'] ?? 'Ketua Program Studi' }}
                     </p>
                 </div>
             </div>
 
             {{-- Deskripsi & Visi Misi --}}
             <div class="col-lg-8">
-                <h2 class="section-title mb-2">Ketua Program Studi</h2>
-               
+                <span class="section-eyebrow">{{ $data['degree'] ?? 'S1' }} {{ $data['graduate_degree'] ? '(' . $data['graduate_degree'] . ')' : '' }}</span>
+                <h2 class="section-title mb-2">{{ $data['head_title'] ?? 'Ketua Program Studi' }}</h2>
 
                 <blockquote class="p-4 rounded-4 bg-white border-start border-4 mb-4 shadow-sm" style="border-color: var(--color-primary) !important; line-height:1.8;">
                     <i class="bi bi-quote fs-2 me-1 opacity-75" style="color: var(--color-accent); vertical-align: -0.15em;"></i>
                     <span class="fst-italic fw-medium text-dark">
-                        "Komitmen utama kami adalah mendidik dan mendampingi mahasiswa agar menjadi sarjana yang unggul, berakhlakul karimah, serta siap berkontribusi nyata bagi nusa, bangsa, dan agama."
+                        "{{ $data['head_quote'] }}"
                     </span>
                 </blockquote>
 
                 <p class="text-muted lh-lg mb-4" style="text-align: justify;">
                     {{ $data['sejarah'] }}
                 </p>
+
+                <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <a href="{{ route('frontend.prodi.sejarah', $data['id']) }}" class="btn btn-outline-brand px-4 py-2 rounded-pill">
+                        Baca Sejarah Lengkap <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                    <a href="{{ route('frontend.prodi.kontak', $data['id']) }}" class="btn btn-brand px-4 py-2 rounded-pill">
+                        <i class="bi bi-envelope me-1"></i> Kontak Prodi
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+{{-- =========================
+    KONTEN TAMBAHAN PRODI (DARI WYSIWYG CKEDITOR)
+========================= --}}
+@if(!empty($data['content']))
+<section class="section-py bg-white border-top">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-4">
+            <span class="section-eyebrow">Informasi Prodi</span>
+            <h2 class="section-title">Informasi &amp; Keunggulan Program Studi</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="p-4 p-md-5 rounded-4 shadow-sm bg-light" style="line-height: 1.8; color: #334155;">
+            {!! $data['content'] !!}
+        </div>
+    </div>
+</section>
+@endif
 
 {{-- =========================
     BERITA & KEGIATAN TERBARU PRODI

@@ -17,6 +17,12 @@
 </section>
 
 <section class="py-5 bg-premium-light">
+    @php
+        $histImg = !empty($data['sejarah_image'])
+            ? (\Illuminate\Support\Str::startsWith($data['sejarah_image'], ['http://', 'https://']) ? $data['sejarah_image'] : asset('storage/' . $data['sejarah_image']))
+            : 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop';
+    @endphp
+
     <div class="container py-3">
         <div class="row align-items-center g-5">
             <div class="col-lg-7">
@@ -31,7 +37,7 @@
             </div>
             <div class="col-lg-5">
                 <div class="rounded-4 overflow-hidden shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop" alt="Sejarah" class="w-100" style="height:350px; object-fit:cover;">
+                    <img src="{{ $histImg }}" alt="Sejarah {{ $data['name'] }}" class="w-100" style="height:350px; object-fit:cover;">
                 </div>
             </div>
         </div>

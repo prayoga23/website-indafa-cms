@@ -78,6 +78,7 @@
             <li class="nav-header">Konten Portal (Tanpa Coding)</li>
             @php
                 $portalActive = request()->routeIs('admin.portal.*');
+                $prodiActive = request()->routeIs('admin.portal-prodi.*');
             @endphp
             <li class="nav-item">
                 <a class="nav-link justify-content-between {{ $portalActive ? 'active-parent' : '' }}"
@@ -90,7 +91,7 @@
                         <span class="nav-icon">
                             <i class="material-symbols-rounded">web</i>
                         </span>
-                        <span class="nav-link-text">Edit Halaman Portal</span>
+                        <span class="nav-link-text">Portal Fakultas & Lembaga</span>
                     </div>
                     <i class="material-symbols-rounded sidenav-arrow">expand_more</i>
                 </a>
@@ -118,6 +119,63 @@
                             <a class="nav-link {{ request()->is('admin/portal/lp2m*') ? 'active-sub' : '' }}" href="{{ route('admin.portal.edit', 'lp2m') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Portal LP2M</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link justify-content-between {{ $prodiActive ? 'active-parent' : '' }}"
+                   data-bs-toggle="collapse"
+                   href="#collapseProdiPortal"
+                   role="button"
+                   aria-expanded="{{ $prodiActive ? 'true' : 'false' }}"
+                   aria-controls="collapseProdiPortal">
+                    <div class="d-flex align-items-center">
+                        <span class="nav-icon">
+                            <i class="material-symbols-rounded">school</i>
+                        </span>
+                        <span class="nav-link-text">Website Program Studi</span>
+                    </div>
+                    <i class="material-symbols-rounded sidenav-arrow">expand_more</i>
+                </a>
+                <div class="collapse {{ $prodiActive ? 'show' : '' }}" id="collapseProdiPortal">
+                    <ul class="nav sub-menu-nav">
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.portal-prodi.index') ? 'active-sub' : '' }}" href="{{ route('admin.portal-prodi.index') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Semua Website Prodi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('admin/portal-prodi/hki*') ? 'active-sub' : '' }}" href="{{ route('admin.portal-prodi.edit', 'hki') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Prodi HKI (Syari'ah)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('admin/portal-prodi/hes*') ? 'active-sub' : '' }}" href="{{ route('admin.portal-prodi.edit', 'hes') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Prodi HES (Syari'ah)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('admin/portal-prodi/mbs*') ? 'active-sub' : '' }}" href="{{ route('admin.portal-prodi.edit', 'mbs') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Prodi MBS (FEBIT)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('admin/portal-prodi/ekos*') ? 'active-sub' : '' }}" href="{{ route('admin.portal-prodi.edit', 'ekos') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Prodi EKOS (FEBIT)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('admin/portal-prodi/pai*') ? 'active-sub' : '' }}" href="{{ route('admin.portal-prodi.edit', 'pai') }}">
+                                <span class="sub-dot"></span>
+                                <span class="sidenav-normal">Prodi PAI (FEBIT)</span>
                             </a>
                         </li>
                     </ul>

@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\PhotoGalleryController;
 use App\Http\Controllers\Admin\VideoGalleryController;
 use App\Http\Controllers\Admin\AcademicDocumentController;
 use App\Http\Controllers\Admin\PortalSettingController;
+use App\Http\Controllers\Admin\ProdiSettingController;
 
 // Frontend Controllers
 use App\Http\Controllers\Frontend\HomeController;
@@ -324,6 +325,18 @@ Route::prefix('admin')
             ->name('portal.edit');
         Route::put('/portal/{portal}', [PortalSettingController::class, 'update'])
             ->name('portal.update');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Konten Website Program Studi (Prodi) - Tanpa Coding
+        |--------------------------------------------------------------------------
+        */
+        Route::get('/portal-prodi', [ProdiSettingController::class, 'index'])
+            ->name('portal-prodi.index');
+        Route::get('/portal-prodi/{prodi}', [ProdiSettingController::class, 'edit'])
+            ->name('portal-prodi.edit');
+        Route::put('/portal-prodi/{prodi}', [ProdiSettingController::class, 'update'])
+            ->name('portal-prodi.update');
 
         /*
         |--------------------------------------------------------------------------

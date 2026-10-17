@@ -290,6 +290,66 @@
 </div>
 
 {{-- ═══════════════════════════════════════════════
+     WEBSITE SUB-DOMAIN PROGRAM STUDI (TANPA CODING)
+     ════════════════════════════════════════════════ --}}
+<div class="row g-3 mb-4">
+    <div class="col-12">
+        <div class="d-flex align-items-center justify-content-between mb-1">
+            <h6 class="text-sm font-weight-bolder text-dark mb-0">
+                <i class="material-symbols-rounded text-sm me-1 text-success align-middle">school</i>
+                Website Program Studi (Sub-Web Prodi - Tanpa Coding)
+            </h6>
+            <a href="{{ route('admin.portal-prodi.index') }}" class="text-xs font-weight-bold text-success d-inline-flex align-items-center">
+                <span>Kelola Semua Prodi</span>
+                <i class="material-symbols-rounded text-xs ms-1">arrow_forward</i>
+            </a>
+        </div>
+    </div>
+
+    @php
+        $dashProdis = [
+            ['code' => 'hki', 'name' => 'HKI - Hukum Keluarga Islam', 'degree' => 'S1', 'faculty' => 'Fakultas Syari\'ah', 'color' => '#0b5345'],
+            ['code' => 'hes', 'name' => 'HES - Hukum Ekonomi Syariah', 'degree' => 'S1', 'faculty' => 'Fakultas Syari\'ah', 'color' => '#725114'],
+            ['code' => 'mbs', 'name' => 'MBS - Manajemen Bisnis Syariah', 'degree' => 'S1', 'faculty' => 'Fakultas FEBIT', 'color' => '#1d5a8c'],
+            ['code' => 'ekos', 'name' => 'EKOS - Ekonomi Syariah', 'degree' => 'S1', 'faculty' => 'Fakultas FEBIT', 'color' => '#0e4a7b'],
+            ['code' => 'pai', 'name' => 'PAI - Pendidikan Agama Islam', 'degree' => 'S1', 'faculty' => 'Fakultas FEBIT', 'color' => '#0c6628'],
+        ];
+    @endphp
+
+    @foreach($dashProdis as $dp)
+        <div class="col">
+            <div class="card border-0 shadow-sm h-100" style="border-top: 3px solid {{ $dp['color'] }} !important; border-radius: 0.75rem;">
+                <div class="card-body p-2.5 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-1">
+                            <span class="badge text-white text-xxs font-weight-bold px-1.5 py-0.5" style="background: {{ $dp['color'] }}; font-size: 0.65rem;">{{ $dp['degree'] }}</span>
+                            <span class="text-xxs text-secondary text-truncate" style="max-width: 90px;">{{ $dp['faculty'] }}</span>
+                        </div>
+                        <h6 class="text-xs font-weight-bolder text-dark mb-1 text-truncate" title="{{ $dp['name'] }}">
+                            {{ $dp['name'] }}
+                        </h6>
+                    </div>
+                    <div class="d-flex align-items-center gap-1 mt-2 pt-2 border-top">
+                        <a href="{{ route('admin.portal-prodi.edit', $dp['code']) }}"
+                           class="btn btn-sm text-white mb-0 flex-grow-1 text-xxs py-1 px-1.5 font-weight-bold d-inline-flex align-items-center justify-content-center"
+                           style="background: {{ $dp['color'] }};"
+                           title="Edit Isi Website">
+                            <i class="material-symbols-rounded text-xxs me-1">edit_document</i>Edit Web
+                        </a>
+                        <a href="{{ route('frontend.prodi.index', $dp['code']) }}"
+                           target="_blank"
+                           class="btn btn-sm btn-outline-secondary mb-0 text-xxs py-1 px-1.5"
+                           title="Lihat Website Publik">
+                            <i class="material-symbols-rounded text-xxs">open_in_new</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
+
+{{-- ═══════════════════════════════════════════════
      ROW 2: 3 CHART STATISTIK (MATERIAL CHARTS)
      ════════════════════════════════════════════════ --}}
 <div class="row g-3 mb-4">

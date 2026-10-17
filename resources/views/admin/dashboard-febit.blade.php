@@ -102,11 +102,18 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-2 ps-3 d-flex align-items-center justify-content-between">
-                <a href="{{ route('admin.study-programs.index') }}" class="text-xs text-secondary font-weight-bold d-flex align-items-center">
-                    <span class="font-weight-bolder me-1" style="color: #0f2b48;">MBS, EKOS & PAI</span>
-                    <i class="material-symbols-rounded text-xs">arrow_forward</i>
-                </a>
-                <span class="badge bg-light text-dark text-xxs border">3 Jurusan</span>
+                <div class="d-flex align-items-center gap-1">
+                    <a href="{{ route('admin.portal-prodi.edit', 'mbs') }}" class="badge text-white text-xxs font-weight-bold" style="background:#1d5a8c;" title="Edit Website Prodi MBS (Tanpa Coding)">
+                        <i class="material-symbols-rounded text-xxs me-0.5 align-middle">edit_document</i> MBS
+                    </a>
+                    <a href="{{ route('admin.portal-prodi.edit', 'ekos') }}" class="badge text-white text-xxs font-weight-bold" style="background:#0e4a7b;" title="Edit Website Prodi EKOS (Tanpa Coding)">
+                        <i class="material-symbols-rounded text-xxs me-0.5 align-middle">edit_document</i> EKOS
+                    </a>
+                    <a href="{{ route('admin.portal-prodi.edit', 'pai') }}" class="badge text-white text-xxs font-weight-bold" style="background:#0c6628;" title="Edit Website Prodi PAI (Tanpa Coding)">
+                        <i class="material-symbols-rounded text-xxs me-0.5 align-middle">edit_document</i> PAI
+                    </a>
+                </div>
+                <a href="{{ route('admin.portal-prodi.index') }}" class="badge bg-light text-dark text-xxs border text-decoration-none">Kelola Web</a>
             </div>
         </div>
     </div>

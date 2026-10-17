@@ -102,11 +102,15 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-2 ps-3 d-flex align-items-center justify-content-between">
-                <a href="{{ route('admin.study-programs.index') }}" class="text-xs text-secondary font-weight-bold d-flex align-items-center">
-                    <span class="font-weight-bolder me-1" style="color: #8B0000;">HKI & HES</span>
-                    <i class="material-symbols-rounded text-xs">arrow_forward</i>
-                </a>
-                <span class="badge bg-light text-dark text-xxs border">Jenjang Sarjana</span>
+                <div class="d-flex align-items-center gap-1">
+                    <a href="{{ route('admin.portal-prodi.edit', 'hki') }}" class="badge text-white text-xxs font-weight-bold" style="background:#0b5345;" title="Edit Website Prodi HKI (Tanpa Coding)">
+                        <i class="material-symbols-rounded text-xxs me-0.5 align-middle">edit_document</i> HKI
+                    </a>
+                    <a href="{{ route('admin.portal-prodi.edit', 'hes') }}" class="badge text-white text-xxs font-weight-bold" style="background:#725114;" title="Edit Website Prodi HES (Tanpa Coding)">
+                        <i class="material-symbols-rounded text-xxs me-0.5 align-middle">edit_document</i> HES
+                    </a>
+                </div>
+                <a href="{{ route('admin.portal-prodi.index') }}" class="badge bg-light text-dark text-xxs border text-decoration-none">Kelola Web</a>
             </div>
         </div>
     </div>

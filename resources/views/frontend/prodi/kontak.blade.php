@@ -30,7 +30,7 @@
                         </div>
                         <div>
                             <h6 class="fw-bold mb-1" style="color:var(--pro-color)">Alamat Kantor</h6>
-                            <span class="text-secondary small">Gedung Kampus, Lantai 2, Kampus INDAFA Bondowoso</span>
+                            <span class="text-secondary small">{{ $data['office_address'] ?? 'Gedung Kampus, Lantai 2, Kampus INDAFA Bondowoso' }}</span>
                         </div>
                     </div>
 
@@ -40,7 +40,11 @@
                         </div>
                         <div>
                             <h6 class="fw-bold mb-1" style="color:var(--pro-color)">Email Resmi</h6>
-                            <span class="text-secondary small">{{ $data['id'] }}@iaidafa.ac.id</span>
+                            <span class="text-secondary small">
+                                <a href="mailto:{{ $data['email'] ?? ($data['id'] . '@iaidafa.ac.id') }}" class="text-secondary text-decoration-none">
+                                    {{ $data['email'] ?? ($data['id'] . '@iaidafa.ac.id') }}
+                                </a>
+                            </span>
                         </div>
                     </div>
 
@@ -51,15 +55,13 @@
                         <div>
                             <h6 class="fw-bold mb-1" style="color:var(--pro-color)">No. WhatsApp</h6>
                             <span class="text-secondary small">
-                                @if(isset($setting) && !empty($setting->whatsapp))
-                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $setting->whatsapp) }}" target="_blank" rel="noopener noreferrer" class="text-secondary text-decoration-none fw-semibold">
-                                        {{ $setting->whatsapp }}
-                                    </a>
-                                @elseif(isset($setting) && !empty($setting->phone))
-                                    {{ $setting->phone }}
-                                @else
-                                    +62 821-3933-6236
-                                @endif
+                                @php
+                                    $waNumber = $data['whatsapp'] ?? ($setting->whatsapp ?? '+62 821-3933-6236');
+                                    $cleanWa = preg_replace('/[^0-9]/', '', $waNumber);
+                                @endphp
+                                <a href="https://wa.me/{{ $cleanWa }}" target="_blank" rel="noopener noreferrer" class="text-secondary text-decoration-none fw-semibold">
+                                    {{ $waNumber }}
+                                </a>
                             </span>
                         </div>
                     </div>

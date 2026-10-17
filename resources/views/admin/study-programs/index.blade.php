@@ -7,14 +7,19 @@
 
 <div class="card">
 
-    <div class="card-header">
+    <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-2">
 
         <a href="{{ route('admin.study-programs.create') }}"
-           class="btn btn-primary">
+           class="btn btn-primary mb-0">
 
             <i class="fas fa-plus"></i>
             Tambah Program Studi
 
+        </a>
+
+        <a href="{{ route('admin.portal-prodi.index') }}"
+           class="btn btn-success mb-0 text-white font-weight-bold">
+            <i class="fas fa-globe me-1"></i> Kelola Tampilan Website Prodi (Tanpa Coding)
         </a>
 
     </div>
@@ -76,8 +81,28 @@
 
                         <td>
 
+                            @php
+                                $prodiCode = match($studyProgram->slug) {
+                                    'hukum-keluarga-islam' => 'hki',
+                                    'hukum-ekonomi-syariah' => 'hes',
+                                    'manajemen-bisnis-syariah' => 'mbs',
+                                    'ekonomi-syariah' => 'ekos',
+                                    'pendidikan-agama' => 'pai',
+                                    default => null
+                                };
+                            @endphp
+
+                            @if($prodiCode)
+                                <a href="{{ route('admin.portal-prodi.edit', $prodiCode) }}"
+                                   class="btn btn-info btn-sm text-white"
+                                   title="Edit Isi Website Prodi (Tanpa Coding)">
+                                    <i class="fas fa-globe"></i>
+                                </a>
+                            @endif
+
                             <a href="{{ route('admin.study-programs.edit', $studyProgram->id) }}"
-                               class="btn btn-warning btn-sm">
+                               class="btn btn-warning btn-sm"
+                               title="Edit Data Master">
 
                                 <i class="fas fa-edit"></i>
 
@@ -92,7 +117,8 @@
 
                                 <button type="submit"
                                         onclick="return confirm('Yakin ingin menghapus data ini?')"
-                                        class="btn btn-danger btn-sm">
+                                        class="btn btn-danger btn-sm"
+                                        title="Hapus">
 
                                     <i class="fas fa-trash"></i>
 
