@@ -575,52 +575,6 @@
                     </svg>
                 </button>
 
-                {{-- Demo Login Selector (Klik langsung isi) --}}
-                <div class="demo-roles-box">
-                    <div class="demo-header">
-                        <span class="demo-title">Pilih Akun Demo Role</span>
-                        <span class="demo-badge-hint">1-Klik Isi Form</span>
-                    </div>
-
-                    <div class="demo-list">
-                        {{-- 1. Super Admin --}}
-                        <button type="button" class="demo-btn" onclick="fillLogin('admin@kampus.com', 'password')">
-                            <div>
-                                <span class="demo-role-name">1. Super Admin (Rektorat)</span>
-                                <span class="demo-role-sub">admin@kampus.com &bull; Semua Akses</span>
-                            </div>
-                            <span class="role-pill pill-super">Full Access</span>
-                        </button>
-
-                        {{-- 2. Dosen FEBIT Prodi MBS (Sesuai Permintaan Client) --}}
-                        <button type="button" class="demo-btn febit-mbs" onclick="fillLogin('dosen.mbs@kampus.com', 'password')">
-                            <div>
-                                <span class="demo-role-name" style="color: #065f46;">2. Dosen FEBIT & Prodi MBS</span>
-                                <span class="demo-role-sub">dosen.mbs@kampus.com &bull; Skenario Client</span>
-                            </div>
-                            <span class="role-pill pill-mbs">FEBIT & MBS</span>
-                        </button>
-
-                        {{-- 3. Staf Fakultas Syari'ah --}}
-                        <button type="button" class="demo-btn" onclick="fillLogin('admin.syariah@kampus.com', 'password')">
-                            <div>
-                                <span class="demo-role-name">3. Staf Admin Syari'ah</span>
-                                <span class="demo-role-sub">admin.syariah@kampus.com &bull; FASYA & HKI/HES</span>
-                            </div>
-                            <span class="role-pill pill-syariah">Syari'ah</span>
-                        </button>
-
-                        {{-- 4. Admin Lembaga LPM --}}
-                        <button type="button" class="demo-btn" onclick="fillLogin('admin.lpm@kampus.com', 'password')">
-                            <div>
-                                <span class="demo-role-name">4. Admin Lembaga (LPM)</span>
-                                <span class="demo-role-sub">admin.lpm@kampus.com &bull; Portal LPM</span>
-                            </div>
-                            <span class="role-pill pill-lpm">LPM</span>
-                        </button>
-                    </div>
-                </div>
-
                 {{-- Security Note --}}
                 <div class="security-note">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
