@@ -13,6 +13,9 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
+        // 0. Pastikan identitas kampus di website_settings terisi IAI Darul Falah
+        \App\Models\WebsiteSetting::where('id', 1)->orWhere('site_name', 'like', '%DARUL FALA%')->update(['site_name' => 'IAI Darul Falah']);
+
         // 1. Super Admin (Akses Penuh ke Seluruh Sistem)
         $superAdmin = User::updateOrCreate(
             ['email' => 'admin@kampus.com'],

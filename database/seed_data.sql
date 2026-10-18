@@ -271,7 +271,7 @@ INSERT INTO `visions` VALUES (1,'Menjadi Program Studi Hukum Keluarga Islam yang
 -- Dumping data for table `website_settings`
 --
 
-INSERT INTO `website_settings` VALUES (1,'IAII DARUL FALA','bersama kita berjuang','adalah kampus','website/logo/qNo3J9f51iIJFy6rtAy6D5qJ4mWabrh54q1nSmnp.png','website/favicon/hC3ive8GkSEA5VDhOyyvStRqMkyIOcZ64leYV51K.png',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2026-06-13 07:14:52','2026-06-16 04:04:14');
+INSERT INTO `website_settings` VALUES (1,'IAI Darul Falah','bersama kita berjuang','adalah kampus','website/logo/qNo3J9f51iIJFy6rtAy6D5qJ4mWabrh54q1nSmnp.png','website/favicon/hC3ive8GkSEA5VDhOyyvStRqMkyIOcZ64leYV51K.png',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2026-06-13 07:14:52','2026-06-16 04:04:14');
 
 --
 -- Dumping data for table `welcome_messages`

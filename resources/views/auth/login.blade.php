@@ -2,8 +2,13 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin - {{ $setting->site_name ?? 'IAI DARUL FALAH' }}</title>
+    @php
+        $rawSiteName = $setting->site_name ?? 'IAI Darul Falah';
+        $siteName = (in_array(strtoupper(trim($rawSiteName)), ['IAII DARUL FALA', 'IAI DARUL FALA', 'DARUL FALA', 'NAMA KAMPUS'])) 
+            ? 'IAI Darul Falah' 
+            : $rawSiteName;
+    @endphp
+    <title>Login Admin - {{ $siteName }}</title>
 
     @if($setting && $setting->favicon)
         <link rel="icon" type="image/x-icon" href="{{ asset('storage/'.$setting->favicon) }}">
@@ -456,7 +461,7 @@
                 <div class="logo-wrap">
                     @if($setting && $setting->logo)
                         <img src="{{ asset('storage/'.$setting->logo) }}"
-                             alt="{{ $setting->site_name ?? 'Logo Kampus' }}"
+                             alt="{{ $siteName }}"
                              class="logo-img">
                     @else
                         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0b5345" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -466,7 +471,7 @@
                     @endif
                 </div>
 
-                <h1 class="brand-title">{{ $setting->site_name ?? 'IAI DARUL FALAH' }}</h1>
+                <h1 class="brand-title">{{ $siteName }}</h1>
                 <p class="brand-subtitle">Portal Login Sistem Informasi & CMS</p>
                 <div class="gold-divider"></div>
             </div>
@@ -587,7 +592,7 @@
 
         {{-- Footer Copy --}}
         <div class="login-footer-copy">
-            &copy; {{ date('Y') }} {{ $setting->site_name ?? 'IAI Darul Falah' }}. All rights reserved.
+            &copy; {{ date('Y') }} {{ $siteName }}. All rights reserved.
         </div>
     </div>
 
