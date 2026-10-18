@@ -43,69 +43,68 @@ class AppServiceProvider extends ServiceProvider
                 return;
             }
 
-            // 1. Ambil data setting global
-            $setting = WebsiteSetting::first() ?? new WebsiteSetting();
+            static $cachedData = null;
 
-            // 2. Ambil data menu default untuk dropdown
-            $facultiesMenu = Faculty::orderBy('name')->get();
-            $programsMenu = StudyProgram::orderBy('name')->get();
+            if ($cachedData === null) {
+                // 1. Ambil data setting global
+                $setting = WebsiteSetting::first() ?? new WebsiteSetting();
 
-            // 3. Deteksi Context (Fakultas / Prodi) dari Route atau Query String (?prodi=...)
-            $currentProgram = null;
-            $currentFaculty = null;
+                // 2. Ambil data menu default untuk dropdown
+                $facultiesMenu = Faculty::orderBy('name')->get();
+                $programsMenu = StudyProgram::orderBy('name')->get();
 
-            // Ambil parameter dari route ataupun query string URL
-            $programId = request()->route('program_id') ?? request()->get('program_id');
-            $facultyId = request()->route('faculty_id') ?? request()->get('faculty_id');
+                // 3. Deteksi Context (Fakultas / Prodi) dari Route atau Query String (?prodi=...)
+                $currentProgram = null;
+                $currentFaculty = null;
 
-            // Mencari slug prodi dari parameter route ({program}/{prodi}/{slug}) atau via ?prodi=slug-nama-prodi
-            $programSlug = request()->route('program') ?? request()->route('prodi') ?? request()->route('slug') ?? request()->query('prodi');
-            $facultySlug = request()->route('faculty') ?? request()->route('fakultas') ?? request()->query('fakultas');
+                $programId = request()->route('program_id') ?? request()->get('program_id');
+                $facultyId = request()->route('faculty_id') ?? request()->get('faculty_id');
 
-            // Proses pencarian Program Studi Aktif
-            if ($programId) {
-                $currentProgram = StudyProgram::find($programId);
-            } elseif ($programSlug) {
-                $currentProgram = $programSlug instanceof StudyProgram ? $programSlug : StudyProgram::where('slug', $programSlug)->first();
+                $programSlug = request()->route('program') ?? request()->route('prodi') ?? request()->route('slug') ?? request()->query('prodi');
+                $facultySlug = request()->route('faculty') ?? request()->route('fakultas') ?? request()->query('fakultas');
+
+                if ($programId) {
+                    $currentProgram = StudyProgram::find($programId);
+                } elseif ($programSlug) {
+                    $currentProgram = $programSlug instanceof StudyProgram ? $programSlug : StudyProgram::where('slug', $programSlug)->first();
+                }
+
+                if ($currentProgram && $currentProgram->faculty_id) {
+                    $currentFaculty = Faculty::find($currentProgram->faculty_id);
+                } elseif ($facultyId) {
+                    $currentFaculty = Faculty::find($facultyId);
+                } elseif ($facultySlug) {
+                    $currentFaculty = $facultySlug instanceof Faculty ? $facultySlug : Faculty::where('slug', $facultySlug)->first();
+                }
+
+                // 4. Ambil data menu profil ($pagesMenu) dinamis
+                if ($currentProgram) {
+                    $pagesMenu = Page::where('study_program_id', $currentProgram->id)
+                                    ->orderBy('title')
+                                    ->get();
+                } elseif ($currentFaculty) {
+                    $pagesMenu = Page::where('faculty_id', $currentFaculty->id)
+                                    ->orderBy('title')
+                                    ->get();
+                } else {
+                    $pagesMenu = Page::whereNull('study_program_id')
+                                    ->whereNull('faculty_id')
+                                    ->orderBy('title')
+                                    ->get();
+                }
+
+                $cachedData = [
+                    'setting' => $setting,
+                    'pagesMenu' => $pagesMenu,
+                    'facultiesMenu' => $facultiesMenu,
+                    'programsMenu' => $programsMenu,
+                    'currentProgram' => $currentProgram,
+                    'currentFaculty' => $currentFaculty,
+                ];
             }
 
-            // Proses pencarian Fakultas Aktif (bisa otomatis dari prodi atau manual dari parameter)
-            if ($currentProgram && $currentProgram->faculty_id) {
-                $currentFaculty = Faculty::find($currentProgram->faculty_id);
-            } elseif ($facultyId) {
-                $currentFaculty = Faculty::find($facultyId);
-            } elseif ($facultySlug) {
-                $currentFaculty = $facultySlug instanceof Faculty ? $facultySlug : Faculty::where('slug', $facultySlug)->first();
-            }
-
-            // 4. KUNCI UTAMA: Ambil data menu profil ($pagesMenu) secara dinamis sesuai context halaman
-            if ($currentProgram) {
-                // Jika sedang di lingkup prodi, ambil halaman/profil khusus prodi tersebut
-                $pagesMenu = Page::where('study_program_id', $currentProgram->id)
-                                ->orderBy('title')
-                                ->get();
-            } elseif ($currentFaculty) {
-                // Jika sedang di lingkup fakultas, ambil halaman/profil khusus fakultas tersebut
-                $pagesMenu = Page::where('faculty_id', $currentFaculty->id)
-                                ->orderBy('title')
-                                ->get();
-            } else {
-                // Jika di halaman utama/global, ambil halaman yang tidak terikat prodi maupun fakultas (null)
-                $pagesMenu = Page::where('study_program_id', null)
-                                ->where('faculty_id', null)
-                                ->orderBy('title')
-                                ->get();
-            }
-
-            // 5. Kirim semua variabel ke seluruh view/blade
-            $view->with([
-                'setting' => $setting,
-                'pagesMenu' => $pagesMenu,
-                'facultiesMenu' => $facultiesMenu,
-                'programsMenu' => $programsMenu,
-                'currentProgram' => $currentProgram,
-                'currentFaculty' => $currentFaculty,
-            ]);
+            // Kirim variabel ke view/blade
+            $view->with($cachedData);
         });
     }
 }
