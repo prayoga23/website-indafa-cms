@@ -733,7 +733,7 @@
                                         {{ $item->created_at->format('d M Y') }}
                                     </span>
                                     <h6 class="fw-bold mb-1 text-dark">
-                                        <a href="{{ route('frontend.news.show', $item->slug) }}" class="text-dark text-decoration-none">
+                                        <a href="{{ route('news.show', $item->slug) }}" class="text-dark text-decoration-none">
                                             {{ Str::limit($item->title, 55) }}
                                         </a>
                                     </h6>

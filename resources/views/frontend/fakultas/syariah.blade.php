@@ -759,7 +759,7 @@
                                     {{ $item->category->name ?? 'Akademik Syariah' }}
                                 </span>
                                 <h6 class="fw-bold mb-2">
-                                    <a href="{{ route('frontend.news.show', $item->slug) }}" class="text-dark text-decoration-none">
+                                    <a href="{{ route('news.show', $item->slug) }}" class="text-dark text-decoration-none">
                                         {{ Str::limit($item->title, 55) }}
                                     </a>
                                 </h6>
@@ -768,7 +768,7 @@
                                 </p>
                                 <div class="text-xs text-muted border-top pt-2 d-flex justify-content-between">
                                     <span><i class="bi bi-calendar3 me-1"></i>{{ $item->published_at ? \Carbon\Carbon::parse($item->published_at)->isoFormat('D MMMM Y') : $item->created_at->isoFormat('D MMMM Y') }}</span>
-                                    <a href="{{ route('frontend.news.show', $item->slug) }}" class="fw-bold" style="color: var(--syariah-primary);">Baca</a>
+                                    <a href="{{ route('news.show', $item->slug) }}" class="fw-bold" style="color: var(--syariah-primary);">Baca</a>
                                 </div>
                             </div>
                         </div>

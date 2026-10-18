@@ -28,6 +28,16 @@ class AppServiceProvider extends ServiceProvider
         if (app()->environment('production') && (request()->server('HTTPS') === 'on' || request()->header('X-Forwarded-Proto') === 'https')) {
             URL::forceScheme('https');
         }
+
+        URL::resolveMissingNamedRoutesUsing(function ($name, $parameters = [], $absolute = true) {
+            if ($name === 'frontend.news.index') {
+                return route('news.index', $parameters, $absolute);
+            }
+            if ($name === 'frontend.news.show') {
+                return route('news.show', $parameters, $absolute);
+            }
+            return null;
+        });
         View::composer('*', function ($view) {
             if (app()->runningInConsole()) {
                 return;

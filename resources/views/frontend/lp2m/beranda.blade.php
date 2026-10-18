@@ -633,7 +633,7 @@
                         <span class="section-eyebrow">Hilirisasi Riset</span>
                         <h3 class="fw-bold mb-0" style="color: var(--lp2m-primary);">Warta Penelitian &amp; KKN</h3>
                     </div>
-                    <a href="{{ route('frontend.news.index') }}" class="btn btn-sm btn-outline-warning rounded-pill px-3 text-dark" style="border-color: var(--lp2m-gold);">
+                    <a href="{{ route('news.index') }}" class="btn btn-sm btn-outline-warning rounded-pill px-3 text-dark" style="border-color: var(--lp2m-gold);">
                         Lihat Semua <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
@@ -653,7 +653,7 @@
                                         {{ $item->created_at->format('d M Y') }}
                                     </span>
                                     <h6 class="fw-bold mb-1 text-dark">
-                                        <a href="{{ route('frontend.news.show', $item->slug) }}" class="text-dark text-decoration-none">
+                                        <a href="{{ route('news.show', $item->slug) }}" class="text-dark text-decoration-none">
                                             {{ Str::limit($item->title, 55) }}
                                         </a>
                                     </h6>
