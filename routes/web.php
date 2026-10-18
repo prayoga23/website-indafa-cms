@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\VideoGalleryController;
 use App\Http\Controllers\Admin\AcademicDocumentController;
 use App\Http\Controllers\Admin\PortalSettingController;
 use App\Http\Controllers\Admin\ProdiSettingController;
+use App\Http\Controllers\Admin\UserController;
 
 // Frontend Controllers
 use App\Http\Controllers\Frontend\HomeController;
@@ -250,6 +251,24 @@ Route::get('/berita/{slug}', [FrontendNewsController::class, 'show'])->name('new
 */
 
 Route::get('/dashboard', function () {
+    $user = auth()->user();
+    if ($user && !$user->isSuperAdmin()) {
+        if ($user->faculty_code === 'febit' || $user->canAccessPortal('febit')) {
+            return redirect()->route('admin.dashboard.febit');
+        }
+        if ($user->faculty_code === 'syariah' || $user->canAccessPortal('syariah')) {
+            return redirect()->route('admin.dashboard.syariah');
+        }
+        if ($user->unit_code === 'lpm' || $user->canAccessPortal('lpm')) {
+            return redirect()->route('admin.dashboard.lpm');
+        }
+        if ($user->unit_code === 'lp2m' || $user->canAccessPortal('lp2m')) {
+            return redirect()->route('admin.dashboard.lp2m');
+        }
+        if ($user->prodi_code) {
+            return redirect()->route('admin.portal-prodi.edit', $user->prodi_code);
+        }
+    }
     return redirect()->route('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -340,12 +359,32 @@ Route::prefix('admin')
 
         /*
         |--------------------------------------------------------------------------
-        | Master Data
+        | Area Khusus Administrator Utama (Super Admin / Rektorat)
         |--------------------------------------------------------------------------
         */
+        Route::middleware(['super_admin'])->group(function () {
+            Route::resource('users', UserController::class);
+            Route::patch('users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggle-status');
+            Route::resource('faculties', AdminFacultyController::class);
+            Route::resource('study-programs', AdminStudyProgramController::class);
+            Route::resource('pages', AdminPageController::class);
+            Route::get('pages/edit-by-slug/{slug}', [AdminPageController::class, 'editBySlug'])->name('pages.edit-by-slug');
+            Route::resource('banners', AdminBannerController::class);
+            Route::get('website-settings', [WebsiteSettingController::class, 'index'])->name('website-settings.index');
+            Route::put('website-settings', [WebsiteSettingController::class, 'update'])->name('website-settings.update');
+            Route::get('homepage-settings', [WebsiteSettingController::class, 'homepageIndex'])->name('homepage-settings.index');
+            Route::put('homepage-settings', [WebsiteSettingController::class, 'homepageUpdate'])->name('homepage-settings.update');
+            Route::get('/sambutan', [WelcomeMessageController::class, 'index'])->name('sambutan.index');
+            Route::put('/sambutan', [WelcomeMessageController::class, 'update'])->name('sambutan.update');
+            Route::get('/statistik', [CampusStatisticController::class, 'index'])->name('statistic.index');
+            Route::put('/statistik', [CampusStatisticController::class, 'update'])->name('statistic.update');
+        });
 
-        Route::resource('faculties', AdminFacultyController::class);
-        Route::resource('study-programs',AdminStudyProgramController::class);
+        /*
+        |--------------------------------------------------------------------------
+        | Konten Bersama Dosen, Staf & Fakultas
+        |--------------------------------------------------------------------------
+        */
         Route::resource('lecturers', LecturerController::class);
         Route::resource('news', AdminNewsController::class);
         // Route::get('/admin/news/{id}', [AdminNewsController::class, 'show'])->name('admin.news.show'); // Duplikat, sudah ada di resource
@@ -353,26 +392,7 @@ Route::prefix('admin')
         Route::resource('galleries', AdminGalleryController::class);
         Route::post('galleries/{gallery}/photos',[GalleryPhotoController::class, 'store'])->name('galleries.photos.store');
         Route::delete('gallery-photos/{galleryPhoto}',[GalleryPhotoController::class, 'destroy'])->name('gallery-photos.destroy');
-        Route::resource('pages',AdminPageController::class);
-        Route::get('pages/edit-by-slug/{slug}', [AdminPageController::class, 'editBySlug'])->name('pages.edit-by-slug');
-        Route::resource('banners',AdminBannerController::class);
-        Route::get('website-settings',[WebsiteSettingController::class,'index'])->name('website-settings.index');
-        Route::put('website-settings',[WebsiteSettingController::class,'update'])->name('website-settings.update');
-        Route::get('homepage-settings',[WebsiteSettingController::class,'homepageIndex'])->name('homepage-settings.index');
-        Route::put('homepage-settings',[WebsiteSettingController::class,'homepageUpdate'])->name('homepage-settings.update');
-        /*
-        |--------------------------------------------------------------------------
-        | Beranda/Sambutan
-        |--------------------------------------------------------------------------
-        */
-
-        Route::get('/sambutan', [WelcomeMessageController::class, 'index'])->name('sambutan.index');
-        Route::put('/sambutan', [WelcomeMessageController::class, 'update'])->name('sambutan.update');
-
         Route::resource('agenda', AgendaController::class);
-
-        Route::get('/statistik', [CampusStatisticController::class, 'index'])->name('statistic.index');
-        Route::put('/statistik', [CampusStatisticController::class, 'update'])->name('statistic.update');
 
         // Route Sejarah Prodi
         Route::get('/sejarah', [HistoryController::class, 'index'])->name('history.index');
@@ -440,14 +460,6 @@ Route::prefix('admin')
         Route::get('/dokumen', [AcademicDocumentController::class, 'index'])->name('document.index');
     Route::post('/dokumen', [AcademicDocumentController::class, 'store'])->name('document.store');
     Route::delete('/dokumen/{document}', [AcademicDocumentController::class, 'destroy'])->name('document.destroy');
-        /*
-        |--------------------------------------------------------------------------
-        | Settings
-        |--------------------------------------------------------------------------
-        */
-
-        // Route::resource('users', UserController::class);
-        // Route::resource('roles', RoleController::class);
     });
 
 // Helper Route Pembersih Cache & Storage Link Hosting

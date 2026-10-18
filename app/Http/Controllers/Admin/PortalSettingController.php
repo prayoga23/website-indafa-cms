@@ -110,6 +110,10 @@ class PortalSettingController extends Controller
      */
     public function edit($portal)
     {
+        if (!auth()->user()->canAccessPortal($portal)) {
+            abort(403, 'Akses Ditolak: Anda tidak memiliki izin untuk mengelola portal ' . strtoupper($portal) . '. Halaman ini khusus untuk pengelola yang berwenang.');
+        }
+
         $config = $this->getPortalConfig($portal);
         if (!$config) {
             abort(404, 'Portal tidak ditemukan.');
@@ -170,6 +174,10 @@ class PortalSettingController extends Controller
      */
     public function update(Request $request, $portal)
     {
+        if (!auth()->user()->canAccessPortal($portal)) {
+            abort(403, 'Akses Ditolak: Anda tidak memiliki izin untuk memperbarui portal ' . strtoupper($portal) . '.');
+        }
+
         $config = $this->getPortalConfig($portal);
         if (!$config) {
             abort(404, 'Portal tidak ditemukan.');

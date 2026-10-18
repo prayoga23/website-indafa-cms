@@ -23,6 +23,27 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+
+        // Pengalihan cerdas jika pengguna bukan Super Admin
+        if ($user && !$user->isSuperAdmin()) {
+            if ($user->faculty_code === 'febit' || $user->canAccessPortal('febit')) {
+                return redirect()->route('admin.dashboard.febit');
+            }
+            if ($user->faculty_code === 'syariah' || $user->canAccessPortal('syariah')) {
+                return redirect()->route('admin.dashboard.syariah');
+            }
+            if ($user->unit_code === 'lpm' || $user->canAccessPortal('lpm')) {
+                return redirect()->route('admin.dashboard.lpm');
+            }
+            if ($user->unit_code === 'lp2m' || $user->canAccessPortal('lp2m')) {
+                return redirect()->route('admin.dashboard.lp2m');
+            }
+            if ($user->prodi_code) {
+                return redirect()->route('admin.portal-prodi.edit', $user->prodi_code);
+            }
+        }
+
         try {
             $countFaculty = Faculty::count();
             $countStudyProgram = StudyProgram::count();
@@ -85,6 +106,10 @@ class DashboardController extends Controller
      */
     public function syariah()
     {
+        if (!auth()->user()->canAccessDashboard('syariah')) {
+            abort(403, 'Akses Ditolak: Anda tidak memiliki wewenang untuk mengakses dashboard Fakultas Syari\'ah.');
+        }
+
         try {
             $faculty = Faculty::where('slug', 'fakultas-ilmu-syariah')
                 ->orWhere('slug', 'like', '%syariah%')
@@ -158,6 +183,10 @@ class DashboardController extends Controller
      */
     public function febit()
     {
+        if (!auth()->user()->canAccessDashboard('febit')) {
+            abort(403, 'Akses Ditolak: Anda tidak memiliki wewenang untuk mengakses dashboard Fakultas FEBIT.');
+        }
+
         try {
             $faculty = Faculty::where('slug', 'fakultas-tarbiyah')
                 ->orWhere('slug', 'like', '%tarbiyah%')
@@ -234,6 +263,10 @@ class DashboardController extends Controller
      */
     public function lpm()
     {
+        if (!auth()->user()->canAccessDashboard('lpm')) {
+            abort(403, 'Akses Ditolak: Anda tidak memiliki wewenang untuk mengakses dashboard Lembaga Penjaminan Mutu (LPM).');
+        }
+
         try {
             $documents = AcademicDocument::where('name', 'like', '%mutu%')
                 ->orWhere('name', 'like', '%spmi%')
@@ -259,6 +292,10 @@ class DashboardController extends Controller
      */
     public function lp2m()
     {
+        if (!auth()->user()->canAccessDashboard('lp2m')) {
+            abort(403, 'Akses Ditolak: Anda tidak memiliki wewenang untuk mengakses dashboard LP2M.');
+        }
+
         try {
             $documents = AcademicDocument::where('name', 'like', '%penelitian%')
                 ->orWhere('name', 'like', '%pengabdian%')

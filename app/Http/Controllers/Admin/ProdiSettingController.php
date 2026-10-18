@@ -150,9 +150,15 @@ class ProdiSettingController extends Controller
     public function index()
     {
         $configs = $this->getProdiConfigs();
+        $user = auth()->user();
         $prodis = [];
 
         foreach ($configs as $code => $cfg) {
+            // Filter prodi berdasarkan hak akses pengguna
+            if ($user && !$user->canAccessProdi($code)) {
+                continue;
+            }
+
             $page = Page::where('slug', 'portal-prodi-' . $code)->first();
             $stored = [];
             if ($page && !empty($page->excerpt)) {
@@ -186,6 +192,10 @@ class ProdiSettingController extends Controller
      */
     public function edit($prodi)
     {
+        if (!auth()->user()->canAccessProdi($prodi)) {
+            abort(403, 'Akses Ditolak: Anda tidak memiliki wewenang untuk mengelola Website Program Studi ' . strtoupper($prodi) . '. Halaman ini khusus untuk Dosen/Staf pengelola prodi terkait.');
+        }
+
         $config = $this->getProdiConfig($prodi);
         if (!$config) {
             abort(404, 'Program studi tidak ditemukan.');
@@ -258,6 +268,10 @@ class ProdiSettingController extends Controller
      */
     public function update(Request $request, $prodi)
     {
+        if (!auth()->user()->canAccessProdi($prodi)) {
+            abort(403, 'Akses Ditolak: Anda tidak memiliki wewenang untuk memperbarui website Program Studi ' . strtoupper($prodi) . '.');
+        }
+
         $config = $this->getProdiConfig($prodi);
         if (!$config) {
             abort(404, 'Program studi tidak ditemukan.');

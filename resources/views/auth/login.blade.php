@@ -588,10 +588,62 @@
                     <i class="bi bi-arrow-right-circle-fill fs-5"></i>
                 </button>
 
+                {{-- Quick Access / Role Demo Selector --}}
+                <div class="mt-4 pt-3 border-top">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="text-xs font-weight-bold text-dark text-uppercase" style="letter-spacing: 0.4px; font-size: 0.75rem;">
+                            <i class="bi bi-person-badge-fill me-1" style="color: var(--brand-gold);"></i> Akun Uji Coba Role & Jobdesk
+                        </span>
+                        <span class="badge bg-light text-secondary text-xxs border">Klik untuk Mengisi</span>
+                    </div>
+
+                    <div class="d-flex flex-column gap-2">
+                        <button type="button" class="btn btn-outline-dark btn-sm text-start p-2 d-flex align-items-center justify-content-between shadow-none"
+                                onclick="fillLogin('admin@kampus.com', 'password')"
+                                style="border-radius: 10px; font-size: 0.78rem; border-color: #cbd5e1;">
+                            <div>
+                                <span class="fw-bold d-block text-dark">1. Super Admin (Rektorat)</span>
+                                <span class="text-muted text-xxs">admin@kampus.com &bull; Akses Penuh Sistem</span>
+                            </div>
+                            <span class="badge bg-dark text-xxs">Semua Akses</span>
+                        </button>
+
+                        <button type="button" class="btn btn-outline-success btn-sm text-start p-2 d-flex align-items-center justify-content-between shadow-none"
+                                onclick="fillLogin('dosen.mbs@kampus.com', 'password')"
+                                style="border-radius: 10px; font-size: 0.78rem; border-color: #10b981; background: rgba(16, 185, 129, 0.05);">
+                            <div>
+                                <span class="fw-bold d-block text-success">2. Dosen FEBIT - Prodi MBS</span>
+                                <span class="text-muted text-xxs">dosen.mbs@kampus.com &bull; Sesuai Permintaan Client</span>
+                            </div>
+                            <span class="badge text-xxs" style="background: #0d9488; color: white;">FEBIT & MBS</span>
+                        </button>
+
+                        <button type="button" class="btn btn-outline-info btn-sm text-start p-2 d-flex align-items-center justify-content-between shadow-none"
+                                onclick="fillLogin('admin.syariah@kampus.com', 'password')"
+                                style="border-radius: 10px; font-size: 0.78rem; border-color: #0284c7; background: rgba(2, 132, 199, 0.05);">
+                            <div>
+                                <span class="fw-bold d-block text-info">3. Staf Admin Fakultas Syari'ah</span>
+                                <span class="text-muted text-xxs">admin.syariah@kampus.com &bull; FASYA & HKI/HES</span>
+                            </div>
+                            <span class="badge text-xxs" style="background: #0284c7; color: white;">Syari'ah</span>
+                        </button>
+
+                        <button type="button" class="btn btn-outline-warning btn-sm text-start p-2 d-flex align-items-center justify-content-between shadow-none"
+                                onclick="fillLogin('admin.lpm@kampus.com', 'password')"
+                                style="border-radius: 10px; font-size: 0.78rem; border-color: #f59e0b; background: rgba(245, 158, 11, 0.05);">
+                            <div>
+                                <span class="fw-bold d-block text-warning">4. Admin Lembaga (LPM)</span>
+                                <span class="text-muted text-xxs">admin.lpm@kampus.com &bull; Khusus Portal Penjaminan Mutu</span>
+                            </div>
+                            <span class="badge text-xxs" style="background: #d97706; color: white;">LPM</span>
+                        </button>
+                    </div>
+                </div>
+
                 {{-- Security Info Footer --}}
                 <div class="security-badge">
                     <i class="bi bi-shield-fill-check"></i>
-                    <span>Koneksi aman terenkripsi &bull; Portal Khusus Administrator</span>
+                    <span>Koneksi aman terenkripsi &bull; Portal Khusus Administrator & Dosen</span>
                 </div>
             </form>
         </div>
@@ -602,7 +654,7 @@
         </div>
     </div>
 
-    {{-- Script: Password Visibility Toggle --}}
+    {{-- Script: Password Visibility Toggle & Quick Fill --}}
     <script>
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById('password');
@@ -616,6 +668,18 @@
                 passwordInput.type = 'password';
                 toggleIcon.classList.remove('bi-eye');
                 toggleIcon.classList.add('bi-eye-slash');
+            }
+        }
+
+        function fillLogin(email, password) {
+            const emailInput = document.getElementById('email');
+            const pwInput = document.getElementById('password');
+            if (emailInput) {
+                emailInput.value = email;
+                emailInput.focus();
+            }
+            if (pwInput) {
+                pwInput.value = password;
             }
         }
     </script>

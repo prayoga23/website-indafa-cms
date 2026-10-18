@@ -14,6 +14,20 @@
         </a>
     </div>
 
+    @auth
+        <div class="px-3 pb-2 pt-1">
+            <div class="d-flex align-items-center p-2 rounded-3 border bg-light-subtle">
+                <div class="avatar avatar-xs rounded-circle bg-dark text-white text-xxs font-weight-bold me-2 d-flex align-items-center justify-content-center shadow-xs">
+                    {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
+                </div>
+                <div class="overflow-hidden" style="line-height: 1.2;">
+                    <p class="text-xs font-weight-bold text-dark mb-0 text-truncate" style="max-width: 140px;">{{ auth()->user()->name }}</p>
+                    <span class="text-xxs text-secondary text-truncate d-block" style="max-width: 140px;">{{ auth()->user()->getRoleDisplayName() }}</span>
+                </div>
+            </div>
+        </div>
+    @endauth
+
     <hr class="horizontal dark mt-0 mb-2">
 
     <div class="navbar-collapse w-auto" id="sidenav-collapse-main">
@@ -22,6 +36,10 @@
             {{-- DASHBOARD COLLAPSE --}}
             @php
                 $dashboardActive = request()->routeIs('admin.dashboard*');
+                $canSyariahDash = auth()->user()->canAccessDashboard('syariah');
+                $canFebitDash = auth()->user()->canAccessDashboard('febit');
+                $canLpmDash = auth()->user()->canAccessDashboard('lpm');
+                $canLp2mDash = auth()->user()->canAccessDashboard('lp2m');
             @endphp
             <li class="nav-item">
                 <a class="nav-link justify-content-between {{ $dashboardActive ? 'active-parent' : '' }}"
@@ -40,46 +58,66 @@
                 </a>
                 <div class="collapse {{ $dashboardActive ? 'show' : '' }}" id="collapseDashboard">
                     <ul class="nav sub-menu-nav">
+                        @if(auth()->user()->isSuperAdmin())
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.dashboard') && !request()->routeIs('admin.dashboard.*') ? 'active-sub' : '' }}" href="{{ route('admin.dashboard') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Dashboard Utama</span>
                             </a>
                         </li>
+                        @endif
+
+                        @if($canSyariahDash)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.dashboard.syariah') ? 'active-sub' : '' }}" href="{{ route('admin.dashboard.syariah') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Fakultas Syari'ah</span>
                             </a>
                         </li>
+                        @endif
+
+                        @if($canFebitDash)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.dashboard.febit') ? 'active-sub' : '' }}" href="{{ route('admin.dashboard.febit') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Fakultas FEBIT</span>
                             </a>
                         </li>
+                        @endif
+
+                        @if($canLpmDash)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.dashboard.lpm') ? 'active-sub' : '' }}" href="{{ route('admin.dashboard.lpm') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Dashboard LPM</span>
                             </a>
                         </li>
+                        @endif
+
+                        @if($canLp2mDash)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.dashboard.lp2m') ? 'active-sub' : '' }}" href="{{ route('admin.dashboard.lp2m') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Dashboard LP2M</span>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </li>
 
-            {{-- KONTEN PORTAL (TANPA CODING) --}}
-            <li class="nav-header">Konten Portal (Tanpa Coding)</li>
+            {{-- PORTAL FAKULTAS & LEMBAGA --}}
             @php
                 $portalActive = request()->routeIs('admin.portal.*');
-                $prodiActive = request()->routeIs('admin.portal-prodi.*');
+                $canSyariahPortal = auth()->user()->canAccessPortal('syariah');
+                $canFebitPortal = auth()->user()->canAccessPortal('febit');
+                $canLpmPortal = auth()->user()->canAccessPortal('lpm');
+                $canLp2mPortal = auth()->user()->canAccessPortal('lp2m');
+                $showPortalSection = $canSyariahPortal || $canFebitPortal || $canLpmPortal || $canLp2mPortal;
             @endphp
+
+            @if($showPortalSection)
+            <li class="nav-header">Portal Fakultas & Lembaga</li>
             <li class="nav-item">
                 <a class="nav-link justify-content-between {{ $portalActive ? 'active-parent' : '' }}"
                    data-bs-toggle="collapse"
@@ -97,34 +135,58 @@
                 </a>
                 <div class="collapse {{ $portalActive ? 'show' : '' }}" id="collapsePortal">
                     <ul class="nav sub-menu-nav">
+                        @if($canSyariahPortal)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/portal/syariah*') ? 'active-sub' : '' }}" href="{{ route('admin.portal.edit', 'syariah') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Fakultas Syari'ah</span>
                             </a>
                         </li>
+                        @endif
+
+                        @if($canFebitPortal)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/portal/febit*') ? 'active-sub' : '' }}" href="{{ route('admin.portal.edit', 'febit') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Fakultas FEBIT</span>
                             </a>
                         </li>
+                        @endif
+
+                        @if($canLpmPortal)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/portal/lpm*') ? 'active-sub' : '' }}" href="{{ route('admin.portal.edit', 'lpm') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Portal LPM</span>
                             </a>
                         </li>
+                        @endif
+
+                        @if($canLp2mPortal)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/portal/lp2m*') ? 'active-sub' : '' }}" href="{{ route('admin.portal.edit', 'lp2m') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Portal LP2M</span>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </li>
+            @endif
 
+            {{-- WEBSITE PROGRAM STUDI --}}
+            @php
+                $prodiActive = request()->routeIs('admin.portal-prodi.*');
+                $canHki = auth()->user()->canAccessProdi('hki');
+                $canHes = auth()->user()->canAccessProdi('hes');
+                $canMbs = auth()->user()->canAccessProdi('mbs');
+                $canEkos = auth()->user()->canAccessProdi('ekos');
+                $canPai = auth()->user()->canAccessProdi('pai');
+                $showProdiSection = $canHki || $canHes || $canMbs || $canEkos || $canPai;
+            @endphp
+
+            @if($showProdiSection)
             <li class="nav-item">
                 <a class="nav-link justify-content-between {{ $prodiActive ? 'active-parent' : '' }}"
                    data-bs-toggle="collapse"
@@ -142,47 +204,66 @@
                 </a>
                 <div class="collapse {{ $prodiActive ? 'show' : '' }}" id="collapseProdiPortal">
                     <ul class="nav sub-menu-nav">
+                        @if(auth()->user()->isSuperAdmin() || auth()->user()->role === 'Admin Fakultas')
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.portal-prodi.index') ? 'active-sub' : '' }}" href="{{ route('admin.portal-prodi.index') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Semua Website Prodi</span>
                             </a>
                         </li>
+                        @endif
+
+                        @if($canHki)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/portal-prodi/hki*') ? 'active-sub' : '' }}" href="{{ route('admin.portal-prodi.edit', 'hki') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Prodi HKI (Syari'ah)</span>
                             </a>
                         </li>
+                        @endif
+
+                        @if($canHes)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/portal-prodi/hes*') ? 'active-sub' : '' }}" href="{{ route('admin.portal-prodi.edit', 'hes') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Prodi HES (Syari'ah)</span>
                             </a>
                         </li>
+                        @endif
+
+                        @if($canMbs)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/portal-prodi/mbs*') ? 'active-sub' : '' }}" href="{{ route('admin.portal-prodi.edit', 'mbs') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Prodi MBS (FEBIT)</span>
                             </a>
                         </li>
+                        @endif
+
+                        @if($canEkos)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/portal-prodi/ekos*') ? 'active-sub' : '' }}" href="{{ route('admin.portal-prodi.edit', 'ekos') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Prodi EKOS (FEBIT)</span>
                             </a>
                         </li>
+                        @endif
+
+                        @if($canPai)
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/portal-prodi/pai*') ? 'active-sub' : '' }}" href="{{ route('admin.portal-prodi.edit', 'pai') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Prodi PAI (FEBIT)</span>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </li>
+            @endif
 
             {{-- MASTER DATA --}}
+            @if(auth()->user()->isSuperAdmin())
             <li class="nav-header">Master Data</li>
 
             <li class="nav-item">
@@ -211,6 +292,7 @@
                     <span class="nav-link-text">Halaman (Pages)</span>
                 </a>
             </li>
+            @endif
 
             {{-- KONTEN & INFORMASI --}}
             <li class="nav-header">Konten & Web</li>
@@ -236,12 +318,15 @@
                 </a>
                 <div class="collapse {{ $berandaActive ? 'show' : '' }}" id="collapseBeranda">
                     <ul class="nav sub-menu-nav">
+                        @if(auth()->user()->isSuperAdmin())
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.sambutan.*') ? 'active-sub' : '' }}" href="{{ route('admin.sambutan.index') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Sambutan Rektor</span>
                             </a>
                         </li>
+                        @endif
+
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.news.*') ? 'active-sub' : '' }}" href="{{ route('admin.news.index') }}">
                                 <span class="sub-dot"></span>
@@ -254,24 +339,31 @@
                                 <span class="sidenav-normal">Agenda</span>
                             </a>
                         </li>
+
+                        @if(auth()->user()->isSuperAdmin())
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.statistic.*') ? 'active-sub' : '' }}" href="{{ route('admin.statistic.index') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Statistik Kampus</span>
                             </a>
                         </li>
+                        @endif
+
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/pages/edit-by-slug/prestasi') ? 'active-sub' : '' }}" href="{{ route('admin.pages.edit-by-slug', 'prestasi') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Prestasi Mahasiswa</span>
                             </a>
                         </li>
+
+                        @if(auth()->user()->isSuperAdmin())
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.homepage-settings.*') ? 'active-sub' : '' }}" href="{{ route('admin.homepage-settings.index') }}">
                                 <span class="sub-dot"></span>
                                 <span class="sidenav-normal">Pengaturan Beranda</span>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </li>
@@ -495,6 +587,7 @@
             </li>
 
             {{-- BANNER HOMEPAGE --}}
+            @if(auth()->user()->isSuperAdmin())
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.banners.*') ? 'active' : '' }}" href="{{ route('admin.banners.index') }}">
                     <span class="nav-icon">
@@ -503,6 +596,7 @@
                     <span class="nav-link-text">Banner Homepage</span>
                 </a>
             </li>
+            @endif
 
             {{-- DOKUMEN --}}
             <li class="nav-item">
@@ -514,8 +608,18 @@
                 </a>
             </li>
 
-            {{-- WEBSITE SETTING --}}
+            {{-- WEBSITE SETTING & MANAJEMEN PENGGUNA --}}
+            @if(auth()->user()->isSuperAdmin())
             <li class="nav-header">Pengaturan</li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
+                    <span class="nav-icon">
+                        <i class="material-symbols-rounded">manage_accounts</i>
+                    </span>
+                    <span class="nav-link-text">Manajemen Pengguna</span>
+                </a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.website-settings.*') ? 'active' : '' }}" href="{{ route('admin.website-settings.index') }}">
@@ -525,6 +629,7 @@
                     <span class="nav-link-text">Website Setting</span>
                 </a>
             </li>
+            @endif
 
         </ul>
     </div>

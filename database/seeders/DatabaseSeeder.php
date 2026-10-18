@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
                 DB::statement('SET FOREIGN_KEY_CHECKS=0;');
                 DB::unprepared($sql);
                 DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-                return;
             }
         }
 

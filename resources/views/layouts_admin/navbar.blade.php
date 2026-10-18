@@ -37,8 +37,10 @@
                     <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4 shadow border-0" aria-labelledby="dropdownUserButton">
                         <li class="mb-2 px-3 py-1">
                             <p class="text-xs text-secondary mb-0">Login sebagai</p>
-                            <h6 class="text-sm font-weight-bold mb-0 text-dark">{{ auth()->user()->name ?? 'Admin' }}</h6>
-                            <span class="badge bg-light text-dark text-xxs border mt-1">Administrator</span>
+                            <h6 class="text-sm font-weight-bold mb-0 text-dark">{{ auth()->user()->name ?? 'Pengguna' }}</h6>
+                            <span class="badge {{ auth()->user()?->getRoleBadgeClass() ?? 'bg-light text-dark' }} text-xxs mt-1 font-weight-bold">
+                                {{ auth()->user()?->getRoleDisplayName() ?? 'Pengguna' }}
+                            </span>
                         </li>
                         <li><hr class="dropdown-divider my-2"></li>
                         <li>

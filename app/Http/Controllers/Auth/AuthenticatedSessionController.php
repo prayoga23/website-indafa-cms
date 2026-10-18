@@ -28,7 +28,44 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = Auth::user();
+
+        // Cek status keaktifan akun pengguna
+        if ($user && !$user->is_active) {
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect()->route('login')->withErrors([
+                'email' => 'Akun Anda sedang dinonaktifkan oleh Administrator Kampus. Silakan hubungi pihak Rektorat/IT.',
+            ]);
+        }
+
+        // Pengalihan cerdas sesuai peran (role & jobdesk)
+        if ($user) {
+            if ($user->isSuperAdmin()) {
+                return redirect()->intended(route('admin.dashboard', absolute: false));
+            }
+
+            if ($user->role === 'Admin Fakultas' && $user->faculty_code) {
+                if ($user->faculty_code === 'febit') {
+                    return redirect()->intended(route('admin.dashboard.febit', absolute: false));
+                }
+                if ($user->faculty_code === 'syariah') {
+                    return redirect()->intended(route('admin.dashboard.syariah', absolute: false));
+                }
+            }
+
+            if ($user->role === 'Dosen Prodi' && $user->prodi_code) {
+                return redirect()->intended(route('admin.portal-prodi.edit', $user->prodi_code, absolute: false));
+            }
+
+            if ($user->role === 'Admin Lembaga' && $user->unit_code) {
+                return redirect()->intended(route('admin.portal.edit', $user->unit_code, absolute: false));
+            }
+        }
+
+        return redirect()->intended(route('admin.dashboard', absolute: false));
     }
 
     /**
