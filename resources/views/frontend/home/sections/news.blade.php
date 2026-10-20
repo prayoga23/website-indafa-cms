@@ -17,9 +17,9 @@
                         {{-- THUMBNAIL BERITA --}}
                         <div class="causes-img position-relative overflow-hidden">
                             @if($item->thumbnail)
-                                <img src="{{ asset('storage/'.$item->thumbnail) }}" class="img-fluid w-100" alt="{{ $item->title }}" style="height: 220px; object-fit: cover;">
+                                <img src="{{ asset('storage/'.$item->thumbnail) }}" class="img-fluid w-100" alt="{{ $item->title }}" style="height: 220px; object-fit: cover;" onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-1.jpg') }}';">
                             @else
-                                <img src="{{ asset('img/causes-default.jpg') }}" class="img-fluid w-100" alt="No Image" style="height: 220px; object-fit: cover;">
+                                <img src="{{ asset('assets/img/blog-1.jpg') }}" class="img-fluid w-100" alt="No Image" style="height: 220px; object-fit: cover;">
                             @endif
 
                             {{-- METADATA TANGGAL DI ATAS GAMBAR (Gaya Khas Tema) --}}

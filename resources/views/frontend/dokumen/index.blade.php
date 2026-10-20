@@ -33,8 +33,8 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-4 text-md-end">
-                <span class="text-secondary small me-2"><i class="bi bi-info-circle me-1 text-gold"></i> Format berkas: PDF / DOCX / XLSX</span>
+            <div class="col-md-5 text-md-end">
+                <span class="text-secondary small me-2"><i class="bi bi-info-circle me-1 text-gold"></i> Berkas: Google Drive / Docs / PDF / Dokumen</span>
             </div>
         </div>
 
@@ -57,22 +57,25 @@
                             @foreach($documents as $index => $doc)
                                 @php
                                     // Set default icon & warna style avatar
-                                    $extension = strtolower($doc->file_extension);
-                                    $iconClass = 'bi-file-earmark-text';
-                                    $bgClass = 'bg-gold-light text-gold-style';
+                                    $extension = strtolower($doc->file_extension ?? 'gdrive');
+                                    $iconClass = 'bi-file-earmark-richtext';
+                                    $bgClass = 'bg-primary-subtle text-primary';
 
                                     if ($extension === 'pdf') {
                                         $iconClass = 'bi-file-earmark-pdf';
                                         $bgClass = 'bg-danger-subtle text-danger';
-                                    } elseif (in_array($extension, ['docx', 'doc'])) {
+                                    } elseif (in_array($extension, ['docx', 'doc', 'word'])) {
                                         $iconClass = 'bi-file-earmark-word';
                                         $bgClass = 'bg-primary-subtle text-primary';
-                                    } elseif (in_array($extension, ['xlsx', 'xls'])) {
+                                    } elseif (in_array($extension, ['xlsx', 'xls', 'excel', 'sheet', 'sheets'])) {
                                         $iconClass = 'bi-file-earmark-excel';
                                         $bgClass = 'bg-success-subtle text-success';
-                                    } elseif (in_array($extension, ['pptx', 'ppt'])) {
+                                    } elseif (in_array($extension, ['pptx', 'ppt', 'presentation', 'slides'])) {
                                         $iconClass = 'bi-file-earmark-slides';
                                         $bgClass = 'bg-warning-subtle text-warning';
+                                    } elseif (in_array($extension, ['gdrive', 'docs', 'google_drive', 'drive'])) {
+                                        $iconClass = 'bi-file-earmark-text';
+                                        $bgClass = 'bg-info-subtle text-info';
                                     }
 
                                     // Konfigurasi Link Berkas Unduhan
@@ -90,14 +93,27 @@
                                             <div class="doc-icon-avatar {{ $bgClass }} rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
                                                 <i class="bi {{ $iconClass }} fs-5"></i>
                                             </div>
-                                            <span class="fw-semibold text-dark-green text-document-title">{{ $doc->name }}</span>
+                                            <div>
+                                                <span class="fw-semibold text-dark-green text-document-title d-block">{{ $doc->name }}</span>
+                                                @if(Str::startsWith($doc->file_path, ['http://', 'https://']))
+                                                    <span class="badge bg-light text-secondary border text-xxs font-normal">
+                                                        <i class="bi bi-cloud-check text-success me-1"></i> Google Drive / Cloud
+                                                    </span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </td>
                                     <td class="text-center text-secondary font-monospace fw-medium">{{ $doc->year }}</td>
                                     <td class="text-center">
-                                        <a href="{{ $fileUrl }}" download class="btn btn-dark-green btn-sm rounded-pill px-4 py-1.5 fw-semibold tracking-wide">
-                                            <i class="bi bi-cloud-arrow-down-fill me-1 small"></i> Unduh
-                                        </a>
+                                        @if(Str::startsWith($doc->file_path, ['http://', 'https://']))
+                                            <a href="{{ $fileUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-dark-green btn-sm rounded-pill px-3 py-1.5 fw-semibold tracking-wide" title="Buka Dokumen">
+                                                <i class="bi bi-box-arrow-up-right me-1 small"></i> Buka Dokumen
+                                            </a>
+                                        @else
+                                            <a href="{{ $fileUrl }}" download target="_blank" class="btn btn-dark-green btn-sm rounded-pill px-4 py-1.5 fw-semibold tracking-wide">
+                                                <i class="bi bi-cloud-arrow-down-fill me-1 small"></i> Unduh
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

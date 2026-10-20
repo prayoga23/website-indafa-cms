@@ -91,7 +91,7 @@
                                 <p class="text-secondary small mb-4 text-justify line-clamp">
                                     {{ Str::limit(strip_tags($news->content), 130, '...') }}
                                 </p>
-                                <a href="{{ url('berita/'.$featuredNews->slug) }}" class="mt-auto text-gold fw-bold text-decoration-none small text-uppercase tracking-wider hover-gold">
+                                <a href="{{ url('berita/'.$news->slug) }}" class="mt-auto text-gold fw-bold text-decoration-none small text-uppercase tracking-wider hover-gold">
                                     Selengkapnya <i class="bi bi-chevron-right ms-1"></i>
                                 </a>
                             </div>

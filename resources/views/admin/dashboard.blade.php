@@ -297,7 +297,7 @@
         <div class="d-flex align-items-center justify-content-between mb-1">
             <h6 class="text-sm font-weight-bolder text-dark mb-0">
                 <i class="material-symbols-rounded text-sm me-1 text-success align-middle">school</i>
-                Website Program Studi (Sub-Web Prodi - Tanpa Coding)
+                Website Program Studi 
             </h6>
             <a href="{{ route('admin.portal-prodi.index') }}" class="text-xs font-weight-bold text-success d-inline-flex align-items-center">
                 <span>Kelola Semua Prodi</span>

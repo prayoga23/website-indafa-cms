@@ -9,9 +9,9 @@ return new class extends Migration {
         Schema::create('academic_documents', function (Blueprint $table) {
             $table->id();
             $table->string('name');             // Nama Dokumen
-            $table->string('file_path');        // Path penyimpanan berkas
-            $table->string('file_extension');   // Ekstensi (pdf, docx, dll) untuk penentuan ikon otomatis
-            $table->year('year');               // Tahun Dokumen
+            $table->text('file_path');                          // Path penyimpanan berkas atau Link Google Drive / Cloud
+            $table->string('file_extension')->nullable()->default('gdrive'); // Ekstensi/format (pdf, docx, gdrive, dll)
+            $table->year('year');                               // Tahun Dokumen
             $table->timestamps();
         });
     }

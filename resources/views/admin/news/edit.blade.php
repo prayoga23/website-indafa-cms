@@ -19,6 +19,17 @@
         </div>
     </div>
 
+    @if($errors->any())
+        <div class="m-3 m-md-4 mb-0 alert alert-danger alert-dismissible fade show text-white text-xs" role="alert">
+            <i class="fas fa-exclamation-triangle me-1"></i> <strong>Terdapat kesalahan pada input:</strong>
+            <ul class="mb-0 ps-3 mt-1">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('admin.news.update', $news->id) }}"
           method="POST"
           enctype="multipart/form-data">

@@ -121,7 +121,8 @@
                 <div class="file-dropzone-wrapper">
                     <input type="file"
                            name="thumbnail"
-                           accept="image/*"
+                           id="news-thumbnail-input"
+                           accept="image/jpeg,image/png,image/webp,image/jpg"
                            data-preview="thumbnail-preview-box">
                     <div class="file-dropzone-icon">
                         <i class="fas fa-cloud-upload-alt"></i>
@@ -130,7 +131,7 @@
                         Klik untuk memilih gambar atau seret file ke area ini
                     </div>
                     <div class="text-xs text-slate-500 mt-1">
-                        Format didukung: <strong>JPG, PNG, WEBP</strong> &bull; Maksimal <strong>2 MB</strong> (Rasio 16:9 disarankan)
+                        Format didukung: <strong>JPG, JPEG, PNG, WEBP</strong> &bull; Maksimal <strong>10 MB</strong> (Rasio 16:9 disarankan)
                     </div>
                 </div>
 
@@ -138,14 +139,15 @@
                 <div id="thumbnail-preview-box" class="live-preview-box" style="display: none;"></div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-4" id="thumbnail-side-preview">
                 @if(isset($news) && $news->thumbnail)
                     <div class="p-3 bg-white rounded-xl border border-slate-200 text-center">
                         <span class="text-xxs font-bold uppercase tracking-wider text-slate-500 d-block mb-2">Gambar Saat Ini</span>
                         <img src="{{ asset('storage/'.$news->thumbnail) }}"
                              alt="Thumbnail Saat Ini"
                              class="rounded-lg shadow-sm border border-slate-200 w-100"
-                             style="max-height: 140px; object-fit: cover;">
+                             style="max-height: 140px; object-fit: cover;"
+                             onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-1.jpg') }}';">
                         <span class="text-xxs text-slate-400 d-block mt-2">Pilih gambar baru jika ingin mengganti</span>
                     </div>
                 @else
@@ -156,6 +158,31 @@
                 @endif
             </div>
         </div>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const input = document.getElementById('news-thumbnail-input');
+            const previewContainer = document.getElementById('thumbnail-side-preview');
+            if (input && previewContainer) {
+                input.addEventListener('change', function () {
+                    const file = this.files[0];
+                    if (file && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            previewContainer.innerHTML = `
+                                <div class="p-3 bg-white rounded-xl border border-emerald-300 text-center shadow-sm">
+                                    <span class="badge bg-emerald-100 text-emerald-800 text-xxs font-bold mb-2">Pratinjau Gambar Dipilih</span>
+                                    <img src="${e.target.result}" alt="Preview" class="rounded-lg shadow-sm border border-slate-200 w-100" style="max-height: 140px; object-fit: cover;">
+                                    <span class="text-xxs text-emerald-700 font-bold d-block mt-2">${file.name} (${(file.size/1024).toFixed(1)} KB)</span>
+                                </div>
+                            `;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+        </script>
     </div>
 
     {{-- SECTION 4: STATUS PUBLIKASI --}}

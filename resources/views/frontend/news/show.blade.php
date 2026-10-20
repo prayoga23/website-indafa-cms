@@ -44,9 +44,9 @@
                                     <div class="causes-item card h-100 border-0 shadow-sm">
                                         <div class="causes-img position-relative overflow-hidden">
                                             @if($item->thumbnail)
-                                                <img src="{{ asset('storage/'.$item->thumbnail) }}" class="img-fluid w-100" alt="{{ $item->title }}">
+                                                <img src="{{ asset('storage/'.$item->thumbnail) }}" class="img-fluid w-100" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-1.jpg') }}';">
                                             @else
-                                                <img src="{{ asset('img/placeholder.jpg') }}" class="img-fluid w-100" alt="No Image">
+                                                <img src="{{ asset('assets/img/blog-1.jpg') }}" class="img-fluid w-100" alt="No Image">
                                             @endif
                                         </div>
                                         <div class="causes-content p-4">

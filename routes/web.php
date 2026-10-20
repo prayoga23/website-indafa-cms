@@ -462,6 +462,19 @@ Route::prefix('admin')
     Route::delete('/dokumen/{document}', [AcademicDocumentController::class, 'destroy'])->name('document.destroy');
     });
 
+// Fallback Route untuk Berkas Storage Publik jika Symlink Hosting Mengalami Kendala
+Route::get('/storage/{path}', function ($path) {
+    $fullPath = storage_path('app/public/' . $path);
+    if (!file_exists($fullPath) || is_dir($fullPath)) {
+        abort(404);
+    }
+    $mime = mime_content_type($fullPath) ?: 'application/octet-stream';
+    return response()->file($fullPath, [
+        'Content-Type' => $mime,
+        'Cache-Control' => 'public, max-age=86400',
+    ]);
+})->where('path', '.*');
+
 // Helper Route Pembersih Cache & Storage Link Hosting
 Route::get('/clear-cache', function () {
     \Illuminate\Support\Facades\Artisan::call('view:clear');
@@ -469,6 +482,11 @@ Route::get('/clear-cache', function () {
     \Illuminate\Support\Facades\Artisan::call('config:clear');
     \Illuminate\Support\Facades\Artisan::call('route:clear');
     try {
+        if (!is_link(public_path('storage')) && is_dir(public_path('storage'))) {
+            // Backup/rsync files before relinking if needed
+            \Illuminate\Support\Facades\File::copyDirectory(public_path('storage'), storage_path('app/public'));
+            \Illuminate\Support\Facades\File::deleteDirectory(public_path('storage'));
+        }
         \Illuminate\Support\Facades\Artisan::call('storage:link');
     } catch (\Exception $e) {}
     

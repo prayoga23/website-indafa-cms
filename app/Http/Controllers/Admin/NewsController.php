@@ -37,6 +37,15 @@ class NewsController extends Controller
         if ($request->hasFile('thumbnail')) {
             $thumbnail = $request->file('thumbnail')
                 ->store('news','public');
+
+            // Pastikan jika di hosting/VPS belum terpasang symlink, berkas tetap tersalin ke public/storage
+            if (!is_link(public_path('storage')) && is_dir(public_path('storage'))) {
+                $dest = public_path('storage/' . $thumbnail);
+                if (!is_dir(dirname($dest))) {
+                    @mkdir(dirname($dest), 0755, true);
+                }
+                @copy(storage_path('app/public/' . $thumbnail), $dest);
+            }
         }
 
         News::create([
@@ -73,10 +82,22 @@ class NewsController extends Controller
 
             if ($news->thumbnail) {
                 Storage::disk('public')->delete($news->thumbnail);
+                if (!is_link(public_path('storage')) && file_exists(public_path('storage/' . $news->thumbnail))) {
+                    @unlink(public_path('storage/' . $news->thumbnail));
+                }
             }
 
             $thumbnail = $request->file('thumbnail')
                 ->store('news','public');
+
+            // Pastikan jika di hosting/VPS belum terpasang symlink, berkas tetap tersalin ke public/storage
+            if (!is_link(public_path('storage')) && is_dir(public_path('storage'))) {
+                $dest = public_path('storage/' . $thumbnail);
+                if (!is_dir(dirname($dest))) {
+                    @mkdir(dirname($dest), 0755, true);
+                }
+                @copy(storage_path('app/public/' . $thumbnail), $dest);
+            }
         }
 
         $news->update([

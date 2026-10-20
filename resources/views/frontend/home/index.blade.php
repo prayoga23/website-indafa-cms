@@ -149,7 +149,7 @@
                 <h2 class="section-title mb-1">Berita Terbaru</h2>
                 <div class="section-divider mt-2"></div>
             </div>
-            <a href="#" class="btn btn-outline-brand rounded-pill px-4 reveal">
+            <a href="{{ route('news.index') }}" class="btn btn-outline-brand rounded-pill px-4 reveal">
                 Semua Berita &nbsp;<i class="bi bi-arrow-right"></i>
             </a>
         </div>
@@ -161,8 +161,9 @@
             <div class="col-lg-5 reveal reveal-delay-1">
                 <div class="news-card h-100">
                     <div class="news-thumb news-thumb-featured">
-                        <img src="{{ asset('storage/' . $featuredNews->thumbnail) }}"
-                             alt="{{ $featuredNews->title }}" loading="lazy">
+                        <img src="{{ $featuredNews->thumbnail ? asset('storage/' . $featuredNews->thumbnail) : asset('assets/img/blog-1.jpg') }}"
+                             alt="{{ $featuredNews->title }}" loading="lazy"
+                             onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-1.jpg') }}';">
                         <span class="news-cat news-cat-primary">Terbaru</span>
                     </div>
                     <div class="news-body">
@@ -193,8 +194,9 @@
                         <div class="col-sm-6 reveal reveal-delay-{{ $loop->iteration }}">
                             <div class="news-card h-100">
                                 <div class="news-thumb news-thumb-small">
-                                    <img src="{{ asset('storage/' . $item->thumbnail) }}"
-                                         alt="{{ $item->title }}" loading="lazy">
+                                    <img src="{{ $item->thumbnail ? asset('storage/' . $item->thumbnail) : asset('assets/img/blog-' . (($loop->iteration % 4) + 1) . '.jpg') }}"
+                                         alt="{{ $item->title }}" loading="lazy"
+                                         onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-' . (($loop->iteration % 4) + 1) . '.jpg') }}';">
                                     <span class="news-cat news-cat-gold">Berita</span>
                                 </div>
                                 <div class="news-body">
