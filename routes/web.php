@@ -477,20 +477,46 @@ Route::get('/storage/{path}', function ($path) {
 
 // Helper Route Pembersih Cache & Storage Link Hosting
 Route::get('/clear-cache', function () {
-    \Illuminate\Support\Facades\Artisan::call('view:clear');
-    \Illuminate\Support\Facades\Artisan::call('cache:clear');
-    \Illuminate\Support\Facades\Artisan::call('config:clear');
-    \Illuminate\Support\Facades\Artisan::call('route:clear');
+    $log = [];
+
+    // 1. Bersihkan seluruh cache
     try {
-        if (!is_link(public_path('storage')) && is_dir(public_path('storage'))) {
-            // Backup/rsync files before relinking if needed
-            \Illuminate\Support\Facades\File::copyDirectory(public_path('storage'), storage_path('app/public'));
-            \Illuminate\Support\Facades\File::deleteDirectory(public_path('storage'));
+        \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+        $log[] = 'Cache aplikasi & view berhasil dibersihkan.';
+    } catch (\Throwable $e) {
+        $log[] = 'Cache clear: ' . $e->getMessage();
+    }
+
+    // 2. Perbaiki symbolic link storage jika bermasalah / folder statis
+    try {
+        $storageLink = public_path('storage');
+        if (file_exists($storageLink) || is_link($storageLink)) {
+            if (is_link($storageLink)) {
+                @unlink($storageLink);
+            } elseif (is_dir($storageLink)) {
+                \Illuminate\Support\Facades\File::copyDirectory($storageLink, storage_path('app/public'));
+                \Illuminate\Support\Facades\File::deleteDirectory($storageLink);
+            }
         }
         \Illuminate\Support\Facades\Artisan::call('storage:link');
-    } catch (\Exception $e) {}
-    
-    return 'Cache Laravel & Storage Link berhasil dibersihkan! Silakan muat ulang halaman website Anda.';
+        $log[] = 'Symlink public/storage berhasil dihubungkan ulang ke storage/app/public.';
+    } catch (\Throwable $e) {
+        $log[] = 'Catatan storage link: ' . $e->getMessage();
+    }
+
+    // 3. Jalankan migrasi database
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        $log[] = 'Migrasi database berhasil dijalankan.';
+    } catch (\Throwable $e) {
+        $log[] = 'Catatan migrasi: ' . $e->getMessage();
+    }
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Sistem berhasil di-refresh, symlink storage dihubungkan, dan database dimigrasi!',
+        'logs' => $log,
+    ]);
 });
 
 require __DIR__.'/auth.php';
