@@ -16,10 +16,11 @@
 
     <div class="card-body">
 
-        @if($news->image)
-            <img src="{{ asset('storage/'.$news->image) }}"
-                 class="img-fluid mb-3"
-                 style="max-height:300px;">
+        @if($news->thumbnail_url)
+            <img src="{{ $news->thumbnail_url }}"
+                 alt="{{ $news->title }}"
+                 class="img-fluid rounded-3 mb-4 shadow-sm border border-slate-200"
+                 style="max-height: 400px; width: 100%; object-fit: cover;">
         @endif
 
         <div class="content">

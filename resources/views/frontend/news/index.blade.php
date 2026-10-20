@@ -53,8 +53,8 @@
 
                             {{-- THUMBNAIL BERITA --}}
                             <div class="causes-img position-relative overflow-hidden">
-                                @if($item->thumbnail)
-                                    <img src="{{ asset('storage/'.$item->thumbnail) }}" class="img-fluid w-100" alt="{{ $item->title }}" style="height: 240px; object-fit: cover;" onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-1.jpg') }}';">
+                                @if($item->thumbnail_url)
+                                    <img src="{{ $item->thumbnail_url }}" class="img-fluid w-100" alt="{{ $item->title }}" style="height: 240px; object-fit: cover;" onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-1.jpg') }}';">
                                 @else
                                     <img src="{{ asset('assets/img/blog-1.jpg') }}" class="img-fluid w-100" alt="No Image" style="height: 240px; object-fit: cover;">
                                 @endif

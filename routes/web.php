@@ -512,10 +512,29 @@ Route::get('/clear-cache', function () {
         $log[] = 'Catatan migrasi: ' . $e->getMessage();
     }
 
+    // 4. Diagnostik data berita terbaru & limit upload
+    $latestNews = \App\Models\News::latest()->take(6)->get(['id', 'title', 'slug', 'thumbnail', 'status', 'created_at'])->map(function($n) {
+        return [
+            'id' => $n->id,
+            'title' => $n->title,
+            'slug' => $n->slug,
+            'thumbnail' => $n->thumbnail,
+            'thumbnail_url' => $n->thumbnail_url,
+            'storage_exists' => $n->thumbnail ? file_exists(storage_path('app/public/' . $n->thumbnail)) : false,
+            'public_exists' => $n->thumbnail ? file_exists(public_path('storage/' . $n->thumbnail)) : false,
+        ];
+    });
+
     return response()->json([
         'status' => 'success',
         'message' => 'Sistem berhasil di-refresh, symlink storage dihubungkan, dan database dimigrasi!',
         'logs' => $log,
+        'php_limits' => [
+            'upload_max_filesize' => ini_get('upload_max_filesize'),
+            'post_max_size' => ini_get('post_max_size'),
+            'memory_limit' => ini_get('memory_limit'),
+        ],
+        'latest_news' => $latestNews,
     ]);
 });
 

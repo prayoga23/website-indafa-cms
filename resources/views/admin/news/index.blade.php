@@ -67,16 +67,16 @@
                         <tr>
                             {{-- THUMBNAIL --}}
                             <td class="ps-3 text-center">
-                                @if($item->thumbnail)
+                                @if($item->thumbnail_url)
                                     <div class="position-relative d-inline-block">
-                                        <img src="{{ asset('storage/' . $item->thumbnail) }}"
+                                        <img src="{{ $item->thumbnail_url }}"
                                              alt="{{ $item->title }}"
                                              class="rounded-lg border border-slate-200 shadow-sm"
                                              style="width: 72px; height: 48px; object-fit: cover;"
-                                             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'thumb-fallback-box\'><i class=\'fas fa-image text-slate-400\'></i></div>';">
+                                             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'thumb-fallback-box mx-auto\' title=\'Gambar tidak dapat dimuat\'><i class=\'fas fa-image text-slate-400\'></i></div>';">
                                     </div>
                                 @else
-                                    <div class="thumb-fallback-box mx-auto">
+                                    <div class="thumb-fallback-box mx-auto" title="Belum ada gambar thumbnail">
                                         <i class="fas fa-image text-slate-400"></i>
                                     </div>
                                 @endif

@@ -747,7 +747,6 @@
     <script>
         // Global Dropzone & Image Preview Helper
         document.addEventListener('DOMContentLoaded', function () {
-            // Dropzone drag-and-drop visuals
             document.querySelectorAll('.file-dropzone-wrapper').forEach(function (wrapper) {
                 const input = wrapper.querySelector('input[type="file"]');
                 if (!input) return;
@@ -755,15 +754,43 @@
                 ['dragenter', 'dragover'].forEach(eventName => {
                     wrapper.addEventListener(eventName, (e) => {
                         e.preventDefault();
+                        e.stopPropagation();
                         wrapper.classList.add('dragover');
                     }, false);
                 });
 
-                ['dragleave', 'drop'].forEach(eventName => {
+                ['dragleave'].forEach(eventName => {
                     wrapper.addEventListener(eventName, (e) => {
                         e.preventDefault();
+                        e.stopPropagation();
                         wrapper.classList.remove('dragover');
                     }, false);
+                });
+
+                wrapper.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    wrapper.classList.remove('dragover');
+
+                    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                        try {
+                            const dt = new DataTransfer();
+                            for (let i = 0; i < e.dataTransfer.files.length; i++) {
+                                dt.items.add(e.dataTransfer.files[i]);
+                            }
+                            input.files = dt.files;
+                        } catch (err) {
+                            input.files = e.dataTransfer.files;
+                        }
+                        input.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                }, false);
+
+                // Clicking anywhere inside wrapper triggers file picker
+                wrapper.addEventListener('click', function (e) {
+                    if (e.target !== input) {
+                        input.click();
+                    }
                 });
 
                 // Live preview upon selecting a file

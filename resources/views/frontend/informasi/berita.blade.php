@@ -23,8 +23,9 @@
                 <div class="col-12">
                     <div class="featured-news-card bg-white rounded-4 overflow-hidden shadow-sm d-flex flex-column flex-lg-row">
                         <div class="featured-img-wrapper position-relative flex-grow-1" style="min-width: 45%;">
-                            <img src="{{ $featuredNews->thumbnail ? asset('storage/' . $featuredNews->thumbnail) : 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?q=80&w=800&auto=format&fit=crop' }}"
-                                 alt="{{ $featuredNews->title }}" class="featured-img w-100 h-100" style="object-fit: cover; min-height: 300px;">
+                            <img src="{{ $featuredNews->thumbnail_url ?: asset('assets/img/blog-1.jpg') }}"
+                                 alt="{{ $featuredNews->title }}" class="featured-img w-100 h-100" style="object-fit: cover; min-height: 300px;"
+                                 onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-1.jpg') }}';">
                             <span class="badge bg-gold position-absolute top-0 start-0 m-4 px-3 py-2 text-uppercase fw-bold">Berita Utama</span>
                         </div>
                         <div class="featured-content p-4 p-md-5 d-flex flex-column justify-content-center">
@@ -79,8 +80,9 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="news-card bg-white rounded-4 overflow-hidden shadow-sm h-100 d-flex flex-column">
                             <div class="card-img-box position-relative" style="height: 220px; overflow: hidden;">
-                                <img src="{{ $news->thumbnail ? asset('storage/' . $news->thumbnail) : 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop' }}"
-                                     alt="{{ $news->title }}" class="w-100 h-100" style="object-fit: cover;">
+                                <img src="{{ $news->thumbnail_url ?: asset('assets/img/blog-1.jpg') }}"
+                                     alt="{{ $news->title }}" class="w-100 h-100" style="object-fit: cover;"
+                                     onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-1.jpg') }}';">
                                 <span class="badge bg-dark-green position-absolute bottom-0 start-0 m-3">{{ $badgeLabel }}</span>
                             </div>
                             <div class="card-body p-4 d-flex flex-column flex-grow-1">

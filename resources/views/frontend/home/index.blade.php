@@ -161,7 +161,7 @@
             <div class="col-lg-5 reveal reveal-delay-1">
                 <div class="news-card h-100">
                     <div class="news-thumb news-thumb-featured">
-                        <img src="{{ $featuredNews->thumbnail ? asset('storage/' . $featuredNews->thumbnail) : asset('assets/img/blog-1.jpg') }}"
+                        <img src="{{ $featuredNews->thumbnail_url ?: asset('assets/img/blog-1.jpg') }}"
                              alt="{{ $featuredNews->title }}" loading="lazy"
                              onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-1.jpg') }}';">
                         <span class="news-cat news-cat-primary">Terbaru</span>
@@ -194,7 +194,7 @@
                         <div class="col-sm-6 reveal reveal-delay-{{ $loop->iteration }}">
                             <div class="news-card h-100">
                                 <div class="news-thumb news-thumb-small">
-                                    <img src="{{ $item->thumbnail ? asset('storage/' . $item->thumbnail) : asset('assets/img/blog-' . (($loop->iteration % 4) + 1) . '.jpg') }}"
+                                    <img src="{{ $item->thumbnail_url ?: asset('assets/img/blog-' . (($loop->iteration % 4) + 1) . '.jpg') }}"
                                          alt="{{ $item->title }}" loading="lazy"
                                          onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-' . (($loop->iteration % 4) + 1) . '.jpg') }}';">
                                     <span class="news-cat news-cat-gold">Berita</span>

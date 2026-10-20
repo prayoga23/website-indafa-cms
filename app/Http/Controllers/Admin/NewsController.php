@@ -32,20 +32,41 @@ class NewsController extends Controller
 
     public function store(NewsRequest $request)
     {
+        // Validasi jika ada upload error dari PHP (misal upload_max_filesize)
+        if ($request->file('thumbnail') && !$request->file('thumbnail')->isValid()) {
+            $errorCode = $request->file('thumbnail')->getError();
+            $errorMsg = match ($errorCode) {
+                UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE => 'Ukuran file gambar melebihi batas upload server. Silakan gunakan file gambar dengan ukuran di bawah 5 MB.',
+                UPLOAD_ERR_PARTIAL => 'File gambar hanya terunggah sebagian. Silakan coba lagi.',
+                default => 'Terjadi kendala saat mengunggah gambar (Kode: ' . $errorCode . ').',
+            };
+            return back()->withInput()->withErrors(['thumbnail' => $errorMsg]);
+        }
+
         $thumbnail = null;
 
         if ($request->hasFile('thumbnail')) {
             $thumbnail = $request->file('thumbnail')
-                ->store('news','public');
+                ->store('news', 'public');
 
-            // Pastikan jika di hosting/VPS belum terpasang symlink, berkas tetap tersalin ke public/storage
-            if (!is_link(public_path('storage')) && is_dir(public_path('storage'))) {
-                $dest = public_path('storage/' . $thumbnail);
-                if (!is_dir(dirname($dest))) {
-                    @mkdir(dirname($dest), 0755, true);
+            // Pastikan berkas tersalin jika symlink belum aktif sempurna
+            $dest = public_path('storage/' . $thumbnail);
+            if (!file_exists($dest)) {
+                $dir = dirname($dest);
+                if (!is_dir($dir)) {
+                    @mkdir($dir, 0755, true);
                 }
                 @copy(storage_path('app/public/' . $thumbnail), $dest);
             }
+        }
+
+        // Generate slug unik agar tidak error saat judul sama
+        $slug = Str::slug($request->title);
+        $originalSlug = $slug;
+        $counter = 1;
+        while (News::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $counter;
+            $counter++;
         }
 
         News::create([
@@ -54,7 +75,7 @@ class NewsController extends Controller
             'user_id' => auth()->id(),
 
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
+            'slug' => $slug,
 
             'thumbnail' => $thumbnail,
             'content' => $request->content,
@@ -63,7 +84,7 @@ class NewsController extends Controller
 
         return redirect()
             ->route('admin.news.index')
-            ->with('success','Berita berhasil dibuat');
+            ->with('success', 'Berita berhasil dibuat');
     }
 
     public function edit(News $news)
@@ -71,33 +92,53 @@ class NewsController extends Controller
         $faculties = Faculty::all();
         $studyPrograms = StudyProgram::all();
 
-        return view('admin.news.edit', compact('news','faculties','studyPrograms'));
+        return view('admin.news.edit', compact('news', 'faculties', 'studyPrograms'));
     }
 
     public function update(NewsRequest $request, News $news)
     {
+        // Validasi jika ada upload error dari PHP (misal upload_max_filesize)
+        if ($request->file('thumbnail') && !$request->file('thumbnail')->isValid()) {
+            $errorCode = $request->file('thumbnail')->getError();
+            $errorMsg = match ($errorCode) {
+                UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE => 'Ukuran file gambar melebihi batas upload server. Silakan gunakan file gambar dengan ukuran di bawah 5 MB.',
+                UPLOAD_ERR_PARTIAL => 'File gambar hanya terunggah sebagian. Silakan coba lagi.',
+                default => 'Terjadi kendala saat mengunggah gambar (Kode: ' . $errorCode . ').',
+            };
+            return back()->withInput()->withErrors(['thumbnail' => $errorMsg]);
+        }
+
         $thumbnail = $news->thumbnail;
 
         if ($request->hasFile('thumbnail')) {
-
             if ($news->thumbnail) {
                 Storage::disk('public')->delete($news->thumbnail);
-                if (!is_link(public_path('storage')) && file_exists(public_path('storage/' . $news->thumbnail))) {
+                if (file_exists(public_path('storage/' . $news->thumbnail)) && !is_link(public_path('storage'))) {
                     @unlink(public_path('storage/' . $news->thumbnail));
                 }
             }
 
             $thumbnail = $request->file('thumbnail')
-                ->store('news','public');
+                ->store('news', 'public');
 
-            // Pastikan jika di hosting/VPS belum terpasang symlink, berkas tetap tersalin ke public/storage
-            if (!is_link(public_path('storage')) && is_dir(public_path('storage'))) {
-                $dest = public_path('storage/' . $thumbnail);
-                if (!is_dir(dirname($dest))) {
-                    @mkdir(dirname($dest), 0755, true);
+            // Pastikan berkas tersalin jika symlink belum aktif sempurna
+            $dest = public_path('storage/' . $thumbnail);
+            if (!file_exists($dest)) {
+                $dir = dirname($dest);
+                if (!is_dir($dir)) {
+                    @mkdir($dir, 0755, true);
                 }
                 @copy(storage_path('app/public/' . $thumbnail), $dest);
             }
+        }
+
+        // Generate slug unik saat update
+        $slug = Str::slug($request->title);
+        $originalSlug = $slug;
+        $counter = 1;
+        while (News::where('slug', $slug)->where('id', '!=', $news->id)->exists()) {
+            $slug = $originalSlug . '-' . $counter;
+            $counter++;
         }
 
         $news->update([
@@ -105,7 +146,7 @@ class NewsController extends Controller
             'study_program_id' => $request->study_program_id,
 
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
+            'slug' => $slug,
 
             'thumbnail' => $thumbnail,
             'content' => $request->content,

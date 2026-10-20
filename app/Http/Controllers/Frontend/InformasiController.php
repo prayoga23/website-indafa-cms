@@ -101,4 +101,9 @@ class InformasiController extends Controller
 
         return view('frontend.informasi.agenda', compact('agendas', 'status'));
     }
+
+    public function detailBerita($slug)
+    {
+        return redirect()->route('news.show', $slug);
+    }
 }

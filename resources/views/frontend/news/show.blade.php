@@ -21,9 +21,9 @@
                 {{-- KONTEN UTAMA BERITA (Kiri) --}}
                 <div class="col-lg-8">
                     <article class="news-detail-wrapper">
-                        @if($news->thumbnail)
+                        @if($news->thumbnail_url)
                             <div class="main-news-img mb-4">
-                                <img src="{{ asset('storage/'.$news->thumbnail) }}" class="img-fluid w-100 rounded" alt="{{ $news->title }}">
+                                <img src="{{ $news->thumbnail_url }}" class="img-fluid w-100 rounded" alt="{{ $news->title }}" onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-1.jpg') }}';">
                             </div>
                         @endif
 
@@ -43,8 +43,8 @@
                                 <div class="col-md-6 col-xl-4">
                                     <div class="causes-item card h-100 border-0 shadow-sm">
                                         <div class="causes-img position-relative overflow-hidden">
-                                            @if($item->thumbnail)
-                                                <img src="{{ asset('storage/'.$item->thumbnail) }}" class="img-fluid w-100" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-1.jpg') }}';">
+                                            @if($item->thumbnail_url)
+                                                <img src="{{ $item->thumbnail_url }}" class="img-fluid w-100" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='{{ asset('assets/img/blog-1.jpg') }}';">
                                             @else
                                                 <img src="{{ asset('assets/img/blog-1.jpg') }}" class="img-fluid w-100" alt="No Image">
                                             @endif
